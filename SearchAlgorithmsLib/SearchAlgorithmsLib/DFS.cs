@@ -11,7 +11,7 @@ namespace SearchAlgorithmsLib
         public override Solution search(ISearchable searchable)
         {
             addToOpenList(searchable.getInitializeState());
-
+            return new Solution(new State("lala"));
         }
     }
 }
