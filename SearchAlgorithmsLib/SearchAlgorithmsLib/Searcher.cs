@@ -22,6 +22,11 @@ namespace SearchAlgorithmsLib
             openList.Enqueue(state, 1);
         }
 
+        protected bool openContains(State state)
+        {
+            return openList.Contains(state);
+        }
+
         protected State popOpenList()
         {
             evaluatedNodes++;

@@ -16,7 +16,7 @@ namespace SearchAlgorithmsLib
                 State n = popOpenList();
                 closed.Add(n);
                 if (n.Equals(searchable.getGoalState()))
-                    return backTrace();
+                    return new Solution(n);
                 List<State> succerssors = searchable.getAllPossibleStates(n);
                 foreach (State s in succerssors)
                 {
@@ -29,6 +29,7 @@ namespace SearchAlgorithmsLib
                     }
                 }
             }
+            return new Solution(null);
         }
 
     }
