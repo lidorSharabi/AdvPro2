@@ -22,6 +22,7 @@ namespace SearchAlgorithmsLib
                 {
                     if (!closed.Contains(s) && !openContains(s))
                     {
+                        s.cameFrom = n;
                         addToOpenList(s);
                     }
                     else

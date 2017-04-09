@@ -9,7 +9,7 @@ namespace SearchAlgorithmsLib
     {
         private string state; // the state represented by a string
         private double cost; // cost to reach this state (set by a setter)
-        private State cameFrom; // the state we came from to this state (setter)
+        private State cameFrom;// the state we came from to this state (setter)
 
         public State(string state) // CTOR
         {
@@ -21,5 +21,9 @@ namespace SearchAlgorithmsLib
         {
             return state.Equals(s.state);
         }
-    }
+
+        State getCameFrom() { return cameFrom; }
+
+        void setCameFrom(State father) { this.cameFrom = father; }
+}
 }
