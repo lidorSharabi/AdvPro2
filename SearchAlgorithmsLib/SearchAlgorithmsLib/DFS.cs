@@ -9,7 +9,7 @@ namespace SearchAlgorithmsLib
 
     public class DFS<T> : StackSearcher<T>
     {
-        public override Solution search(ISearchable<T> searchable)
+        public override Solution<T> search(ISearchable<T> searchable)
         {
             HashSet<T> labeled = new HashSet<T>();
             State<T> state = searchable.getInitializeState();
@@ -36,6 +36,7 @@ namespace SearchAlgorithmsLib
 
                 }
             }
+            return null;
         }
     }
 }

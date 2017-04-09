@@ -5,11 +5,11 @@ using System.Text;
 
 namespace SearchAlgorithmsLib
 {
-    public class Solution
+    public class Solution<T>
     {
-        private State solution { get; set; }
+        private State<T> solution { get; set; }
 
-        public Solution(State solution)
+        public Solution(State<T> solution)
         {
             this.solution = solution;
         }

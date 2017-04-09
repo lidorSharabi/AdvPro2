@@ -14,11 +14,11 @@ namespace SearchAlgorithmsLib
         {
             return evaluatedNodes;
         }
-        public Solution backTrace()
+        public Solution<T> backTrace()
         {
-
+            return null;
         }
 
-        public abstract Solution search(ISearchable<T> searchable);
+        public abstract Solution<T> search(ISearchable<T> searchable);
     }
 }
