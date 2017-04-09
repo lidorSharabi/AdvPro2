@@ -4,26 +4,67 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SearchAlgorithmsLib;
+using MazeLib;
 
 namespace ConsoleApplication
 {
-    class MazeAdapter : ISearchable
-    //TODO - is MazeAdapter should implemnets Searchable?
-    // can't add SearchAlgorithmsLib as a refernece
+    class MazeAdapter<Position> : ISearchable<MazeLib.Position>
     {
-        public List<State> getAllPossibleStates(State s)
+        private Maze maze;
+        public MazeAdapter(Maze m)
         {
-            throw new NotImplementedException();
+            maze = m;
+        }
+        public Maze getMaze()
+        {
+            return maze;
+        }
+        public State<MazeLib.Position> getInitializeState()
+        {
+            return State<MazeLib.Position>.StatePool.getState(maze.InitialPos);
+        }
+        public State<MazeLib.Position> getGoalState()
+        {
+            return State<MazeLib.Position>.StatePool.getState(maze.GoalPos);
+        }
+        public List<State<MazeLib.Position>> getAllPossibleStates(State<MazeLib.Position> s)
+        {
+            List<State<MazeLib.Position>> possibleStates = new List<State<MazeLib.Position>>();
+
+            if (maze[s.getstate().Row, s.getstate().Col + 1] == 0)
+            {
+                MazeLib.Position position = new MazeLib.Position(s.getstate().Row, s.getstate().Col + 1);
+                State<MazeLib.Position> state = State<MazeLib.Position>.StatePool.getState(position);
+                possibleStates.Add(state);
+            }
+
+            if (maze[s.getstate().Row - 1, s.getstate().Col] == 0)
+            {
+                MazeLib.Position position = new MazeLib.Position(s.getstate().Row - 1, s.getstate().Col);
+                State<MazeLib.Position> state = State<MazeLib.Position>.StatePool.getState(position);
+                possibleStates.Add(state);
+            }
+
+            if (maze[s.getstate().Row, s.getstate().Col - 1] == 0)
+            {
+                MazeLib.Position position = new MazeLib.Position(s.getstate().Row, s.getstate().Col - 1);
+                State<MazeLib.Position> state = State<MazeLib.Position>.StatePool.getState(position);
+                possibleStates.Add(state);
+            }
+
+            if (maze[s.getstate().Row + 1, s.getstate().Col] == 0)
+            {
+                MazeLib.Position position = new MazeLib.Position(s.getstate().Row + 1, s.getstate().Col);
+                State<MazeLib.Position> state = State<MazeLib.Position>.StatePool.getState(position);
+                possibleStates.Add(state);
+            }
+
+            return possibleStates;
         }
 
-        public State getGoalState()
+        public void printMaze()
         {
-            throw new NotImplementedException();
-        }
-
-        public State getInitializeState()
-        {
-            throw new NotImplementedException();
+            Console.WriteLine(maze.ToString());
         }
     }
 }

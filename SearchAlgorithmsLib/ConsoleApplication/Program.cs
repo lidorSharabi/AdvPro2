@@ -10,6 +10,10 @@ namespace ConsoleApplication
     {
         static void Main(string[] args)
         {
+            DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
+            Maze m = mazeGenerator.Generate(10, 20);
+            MazeAdapter<Position> maze = new MazeAdapter<Position>(m);
+            maze.printMaze();
         }
 
         //TODO - implements

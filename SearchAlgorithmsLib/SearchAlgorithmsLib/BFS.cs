@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SearchAlgorithmsLib
 {
-    public class BFS : Searcher
+    public class BFS : PriorityQueSearcher<T> 
     {
         public override Solution search(ISearchable searchable)
         {
