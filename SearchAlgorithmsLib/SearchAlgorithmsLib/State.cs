@@ -7,11 +7,11 @@ namespace SearchAlgorithmsLib
 {
     public class State<T>
     {
-        private string state; // the state represented by a string
+        private T state; // the state represented by a string
         public double cost { get; set; } // cost to reach this state (set by a setter)
         public State<T> cameFrom { get; set; } // the state we came from to this state (setter)
 
-        public State(string state) // CTOR
+        public State(T state) // CTOR
         {
             this.state = state;
         }
@@ -49,13 +49,13 @@ namespace SearchAlgorithmsLib
         }
 
         // we overload Object's Equals method
-        public bool Equals(State s)
+        public bool Equals(State<T> s)
         {
             return state.Equals(s.state);
         }
 
-        State getCameFrom() { return cameFrom; }
+        State<T> getCameFrom() { return cameFrom; }
 
-        void setCameFrom(State father) { this.cameFrom = father; }
+        void setCameFrom(State<T> father) { this.cameFrom = father; }
 }
 }

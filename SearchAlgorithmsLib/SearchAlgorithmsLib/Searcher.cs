@@ -8,7 +8,7 @@ namespace SearchAlgorithmsLib
 {
     public abstract class Searcher : ISearcher
     {
-        private SimplePriorityQueue<State> openList;
+        private SimplePriorityQueue<State<T>> openList;
         private int evaluatedNodes;
 
         public Searcher()

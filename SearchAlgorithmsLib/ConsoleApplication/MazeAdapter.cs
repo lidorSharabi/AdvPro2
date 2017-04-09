@@ -7,21 +7,21 @@ using SearchAlgorithmsLib;
 
 namespace ConsoleApplication
 {
-    class MazeAdapter : ISearchable
+    class MazeAdapter<T> : ISearchable<T>
     //TODO - is MazeAdapter should implemnets Searchable?
-    // can't add SearchAlgorithmsLib as a refernece
     {
-        public List<State> getAllPossibleStates(State s)
+        //public MazeAdapter<T>(){}
+        public List<State<T>> getAllPossibleStates(State<T> s)
         {
             throw new NotImplementedException();
         }
 
-        public State getGoalState()
+        public State<T> getGoalState()
         {
             throw new NotImplementedException();
         }
 
-        public State getInitializeState()
+        public State<T> getInitializeState()
         {
             throw new NotImplementedException();
         }

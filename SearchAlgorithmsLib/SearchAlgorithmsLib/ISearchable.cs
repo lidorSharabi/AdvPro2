@@ -6,10 +6,10 @@ using System.Text;
 
 namespace SearchAlgorithmsLib
 {
-    public interface ISearchable
+    public interface ISearchable<T>
     {
-        State getInitializeState();
-        State getGoalState();
-        List<State> getAllPossibleStates(State s);
+        State<T> getInitializeState();
+        State<T> getGoalState();
+        List<State<T>> getAllPossibleStates(State<T> s);
     }
 }
