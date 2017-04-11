@@ -6,12 +6,12 @@ using System.Text;
 namespace SearchAlgorithmsLib
 {
     
-    public class DFS : Searcher
+    public class DFS<T> : Searcher<T>
     {
-        public override Solution search(ISearchable searchable)
+        public override Solution<T> search(ISearchable<T> searchable)
         {
             addToOpenList(searchable.getInitializeState());
-            return new Solution(new State("lala"));
+            return new Solution<T>(null);
         }
     }
 }
