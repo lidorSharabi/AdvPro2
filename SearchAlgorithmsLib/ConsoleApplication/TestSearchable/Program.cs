@@ -3,36 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MazeLib;
-using MazeGeneratorLib;
-using SearchAlgorithmsLib;
 
-namespace ConsoleApp1
+using SearchAlgorithmLib;
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            CompareSolvers();
-        }
-
-        public static void CompareSolvers()
-        {
-            DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
-            Maze m = mazeGenerator.Generate(10, 10);
-            MazeAdapter<Position> maze = new MazeAdapter<Position>(m);
-            maze.printMaze();
-            DFS<Position> dfs = new DFS<Position>();
-            Solution<Position> sol = dfs.search(maze);
-            Console.WriteLine("DFS maze solution: " + maze.ToSolution(sol));
-            Console.WriteLine("DFS number of nodes evaluated: " + dfs.getNumberOfNodesEvaluated());
-            return;
-        }
-
-
-        //david test
-        /*
-          ISearcher<int> ser = new DFSSearcher<int>();
+        ISearcher<int> ser = new DFSSearcher<int>();
 
         Dictionary<State<int>, List<State<int>>> Adj = new Dictionary<State<int>, List<State<int>>>();
         State<int> one = new State<int>(1);
@@ -66,6 +43,5 @@ namespace ConsoleApp1
         }
         Console.WriteLine();
     }
-         */
-    }
 }
+
