@@ -9,7 +9,7 @@ namespace SearchAlgorithmsLib
     public abstract class Searcher<T> : ISearcher<T>
     {
         private SimplePriorityQueue<State<T>> openList;
-        private int evaluatedNodes;
+        protected int evaluatedNodes;
 
         public Searcher()
         {
@@ -43,14 +43,27 @@ namespace SearchAlgorithmsLib
             return evaluatedNodes;
         }
 
-        public State<T> getOpenElement(State<T>  element)
+        public State<T> getOpenElement(State<T> element)
         {
-            foreach (State<T>  var in openList)
+            foreach (State<T> var in openList)
             {
                 if (var.Equals(element))
                     return element;
             }
             return null;
+        }
+
+        public Solution<T> backTrace(ref State<T> state)
+        {
+            List<State<T>> vertex = new List<State<T>>();
+            while (state != null)
+            {
+                vertex.Add(state);
+                state = state.cameFrom;
+            }
+
+            Solution<T> sol = new Solution<T>(vertex);
+            return sol;
         }
         public abstract Solution<T> search(ISearchable<T> searchable);
     }

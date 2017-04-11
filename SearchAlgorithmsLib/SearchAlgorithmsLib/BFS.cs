@@ -9,14 +9,17 @@ namespace SearchAlgorithmsLib
     {
         public override Solution<T> search(ISearchable<T> searchable)
         {
-            addToOpenList(searchable.getInitializeState());
+            State<T> state = searchable.getInitializeState();
+            state.cost = 1;
+            state.cameFrom = null;
+            addToOpenList(state);
             HashSet<State<T>> closed = new HashSet<State<T>>();
             while (openListSize > 0)
             {
                 State<T> n = popOpenList();
                 closed.Add(n);
                 if (n.Equals(searchable.getGoalState()))
-                    return new Solution<T>(n);
+                    return backTrace(ref state);
                 List<State<T>> succerssors = searchable.getAllPossibleStates(n);
                 foreach (State<T> s in succerssors)
                 {
@@ -39,7 +42,7 @@ namespace SearchAlgorithmsLib
                     }
                 }
             }
-            return new Solution<T>(null);
+            return null;
         }
 
     }

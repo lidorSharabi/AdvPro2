@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SearchAlgorithmsLib
 {
-    public interface ISearcher<T>
+    interface ISearcher<T>
     {
         Solution<T> search(ISearchable<T> searchable);
         int getNumberOfNodesEvaluated();
