@@ -5,14 +5,14 @@ using System.Text;
 
 namespace SearchAlgorithmsLib
 {
-    public class BFS<T> : Searcher<T>
+    public class BFS<T> : PriorityQueSearcher<T>
     {
         public override Solution<T> search(ISearchable<T> searchable)
         {
             State<T> state = searchable.getInitializeState();
             state.cost = 1;
             state.cameFrom = null;
-            addToOpenList(state);
+            addToOpenList(state , 1);
             HashSet<State<T>> closed = new HashSet<State<T>>();
             while (openListSize > 0)
             {
@@ -26,14 +26,14 @@ namespace SearchAlgorithmsLib
                     if (!closed.Contains(s) && !openContains(s))
                     {
                         s.cameFrom = n;
-                        addToOpenList(s);
+                        addToOpenList(s, 1);
                     }
                     else if (s.cost > n.cost + 1) // means this path is better
                     {
                         if(!openContains(s))
                         {
                             s.cameFrom = n;
-                            addToOpenList(s);
+                            addToOpenList(s, 1);
                         }
                         else
                         {

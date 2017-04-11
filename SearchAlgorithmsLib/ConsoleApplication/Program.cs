@@ -22,10 +22,12 @@ namespace ConsoleApp1
             Maze m = mazeGenerator.Generate(10, 10);
             MazeAdapter<Position> maze = new MazeAdapter<Position>(m);
             maze.printMaze();
-            DFS<Position> dfs = new DFS<Position>();
+            BFS<Position> dfs = new BFS<Position>();
             Solution<Position> sol = dfs.search(maze);
             Console.WriteLine("DFS maze solution: " + maze.ToSolution(sol));
             Console.WriteLine("DFS number of nodes evaluated: " + dfs.getNumberOfNodesEvaluated());
+            Console.WriteLine("Press enter to close...");
+            Console.ReadLine();
             return;
         }
 
