@@ -28,6 +28,6 @@ namespace SearchAlgorithmsLib
             return sol;
         }
 
-        public abstract Solution<T> search(ISearchable<T> searchable);
+        public abstract Solution<T> search(ISearchable<T> searchable, Comparator<T> comparator = null);
     }
 }

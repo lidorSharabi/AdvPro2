@@ -8,7 +8,7 @@ using MazeLib;
 
 namespace ConsoleApp1
 {
-    class MazeAdapter<Position> : ISearchable<MazeLib.Position>
+    public class MazeAdapter<Position> : ISearchable<MazeLib.Position>
     {
         private Maze maze;
         public MazeAdapter(Maze m)

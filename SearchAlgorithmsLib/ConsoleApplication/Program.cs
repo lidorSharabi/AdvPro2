@@ -22,12 +22,20 @@ namespace ConsoleApp1
             Maze m = mazeGenerator.Generate(10, 10);
             MazeAdapter<Position> maze = new MazeAdapter<Position>(m);
             maze.printMaze();
-            BFS<Position> dfs = new BFS<Position>();
-            Solution<Position> sol = dfs.search(maze);
-            Console.WriteLine("DFS maze solution: " + maze.ToSolution(sol));
+
+            Console.WriteLine("------------DFS------------");
+            DFS<Position> dfs = new DFS<Position>();
+            Solution<Position> solDFS = dfs.search(maze);
+            Console.WriteLine("DFS maze solution: " + maze.ToSolution(solDFS));
             Console.WriteLine("DFS number of nodes evaluated: " + dfs.getNumberOfNodesEvaluated());
+
+            Console.WriteLine("------------BFS------------");
+            BFS<Position> bfs = new BFS<Position>();
+            Solution<Position> solBFS = bfs.search(maze, new CostComparator<Position>());
+            Console.WriteLine("BFS maze solution: " + maze.ToSolution(solBFS));
+            Console.WriteLine("BFS number of nodes evaluated: " + bfs.getNumberOfNodesEvaluated());
+
             Console.WriteLine("Press enter to close...");
-            Console.ReadLine();
             return;
         }
 
@@ -35,6 +43,7 @@ namespace ConsoleApp1
         //david test
         /*
           ISearcher<int> ser = new DFSSearcher<int>();
+
 
         Dictionary<State<int>, List<State<int>>> Adj = new Dictionary<State<int>, List<State<int>>>();
         State<int> one = new State<int>(1);
