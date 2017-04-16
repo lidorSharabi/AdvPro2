@@ -12,15 +12,24 @@ namespace Server
 {
     public class SolveMazeCommand : ICommand
     {
-        private Model model;
-        public SolveMazeCommand(Model model)
+        private IModel model;
+        public SolveMazeCommand(IModel model)
         {
             this.model = model;
         }
         public string Execute(string[] args, TcpClient client)
         {
-            string name = args[0];
-            int algorithm = int.Parse(args[1]);
+            string name;
+            int algorithm;
+            try
+            {
+                name = args[0];
+                algorithm = int.Parse(args[1]);
+            }
+            catch (Exception)
+            {
+                return "Error in parameters for solving maze";
+            }
             string sol = model.SolveMaze(name, algorithm);
             string[] solution = sol.Split(' ');
             JObject solObj = new JObject();

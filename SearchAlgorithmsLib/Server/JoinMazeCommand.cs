@@ -17,7 +17,15 @@ namespace Server
         }
         public string Execute(string[] args, TcpClient client)
         {
-            string name = args[0];
+            string name;
+            try
+            {
+                name = args[0];
+            }
+            catch (Exception)
+            {
+                return "Error in parameter for joining maze";
+            }
             string notFount = "Game not found";
             Maze maze = model.joinMaze(name);
             if (maze != null)

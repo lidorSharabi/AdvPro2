@@ -6,28 +6,28 @@ using System.Threading.Tasks;
 using MazeLib;
 using MazeGeneratorLib;
 using SearchAlgorithmsLib;
-using ConsoleApp1;
 
 namespace Server
 {
     public class Model : IModel
     {
-        //private Cache mazeCache = new Cache();
-        private Dictionary<string, Maze> mazeDict = new Dictionary<string, Maze>();
-        private Dictionary<string, Solution<Position>> solDict = new Dictionary<string, Solution<Position>>();
-        private List<string> startMazes = new List<string>();
+        private Dictionary<string, Maze> privateMazeDict = new Dictionary<string, Maze>();
+        private Dictionary<string, Maze> multiplayerMazeDict = new Dictionary<string, Maze>();
+        private Dictionary<string, Solution<Position>> privateSolDict = new Dictionary<string, Solution<Position>>();
+        private Dictionary<string, Solution<Position>> multiplayerSolDict = new Dictionary<string, Solution<Position>>();
 
         public Maze GenerateMaze(string name, int rows, int cols)
         {
             DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
             Maze m = mazeGenerator.Generate(rows, cols);
-            mazeDict.Add(name, m);
+            m.Name = name;
+            privateMazeDict.Add(name, m);
             return m;
         }
 
         public string SolveMaze(string name, int algorithm)
         {
-            Maze m = mazeDict[name];
+            Maze m = privateMazeDict[name];
             MazeAdapter<Position> maze = new MazeAdapter<Position>(m);
             Searcher<Position> searcher;
             Solution<Position> sol;
@@ -43,7 +43,7 @@ namespace Server
                 sol = searcher.search(maze, compare);
             }
 
-            solDict.Add(name, sol);
+            privateSolDict.Add(name, sol);
             string stringSolution = maze.ToSolution(sol);
             int numberOfNodesevaluated = searcher.getNumberOfNodesEvaluated();
             stringSolution += " ";
@@ -53,9 +53,9 @@ namespace Server
 
         public string[] mazeList()
         {
-            string[] stringArr = new string[startMazes.Count - 1];
+            string[] stringArr = new string[multiplayerMazeDict.Count - 1];
             int i = 0;
-            foreach (string s in startMazes)
+            foreach (string s in multiplayerMazeDict.Keys)
             {
                 stringArr[i++] = s;
             }
@@ -64,27 +64,28 @@ namespace Server
 
         public Maze mazeStart(string name, int rows, int cols)
         {
-            if (mazeDict.Keys.Contains(name))
+            if (multiplayerMazeDict.Keys.Contains(name))
             {
-                mazeDict.Remove(name);
+                multiplayerMazeDict.Remove(name);
             }
-            if (solDict.Keys.Contains(name))
+            if (multiplayerSolDict.Keys.Contains(name))
             {
-                solDict.Remove(name);
-            }
-            if (!startMazes.Contains(name))
-            {
-                startMazes.Add(name);
+                multiplayerSolDict.Remove(name);
             }
             return GenerateMaze(name, rows, cols);
         }
 
         public Maze joinMaze(string name)
         {
-            if (startMazes.Contains(name))
+            if (multiplayerMazeDict.Keys.Contains(name))
             {
-                return mazeDict[name];
+                return multiplayerMazeDict[name];
             }
+            return null;
+        }
+
+        public string playMove(string move)
+        {
             return null;
         }
     }

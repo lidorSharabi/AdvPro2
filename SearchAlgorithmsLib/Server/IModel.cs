@@ -14,5 +14,6 @@ namespace Server
         string[] mazeList();
         Maze mazeStart(string name, int rows, int cols);
         Maze joinMaze(string name);
+        string playMove(string move);
     }
 }

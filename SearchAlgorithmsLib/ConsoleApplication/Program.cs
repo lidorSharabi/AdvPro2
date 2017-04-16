@@ -7,6 +7,7 @@ using MazeLib;
 using MazeGeneratorLib;
 using SearchAlgorithmsLib;
 using System.Configuration;
+using Server;
 
 namespace ConsoleApp1
 {

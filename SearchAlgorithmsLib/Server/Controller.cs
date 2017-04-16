@@ -10,7 +10,7 @@ namespace Server
     public class Controller
     {
         private Dictionary<string, ICommand> commands;
-        private Model model;
+        private IModel model;
         public Controller()
         {
             model = new Model();
@@ -21,7 +21,7 @@ namespace Server
             commands.Add("list", new ListMazeCommand(model));
             commands.Add("join", new JoinMazeCommand(model));
             commands.Add("play", new PlayMazeCommand(model));
-            commands.Add("close", new CloseMazeCommand(model));
+            //commands.Add("close", new CloseMazeCommand(model));
 
         }
         public string ExecuteCommand(string commandLine, TcpClient client)

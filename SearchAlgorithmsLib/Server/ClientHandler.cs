@@ -21,11 +21,9 @@ namespace Server
                 using (StreamReader reader = new StreamReader(stream))
                 using (StreamWriter writer = new StreamWriter(stream))
                 {
-
                     string commandLine = reader.ReadLine();
-                    Console.WriteLine(commandLine);
                     Console.WriteLine("Got command: {0}", commandLine);
-                    string result = control.ExecuteCommand(commandLine, client);
+                   string result = control.ExecuteCommand(commandLine, client);
                     writer.Write(result);
                 }
                 client.Close();

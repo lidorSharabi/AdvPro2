@@ -10,8 +10,8 @@ namespace Server
 {
     class ListMazeCommand : ICommand 
     {
-        private Model model;
-        public ListMazeCommand(Model model)
+        private IModel model;
+        public ListMazeCommand(IModel model)
         {
             this.model = model;
         }
