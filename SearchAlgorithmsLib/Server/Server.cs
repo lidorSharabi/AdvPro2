@@ -43,6 +43,7 @@ namespace Server
                 Console.WriteLine("Server stopped");
             });
             task.Start();
+            Console.WriteLine("sds");
         }
         public void Stop()
         {

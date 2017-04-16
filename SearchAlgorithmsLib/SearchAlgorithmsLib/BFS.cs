@@ -40,7 +40,7 @@ namespace SearchAlgorithmsLib
                         }
                         else
                         {
-                            getOpenElement(s).cost = currentState.cost + 1; //TODO - check if it returns by ref
+                            removeAndAddElementToOpenList(s, currentState.cost + 1); //TODO - check if it returns by ref
                         }
                     }
                 }

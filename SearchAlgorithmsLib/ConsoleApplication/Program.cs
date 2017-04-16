@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MazeLib;
 using MazeGeneratorLib;
 using SearchAlgorithmsLib;
+using System.Configuration;
 
 namespace ConsoleApp1
 {
@@ -36,6 +37,7 @@ namespace ConsoleApp1
             Console.WriteLine("BFS number of nodes evaluated: " + bfs.getNumberOfNodesEvaluated());
 
             Console.WriteLine("Press enter to close...");
+            Console.ReadKey();
             return;
         }
 

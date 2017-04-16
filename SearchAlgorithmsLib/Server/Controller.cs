@@ -17,11 +17,11 @@ namespace Server
             commands = new Dictionary<string, ICommand>();
             commands.Add("generate", new GenerateMazeCommand(model));
             commands.Add("solve", new SolveMazeCommand(model));
-            //commands.Add("start", new StartMazeCommand(model));
+            commands.Add("start", new StartMazeCommand(model));
             commands.Add("list", new ListMazeCommand(model));
-            //commands.Add("join", new JoinMazeCommand(model));
-            //commands.Add("play", new PlayMazeCommand(model));
-            //commands.Add("close", new CloseMazeCommand(model));
+            commands.Add("join", new JoinMazeCommand(model));
+            commands.Add("play", new PlayMazeCommand(model));
+            commands.Add("close", new CloseMazeCommand(model));
 
         }
         public string ExecuteCommand(string commandLine, TcpClient client)

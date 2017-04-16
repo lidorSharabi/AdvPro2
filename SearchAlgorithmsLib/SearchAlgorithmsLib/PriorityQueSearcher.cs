@@ -37,14 +37,17 @@ namespace SearchAlgorithmsLib
             return openList.Contains(state);
         }
 
-        public State<T> getOpenElement(State<T> element)
+        public void removeAndAddElementToOpenList(State<T> state, float priority)
         {
             foreach (State<T> var in openList)
             {
-                if (var.Equals(element))
-                    return element;
+                if (var.Equals(state))
+                {
+                    openList.Remove(var);
+                    openList.Enqueue(state, priority);
+                    return;
+                }
             }
-            return null;
         }
     }
 }
