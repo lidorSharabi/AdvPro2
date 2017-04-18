@@ -22,8 +22,9 @@ namespace Server
             string move;
             try
             {
-                name = args[0];
-                if (!(name.Equals("up") || name.Equals("down") || name.Equals("left") || name.Equals("right")))
+                name = args[1];
+                move = args[0];
+                if (!(move.Equals("up") || move.Equals("down") || move.Equals("left") || move.Equals("right")))
                 {
                     return "Error in parameter for play command maze";
                 }
