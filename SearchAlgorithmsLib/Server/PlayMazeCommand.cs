@@ -15,10 +15,25 @@ namespace Server
         {
             this.model = model;
         }
-        public string Execute(string[] args, TcpClient client)
+        public string Execute(string[] args, TcpClient client, Controller control)
         {
-            string move = args[0];
-            return null;
+
+            string name;
+            string move;
+            try
+            {
+                name = args[0];
+                if (!(name.Equals("up") || name.Equals("down") || name.Equals("left") || name.Equals("right")))
+                {
+                    return "Error in parameter for play command maze";
+                }
+                name = args[1];
+            }
+            catch (Exception)
+            {
+                return "Error in parameter for play command maze";
+            }
+            return model.playMove(move, name, client);           
         }
     }
 }

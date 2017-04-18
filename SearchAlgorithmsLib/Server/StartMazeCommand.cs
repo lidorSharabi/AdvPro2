@@ -15,7 +15,7 @@ namespace Server
         {
             this.model = model;
         }
-        public string Execute(string[] args, TcpClient client)
+        public string Execute(string[] args, TcpClient client, Controller control)
         {
             string name;
             int rows;
@@ -30,8 +30,8 @@ namespace Server
             {
                 return "Error in parameters for starting maze";
             }
-            Maze maze = model.mazeStart(name, rows, cols);
-            return maze.ToJSON();
+            Maze maze = model.mazeStart(name, rows, cols, client, control);
+            return String.Empty;
         }
     }
 }

@@ -15,9 +15,18 @@ namespace Server
             this.model = model;
         }
 
-        public string Execute(string[] args, TcpClient client = null)
+        public string Execute(string[] args, TcpClient client = null, Controller control = null)
         {
-            throw new NotImplementedException();
+            string name;
+            try
+            {
+                name = args[0];
+                return model.closeMultiPlayerGame(name);
+            }
+            catch
+            {
+                return "Error in parameters for close maze";
+            }
         }
     }
 }

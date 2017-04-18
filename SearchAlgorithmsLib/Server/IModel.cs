@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MazeLib;
+using System.Net.Sockets;
 
 namespace Server
 {
@@ -12,8 +13,9 @@ namespace Server
         Maze GenerateMaze(string name, int rows, int cols);
         string SolveMaze(string name, int algorithm);
         string[] mazeList();
-        Maze mazeStart(string name, int rows, int cols);
-        Maze joinMaze(string name);
-        string playMove(string move);
+        Maze mazeStart(string name, int rows, int cols, TcpClient client, Controller control);
+        Maze joinMaze(string name, TcpClient client);
+        string playMove(string move, string name, TcpClient client);
+        string closeMultiPlayerGame(string name);
     }
 }

@@ -15,7 +15,7 @@ namespace Server
         {
             this.model = model;
         }
-        public string Execute(string[] args, TcpClient client)
+        public string Execute(string[] args, TcpClient client, Controller control)
         {
             string name;
             try
@@ -26,8 +26,8 @@ namespace Server
             {
                 return "Error in parameter for joining maze";
             }
-            string notFount = "Game not found";
-            Maze maze = model.joinMaze(name);
+            string notFount = "Error Game not found";
+            Maze maze = model.joinMaze(name, client);
             if (maze != null)
             {
                 return maze.ToJSON();

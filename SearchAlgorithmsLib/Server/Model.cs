@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MazeLib;
 using MazeGeneratorLib;
 using SearchAlgorithmsLib;
+using System.Net.Sockets;
 
 namespace Server
 {
@@ -15,6 +16,7 @@ namespace Server
         private Dictionary<string, Maze> multiplayerMazeDict = new Dictionary<string, Maze>();
         private Dictionary<string, Solution<Position>> privateSolDict = new Dictionary<string, Solution<Position>>();
         private Dictionary<string, Solution<Position>> multiplayerSolDict = new Dictionary<string, Solution<Position>>();
+        private Dictionary<string, HandleMultiplaterGame> HandleMultiplatersDict = new Dictionary<string, HandleMultiplaterGame>();
 
         public Maze GenerateMaze(string name, int rows, int cols)
         {
@@ -51,6 +53,7 @@ namespace Server
             return stringSolution;
         }
 
+        //??? why only multi? and why decrease by one?
         public string[] mazeList()
         {
             string[] stringArr = new string[multiplayerMazeDict.Count - 1];
@@ -62,7 +65,7 @@ namespace Server
             return stringArr;
         }
 
-        public Maze mazeStart(string name, int rows, int cols)
+        public Maze mazeStart(string name, int rows, int cols, TcpClient client, Controller control)
         {
             if (multiplayerMazeDict.Keys.Contains(name))
             {
@@ -72,21 +75,53 @@ namespace Server
             {
                 multiplayerSolDict.Remove(name);
             }
-            return GenerateMaze(name, rows, cols);
+            //generate maaze
+            DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
+            Maze maze = mazeGenerator.Generate(rows, cols);
+            maze.Name = name;
+            multiplayerMazeDict.Add(name, maze);
+            //handle multiplayer game
+            HandleMultiplaterGame handle = new HandleMultiplaterGame(client, control);
+            handle.gameToJason = maze.ToJSON();
+            handle.gameToJason = name;
+            HandleMultiplatersDict.Add(name, handle);
+            handle.startHost();
+            return maze;
         }
 
-        public Maze joinMaze(string name)
+        public Maze joinMaze(string name, TcpClient client)
         {
             if (multiplayerMazeDict.Keys.Contains(name))
             {
+                HandleMultiplaterGame handle = HandleMultiplatersDict[name];
+                handle.guest = client;
+                handle.startGuest();
+                handle.sendMazeToJsonToHost();
                 return multiplayerMazeDict[name];
             }
             return null;
         }
 
-        public string playMove(string move)
+        public string playMove(string move, string name, TcpClient client)
         {
-            return null;
+            if (multiplayerMazeDict.Keys.Contains(name))
+            {
+                HandleMultiplaterGame handle = HandleMultiplatersDict[name];
+                handle.sendMessageToClient(client, );
+                return String.Empty;
+            }
+            return "Error Game not found";
+        }
+
+        public string closeMultiPlayerGame(string name)
+        {
+            if (multiplayerMazeDict.Keys.Contains(name))
+            {
+                HandleMultiplaterGame handle = HandleMultiplatersDict[name];
+                handle.close();
+                return String.Empty;
+            }
+            return "Error Game not found";
         }
     }
 }

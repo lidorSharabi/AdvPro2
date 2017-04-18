@@ -27,12 +27,14 @@ namespace Client
         }
         public void start()
         {
-           
+            string writeLine;
             while (run)
                 {
+                
                 this.client = new TcpClient();
                 client.Connect(ep);
                 Console.WriteLine("You are connected");
+                stream = client.GetStream();
                 stream = client.GetStream();
                 writer = new StreamWriter(stream);
                 reader = new StreamReader(stream);
@@ -42,15 +44,23 @@ namespace Client
                 this.writer.AutoFlush = true;
                 writer.WriteLine(readLine);
                 HandleServerConnection(readLine);
+                //delete
+                //writer.WriteLine("generate sss 10 5");
                 // Get and print result from server
                 while (!reader.EndOfStream)
                 {
-                    Console.WriteLine(reader.ReadLine());
+                    writeLine = reader.ReadLine();
+                    if (!String.IsNullOrEmpty(writeLine))
+                    {
+                        Console.WriteLine(writeLine);
+                    }
                 }   
                  client.Close();
             }
             client.Close();
+                
         }
+            
 
         private void HandleServerConnection(string readLine)
         {
