@@ -5,31 +5,47 @@ using System.Text;
 
 namespace SearchAlgorithmsLib
 {
-    public class BFS<T> : PriorityQueSearcher<T> 
+    public class BFS<T> : PriorityQueSearcher<T>
     {
-        public override Solution<T> search(ISearchable<T> searchable)
+        public override Solution<T> search(ISearchable<T> searchable, Comparator<T> comparator)
         {
-            //addToOpenList(searchable.getInitializeState());
-            //HashSet<State> closed = new HashSet<State>();
-            //while (openListSize > 0)
-            //{
-            //    State n = popOpenList();
-            //    closed.Add(n);
-            //    if (n.Equals(searchable.getGoalState()))
-            //        return new Solution(n);
-            //    List<State> succerssors = searchable.getAllPossibleStates(n);
-            //    foreach (State s in succerssors)
-            //    {
-            //        if (!closed.Contains(s) && !openContains(s))
-            //        {
-            //            addToOpenList(s);
-            //        }
-            //        else
-            //        {
-            //        }
-            //    }
-            //}
-            return new Solution<T>(null);
+            State<T> state = searchable.getInitializeState();
+            state.cost = 1;
+            state.cameFrom = null;
+            addToOpenList(state , 1);
+            HashSet<State<T>> closed = new HashSet<State<T>>();
+            while (openListSize > 0)
+            {
+                State<T> currentState = popOpenList();
+                closed.Add(currentState);
+                if (currentState.Equals(searchable.getGoalState()))
+                    return backTrace(ref currentState);
+
+                List<State<T>> succerssors = searchable.getAllPossibleStates(currentState);
+                foreach (State<T> s in succerssors)
+                {
+                    if (!closed.Contains(s) && !openContains(s))
+                    {
+                        s.cost = currentState.cost + 1;
+                        s.cameFrom = currentState;
+                        addToOpenList(s, 1);
+                    }
+                    else if (comparator.compare(s,currentState) == 1)
+                    {
+                        if(!openContains(s))
+                        {
+                            s.cost = currentState.cost + 1;
+                            s.cameFrom = currentState;
+                            addToOpenList(s, 1);
+                        }
+                        else
+                        {
+                            removeAndAddElementToOpenList(s, currentState.cost + 1); //TODO - check if it returns by ref
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
     }

@@ -7,7 +7,7 @@ namespace SearchAlgorithmsLib
 {
     interface ISearcher<T>
     {
-        Solution<T> search(ISearchable<T> searchable);
+        Solution<T> search(ISearchable<T> searchable, Comparator<T> comparator = null);
         int getNumberOfNodesEvaluated();
     }
 }
