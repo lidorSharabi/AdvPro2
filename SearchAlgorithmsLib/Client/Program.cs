@@ -10,9 +10,6 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            string s = "sad sdefd";
-            Console.WriteLine(s[0]);
-            Console.WriteLine(s[1]);
             Client client = new Client();
             client.start();
         }

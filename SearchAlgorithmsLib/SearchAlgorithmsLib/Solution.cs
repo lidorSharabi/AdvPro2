@@ -8,9 +8,12 @@ namespace SearchAlgorithmsLib
     public class Solution<T>
     {
         public List<State<T>> vertex { get; }
-        public Solution(List<State<T>> list)
+        public int evaluatedNodes { get; }
+
+        public Solution(List<State<T>> list, int evalNodes)
         {
             vertex = list;
+            evaluatedNodes = evalNodes;
         }
     }
 }
