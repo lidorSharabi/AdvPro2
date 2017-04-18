@@ -24,7 +24,7 @@ namespace SearchAlgorithmsLib
                 state = state.cameFrom;
             }
 
-            Solution<T> sol = new Solution<T>(vertex);
+            Solution<T> sol = new Solution<T>(vertex, getNumberOfNodesEvaluated());
             return sol;
         }
 
