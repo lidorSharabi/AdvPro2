@@ -20,11 +20,13 @@ namespace Server
 
         public Maze GenerateMaze(string name, int rows, int cols)
         {
-            DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
-            Maze m = mazeGenerator.Generate(rows, cols);
-            m.Name = name;
-            privateMazeDict.Add(name, m);
-            return m;
+            if (!privateMazeDict.Keys.Contains(name))
+            {
+                Maze m = generate(name, rows, cols);
+                privateMazeDict.Add(name, m);
+                return m;
+            }
+            return privateMazeDict[name];
         }
 
         public string SolveMaze(string name, int algorithm)
@@ -33,30 +35,37 @@ namespace Server
             MazeAdapter<Position> maze = new MazeAdapter<Position>(m);
             Searcher<Position> searcher;
             Solution<Position> sol;
-            if (algorithm == 0)
+            if (!privateSolDict.Keys.Contains(name))
             {
-                searcher = new DFS<Position>();
-                sol = searcher.search(maze);
+                if (algorithm == 0)
+                {
+                    searcher = new DFS<Position>();
+                    sol = searcher.search(maze);
+                }
+                else
+                {
+                    searcher = new BFS<Position>();
+                    CostComparator<Position> compare = new CostComparator<Position>();
+                    sol = searcher.search(maze, compare);
+                }
+
+                privateSolDict.Add(name, sol);
             }
             else
             {
-                searcher = new BFS<Position>();
-                CostComparator<Position> compare = new CostComparator<Position>();
-                sol = searcher.search(maze, compare);
+                sol = privateSolDict[name];
             }
 
-            privateSolDict.Add(name, sol);
             string stringSolution = maze.ToSolution(sol);
-            int numberOfNodesevaluated = searcher.getNumberOfNodesEvaluated();
+            int numberOfNodesevaluated = sol.evaluatedNodes;
             stringSolution += " ";
             stringSolution += numberOfNodesevaluated;
             return stringSolution;
         }
 
-        //??? why only multi? and why decrease by one?
         public string[] mazeList()
         {
-            string[] stringArr = new string[multiplayerMazeDict.Count - 1];
+            string[] stringArr = new string[multiplayerMazeDict.Count];
             int i = 0;
             foreach (string s in multiplayerMazeDict.Keys)
             {
@@ -67,26 +76,21 @@ namespace Server
 
         public Maze mazeStart(string name, int rows, int cols, TcpClient client, Controller control)
         {
-            if (multiplayerMazeDict.Keys.Contains(name))
+            if (!multiplayerMazeDict.Keys.Contains(name))
             {
-                multiplayerMazeDict.Remove(name);
+                Maze maze = generate(name, rows, cols);
+                multiplayerMazeDict.Add(name, maze);
+                maze.Name = name;
+                multiplayerMazeDict.Add(name, maze);
+                //handle multiplayer game
+                HandleMultiplaterGame handle = new HandleMultiplaterGame(client, control);
+                handle.gameToJason = maze.ToJSON();
+                handle.gameToJason = name;
+                HandleMultiplatersDict.Add(name, handle);
+                handle.startHost();
+                return maze;
             }
-            if (multiplayerSolDict.Keys.Contains(name))
-            {
-                multiplayerSolDict.Remove(name);
-            }
-            //generate maaze
-            DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
-            Maze maze = mazeGenerator.Generate(rows, cols);
-            maze.Name = name;
-            multiplayerMazeDict.Add(name, maze);
-            //handle multiplayer game
-            HandleMultiplaterGame handle = new HandleMultiplaterGame(client, control);
-            handle.gameToJason = maze.ToJSON();
-            handle.gameToJason = name;
-            HandleMultiplatersDict.Add(name, handle);
-            handle.startHost();
-            return maze;
+            return multiplayerMazeDict[name];
         }
 
         public Maze joinMaze(string name, TcpClient client)
@@ -122,6 +126,15 @@ namespace Server
                 return String.Empty;
             }
             return "Error Game not found";
+        }
+
+        public Maze generate(string name, int rows, int cols)
+        {
+            DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
+            Maze m = mazeGenerator.Generate(rows, cols);
+            m.Name = name;
+            return m;
+
         }
     }
 }
