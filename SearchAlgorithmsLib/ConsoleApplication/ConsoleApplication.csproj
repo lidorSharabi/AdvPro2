@@ -38,7 +38,12 @@
     <Reference Include="MazeLib">
       <HintPath>..\..\..\..\..\Downloads\MazeLib.dll</HintPath>
     </Reference>
+    <Reference Include="Server">
+      <HintPath>..\Server\bin\Debug\Server.exe</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,9 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MazeAdapter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestSearchable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

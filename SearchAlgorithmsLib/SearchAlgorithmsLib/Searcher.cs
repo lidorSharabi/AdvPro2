@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Priority_Queue;
+using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib
 {
-     public abstract class Searcher<T> : ISearcher<T>
+    public abstract class Searcher<T> : ISearcher<T>
     {
         protected int evaluatedNodes;
 
@@ -14,11 +14,20 @@ namespace SearchAlgorithmsLib
         {
             return evaluatedNodes;
         }
-        public Solution<T> backTrace()
+
+        public Solution<T> backTrace(ref State<T> state)
         {
-            return null;
+            List<State<T>> vertex = new List<State<T>>();
+            while (state != null)
+            {
+                vertex.Add(state);
+                state = state.cameFrom;
+            }
+
+            Solution<T> sol = new Solution<T>(vertex);
+            return sol;
         }
 
-        public abstract Solution<T> search(ISearchable<T> searchable);
+        public abstract Solution<T> search(ISearchable<T> searchable, Comparator<T> comparator = null);
     }
 }

@@ -7,11 +7,10 @@ namespace SearchAlgorithmsLib
 {
     public class Solution<T>
     {
-        private State<T> solution { get; set; }
-
-        public Solution(State<T> solution)
+        public List<State<T>> vertex { get; }
+        public Solution(List<State<T>> list)
         {
-            this.solution = solution;
+            vertex = list;
         }
     }
 }
