@@ -33,16 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MazeGeneratorLib">
-      <HintPath>..\SearchAlgorithmsLib\bin\Debug\MazeGeneratorLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\MazeGeneratorLib.dll</HintPath>
     </Reference>
     <Reference Include="MazeLib">
-      <HintPath>..\SearchAlgorithmsLib\bin\Debug\MazeLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Priority Queue">
-      <HintPath>..\SearchAlgorithmsLib\bin\Debug\Priority Queue.dll</HintPath>
-    </Reference>
-    <Reference Include="SearchAlgorithmsLib">
-      <HintPath>..\SearchAlgorithmsLib\bin\Debug\SearchAlgorithmsLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\MazeLib.dll</HintPath>
     </Reference>
     <Reference Include="Server">
       <HintPath>..\Server\bin\Debug\Server.exe</HintPath>
@@ -65,6 +59,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SearchAlgorithmsLib\SearchAlgorithmsLib.csproj">
+      <Project>{90768732-b8fe-4c39-9f39-588bf81cb411}</Project>
+      <Name>SearchAlgorithmsLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
