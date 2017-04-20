@@ -10,15 +10,26 @@ using System.Net.Sockets;
 
 namespace Server
 {
+    /// <summary>
+    /// responsible for saving the private games and the multiplayers games
+    /// and the solution of the private games and the handler of the multiplayers games
+    /// </summary>
     public class Model : IModel
     {
         private Dictionary<string, Maze> privateMazeDict = new Dictionary<string, Maze>();
         private Dictionary<string, Maze> multiplayerMazeDict = new Dictionary<string, Maze>();
         private Dictionary<string, Solution<Position>> privateSolDict = new Dictionary<string, Solution<Position>>();
         private Dictionary<string, Solution<Position>> multiplayerSolDict = new Dictionary<string, Solution<Position>>();
-        private Dictionary<string, HandleMultiplaterGame> HandleMultiplatersDict = new Dictionary<string, HandleMultiplaterGame>();
-        private Dictionary<TcpClient, HandleMultiplaterGame> multiplayerGames = new Dictionary<TcpClient, HandleMultiplaterGame>();
-
+        private Dictionary<string, HandleMultiplayers> HandleMultiplayersDict = new Dictionary<string, HandleMultiplayers>();
+        private Dictionary<TcpClient, HandleMultiplayers> multiplayerGames = new Dictionary<TcpClient, HandleMultiplayers>();
+        /// <summary>
+        /// generating a new private maze
+        /// if the maze already exists it returns it
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="rows"></param>
+        /// <param name="cols"></param>
+        /// <returns></returns>
         public Maze GenerateMaze(string name, int rows, int cols)
         {
             if (!privateMazeDict.Keys.Contains(name))
@@ -29,7 +40,13 @@ namespace Server
             }
             return privateMazeDict[name];
         }
-
+        /// <summary>
+        /// solving a private maze
+        /// if the solution for this maze already exists it returns it
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
         public string SolveMaze(string name, int algorithm)
         {
             Maze m = privateMazeDict[name];
@@ -63,7 +80,10 @@ namespace Server
             stringSolution += numberOfNodesevaluated;
             return stringSolution;
         }
-
+        /// <summary>
+        /// list of all multiplayers maze that a client can join
+        /// </summary>
+        /// <returns></returns>
         public string[] MazeList()
         {
             string[] stringArr = new string[multiplayerMazeDict.Count];
@@ -74,68 +94,93 @@ namespace Server
             }
             return stringArr;
         }
-
+        /// <summary>
+        /// starting a new multiplayer maze
+        /// if the maze already exists it returns it
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="rows"></param>
+        /// <param name="cols"></param>
+        /// <param name="client"></param>
+        /// <returns></returns>
         public Maze MazeStart(string name, int rows, int cols, TcpClient client)
         {
             if (!multiplayerMazeDict.Keys.Contains(name))
             {
                 Maze maze = Generate(name, rows, cols);
                 multiplayerMazeDict.Add(name, maze);
-                //maze.Name = name;
-                //multiplayerMazeDict.Add(name, maze);
-                //handle multiplayer game
-                HandleMultiplaterGame handle = new HandleMultiplaterGame(client);
+                HandleMultiplayers handle = new HandleMultiplayers(client);
                 handle.gameToJason = maze.ToJSON();
                 handle.name = name;
-                HandleMultiplatersDict.Add(name, handle);
+                HandleMultiplayersDict.Add(name, handle);
                 multiplayerGames.Add(client, handle);
-                //handle.startHost();
                 return maze;
             }
             return multiplayerMazeDict[name];
         }
-
+        /// <summary>
+        /// joining a multiplayer maze that was started by another client
+        /// and sending the maze to the client that started it
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="client"></param>
+        /// <returns></returns>
         public Maze JoinMaze(string name, TcpClient client)
         {
             if (multiplayerMazeDict.Keys.Contains(name))
             {
-                HandleMultiplaterGame handle = HandleMultiplatersDict[name];
+                HandleMultiplayers handle = HandleMultiplayersDict[name];
                 handle.guest = client;
-                //handle.startGuest();
                 handle.SendMazeToJsonToHost();
                 multiplayerGames.Add(client, handle);
                 return multiplayerMazeDict[name];
             }
             return null;
         }
-
+        /// <summary>
+        ///  playing a move in the multiplayer maze (up, down, right, left)
+        /// </summary>
+        /// <param name="move"></param>
+        /// <param name="client"></param>
+        /// <returns></returns>
         public string PlayMove(string move, TcpClient client)
         {
             if (multiplayerGames.Keys.Contains(client))
             {
-                HandleMultiplaterGame handle = multiplayerGames[client];
+                HandleMultiplayers handle = multiplayerGames[client];
                 handle.SendMessageToClient(client, move);
             }
                 return String.Empty;
         }
-
+        /// <summary>
+        /// closing a multiplayer maze
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="client"></param>
+        /// <returns></returns>
         public string CloseMultiPlayerGame(string name, TcpClient client)
         {
             if (multiplayerMazeDict.Keys.Contains(name) && multiplayerGames.Keys.Contains(client)) 
             {
-                HandleMultiplaterGame handle = HandleMultiplatersDict[name];
+                HandleMultiplayers handle = HandleMultiplayersDict[name];
                 handle.Close(client);
                 multiplayerMazeDict.Remove(name);
                 TcpClient guest = handle.guest;
                 TcpClient host = handle.host;
                 multiplayerGames.Remove(guest);
                 multiplayerGames.Remove(host);
-                HandleMultiplatersDict.Remove(name);
+                HandleMultiplayersDict.Remove(name);
                 return String.Empty;
             }
             return "Error Game not found";
         }
-
+        /// <summary>
+        /// generates a maze with the maze adapter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="rows"></param>
+        /// <param name="cols"></param>
+        /// <returns></returns>
         public Maze Generate(string name, int rows, int cols)
         {
             DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
