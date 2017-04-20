@@ -75,7 +75,7 @@ namespace Server
             return stringArr;
         }
 
-        public Maze MazeStart(string name, int rows, int cols, TcpClient client, Controller control)
+        public Maze MazeStart(string name, int rows, int cols, TcpClient client)
         {
             if (!multiplayerMazeDict.Keys.Contains(name))
             {
@@ -84,7 +84,7 @@ namespace Server
                 //maze.Name = name;
                 //multiplayerMazeDict.Add(name, maze);
                 //handle multiplayer game
-                HandleMultiplaterGame handle = new HandleMultiplaterGame(client, control);
+                HandleMultiplaterGame handle = new HandleMultiplaterGame(client);
                 handle.gameToJason = maze.ToJSON();
                 handle.name = name;
                 HandleMultiplatersDict.Add(name, handle);

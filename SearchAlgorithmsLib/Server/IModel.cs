@@ -13,7 +13,7 @@ namespace Server
         Maze GenerateMaze(string name, int rows, int cols);
         string SolveMaze(string name, int algorithm);
         string[] MazeList();
-        Maze MazeStart(string name, int rows, int cols, TcpClient client, Controller control);
+        Maze MazeStart(string name, int rows, int cols, TcpClient client);
         Maze JoinMaze(string name, TcpClient client);
         string PlayMove(string move, TcpClient client);
         string CloseMultiPlayerGame(string name, TcpClient client);

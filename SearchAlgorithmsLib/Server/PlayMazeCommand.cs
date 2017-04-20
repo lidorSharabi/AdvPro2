@@ -15,7 +15,7 @@ namespace Server
         {
             this.model = model;
         }
-        public string Execute(string[] args, TcpClient client, Controller control)
+        public string Execute(string[] args, TcpClient client)
         {
 
             //string name;

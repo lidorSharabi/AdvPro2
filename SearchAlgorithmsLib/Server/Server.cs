@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Server
 {
@@ -21,7 +22,7 @@ namespace Server
         public void Start()
         {
             IPEndPoint ep = new
-            IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
+            IPEndPoint(IPAddress.Parse("127.0.0.1"), Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]));
             listener = new TcpListener(ep);
 
             listener.Start();

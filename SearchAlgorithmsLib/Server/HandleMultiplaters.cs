@@ -16,41 +16,11 @@ namespace Server
         public TcpClient guest { get; set; }
         public string gameToJason { get; set; }
         public string name { get; set; }
-        private Controller control;
         private bool run = true;
 
-        public HandleMultiplaterGame(TcpClient host, Controller control)
+        public HandleMultiplaterGame(TcpClient host)
         {
             this.host = host;
-            this.control = control;
-        }
-
-        public void StartBothClients()
-        {
-            StartThread(host);
-            StartThread(guest);
-        }
-
-        private void StartThread(TcpClient client)
-        {
-            new Task(() =>
-            {
-                string result, commandLine;
-                using (NetworkStream stream = client.GetStream())
-                using (StreamReader reader = new StreamReader(stream))
-                using (StreamWriter writer = new StreamWriter(stream))
-                {
-                    while (run)
-                    {
-                        //TODO - add try & catch
-                        commandLine = reader.ReadLine();
-                        Console.WriteLine("Got command: {0}", commandLine);
-                        commandLine = commandLine + " " + name;
-                        result = control.ExecuteCommand(commandLine, client);
-                        writer.Write(result);
-                    }
-                }
-            }).Start();
         }
 
         public void SendMazeToJsonToHost()
@@ -79,16 +49,7 @@ namespace Server
                 writer.WriteLine("The guest has closed the game");
             }
         }
-
-        public void StartHost()
-        {
-            StartThread(host);
-        }
-
-        public void startGuest()
-        {
-            StartThread(guest);
-        }
+        
 
         public void SendMessageToClient(TcpClient client, string move)
         {
