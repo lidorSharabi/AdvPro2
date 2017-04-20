@@ -8,25 +8,50 @@ using MazeLib;
 
 namespace Server
 {
+    /// <summary>
+    /// adapter for the maze
+    /// </summary>
+    /// <typeparam name="Position"></typeparam>
     public class MazeAdapter<Position> : ISearchable<MazeLib.Position>
     {
         private Maze maze;
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="m"></param>
         public MazeAdapter(Maze m)
         {
             maze = m;
         }
+        /// <summary>
+        /// returning the maze
+        /// </summary>
+        /// <returns></returns>
         public Maze GetMaze()
         {
             return maze;
         }
+        /// <summary>
+        /// returning the initial state of the maze
+        /// </summary>
+        /// <returns></returns>
         public State<MazeLib.Position> GetInitializeState()
         {
             return State<MazeLib.Position>.StatePool.GetState(maze.InitialPos);
         }
+        /// <summary>
+        /// returning the goal state of the maze
+        /// </summary>
+        /// <returns></returns>
         public State<MazeLib.Position> GetGoalState()
         {
             return State<MazeLib.Position>.StatePool.GetState(maze.GoalPos);
         }
+        /// <summary>
+        /// returning a list of the possible states for the given state
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public List<State<MazeLib.Position>> GetAllPossibleStates(State<MazeLib.Position> s)
         {
             List<State<MazeLib.Position>> possibleStates = new List<State<MazeLib.Position>>();
@@ -61,12 +86,18 @@ namespace Server
 
             return possibleStates;
         }
-
+        /// <summary>
+        /// printing the maze
+        /// </summary>
         public void printMaze()
         {
             Console.WriteLine(maze.ToString());
         }
-
+        /// <summary>
+        /// turning the solution to a string
+        /// </summary>
+        /// <param name="sol"></param>
+        /// <returns></returns>
         public String ToSolution(Solution<MazeLib.Position> sol)
         {
             List<State<MazeLib.Position>> list = new List<State<MazeLib.Position>>(sol.vertex);
@@ -76,25 +107,21 @@ namespace Server
             {
                 if (list[i].Getstate().Col > list[i - 1].Getstate().Col)
                 {
-                    //solution += MazeLib.Direction.Left;
                     solution += 0;
                 }
 
                 if (list[i].Getstate().Row > list[i - 1].Getstate().Row)
                 {
-                    //solution += MazeLib.Direction.Up;
                     solution += 2;
                 }
 
                 if (list[i].Getstate().Col < list[i - 1].Getstate().Col)
                 {
-                    //solution += MazeLib.Direction.Right;
                     solution += 1;
                 }
 
                 if (list[i].Getstate().Row < list[i - 1].Getstate().Row)
                 {
-                    //solution += MazeLib.Direction.Down;
                     solution += 3;
                 }
             }
