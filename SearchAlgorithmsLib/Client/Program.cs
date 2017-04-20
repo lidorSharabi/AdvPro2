@@ -8,11 +8,12 @@ namespace Client
 {
     class Program
     {
+        /// <summary>
+        /// main for starting the client
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
-            /*Client client = new Client();
-            client.start();
-            */
             Client client = new Client();
             client.Start();
         }

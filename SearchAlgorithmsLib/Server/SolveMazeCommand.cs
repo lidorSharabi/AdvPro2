@@ -10,13 +10,28 @@ using Newtonsoft.Json.Linq;
 
 namespace Server
 {
+    /// <summary>
+    /// responsible for the command of solving a private maze
+    /// </summary>
     public class SolveMazeCommand : ICommand
     {
         private IModel model;
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="model"></param>
         public SolveMazeCommand(IModel model)
         {
             this.model = model;
         }
+        /// <summary>
+        /// Executes the command of solving a private maze and
+        /// applying the matching function in the model section
+        /// and returning a Json object of the solution
+        /// </summary>
+        /// <param name="args"></param>
+        /// <param name="client"></param>
+        /// <returns></returns>
         public string Execute(string[] args, TcpClient client)
         {
             string name;
