@@ -9,16 +9,27 @@ using System.Configuration;
 
 namespace Server
 {
+    /// <summary>
+    /// responsible for the connection of the server to the ip address and the port
+    /// </summary>
     class Server
     {
         private int port;
         private TcpListener listener;
         private IClientHandler ch;
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="port"></param>
+        /// <param name="ch"></param>
         public Server(int port, IClientHandler ch)
         {
             this.port = port;
             this.ch = ch;
         }
+        /// <summary>
+        /// starting the connection of the server and waiting for connections to clients
+        /// </summary>
         public void Start()
         {
             IPEndPoint ep = new
@@ -45,6 +56,9 @@ namespace Server
             });
             task.Start();
         }
+        /// <summary>
+        /// stopping the listner from listening to new connections
+        /// </summary>
         public void Stop()
         {
             listener.Stop();
