@@ -9,6 +9,13 @@ namespace SearchAlgorithmsLib
 
     public class DFS<T> : StackSearcher<T>
     {
+        /// <summary>
+        /// search on searchable using DFS algorithm
+        /// </summary>
+        /// <param name="searchable">obj that can be searched on</param>
+        /// <param name="comparator">irrelevant</param>
+        /// <returns>the solution of the DFS algorithm:
+        /// path to the goal and the number of state that evaluated</returns>
         public override Solution<T> Search(ISearchable<T> searchable, Comparator<T> comparator = null)
         {
             HashSet<T> labeled = new HashSet<T>();

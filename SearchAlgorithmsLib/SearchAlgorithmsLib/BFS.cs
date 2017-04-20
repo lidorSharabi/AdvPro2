@@ -7,6 +7,13 @@ namespace SearchAlgorithmsLib
 {
     public class BFS<T> : PriorityQueSearcher<T>
     {
+        /// <summary>
+        /// search on searchable using Best First Search algorithm
+        /// </summary>
+        /// <param name="searchable">obj that can be searched on, has functions initialize/goal state and get all possible states from specific state</param>
+        /// <param name="comparator">has function copmare which helped the comparator param to determine who's better state to came from</param>
+        /// <returns>the solution of the BFS algorithm:
+        /// path to the goal and the number of state that evaluated</returns>
         public override Solution<T> Search(ISearchable<T> searchable, Comparator<T> comparator)
         {
             State<T> state = searchable.GetInitializeState();
@@ -40,7 +47,7 @@ namespace SearchAlgorithmsLib
                         }
                         else
                         {
-                            RemoveAndAddElementToOpenList(s, currentState.cost + 1); //TODO - check if it returns by ref
+                            RemoveAndAddElementToOpenList(s, currentState.cost + 1);
                         }
                     }
                 }
