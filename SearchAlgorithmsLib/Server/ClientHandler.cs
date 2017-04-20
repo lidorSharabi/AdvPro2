@@ -9,15 +9,21 @@ using System.Threading.Tasks;
 
 namespace Server
 {
+    /// <summary>
+    /// Handles the server connection with the clients
+    /// </summary>
     public class ClientHandler : IClientHandler
     {
         private Controller control = new Controller();
 
+        /// <summary>
+        /// gets the stream from the client and executes the command that the client sent
+        /// </summary>
+        /// <param name="client"></param>
         public void HandleClient(TcpClient client)
         {
             new Task(() =>
             {
-                //string result, commandLine;
                 using (NetworkStream stream = client.GetStream())
                 using (StreamReader reader = new StreamReader(stream))
                 using (StreamWriter writer = new StreamWriter(stream))
@@ -38,12 +44,7 @@ namespace Server
                         }
                     }
                 }
-                //string[] arr = commandLine.Split(' ');
-                //string commandKey = arr[0];
-                //if (!((commandKey.Equals("start") || commandKey.Equals("join")) && !result.Contains("Error")))
-                //{
-                    //client.Close();
-                //}
+                client.Close();
             }).Start();
         }
     }
