@@ -9,6 +9,10 @@ namespace Server
 {
     class Program
     {
+        /// <summary>
+        /// The main that runs the server
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             Server server = new Server(8000, new ClientHandler());
