@@ -25,13 +25,13 @@ namespace Server
             this.control = control;
         }
 
-        public void startBothClients()
+        public void StartBothClients()
         {
-            startThread(host);
-            startThread(guest);
+            StartThread(host);
+            StartThread(guest);
         }
 
-        private void startThread(TcpClient client)
+        private void StartThread(TcpClient client)
         {
             new Task(() =>
             {
@@ -53,7 +53,7 @@ namespace Server
             }).Start();
         }
 
-        public void sendMazeToJsonToHost()
+        public void SendMazeToJsonToHost()
         {
             NetworkStream stream = host.GetStream();
             StreamWriter writer = new StreamWriter(stream);
@@ -61,7 +61,7 @@ namespace Server
             writer.WriteLine(gameToJason);
         }
 
-        public void close(TcpClient client)
+        public void Close(TcpClient client)
         {
             run = false;
             if (client == host)
@@ -80,17 +80,17 @@ namespace Server
             }
         }
 
-        public void startHost()
+        public void StartHost()
         {
-            startThread(host);
+            StartThread(host);
         }
 
         public void startGuest()
         {
-            startThread(guest);
+            StartThread(guest);
         }
 
-        public void sendMessageToClient(TcpClient client, string move)
+        public void SendMessageToClient(TcpClient client, string move)
         {
             JObject playMoveFormat = new JObject();
             playMoveFormat["name"] = name;

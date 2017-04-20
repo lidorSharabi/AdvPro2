@@ -15,18 +15,18 @@ namespace SearchAlgorithmsLib
             evaluatedNodes = 0;
         }
 
-        protected void addToOpenList(State<T> state)
+        protected void AddToOpenList(State<T> state)
         {
             openList.Push(state);
         }
 
-        protected State<T> popOpenList()
+        protected State<T> PopOpenList()
         {
             evaluatedNodes++;
             return openList.Pop();
         }
 
-        public int openListSize
+        public int OpenListSize
         {
             get { return openList.Count; }
         }

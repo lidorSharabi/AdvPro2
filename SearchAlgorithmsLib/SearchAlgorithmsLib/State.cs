@@ -16,7 +16,7 @@ namespace SearchAlgorithmsLib
             this.state = state;
         }
 
-        public T getstate()
+        public T Getstate()
         {
             return state;
         }
@@ -26,7 +26,7 @@ namespace SearchAlgorithmsLib
             private static Dictionary<int, State<T>> pool = new Dictionary<int, State<T>>();
             private static HashSet<T> hashState = new HashSet<T>();
 
-            public static State<T> getState(T state)
+            public static State<T> GetState(T state)
             {
                 lock (hashState)
                 {

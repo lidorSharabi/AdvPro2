@@ -21,7 +21,7 @@ namespace Server
             try
             {
                 name = args[0];
-                return model.closeMultiPlayerGame(name, client);
+                return model.CloseMultiPlayerGame(name, client);
             }
             catch
             {

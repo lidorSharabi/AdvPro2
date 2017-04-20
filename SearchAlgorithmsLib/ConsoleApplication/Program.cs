@@ -44,15 +44,15 @@ namespace ConsoleApp1
 
             Console.WriteLine("------------DFS------------");
             DFS<Position> dfs = new DFS<Position>();
-            Solution<Position> solDFS = dfs.search(maze);
+            Solution<Position> solDFS = dfs.Search(maze);
             Console.WriteLine("DFS maze solution: " + maze.ToSolution(solDFS));
-            Console.WriteLine("DFS number of nodes evaluated: " + dfs.getNumberOfNodesEvaluated());
+            Console.WriteLine("DFS number of nodes evaluated: " + dfs.GetNumberOfNodesEvaluated());
 
             Console.WriteLine("------------BFS------------");
             BFS<Position> bfs = new BFS<Position>();
-            Solution<Position> solBFS = bfs.search(maze, new CostComparator<Position>());
+            Solution<Position> solBFS = bfs.Search(maze, new CostComparator<Position>());
             Console.WriteLine("BFS maze solution: " + maze.ToSolution(solBFS));
-            Console.WriteLine("BFS number of nodes evaluated: " + bfs.getNumberOfNodesEvaluated());
+            Console.WriteLine("BFS number of nodes evaluated: " + bfs.GetNumberOfNodesEvaluated());
 
             Console.WriteLine("Press enter to close...");
             Console.ReadKey();

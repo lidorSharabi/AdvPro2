@@ -8,7 +8,7 @@ namespace SearchAlgorithmsLib
 {
     public class CostComparator<T> : Comparator<T>
     {
-        public float compare(State<T> first, State<T> second)
+        public float Compare(State<T> first, State<T> second)
         {
             return first.cost - second.cost;
         }

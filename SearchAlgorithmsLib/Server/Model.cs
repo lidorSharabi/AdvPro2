@@ -23,7 +23,7 @@ namespace Server
         {
             if (!privateMazeDict.Keys.Contains(name))
             {
-                Maze m = generate(name, rows, cols);
+                Maze m = Generate(name, rows, cols);
                 privateMazeDict.Add(name, m);
                 return m;
             }
@@ -41,13 +41,13 @@ namespace Server
                 if (algorithm == 0)
                 {
                     searcher = new DFS<Position>();
-                    sol = searcher.search(maze);
+                    sol = searcher.Search(maze);
                 }
                 else
                 {
                     searcher = new BFS<Position>();
                     CostComparator<Position> compare = new CostComparator<Position>();
-                    sol = searcher.search(maze, compare);
+                    sol = searcher.Search(maze, compare);
                 }
 
                 privateSolDict.Add(name, sol);
@@ -64,7 +64,7 @@ namespace Server
             return stringSolution;
         }
 
-        public string[] mazeList()
+        public string[] MazeList()
         {
             string[] stringArr = new string[multiplayerMazeDict.Count];
             int i = 0;
@@ -75,11 +75,11 @@ namespace Server
             return stringArr;
         }
 
-        public Maze mazeStart(string name, int rows, int cols, TcpClient client, Controller control)
+        public Maze MazeStart(string name, int rows, int cols, TcpClient client, Controller control)
         {
             if (!multiplayerMazeDict.Keys.Contains(name))
             {
-                Maze maze = generate(name, rows, cols);
+                Maze maze = Generate(name, rows, cols);
                 multiplayerMazeDict.Add(name, maze);
                 //maze.Name = name;
                 //multiplayerMazeDict.Add(name, maze);
@@ -95,36 +95,36 @@ namespace Server
             return multiplayerMazeDict[name];
         }
 
-        public Maze joinMaze(string name, TcpClient client)
+        public Maze JoinMaze(string name, TcpClient client)
         {
             if (multiplayerMazeDict.Keys.Contains(name))
             {
                 HandleMultiplaterGame handle = HandleMultiplatersDict[name];
                 handle.guest = client;
                 //handle.startGuest();
-                handle.sendMazeToJsonToHost();
+                handle.SendMazeToJsonToHost();
                 multiplayerGames.Add(client, handle);
                 return multiplayerMazeDict[name];
             }
             return null;
         }
 
-        public string playMove(string move, TcpClient client)
+        public string PlayMove(string move, TcpClient client)
         {
             if (multiplayerGames.Keys.Contains(client))
             {
                 HandleMultiplaterGame handle = multiplayerGames[client];
-                handle.sendMessageToClient(client, move);
+                handle.SendMessageToClient(client, move);
             }
                 return String.Empty;
         }
 
-        public string closeMultiPlayerGame(string name, TcpClient client)
+        public string CloseMultiPlayerGame(string name, TcpClient client)
         {
             if (multiplayerMazeDict.Keys.Contains(name) && multiplayerGames.Keys.Contains(client)) 
             {
                 HandleMultiplaterGame handle = HandleMultiplatersDict[name];
-                handle.close(client);
+                handle.Close(client);
                 multiplayerMazeDict.Remove(name);
                 TcpClient guest = handle.guest;
                 TcpClient host = handle.host;
@@ -136,7 +136,7 @@ namespace Server
             return "Error Game not found";
         }
 
-        public Maze generate(string name, int rows, int cols)
+        public Maze Generate(string name, int rows, int cols)
         {
             DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
             Maze m = mazeGenerator.Generate(rows, cols);

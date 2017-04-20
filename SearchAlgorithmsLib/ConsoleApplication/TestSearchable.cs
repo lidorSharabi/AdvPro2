@@ -17,17 +17,17 @@ class TestSearchable<T> : ISearchable<T>
         this.Adj = Adj;
     }
 
-    public State<T> getInitializeState()
+    public State<T> GetInitializeState()
     {
         return from;
     }
 
-    public State<T> getGoalState()
+    public State<T> GetGoalState()
     {
         return to;
     }
 
-    public List<State<T>> getAllPossibleStates(State<T> s)
+    public List<State<T>> GetAllPossibleStates(State<T> s)
     {
         List<State<T>> states = null;
         // if found the vertex

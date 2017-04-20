@@ -16,28 +16,28 @@ namespace SearchAlgorithmsLib
             evaluatedNodes = 0;
         }
 
-        protected void addToOpenList(State<T> state, float priority)
+        protected void AddToOpenList(State<T> state, float priority)
         {
             openList.Enqueue(state, priority);
         }
 
-        protected State<T> popOpenList()
+        protected State<T> PopOpenList()
         {
             evaluatedNodes++;
             return openList.Dequeue();
         }
 
-        public int openListSize
+        public int OpenListSize
         {
             get { return openList.Count; }
         }
 
-        protected bool openContains(State<T> state)
+        protected bool OpenContains(State<T> state)
         {
             return openList.Contains(state);
         }
 
-        public void removeAndAddElementToOpenList(State<T> state, float priority)
+        public void RemoveAndAddElementToOpenList(State<T> state, float priority)
         {
             foreach (State<T> var in openList)
             {

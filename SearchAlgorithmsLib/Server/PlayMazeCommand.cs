@@ -34,7 +34,7 @@ namespace Server
             {
                 return "Error in parameter for play command maze";
             }
-            return model.playMove(move, client);           
+            return model.PlayMove(move, client);           
         }
     }
 }

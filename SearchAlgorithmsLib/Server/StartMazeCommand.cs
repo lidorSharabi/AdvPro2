@@ -30,7 +30,7 @@ namespace Server
             {
                 return "Error in parameters for starting maze";
             }
-            Maze maze = model.mazeStart(name, rows, cols, client, control);
+            Maze maze = model.MazeStart(name, rows, cols, client, control);
             return "Waiting for other player to join...";
         }
     }
