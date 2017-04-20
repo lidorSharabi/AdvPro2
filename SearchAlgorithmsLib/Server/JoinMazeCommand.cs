@@ -27,7 +27,7 @@ namespace Server
                 return "Error in parameter for joining maze";
             }
             string notFount = "Error Game not found";
-            Maze maze = model.joinMaze(name, client);
+            Maze maze = model.JoinMaze(name, client);
             if (maze != null)
             {
                 return maze.ToJSON();

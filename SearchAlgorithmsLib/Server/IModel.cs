@@ -12,10 +12,10 @@ namespace Server
     {
         Maze GenerateMaze(string name, int rows, int cols);
         string SolveMaze(string name, int algorithm);
-        string[] mazeList();
-        Maze mazeStart(string name, int rows, int cols, TcpClient client, Controller control);
-        Maze joinMaze(string name, TcpClient client);
-        string playMove(string move, string name, TcpClient client);
-        string closeMultiPlayerGame(string name);
+        string[] MazeList();
+        Maze MazeStart(string name, int rows, int cols, TcpClient client, Controller control);
+        Maze JoinMaze(string name, TcpClient client);
+        string PlayMove(string move, TcpClient client);
+        string CloseMultiPlayerGame(string name, TcpClient client);
     }
 }

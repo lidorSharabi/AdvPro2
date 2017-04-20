@@ -9,31 +9,31 @@ namespace SearchAlgorithmsLib
 
     public class DFS<T> : StackSearcher<T>
     {
-        public override Solution<T> search(ISearchable<T> searchable, Comparator<T> comparator = null)
+        public override Solution<T> Search(ISearchable<T> searchable, Comparator<T> comparator = null)
         {
             HashSet<T> labeled = new HashSet<T>();
-            State<T> state = searchable.getInitializeState();
+            State<T> state = searchable.GetInitializeState();
             state.cost = 1;
             state.cameFrom = null;
-            addToOpenList(state);
-            while (openListSize > 0)
+            AddToOpenList(state);
+            while (OpenListSize > 0)
             {
-                state = popOpenList();
-                if (state.Equals(searchable.getGoalState()))
+                state = PopOpenList();
+                if (state.Equals(searchable.GetGoalState()))
                 {
-                    return backTrace(ref state);
+                    return BackTrace(ref state);
                 }
-                if (!labeled.Contains(state.getstate()))
+                if (!labeled.Contains(state.Getstate()))
                 {
-                    labeled.Add(state.getstate());
-                    List<State<T>> succerssors = searchable.getAllPossibleStates(state);
+                    labeled.Add(state.Getstate());
+                    List<State<T>> succerssors = searchable.GetAllPossibleStates(state);
                     foreach (State<T> s in succerssors)
                     {
-                        if (!labeled.Contains(s.getstate()))
+                        if (!labeled.Contains(s.Getstate()))
                         {
                             s.cost = state.cost + 1;
                             s.cameFrom = state;
-                            addToOpenList(s);
+                            AddToOpenList(s);
                         }
                     }
 

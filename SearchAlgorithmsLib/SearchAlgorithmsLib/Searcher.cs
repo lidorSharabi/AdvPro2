@@ -10,12 +10,12 @@ namespace SearchAlgorithmsLib
     {
         protected int evaluatedNodes;
 
-        public int getNumberOfNodesEvaluated()
+        public int GetNumberOfNodesEvaluated()
         {
             return evaluatedNodes;
         }
 
-        public Solution<T> backTrace(ref State<T> state)
+        public Solution<T> BackTrace(ref State<T> state)
         {
             List<State<T>> vertex = new List<State<T>>();
             while (state != null)
@@ -24,10 +24,10 @@ namespace SearchAlgorithmsLib
                 state = state.cameFrom;
             }
 
-            Solution<T> sol = new Solution<T>(vertex, getNumberOfNodesEvaluated());
+            Solution<T> sol = new Solution<T>(vertex, GetNumberOfNodesEvaluated());
             return sol;
         }
 
-        public abstract Solution<T> search(ISearchable<T> searchable, Comparator<T> comparator = null);
+        public abstract Solution<T> Search(ISearchable<T> searchable, Comparator<T> comparator = null);
     }
 }

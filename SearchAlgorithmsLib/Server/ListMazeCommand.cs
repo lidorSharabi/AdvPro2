@@ -17,7 +17,7 @@ namespace Server
         }
         public string Execute(string[] args, TcpClient client, Controller control)
         { 
-            string[] games = model.mazeList();
+            string[] games = model.MazeList();
             return JsonConvert.SerializeObject(games);
             
         }

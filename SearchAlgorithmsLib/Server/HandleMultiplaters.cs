@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Server
 {
@@ -24,13 +25,13 @@ namespace Server
             this.control = control;
         }
 
-        public void startBothClients()
+        public void StartBothClients()
         {
-            startThread(host);
-            startThread(guest);
+            StartThread(host);
+            StartThread(guest);
         }
 
-        private void startThread(TcpClient client)
+        private void StartThread(TcpClient client)
         {
             new Task(() =>
             {
@@ -52,52 +53,61 @@ namespace Server
             }).Start();
         }
 
-        public void sendMazeToJsonToHost()
+        public void SendMazeToJsonToHost()
         {
-            using (NetworkStream stream = host.GetStream())
-            using (StreamWriter writer = new StreamWriter(stream))
+            NetworkStream stream = host.GetStream();
+            StreamWriter writer = new StreamWriter(stream);
+            writer.AutoFlush = true;
+            writer.WriteLine(gameToJason);
+        }
+
+        public void Close(TcpClient client)
+        {
+            run = false;
+            if (client == host)
             {
-                writer.Write(gameToJason);
+                NetworkStream stream = guest.GetStream();
+                StreamWriter writer = new StreamWriter(stream);
+                writer.AutoFlush = true;
+                writer.WriteLine("The host has closed the game");
+            }
+            else if (client == guest)
+            {
+                NetworkStream stream = host.GetStream();
+                StreamWriter writer = new StreamWriter(stream);
+                writer.AutoFlush = true;
+                writer.WriteLine("The guest has closed the game");
             }
         }
 
-        public void close()
+        public void StartHost()
         {
-            run = false;
-            host.Close();
-            guest.Close();
-        }
-
-        public void startHost()
-        {
-            startThread(host);
+            StartThread(host);
         }
 
         public void startGuest()
         {
-            startThread(guest);
+            StartThread(guest);
         }
 
-        public void sendMessageToClient(TcpClient client)
+        public void SendMessageToClient(TcpClient client, string move)
         {
-            string[] palyMoveFormat = new string[2];
-            palyMoveFormat[0] = "''Name'':''mygame'',";
-            palyMoveFormat[1] = "''Direction'': ''right''";
+            JObject playMoveFormat = new JObject();
+            playMoveFormat["name"] = name;
+            playMoveFormat["move"] = move;
             if (client == host)
             {
-                using (NetworkStream stream = guest.GetStream())
-                using (StreamWriter writer = new StreamWriter(stream))
-                {
-                    writer.Write(JsonConvert.SerializeObject(palyMoveFormat));
-                }
+                NetworkStream stream = guest.GetStream();
+                StreamWriter writer = new StreamWriter(stream);
+                writer.AutoFlush = true;
+                writer.WriteLine(playMoveFormat.ToString());
             }
             else if (client == guest)
             {
-                using (NetworkStream stream = host.GetStream())
-                using (StreamWriter writer = new StreamWriter(stream))
-                {
-                    writer.Write(JsonConvert.SerializeObject(palyMoveFormat));
-                }
+                NetworkStream stream = host.GetStream();
+                StreamWriter writer = new StreamWriter(stream);
+                writer.AutoFlush = true;
+                writer.WriteLine(playMoveFormat.ToString());
             }
         }
     }

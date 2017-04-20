@@ -21,21 +21,38 @@ namespace ConsoleApp1
         public static void CompareSolvers()
         {
             DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
-            Maze m = mazeGenerator.Generate(10, 10);
+            //Maze m = mazeGenerator.Generate(10, 10);
+            string json = @"{
+                'Name': 'mymaze',
+                'Maze':
+                '0001010001010101110101010000010111111101000001000111010101110001010001011111110100000000011111111111',
+                'Rows': 10,
+                'Cols': 10,
+                'Start': {
+                    'Row': 0,
+                    'Col': 4
+                },
+                'End': {
+                    'Row': 0,
+                    'Col': 0
+                }
+            }";
+            Maze m = Maze.FromJSON(json);
+            //Console.Write(maze.ToString());
             MazeAdapter<Position> maze = new MazeAdapter<Position>(m);
             maze.printMaze();
 
             Console.WriteLine("------------DFS------------");
             DFS<Position> dfs = new DFS<Position>();
-            Solution<Position> solDFS = dfs.search(maze);
+            Solution<Position> solDFS = dfs.Search(maze);
             Console.WriteLine("DFS maze solution: " + maze.ToSolution(solDFS));
-            Console.WriteLine("DFS number of nodes evaluated: " + dfs.getNumberOfNodesEvaluated());
+            Console.WriteLine("DFS number of nodes evaluated: " + dfs.GetNumberOfNodesEvaluated());
 
             Console.WriteLine("------------BFS------------");
             BFS<Position> bfs = new BFS<Position>();
-            Solution<Position> solBFS = bfs.search(maze, new CostComparator<Position>());
+            Solution<Position> solBFS = bfs.Search(maze, new CostComparator<Position>());
             Console.WriteLine("BFS maze solution: " + maze.ToSolution(solBFS));
-            Console.WriteLine("BFS number of nodes evaluated: " + bfs.getNumberOfNodesEvaluated());
+            Console.WriteLine("BFS number of nodes evaluated: " + bfs.GetNumberOfNodesEvaluated());
 
             Console.WriteLine("Press enter to close...");
             Console.ReadKey();

@@ -10,8 +10,11 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            Client client = new Client();
+            /*Client client = new Client();
             client.start();
+            */
+            Client client = new Client();
+            client.Start();
         }
     }
 }
