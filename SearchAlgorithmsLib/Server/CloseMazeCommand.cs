@@ -15,13 +15,13 @@ namespace Server
             this.model = model;
         }
 
-        public string Execute(string[] args, TcpClient client = null, Controller control = null)
+        public string Execute(string[] args, TcpClient client, Controller control = null)
         {
             string name;
             try
             {
                 name = args[0];
-                return model.closeMultiPlayerGame(name);
+                return model.closeMultiPlayerGame(name, client);
             }
             catch
             {

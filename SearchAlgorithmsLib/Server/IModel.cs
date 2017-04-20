@@ -15,7 +15,7 @@ namespace Server
         string[] mazeList();
         Maze mazeStart(string name, int rows, int cols, TcpClient client, Controller control);
         Maze joinMaze(string name, TcpClient client);
-        string playMove(string move, string name, TcpClient client);
-        string closeMultiPlayerGame(string name);
+        string playMove(string move, TcpClient client);
+        string closeMultiPlayerGame(string name, TcpClient client);
     }
 }

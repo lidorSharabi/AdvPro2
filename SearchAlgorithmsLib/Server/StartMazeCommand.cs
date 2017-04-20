@@ -31,7 +31,7 @@ namespace Server
                 return "Error in parameters for starting maze";
             }
             Maze maze = model.mazeStart(name, rows, cols, client, control);
-            return String.Empty;
+            return "Waiting for other player to join...";
         }
     }
 }
