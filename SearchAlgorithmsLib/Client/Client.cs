@@ -12,6 +12,9 @@ using System.Configuration;
 
 namespace Client
 {
+    /// <summary>
+    /// responsible for the client connection and writing and recieving to the client
+    /// </summary>
     public class Client
     {
         bool keepConnectionOpen = false, run = true;
@@ -20,12 +23,16 @@ namespace Client
         NetworkStream stream;
         IPEndPoint ep;
         TcpClient client;
-
-
+        /// <summary>
+        /// Ctor
+        /// </summary>
         public Client()
         {
-            this.ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]));
+            ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]));
         }
+        /// <summary>
+        /// starting the connection of the client
+        /// </summary>
         public void Start()
         {
             string readConsoleLine;
@@ -42,15 +49,15 @@ namespace Client
                         {
                             //keep the connection open
                             keepConnectionOpen = true;
-                            this.client = new TcpClient();
-                            this.client.Connect(ep);
-                            this.stream = client.GetStream();
-                            this.writer = new StreamWriter(stream);
-                            this.writer.AutoFlush = true;
-                            this.reader = new StreamReader(stream);
-                            //Send operation to server
-                            this.writer.WriteLine(readConsoleLine);
-                            //new Task - Get and print result from server
+                            client = new TcpClient();
+                            client.Connect(ep);
+                            stream = client.GetStream();
+                            writer = new StreamWriter(stream);
+                            writer.AutoFlush = true;
+                            reader = new StreamReader(stream);
+                            //Ssend command to server
+                            writer.WriteLine(readConsoleLine);
+                            //get and print result from server
                             new Task(() =>
                             {
                                 while (!reader.EndOfStream)
@@ -61,11 +68,11 @@ namespace Client
                         }
                         else 
                         {
-                            this.writer.AutoFlush = true;
-                            this.writer.WriteLine(readConsoleLine);
+                            writer.AutoFlush = true;
+                            writer.WriteLine(readConsoleLine);
                         }
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         break;
                     }
