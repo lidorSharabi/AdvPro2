@@ -61,7 +61,7 @@
     <Compile Include="CloseMazeCommand.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="GenerateMazeCommand.cs" />
-    <Compile Include="HandleMultiplaters.cs" />
+    <Compile Include="HandleMultiplayers.cs" />
     <Compile Include="IClientHandler.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IModel.cs" />

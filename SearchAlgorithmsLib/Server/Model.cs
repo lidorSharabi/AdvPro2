@@ -16,8 +16,8 @@ namespace Server
         private Dictionary<string, Maze> multiplayerMazeDict = new Dictionary<string, Maze>();
         private Dictionary<string, Solution<Position>> privateSolDict = new Dictionary<string, Solution<Position>>();
         private Dictionary<string, Solution<Position>> multiplayerSolDict = new Dictionary<string, Solution<Position>>();
-        private Dictionary<string, HandleMultiplaterGame> HandleMultiplatersDict = new Dictionary<string, HandleMultiplaterGame>();
-        private Dictionary<TcpClient, HandleMultiplaterGame> multiplayerGames = new Dictionary<TcpClient, HandleMultiplaterGame>();
+        private Dictionary<string, HandleMultiplayers> HandleMultiplayersDict = new Dictionary<string, HandleMultiplayers>();
+        private Dictionary<TcpClient, HandleMultiplayers> multiplayerGames = new Dictionary<TcpClient, HandleMultiplayers>();
 
         public Maze GenerateMaze(string name, int rows, int cols)
         {
@@ -84,10 +84,10 @@ namespace Server
                 //maze.Name = name;
                 //multiplayerMazeDict.Add(name, maze);
                 //handle multiplayer game
-                HandleMultiplaterGame handle = new HandleMultiplaterGame(client);
+                HandleMultiplayers handle = new HandleMultiplayers(client);
                 handle.gameToJason = maze.ToJSON();
                 handle.name = name;
-                HandleMultiplatersDict.Add(name, handle);
+                HandleMultiplayersDict.Add(name, handle);
                 multiplayerGames.Add(client, handle);
                 //handle.startHost();
                 return maze;
@@ -99,7 +99,7 @@ namespace Server
         {
             if (multiplayerMazeDict.Keys.Contains(name))
             {
-                HandleMultiplaterGame handle = HandleMultiplatersDict[name];
+                HandleMultiplayers handle = HandleMultiplayersDict[name];
                 handle.guest = client;
                 //handle.startGuest();
                 handle.SendMazeToJsonToHost();
@@ -113,7 +113,7 @@ namespace Server
         {
             if (multiplayerGames.Keys.Contains(client))
             {
-                HandleMultiplaterGame handle = multiplayerGames[client];
+                HandleMultiplayers handle = multiplayerGames[client];
                 handle.SendMessageToClient(client, move);
             }
                 return String.Empty;
@@ -123,14 +123,14 @@ namespace Server
         {
             if (multiplayerMazeDict.Keys.Contains(name) && multiplayerGames.Keys.Contains(client)) 
             {
-                HandleMultiplaterGame handle = HandleMultiplatersDict[name];
+                HandleMultiplayers handle = HandleMultiplayersDict[name];
                 handle.Close(client);
                 multiplayerMazeDict.Remove(name);
                 TcpClient guest = handle.guest;
                 TcpClient host = handle.host;
                 multiplayerGames.Remove(guest);
                 multiplayerGames.Remove(host);
-                HandleMultiplatersDict.Remove(name);
+                HandleMultiplayersDict.Remove(name);
                 return String.Empty;
             }
             return "Error Game not found";

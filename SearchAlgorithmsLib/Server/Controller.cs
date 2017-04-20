@@ -7,10 +7,16 @@ using System.Net.Sockets;
 
 namespace Server
 {
+    /// <summary>
+    /// responisble for controling all the commands that comes from the clients
+    /// </summary>
     public class Controller
     {
         private Dictionary<string, ICommand> commands;
         private IModel model;
+        /// <summary>
+        /// Ctor
+        /// </summary>
         public Controller()
         {
             model = new Model();
@@ -24,6 +30,14 @@ namespace Server
             commands.Add("close", new CloseMazeCommand(model));
 
         }
+
+        /// <summary>
+        /// receives the command from the view and passes it to the model
+        /// by executing the matching function for the command
+        /// </summary>
+        /// <param name="commandLine"></param>
+        /// <param name="client"></param>
+        /// <returns></returns>
         public string ExecuteCommand(string commandLine, TcpClient client)
         {
             string[] arr = commandLine.Split(' ');
