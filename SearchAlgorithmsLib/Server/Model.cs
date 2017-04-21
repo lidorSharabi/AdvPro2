@@ -185,12 +185,19 @@ namespace Server
             if (multiplayerMazeDict.Keys.Contains(name) && multiplayerGames.Keys.Contains(client)) 
             {
                 HandleMultiplayers handle = handleMultiplayersDict[name];
-                handle.Close(client);
                 TcpClient guest = handle.Guest;
                 TcpClient host = handle.Host;
+                if(guest == null || host == null)
+                {
+                    multiplayerMazeDict.Remove(name);
+                    handleMultiplayersDict.Remove(name);
+                    multiplayerGames.Remove(client);
+                    return String.Empty;
+                }
                 multiplayerGames.Remove(guest);
                 multiplayerGames.Remove(host);
                 handleMultiplayersDict.Remove(name);
+                handle.Close(client);
                 return String.Empty;
             }
             return "Error Game not found";
