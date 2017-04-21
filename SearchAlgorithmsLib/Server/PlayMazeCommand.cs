@@ -13,6 +13,9 @@ namespace Server
     /// </summary>
     class PlayMazeCommand : ICommand
     {
+        /// <summary>
+        /// the model to perform the operation
+        /// </summary>
         private IModel model;
         /// <summary>
         /// Ctor
@@ -35,9 +38,9 @@ namespace Server
             try
             {
                 move = args[0];
-                if (!(move.Equals("up") || move.Equals("down") || move.Equals("left") || move.Equals("right")))
+                if (!(move.ToLower().Equals("up") || move.ToLower().Equals("down") || move.ToLower().Equals("left") || move.ToLower().Equals("right")))
                 {
-                    return "Error in parameter for play command maze";
+                    return "No such play move exsits";
                 }
             }
             catch (Exception)

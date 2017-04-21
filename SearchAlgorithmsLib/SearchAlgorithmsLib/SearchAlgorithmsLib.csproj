@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BFS.cs" />
-    <Compile Include="Comparator.cs" />
+    <Compile Include="IComparator.cs" />
     <Compile Include="CostComparator.cs" />
     <Compile Include="DFS.cs" />
     <Compile Include="ISearchable.cs" />

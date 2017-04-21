@@ -13,6 +13,9 @@ namespace Server
     /// </summary>
     class StartMazeCommand : ICommand
     {
+        /// <summary>
+        /// the model to perform the operation
+        /// </summary>
         private IModel model;
         /// <summary>
         /// Ctor
@@ -45,7 +48,14 @@ namespace Server
                 return "Error in parameters for starting maze";
             }
             Maze maze = model.MazeStart(name, rows, cols, client);
-            return "Waiting for other player to join...";
+            if (maze != null)
+            {
+                return "Waiting for other player to join...";
+            }
+            else
+            {
+                return "A game with this name was already started";
+            }
         }
     }
 }

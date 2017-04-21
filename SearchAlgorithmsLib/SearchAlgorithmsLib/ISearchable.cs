@@ -5,6 +5,10 @@ using System.Text;
 
 namespace SearchAlgorithmsLib
 {
+    /// <summary>
+    /// searchable object interface
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public interface ISearchable<T>
     {
         /// <summary>

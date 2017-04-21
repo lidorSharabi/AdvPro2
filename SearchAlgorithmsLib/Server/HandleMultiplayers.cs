@@ -15,10 +15,25 @@ namespace Server
     /// </summary>
     class HandleMultiplayers
     {
-        public TcpClient host { get; set; }
-        public TcpClient guest { get; set; }
-        public string gameToJason { get; set; }
-        public string name { get; set; }
+        /// <summary>
+        /// the host client, the client that did the start operation
+        /// </summary>
+        public TcpClient Host { get; set; }
+        /// <summary>
+        /// the guest client, the client that did the join operation
+        /// </summary>
+        public TcpClient Guest { get; set; }
+        /// <summary>
+        /// the Json object of the game
+        /// </summary>
+        public string GameToJason { get; set; }
+        /// <summary>
+        /// the name of the game
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// running variable
+        /// </summary>
         private bool run = true;
         /// <summary>
         /// Ctor
@@ -26,7 +41,7 @@ namespace Server
         /// <param name="host"></param>
         public HandleMultiplayers(TcpClient host)
         {
-            this.host = host;
+            this.Host = host;
         }
 
         /// <summary>
@@ -34,10 +49,10 @@ namespace Server
         /// </summary>
         public void SendMazeToJsonToHost()
         {
-            NetworkStream stream = host.GetStream();
+            NetworkStream stream = Host.GetStream();
             StreamWriter writer = new StreamWriter(stream);
             writer.AutoFlush = true;
-            writer.WriteLine(gameToJason);
+            writer.WriteLine(GameToJason);
         }
 
         /// <summary>
@@ -47,16 +62,16 @@ namespace Server
         public void Close(TcpClient client)
         {
             run = false;
-            if (client == host)
+            if (client == Host)
             {
-                NetworkStream stream = guest.GetStream();
+                NetworkStream stream = Guest.GetStream();
                 StreamWriter writer = new StreamWriter(stream);
                 writer.AutoFlush = true;
                 writer.WriteLine("The host has closed the game");
             }
-            else if (client == guest)
+            else if (client == Guest)
             {
-                NetworkStream stream = host.GetStream();
+                NetworkStream stream = Host.GetStream();
                 StreamWriter writer = new StreamWriter(stream);
                 writer.AutoFlush = true;
                 writer.WriteLine("The guest has closed the game");
@@ -71,18 +86,18 @@ namespace Server
         public void SendMessageToClient(TcpClient client, string move)
         {
             JObject playMoveFormat = new JObject();
-            playMoveFormat["name"] = name;
-            playMoveFormat["move"] = move;
-            if (client == host)
+            playMoveFormat["name"] = Name;
+            playMoveFormat["move"] = move.ToLower();
+            if (client == Host)
             {
-                NetworkStream stream = guest.GetStream();
+                NetworkStream stream = Guest.GetStream();
                 StreamWriter writer = new StreamWriter(stream);
                 writer.AutoFlush = true;
                 writer.WriteLine(playMoveFormat.ToString());
             }
-            else if (client == guest)
+            else if (client == Guest)
             {
-                NetworkStream stream = host.GetStream();
+                NetworkStream stream = Host.GetStream();
                 StreamWriter writer = new StreamWriter(stream);
                 writer.AutoFlush = true;
                 writer.WriteLine(playMoveFormat.ToString());

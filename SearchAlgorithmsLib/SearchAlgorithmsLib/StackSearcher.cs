@@ -5,6 +5,10 @@ using System.Text;
 
 namespace SearchAlgorithmsLib
 {
+    /// <summary>
+    /// searcher based on stack
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class StackSearcher<T> : Searcher<T>
     {
         /// <summary>

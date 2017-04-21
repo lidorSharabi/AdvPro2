@@ -5,16 +5,20 @@ using System.Text;
 
 namespace SearchAlgorithmsLib
 {
+    /// <summary>
+    /// the solution object class
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Solution<T>
     {
         /// <summary>
         /// list that represent the solution path
         /// </summary>
-        public List<State<T>> vertex { get; }
+        public List<State<T>> Vertex { get; }
         /// <summary>
         /// responsible to track the amounts of nodes that the algorithm calculated
         /// </summary>
-        public int evaluatedNodes { get; }
+        public int EvaluatedNodes { get; }
         /// <summary>
         /// constructor
         /// </summary>
@@ -22,8 +26,8 @@ namespace SearchAlgorithmsLib
         /// <param name="evalNodes">amounts of nodes that the algorithm calculated</param>
         public Solution(List<State<T>> list, int evalNodes)
         {
-            vertex = list;
-            evaluatedNodes = evalNodes;
+            Vertex = list;
+            EvaluatedNodes = evalNodes;
         }
     }
 }

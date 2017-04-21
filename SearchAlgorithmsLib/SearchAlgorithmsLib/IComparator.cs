@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib
 {
-    public interface Comparator<T>
+    /// <summary>
+    /// comparator interface
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public interface IComparator<T>
     {
         /// <summary>
         /// compare which state is better
