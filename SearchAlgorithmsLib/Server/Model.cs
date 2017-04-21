@@ -150,10 +150,12 @@ namespace Server
             if (multiplayerMazeDict.Keys.Contains(name))
             {
                 HandleMultiplayers handle = handleMultiplayersDict[name];
+                Maze m = multiplayerMazeDict[name];
                 handle.Guest = client;
                 handle.SendMazeToJsonToHost();
                 multiplayerGames.Add(client, handle);
-                return multiplayerMazeDict[name];
+                multiplayerMazeDict.Remove(name);
+                return m;
             }
             return null;
         }
@@ -184,7 +186,6 @@ namespace Server
             {
                 HandleMultiplayers handle = handleMultiplayersDict[name];
                 handle.Close(client);
-                multiplayerMazeDict.Remove(name);
                 TcpClient guest = handle.Guest;
                 TcpClient host = handle.Host;
                 multiplayerGames.Remove(guest);
