@@ -103,7 +103,7 @@ namespace Server
         /// <returns></returns>
         public String ToSolution(Solution<MazeLib.Position> sol)
         {
-            List<State<MazeLib.Position>> list = new List<State<MazeLib.Position>>(sol.vertex);
+            List<State<MazeLib.Position>> list = new List<State<MazeLib.Position>>(sol.Vertex);
 
             String solution = "";
             for (int i = list.Count - 1; i > 0; i--)
