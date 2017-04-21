@@ -33,16 +33,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MazeGeneratorLib">
-      <HintPath>..\SearchAlgorithmsLib\bin\Debug\MazeGeneratorLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\MazeGeneratorLib.dll</HintPath>
     </Reference>
     <Reference Include="MazeLib">
-      <HintPath>..\SearchAlgorithmsLib\bin\Debug\MazeLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\MazeLib.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SearchAlgorithmsLib">
-      <HintPath>..\SearchAlgorithmsLib\bin\Debug\SearchAlgorithmsLib.dll</HintPath>
+      <HintPath>..\ConsoleApplication\bin\Debug\SearchAlgorithmsLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
