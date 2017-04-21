@@ -43,6 +43,10 @@ namespace Server
             {
                 name = args[0];
                 algorithm = int.Parse(args[1]);
+                if (!(algorithm == 0 || algorithm == 1))
+                {
+                    return "No such algorithm exsits";
+                }
             }
             catch (Exception)
             {

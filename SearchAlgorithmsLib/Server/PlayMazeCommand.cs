@@ -40,7 +40,7 @@ namespace Server
                 move = args[0];
                 if (!(move.Equals("up") || move.Equals("down") || move.Equals("left") || move.Equals("right")))
                 {
-                    return "Error in parameter for play command maze";
+                    return "No such play move exsits";
                 }
             }
             catch (Exception)
