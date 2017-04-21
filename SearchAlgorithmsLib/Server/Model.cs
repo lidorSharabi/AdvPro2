@@ -136,7 +136,7 @@ namespace Server
                 multiplayerGames.Add(client, handle);
                 return maze;
             }
-            return multiplayerMazeDict[name];
+            return null;
         }
         /// <summary>
         /// joining a multiplayer maze that was started by another client
