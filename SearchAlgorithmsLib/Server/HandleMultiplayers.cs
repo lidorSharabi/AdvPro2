@@ -87,7 +87,7 @@ namespace Server
         {
             JObject playMoveFormat = new JObject();
             playMoveFormat["name"] = Name;
-            playMoveFormat["move"] = move;
+            playMoveFormat["move"] = move.ToLower();
             if (client == Host)
             {
                 NetworkStream stream = Guest.GetStream();

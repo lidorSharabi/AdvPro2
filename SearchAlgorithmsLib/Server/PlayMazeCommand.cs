@@ -38,7 +38,7 @@ namespace Server
             try
             {
                 move = args[0];
-                if (!(move.Equals("up") || move.Equals("down") || move.Equals("left") || move.Equals("right")))
+                if (!(move.ToLower().Equals("up") || move.ToLower().Equals("down") || move.ToLower().Equals("left") || move.ToLower().Equals("right")))
                 {
                     return "No such play move exsits";
                 }
