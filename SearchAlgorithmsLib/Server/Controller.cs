@@ -12,7 +12,13 @@ namespace Server
     /// </summary>
     public class Controller
     {
+        /// <summary>
+        /// dictionary of the command and his name, the name is the key
+        /// </summary>
         private Dictionary<string, ICommand> commands;
+        /// <summary>
+        /// the model of the program
+        /// </summary>
         private IModel model;
         /// <summary>
         /// Ctor

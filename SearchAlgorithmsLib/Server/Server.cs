@@ -14,8 +14,17 @@ namespace Server
     /// </summary>
     class Server
     {
+        /// <summary>
+        /// the port of the server
+        /// </summary>
         private int port;
+        /// <summary>
+        /// listener that listens for new clients connections
+        /// </summary>
         private TcpListener listener;
+        /// <summary>
+        /// client handler
+        /// </summary>
         private IClientHandler ch;
         /// <summary>
         /// Ctor

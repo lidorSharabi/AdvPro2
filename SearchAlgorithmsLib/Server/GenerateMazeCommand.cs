@@ -13,6 +13,9 @@ namespace Server
     /// </summary>
     public class GenerateMazeCommand : ICommand
     {
+        /// <summary>
+        /// the model to perform the operation
+        /// </summary>
         private IModel model;
         /// <summary>
         /// Ctor

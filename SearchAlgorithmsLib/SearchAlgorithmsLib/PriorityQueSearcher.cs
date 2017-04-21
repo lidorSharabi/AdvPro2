@@ -6,6 +6,10 @@ using Priority_Queue;
 
 namespace SearchAlgorithmsLib
 {
+    /// <summary>
+    /// searcher based on priority queue
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class PriorityQueSearcher<T> : Searcher<T>
     {
         /// <summary>

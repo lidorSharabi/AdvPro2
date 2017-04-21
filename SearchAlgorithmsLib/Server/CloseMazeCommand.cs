@@ -13,6 +13,9 @@ namespace Server
     /// </summary>
     class CloseMazeCommand : ICommand
     {
+        /// <summary>
+        /// the model to perform the operation
+        /// </summary>
         private IModel model;
 
         /// <summary>

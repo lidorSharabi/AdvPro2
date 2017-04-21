@@ -17,11 +17,29 @@ namespace Client
     /// </summary>
     public class Client
     {
+        /// <summary>
+        /// running variables
+        /// </summary>
         bool keepConnectionOpen = false, run = true;
+        /// <summary>
+        /// stream reader variable
+        /// </summary>
         StreamReader reader;
+        /// <summary>
+        /// stream writing variable
+        /// </summary>
         StreamWriter writer;
+        /// <summary>
+        /// stream variable
+        /// </summary>
         NetworkStream stream;
+        /// <summary>
+        /// Ip address variable
+        /// </summary>
         IPEndPoint ep;
+        /// <summary>
+        /// client variable
+        /// </summary>
         TcpClient client;
         /// <summary>
         /// Ctor

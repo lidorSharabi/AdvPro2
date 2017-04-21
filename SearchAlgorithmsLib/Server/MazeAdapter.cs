@@ -14,6 +14,9 @@ namespace Server
     /// <typeparam name="Position"></typeparam>
     public class MazeAdapter<Position> : ISearchable<MazeLib.Position>
     {
+        /// <summary>
+        /// the maze adaptee
+        /// </summary>
         private Maze maze;
         /// <summary>
         /// Ctor

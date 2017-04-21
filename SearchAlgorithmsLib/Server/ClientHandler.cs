@@ -14,6 +14,9 @@ namespace Server
     /// </summary>
     public class ClientHandler : IClientHandler
     {
+        /// <summary>
+        /// the controller of the game
+        /// </summary>
         private Controller control = new Controller();
 
         /// <summary>

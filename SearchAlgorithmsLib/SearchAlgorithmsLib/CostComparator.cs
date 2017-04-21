@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib
 {
-    public class CostComparator<T> : Comparator<T>
+    public class CostComparator<T> : IComparator<T>
     {
         /// <summary>
         /// compare which state is better according their cost property
@@ -16,7 +16,7 @@ namespace SearchAlgorithmsLib
         /// <returns>return first.cost - second.cost</returns>
         public float Compare(State<T> first, State<T> second)
         {
-            return first.cost - second.cost;
+            return first.Cost - second.Cost;
         }
     }
 }

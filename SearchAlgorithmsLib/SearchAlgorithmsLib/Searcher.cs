@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib
 {
+    /// <summary>
+    /// abstract searcher class implements searcher interface
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class Searcher<T> : ISearcher<T>
     {
         /// <summary>
@@ -32,7 +36,7 @@ namespace SearchAlgorithmsLib
             while (state != null)
             {
                 vertex.Add(state);
-                state = state.cameFrom;
+                state = state.CameFrom;
             }
 
             Solution<T> sol = new Solution<T>(vertex, GetNumberOfNodesEvaluated());
@@ -44,6 +48,6 @@ namespace SearchAlgorithmsLib
         /// <param name="searchable">obj that can be searched on, has functions initialize/goal state and get all possible states from specific state</param>
         /// <param name="comparator">has function copmare which helped the comparator param to determine who's better state to came from</param>
         /// <returns></returns>
-        public abstract Solution<T> Search(ISearchable<T> searchable, Comparator<T> comparator = null);
+        public abstract Solution<T> Search(ISearchable<T> searchable, IComparator<T> comparator = null);
     }
 }

@@ -5,6 +5,10 @@ using System.Text;
 
 namespace SearchAlgorithmsLib
 {
+    /// <summary>
+    /// the state object class
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class State<T>
     {
         /// <summary>
@@ -14,11 +18,11 @@ namespace SearchAlgorithmsLib
         /// <summary>
         /// the "price" that cost to get to this state
         /// </summary>
-        public float cost { get; set; }
+        public float Cost { get; set; }
         /// <summary>
         /// the state thtat we came from, if it's null it means that this is the initialize state
         /// </summary>
-        public State<T> cameFrom { get; set; }
+        public State<T> CameFrom { get; set; }
         /// <summary>
         /// private constructort
         /// </summary>

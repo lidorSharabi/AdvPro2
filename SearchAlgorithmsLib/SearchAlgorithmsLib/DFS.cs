@@ -16,12 +16,12 @@ namespace SearchAlgorithmsLib
         /// <param name="comparator">irrelevant</param>
         /// <returns>the solution of the DFS algorithm:
         /// path to the goal and the number of state that evaluated</returns>
-        public override Solution<T> Search(ISearchable<T> searchable, Comparator<T> comparator = null)
+        public override Solution<T> Search(ISearchable<T> searchable, IComparator<T> comparator = null)
         {
             HashSet<T> labeled = new HashSet<T>();
             State<T> state = searchable.GetInitializeState();
-            state.cost = 1;
-            state.cameFrom = null;
+            state.Cost = 1;
+            state.CameFrom = null;
             AddToOpenList(state);
             while (OpenListSize > 0)
             {
@@ -38,8 +38,8 @@ namespace SearchAlgorithmsLib
                     {
                         if (!labeled.Contains(s.Getstate()))
                         {
-                            s.cost = state.cost + 1;
-                            s.cameFrom = state;
+                            s.Cost = state.Cost + 1;
+                            s.CameFrom = state;
                             AddToOpenList(s);
                         }
                     }

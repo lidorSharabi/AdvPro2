@@ -16,11 +16,31 @@ namespace Server
     /// </summary>
     public class Model : IModel
     {
+        /// <summary>
+        /// the private games dictionary, the name is the key
+        /// </summary>
         private Dictionary<string, Maze> privateMazeDict = new Dictionary<string, Maze>();
+        /// <summary>
+        /// the multiplayers games dictionary, the name is the key
+        /// </summary>
         private Dictionary<string, Maze> multiplayerMazeDict = new Dictionary<string, Maze>();
+        /// <summary>
+        /// the private games solutions dictionary, the name is the key
+        /// </summary>
         private Dictionary<string, Solution<Position>> privateSolDict = new Dictionary<string, Solution<Position>>();
+        /// <summary>
+        /// the multiplayers games solutions dictionary, the name is the key
+        /// </summary>
         private Dictionary<string, Solution<Position>> multiplayerSolDict = new Dictionary<string, Solution<Position>>();
-        private Dictionary<string, HandleMultiplayers> HandleMultiplayersDict = new Dictionary<string, HandleMultiplayers>();
+        /// <summary>
+        /// dictionary of the multiplayers games that are played and the object that
+        /// holds the two players of the game, the name is the key
+        /// </summary>
+        private Dictionary<string, HandleMultiplayers> handleMultiplayersDict = new Dictionary<string, HandleMultiplayers>();
+        /// <summary>
+        /// dictionary of the clients that plays in a multyplayer game and the object that
+        /// holds the two players of the game, the client is the key
+        /// </summary>
         private Dictionary<TcpClient, HandleMultiplayers> multiplayerGames = new Dictionary<TcpClient, HandleMultiplayers>();
         /// <summary>
         /// generating a new private maze
@@ -75,7 +95,7 @@ namespace Server
             }
 
             string stringSolution = maze.ToSolution(sol);
-            int numberOfNodesevaluated = sol.evaluatedNodes;
+            int numberOfNodesevaluated = sol.EvaluatedNodes;
             stringSolution += " ";
             stringSolution += numberOfNodesevaluated;
             return stringSolution;
@@ -110,9 +130,9 @@ namespace Server
                 Maze maze = Generate(name, rows, cols);
                 multiplayerMazeDict.Add(name, maze);
                 HandleMultiplayers handle = new HandleMultiplayers(client);
-                handle.gameToJason = maze.ToJSON();
-                handle.name = name;
-                HandleMultiplayersDict.Add(name, handle);
+                handle.GameToJason = maze.ToJSON();
+                handle.Name = name;
+                handleMultiplayersDict.Add(name, handle);
                 multiplayerGames.Add(client, handle);
                 return maze;
             }
@@ -129,8 +149,8 @@ namespace Server
         {
             if (multiplayerMazeDict.Keys.Contains(name))
             {
-                HandleMultiplayers handle = HandleMultiplayersDict[name];
-                handle.guest = client;
+                HandleMultiplayers handle = handleMultiplayersDict[name];
+                handle.Guest = client;
                 handle.SendMazeToJsonToHost();
                 multiplayerGames.Add(client, handle);
                 return multiplayerMazeDict[name];
@@ -162,14 +182,14 @@ namespace Server
         {
             if (multiplayerMazeDict.Keys.Contains(name) && multiplayerGames.Keys.Contains(client)) 
             {
-                HandleMultiplayers handle = HandleMultiplayersDict[name];
+                HandleMultiplayers handle = handleMultiplayersDict[name];
                 handle.Close(client);
                 multiplayerMazeDict.Remove(name);
-                TcpClient guest = handle.guest;
-                TcpClient host = handle.host;
+                TcpClient guest = handle.Guest;
+                TcpClient host = handle.Host;
                 multiplayerGames.Remove(guest);
                 multiplayerGames.Remove(host);
-                HandleMultiplayersDict.Remove(name);
+                handleMultiplayersDict.Remove(name);
                 return String.Empty;
             }
             return "Error Game not found";

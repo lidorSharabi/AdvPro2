@@ -15,6 +15,9 @@ namespace Server
     /// </summary>
     public class SolveMazeCommand : ICommand
     {
+        /// <summary>
+        /// the model to perform the operation
+        /// </summary>
         private IModel model;
         /// <summary>
         /// Ctor
