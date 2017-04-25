@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using System.Configuration;
+using System.Configuration;
 
 namespace Server
 {
@@ -15,7 +15,7 @@ namespace Server
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Server server = new Server(8000, new ClientHandler());
+            Server server = new Server(Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]), new ClientHandler());
             server.Start();
             Console.ReadKey();
         }
