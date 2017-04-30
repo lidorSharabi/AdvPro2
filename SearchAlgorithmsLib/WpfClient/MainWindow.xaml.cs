@@ -25,9 +25,16 @@ namespace WpfClient
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SingleButtonClick(object sender, RoutedEventArgs e)
         {
+            SinglePlayer singlePlayer = new SinglePlayer();
+            singlePlayer.ShowDialog();
+        }
 
+        private void MultiButtonClick(object sender, RoutedEventArgs e)
+        {
+            MultiPlayer multiPlayer = new MultiPlayer();
+            multiPlayer.ShowDialog();
         }
     }
 }
