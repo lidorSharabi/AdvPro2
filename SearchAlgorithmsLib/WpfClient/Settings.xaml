@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClient"
         mc:Ignorable="d"
-        Title="Settings" Height="300" Width="500">
+        Title="Settings" Height="270" Width="250">
     <Grid TextBlock.FontSize="14">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -14,11 +14,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width=" *" />
         </Grid.ColumnDefinitions>
         <Grid.Resources>
             <Style TargetType="TextBlock">
@@ -30,18 +30,23 @@
                 <Setter Property="Margin" Value="3"/>
             </Style>
         </Grid.Resources>
-        <TextBlock Margin="8">Server's IP address:</TextBlock>
-        <TextBox x:Name="txtIPAddress" Grid.Column="2"></TextBox>
-        <TextBlock Grid.Row="1">Server's port number:</TextBlock>
-        <TextBox x:Name="txtPortNumber" Grid.Row="1" Grid.Column="2"></TextBox>
-        <TextBlock Grid.Row="2">Default maze size:</TextBlock>
-        <TextBlock Grid.Row="3">Maze rows:</TextBlock>
-        <TextBox x:Name="txtRows" Grid.Row="3" Grid.Column="2"></TextBox>
-        <TextBlock Grid.Row="4">Maze columns:</TextBlock>
-        <TextBox x:Name="txtCols" Grid.Row="4" Grid.Column="2" Text="{Binding MazeCols}"></TextBox>
-        <TextBlock Grid.Row="5">Defaul solution method:</TextBlock>
-        <TextBox x:Name="txtSolutionMethod" Grid.Row="5" Grid.Column="2" Text="{Binding MazeCols}"></TextBox>
-        <Button x:Name="btnStart" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5"
-Padding="5">Start Game</Button>
+        <TextBlock>Server IP:</TextBlock>
+        <TextBox x:Name="txtIP" Grid.Column="1" Text="{Binding ServerIP}"></TextBox>
+        <TextBlock Grid.Row="1">Server Port:</TextBlock>
+        <TextBox x:Name="txtPort" Grid.Row="1" Grid.Column="2" Text="{Binding ServerPort}"></TextBox>
+        <TextBlock Grid.Row="2">Maze rows:</TextBlock>
+        <TextBox x:Name="txtRows" Grid.Row="2" Grid.Column="2" Text="{Binding MazeRows}"></TextBox>
+        <TextBlock Grid.Row="3">Maze columns:</TextBlock>
+        <TextBox x:Name="txtCols" Grid.Row="3" Grid.Column="2" Text="{Binding MazeCols}"></TextBox>
+        <TextBlock Grid.Row="4">Search algorithm:</TextBlock>
+        <ComboBox x:Name="cboSearchAlgo" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left"
+SelectedIndex="{Binding SearchAlgorithm}" IsEditable="False">
+            <ComboBoxItem>BFS</ComboBoxItem>
+            <ComboBoxItem>DFS</ComboBoxItem>
+        </ComboBox>
+        <Button x:Name="btnOK" Grid.Row="6" Grid.ColumnSpan="1" HorizontalAlignment="Center" Margin="5"
+Padding="5">OK</Button>
+        <Button x:Name="btnCancel" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" Margin="5"
+Padding="5">Cancel</Button>
     </Grid>
 </Window>
