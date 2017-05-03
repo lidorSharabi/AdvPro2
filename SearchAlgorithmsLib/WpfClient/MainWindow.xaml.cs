@@ -28,19 +28,25 @@ namespace WpfClient
         private void SingleButtonClick(object sender, RoutedEventArgs e)
         {
             SinglePlayer singlePlayer = new SinglePlayer();
+            this.Visibility = Visibility.Hidden;
             singlePlayer.ShowDialog();
+            
         }
 
         private void MultiButtonClick(object sender, RoutedEventArgs e)
         {
             MultiPlayer multiPlayer = new MultiPlayer();
+            this.Visibility = Visibility.Hidden;
             multiPlayer.ShowDialog();
+            
         }
 
         private void SettingsButtonClick(object sender, RoutedEventArgs e)
         {
             Settings settings = new Settings();
+            this.Visibility = Visibility.Hidden;
             settings.ShowDialog();
+            
         }
     }
 }

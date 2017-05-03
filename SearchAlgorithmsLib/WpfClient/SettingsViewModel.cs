@@ -31,7 +31,6 @@ namespace WpfClient
                 NotifyPropertyChanged("ServerPort");
             }
         }
- …
  public void SaveSettings()
         {
             model.SaveSettings();

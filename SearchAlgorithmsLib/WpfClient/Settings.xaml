@@ -44,9 +44,9 @@ SelectedIndex="{Binding SearchAlgorithm}" IsEditable="False">
             <ComboBoxItem>BFS</ComboBoxItem>
             <ComboBoxItem>DFS</ComboBoxItem>
         </ComboBox>
-        <Button x:Name="btnOK" Grid.Row="6" Grid.ColumnSpan="1" HorizontalAlignment="Center" Margin="5"
-Padding="5">OK</Button>
-        <Button x:Name="btnCancel" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" Margin="5"
-Padding="5">Cancel</Button>
+        <Button x:Name="btnOK" Grid.Row="6" Grid.ColumnSpan="1" HorizontalAlignment="Center"
+Padding="5" Click="btnOK_Click">OK</Button>
+        <Button x:Name="btnCancel" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" 
+Padding="5" Click="btnCancel_Click">Cancel</Button>
     </Grid>
 </Window>

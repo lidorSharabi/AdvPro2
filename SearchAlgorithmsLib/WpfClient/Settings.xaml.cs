@@ -19,9 +19,25 @@ namespace WpfClient
     /// </summary>
     public partial class Settings : Window
     {
+        private SettingsViewModel vm;
         public Settings()
         {
             InitializeComponent();
+            vm = new SettingsViewModel(new ApplicationSettingsModel());
+            this.DataContext = vm;
+        }
+        private void btnOK_Click(object sender, RoutedEventArgs e)
+        {
+            vm.SaveSettings();
+            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            win.Show();
+            this.Close();
+        }
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            win.Show();
+            this.Close();
         }
     }
 }
