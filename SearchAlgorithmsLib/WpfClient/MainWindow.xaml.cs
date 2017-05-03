@@ -36,5 +36,11 @@ namespace WpfClient
             MultiPlayer multiPlayer = new MultiPlayer();
             multiPlayer.ShowDialog();
         }
+
+        private void SettingsButtonClick(object sender, RoutedEventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.ShowDialog();
+        }
     }
 }

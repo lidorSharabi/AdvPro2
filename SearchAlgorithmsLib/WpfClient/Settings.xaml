@@ -1,14 +1,16 @@
-﻿<Window x:Class="WpfClient.MultiPlayer"
+﻿<Window x:Class="WpfClient.Settings"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClient"
-        xmlns:controls="clr-namespace:WpfClient.Controls"
         mc:Ignorable="d"
-        Title="MultiPlayer" Height="300" Width="300">
+        Title="Settings" Height="300" Width="500">
     <Grid TextBlock.FontSize="14">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -28,10 +30,18 @@
                 <Setter Property="Margin" Value="3"/>
             </Style>
         </Grid.Resources>
-        <TextBlock Margin="8" >List of games:</TextBlock>
-        <ListBox x:Name="JoinMazesNames" Grid.Column="2" Margin="8"></ListBox>
-        <Button x:Name="JoinMazeButton" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5"
-Padding="5">Join game</Button>
-        <controls:Menu x:Name="SingleMenu" Grid.Row="3" Grid.ColumnSpan="2"></controls:Menu>
+        <TextBlock Margin="8">Server's IP address:</TextBlock>
+        <TextBox x:Name="txtIPAddress" Grid.Column="2"></TextBox>
+        <TextBlock Grid.Row="1">Server's port number:</TextBlock>
+        <TextBox x:Name="txtPortNumber" Grid.Row="1" Grid.Column="2"></TextBox>
+        <TextBlock Grid.Row="2">Default maze size:</TextBlock>
+        <TextBlock Grid.Row="3">Maze rows:</TextBlock>
+        <TextBox x:Name="txtRows" Grid.Row="3" Grid.Column="2"></TextBox>
+        <TextBlock Grid.Row="4">Maze columns:</TextBlock>
+        <TextBox x:Name="txtCols" Grid.Row="4" Grid.Column="2" Text="{Binding MazeCols}"></TextBox>
+        <TextBlock Grid.Row="5">Defaul solution method:</TextBlock>
+        <TextBox x:Name="txtSolutionMethod" Grid.Row="5" Grid.Column="2" Text="{Binding MazeCols}"></TextBox>
+        <Button x:Name="btnStart" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5"
+Padding="5">Start Game</Button>
     </Grid>
 </Window>
