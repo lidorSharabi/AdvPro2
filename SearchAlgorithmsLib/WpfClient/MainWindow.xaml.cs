@@ -45,6 +45,8 @@ namespace WpfClient
         {
             Settings settings = new Settings();
             this.Visibility = Visibility.Hidden;
+            settings.Owner = this;
+            settings.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             settings.ShowDialog();
             
         }
