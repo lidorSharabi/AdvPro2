@@ -22,6 +22,18 @@ namespace WpfClient
         public SinglePlayer()
         {
             InitializeComponent();
+            SingleMenu.btnStart.Click += BtnStart_Click;
+        }
+
+        private void BtnStart_Click(object sender, RoutedEventArgs e)
+        {
+            SinglePlayerGameBoard singlePlayerGameBoard = new SinglePlayerGameBoard();
+            singlePlayerGameBoard.Owner = this.Owner;
+            singlePlayerGameBoard.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            //TODO add validation
+            singlePlayerGameBoard.Show();
+            this.Close();
+
         }
     }
 }

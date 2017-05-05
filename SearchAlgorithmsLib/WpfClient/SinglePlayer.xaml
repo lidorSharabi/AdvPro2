@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:WpfClient"
         xmlns:controls="clr-namespace:WpfClient.Controls"
         mc:Ignorable="d"
-        Title="SinglePlayer" Height="200" Width="300">
-    <controls:Menu x:Name="SingleMenu"></controls:Menu>
+        Title="SinglePlayer" Height="180" Width="300"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <controls:Menu Grid.Row="0" x:Name="SingleMenu"></controls:Menu>
+    </Grid>
 </Window>

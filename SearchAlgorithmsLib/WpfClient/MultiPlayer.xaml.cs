@@ -22,6 +22,17 @@ namespace WpfClient
         public MultiPlayer()
         {
             InitializeComponent();
+            SingleMenu.btnStart.Click += BtnStart_Click;
+        }
+
+        private void BtnStart_Click(object sender, RoutedEventArgs e)
+        {
+            MultiPlayerGameBoard multiPlayerGameBoard = new MultiPlayerGameBoard();
+            multiPlayerGameBoard.Owner = this.Owner;
+            multiPlayerGameBoard.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            //TODO add validation
+            multiPlayerGameBoard.Show();
+            this.Close();
         }
     }
 }

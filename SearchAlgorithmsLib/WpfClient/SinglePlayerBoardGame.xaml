@@ -1,0 +1,22 @@
+﻿<Window x:Class="WpfClient.SinglePlayerGameBoard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:WpfClient.Controls"
+        xmlns:local="clr-namespace:WpfClient"
+        mc:Ignorable="d"
+        Title="{Binding gameTitle}" Height="370" Width="320" KeyDown="Window_KeyDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="RestartGame" Content="Restart Game" Margin="5" Click="RestartGame_Click"/>
+            <Button x:Name="SolveMaze" Content="Solve Maze" Margin="5" Click="SolveMaze_Click"/>
+            <Button x:Name="MainMenu" Content="Main Menu" Margin="5" Click="MainMenu_Click"/>
+        </StackPanel>
+        <controls:MazeBoard Grid.Row="1" x:Name="MazeBoard" Height="300" Width="300" Rows="4" Columns="5" ImageSource="controls/Images/girl.jpg"></controls:MazeBoard>
+    </Grid>
+</Window>
