@@ -28,10 +28,10 @@
                 <Setter Property="Margin" Value="3"/>
             </Style>
         </Grid.Resources>
-        <TextBlock Margin="8">List of games:</TextBlock>
-        <ListBox x:Name="JoinMazesNames" Grid.Column="2" Margin="8"></ListBox>
+        <TextBlock Margin="8" >List of games:</TextBlock>
+        <ComboBox x:Name="JoinMazesNames" Grid.Column="2" Margin="8"></ComboBox>
         <Button x:Name="JoinMazeButton" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5"
 Padding="5">Join game</Button>
-        <controls:Menu x:Name="SingleMenu" Grid.Row="3" Grid.ColumnSpan="2" Margin="20"></controls:Menu>
+        <controls:Menu x:Name="SingleMenu" Grid.Row="3" Grid.ColumnSpan="2"></controls:Menu>
     </Grid>
 </Window>

@@ -9,6 +9,6 @@
     <StackPanel Margin="100">
         <Button Content="Single player" Margin="10" Click="SingleButtonClick"/>
         <Button Content="Multi player" Margin="10" Click="MultiButtonClick"/>
-        <Button Content="Settings" Margin="10" Click="Settings_Click"/>
+        <Button Content="Settings" Margin="10" Click="SettingsButtonClick"/>
     </StackPanel>
 </Window>

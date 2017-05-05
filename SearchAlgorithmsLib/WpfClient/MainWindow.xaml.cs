@@ -28,27 +28,25 @@ namespace WpfClient
         private void SingleButtonClick(object sender, RoutedEventArgs e)
         {
             SinglePlayer singlePlayer = new SinglePlayer();
-            singlePlayer.Owner = this;
-            singlePlayer.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            this.Visibility = Visibility.Hidden;
             singlePlayer.ShowDialog();
+            
         }
 
         private void MultiButtonClick(object sender, RoutedEventArgs e)
         {
             MultiPlayer multiPlayer = new MultiPlayer();
-            multiPlayer.Owner = this;
-            multiPlayer.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            this.Visibility = Visibility.Hidden;
             multiPlayer.ShowDialog();
-
+            
         }
 
-        private void Settings_Click(object sender, RoutedEventArgs e)
+        private void SettingsButtonClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
-            //SettingsWindow settingsWindow = new SettingsWindow();
-            //settingsWindow.Owner = this;
-            //settingsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            //settingsWindow.ShowDialog();
+            Settings settings = new Settings();
+            this.Visibility = Visibility.Hidden;
+            settings.ShowDialog();
+            
         }
     }
 }
