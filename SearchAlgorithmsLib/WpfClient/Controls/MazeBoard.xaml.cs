@@ -33,15 +33,45 @@ namespace WpfClient.Controls
          DependencyProperty.Register("Rows", typeof(int), typeof(MazeBoard), new
         PropertyMetadata(1));
 
-        public int Columns
+        public int Cols
         {
             get { return (int)GetValue(ColumnsProperty); }
             set { SetValue(ColumnsProperty, value); }
         }
 
         public static readonly DependencyProperty ColumnsProperty =
-         DependencyProperty.Register("Columns", typeof(int), typeof(MazeBoard), new
+         DependencyProperty.Register("Cols", typeof(int), typeof(MazeBoard), new
         PropertyMetadata(1));
+
+        public string Maze
+        {
+            get { return (string)GetValue(MazeProperty); }
+            set { SetValue(MazeProperty, value); }
+        }
+
+        public static readonly DependencyProperty MazeProperty =
+        DependencyProperty.Register("Maze", typeof(string), typeof(MazeBoard), new
+        PropertyMetadata(default(string)));
+
+        public string InitialPos
+        {
+            get { return (string)GetValue(InitialPosProperty); }
+            set { SetValue(InitialPosProperty, value); }
+        }
+
+        public static readonly DependencyProperty InitialPosProperty =
+        DependencyProperty.Register("InitialPos", typeof(string), typeof(MazeBoard), new
+        PropertyMetadata(default(string)));
+
+        public string GoalPos
+        {
+            get { return (string)GetValue(GoalPosProperty); }
+            set { SetValue(GoalPosProperty, value); }
+        }
+
+        public static readonly DependencyProperty GoalPosProperty =
+        DependencyProperty.Register("GoalPos", typeof(string), typeof(MazeBoard), new
+        PropertyMetadata(default(string)));
 
         public ImageSource ImageSource
         {
@@ -53,6 +83,15 @@ namespace WpfClient.Controls
          DependencyProperty.Register("ImageSource", typeof(ImageSource), typeof(MazeBoard));
         //, new PropertyMetadata(new BitmapImage(new Uri(@"Images/girl.jpg", UriKind.Relative)))
 
+        public ImageSource ExitImageFile
+        {
+            get { return (ImageSource)GetValue(ExitImageFileProperty); }
+            set { SetValue(ExitImageFileProperty, value); }
+        }
+
+        public static readonly DependencyProperty ExitImageFileProperty =
+         DependencyProperty.Register("ExitImageFile", typeof(ImageSource), typeof(MazeBoard));
+
         public MazeBoard()
         {
             InitializeComponent();
@@ -63,14 +102,14 @@ namespace WpfClient.Controls
         {
             for (int i = 0; i < Rows; i++)
             {
-                gridMazeBoard.RowDefinitions.Add(new RowDefinition());
-                gridMazeBoard.RowDefinitions[i].Height = new GridLength(1, GridUnitType.Star);
-                gridMazeBoard.RowDefinitions[i].Focusable = true;
+                //gridMazeBoard.RowDefinitions.Add(new RowDefinition());
+                //gridMazeBoard.RowDefinitions[i].Height = new GridLength(1, GridUnitType.Star);
+                //gridMazeBoard.RowDefinitions[i].Focusable = true;
             }
 
-            for (int i = 0; i < Columns; i++)
+            for (int i = 0; i < Cols; i++)
             {
-                gridMazeBoard.ColumnDefinitions.Add(new ColumnDefinition());
+                //gridMazeBoard.ColumnDefinitions.Add(new ColumnDefinition());
             }
 
             setStartUpPoint();
@@ -79,7 +118,7 @@ namespace WpfClient.Controls
         private void setStartUpPoint()
         {
             clientImage.Height = 150 / Rows;
-            clientImage.Width = 150 / Columns;
+            clientImage.Width = 150 / Cols;
             if (this.ImageSource == null)
             {
                 var uriSource = new Uri(@"Images/girl.jpg", UriKind.Relative);
@@ -92,7 +131,7 @@ namespace WpfClient.Controls
             Grid.SetRow(clientImage, 0);
             Grid.SetColumn(clientImage, 0);
             //TODO : clientImage.Stretch = Stretch;
-            gridMazeBoard.Children.Add(clientImage);
+            //gridMazeBoard.Children.Add(clientImage);
         }
 
         public void gridMazeBoard_KeyDown(object sender, KeyEventArgs e)
@@ -114,7 +153,7 @@ namespace WpfClient.Controls
                     }
                 case Key.Right:
                     {
-                        if ((currentColumn = Grid.GetColumn(clientImage)) < Columns - 1)
+                        if ((currentColumn = Grid.GetColumn(clientImage)) < Cols - 1)
                             Grid.SetColumn(clientImage, currentColumn + 1);
                         break;
                     }

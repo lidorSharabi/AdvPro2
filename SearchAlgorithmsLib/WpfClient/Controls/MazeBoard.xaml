@@ -7,8 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="150"
              DataContext="{Binding RelativeSource={RelativeSource Self}}">
-    <Border BorderBrush="Black" BorderThickness="1" Margin="10">
-        <Grid x:Name="gridMazeBoard" Background="LightBlue" KeyDown="gridMazeBoard_KeyDown">
-        </Grid>
-    </Border>
+    <Viewbox>
+        <Border BorderBrush="Black" BorderThickness="3">
+            <Canvas x:Name="myCanvas" Width="300" Height="300" >
+            </Canvas>
+        </Border>
+    </Viewbox>
 </UserControl>

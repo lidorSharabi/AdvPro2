@@ -26,7 +26,7 @@ namespace WpfClient
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            MazeBoard.gridMazeBoard_KeyDown(sender, e);
+            //MazeBoard.gridMazeBoard_KeyDown(sender, e);
         }
 
         private void RestartGame_Click(object sender, RoutedEventArgs e)
@@ -41,7 +41,9 @@ namespace WpfClient
 
         private void MainMenu_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            win.Show();
+            this.Close();
         }
     }
 }

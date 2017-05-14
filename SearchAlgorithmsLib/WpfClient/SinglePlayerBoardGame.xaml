@@ -17,6 +17,8 @@
             <Button x:Name="SolveMaze" Content="Solve Maze" Margin="5" Click="SolveMaze_Click"/>
             <Button x:Name="MainMenu" Content="Main Menu" Margin="5" Click="MainMenu_Click"/>
         </StackPanel>
-        <controls:MazeBoard Grid.Row="1" x:Name="MazeBoard" Height="300" Width="300" Rows="4" Columns="5" ImageSource="controls/Images/girl.jpg"></controls:MazeBoard>
+        <controls:MazeBoard Grid.Row="1" x:Name="MazeName" Height="300" Width="300" 
+         Maze="{Binding Maze}" Rows="{Binding Rows}" Cols="{Binding Cols}"  InitialPos="{Binding InitialPos}" GoalPos="{Binding GoalPos}" 
+         ImageSource="controls/Images/girl.jpg" ExitImageFile="controls/Images/exit.png" Margin="10"></controls:MazeBoard>
     </Grid>
 </Window>

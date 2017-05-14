@@ -20,9 +20,12 @@ namespace WpfClient.Controls
     /// </summary>
     public partial class Menu : UserControl
     {
+        private MenuViewModel vm;
         public Menu()
         {
             InitializeComponent();
+            vm = new MenuViewModel(new MenuModel());
+            this.DataContext = vm;
         }
     }
 }
