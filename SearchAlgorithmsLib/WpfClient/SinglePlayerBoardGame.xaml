@@ -6,11 +6,11 @@
         xmlns:controls="clr-namespace:WpfClient.Controls"
         xmlns:local="clr-namespace:WpfClient"
         mc:Ignorable="d"
-        Title="{Binding gameTitle}" Height="370" Width="320" KeyDown="Window_KeyDown">
+        Title="{Binding gameTitle}" Height="500" Width="500" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="RestartGame" Content="Restart Game" Margin="5" Click="RestartGame_Click"/>
@@ -18,7 +18,8 @@
             <Button x:Name="MainMenu" Content="Main Menu" Margin="5" Click="MainMenu_Click"/>
         </StackPanel>
         <controls:MazeBoard Grid.Row="1" x:Name="MazeName" Height="300" Width="300" 
-         Maze="{Binding Maze}" Rows="{Binding Rows}" Cols="{Binding Cols}"  InitialPos="{Binding InitialPos}" GoalPos="{Binding GoalPos}" 
+         Rows="5" Cols="5"  Maze="1000001011110001000110110" InitialPos="0,1"
+GoalPos="2,3"
          ImageSource="controls/Images/girl.jpg" ExitImageFile="controls/Images/exit.png" Margin="10"></controls:MazeBoard>
     </Grid>
 </Window>

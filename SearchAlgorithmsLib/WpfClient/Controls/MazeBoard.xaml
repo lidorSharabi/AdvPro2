@@ -9,7 +9,7 @@
              DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Viewbox>
         <Border BorderBrush="Black" BorderThickness="3">
-            <Canvas x:Name="myCanvas" Width="300" Height="300" >
+            <Canvas x:Name="myCanvas" Width="400" Height="400" >
             </Canvas>
         </Border>
     </Viewbox>

@@ -21,6 +21,9 @@ namespace WpfClient.Controls
     public partial class MazeBoard : UserControl
     {
         Image clientImage = new Image();
+        double width, height;
+        int colGoalPos, rowGoalPos, colStartPos, rowStartPos;
+
 
         public int Rows
         {
@@ -100,19 +103,39 @@ namespace WpfClient.Controls
 
         private void MazeBoard_Loaded(object sender, RoutedEventArgs e)
         {
+            string[] startPos = InitialPos.Split(',');
+            rowStartPos = Int32.Parse(startPos[0]);
+            colStartPos = Int32.Parse(startPos[1]);
+            string[] goalPos = GoalPos.Split(',');
+            rowGoalPos = Int32.Parse(goalPos[0]);
+            colGoalPos = Int32.Parse(goalPos[1]);
+
+            width = myCanvas.Width / Cols;
+            height = myCanvas.Height / Rows;
+            int counter = 0;
             for (int i = 0; i < Rows; i++)
             {
-                //gridMazeBoard.RowDefinitions.Add(new RowDefinition());
-                //gridMazeBoard.RowDefinitions[i].Height = new GridLength(1, GridUnitType.Star);
-                //gridMazeBoard.RowDefinitions[i].Focusable = true;
+                for (int j = 0; j < Cols; j++)
+                {
+                    if (Maze[counter] == '1')
+                    {
+                        AddWall(j, i);
+                    }
+                    if (i == rowStartPos && j == colStartPos)
+                    {
+                        AddImage(j, i, ImageSource);
+                    }
+                    if (i == rowGoalPos && j == colGoalPos)
+                    {
+                        AddImage(j, i, ExitImageFile);
+                    }
+
+                    counter++;
+
+                }
             }
 
-            for (int i = 0; i < Cols; i++)
-            {
-                //gridMazeBoard.ColumnDefinitions.Add(new ColumnDefinition());
-            }
-
-            setStartUpPoint();
+            //setStartUpPoint();
         }
 
         private void setStartUpPoint()
@@ -132,6 +155,35 @@ namespace WpfClient.Controls
             Grid.SetColumn(clientImage, 0);
             //TODO : clientImage.Stretch = Stretch;
             //gridMazeBoard.Children.Add(clientImage);
+        }
+
+        private void AddWall(int x, int y)
+        {
+            Rectangle rect = new Rectangle();
+            rect.Width = width;
+            rect.Height = height;
+            rect.Stroke = Brushes.Black;
+            rect.StrokeThickness = 3;
+            rect.Fill = new SolidColorBrush(Colors.Black);
+            Canvas.SetLeft(rect, x*rect.Width);
+            Canvas.SetTop(rect, y*rect.Height);
+            rect.Name = "Wall";
+            myCanvas.Children.Add(rect);
+
+        }
+
+        private void AddImage(int x, int y, ImageSource imageSource)
+        {
+            Image image = new Image();
+            image.Source = imageSource;
+            //new Uri(@"Images/girl.jpg", UriKind.Relative);
+            image.Width = width;
+            image.Height = height;
+            Canvas.SetLeft(image, x*image.Width);
+            Canvas.SetTop(image, y*image.Height);
+            image.Name = "image";
+            myCanvas.Children.Add(image);
+
         }
 
         public void gridMazeBoard_KeyDown(object sender, KeyEventArgs e)

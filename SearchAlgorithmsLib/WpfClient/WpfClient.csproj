@@ -75,6 +75,7 @@
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
     <Compile Include="IMenuModel.cs" />
+    <Compile Include="ITelnetClient.cs" />
     <Compile Include="ISettingsModel.cs" />
     <Compile Include="MenuModel.cs" />
     <Compile Include="MenuViewModel.cs.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="SinglePlayerBoardGame.xaml.cs">
       <DependentUpon>SinglePlayerBoardGame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TelnetClient.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="Controls\MazeBoard.xaml">
       <Generator>MSBuild:Compile</Generator>
