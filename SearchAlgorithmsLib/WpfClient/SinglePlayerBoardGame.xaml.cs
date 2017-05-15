@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfClient.Controls;
 
 namespace WpfClient
 {
@@ -26,7 +27,7 @@ namespace WpfClient
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            //MazeBoard.gridMazeBoard_KeyDown(sender, e);
+            MazeName.gridMazeBoard_KeyDown(sender, e);
         }
 
         private void RestartGame_Click(object sender, RoutedEventArgs e)

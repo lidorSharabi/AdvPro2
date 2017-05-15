@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -189,10 +190,21 @@ namespace WpfClient.Controls
         public void gridMazeBoard_KeyDown(object sender, KeyEventArgs e)
         {
             int currentRow, currentColumn;
+            clientImage.Source = ImageSource;
             switch (e.Key)
             {
                 case Key.Up:
                     {
+                        Vector offset = VisualTreeHelper.GetOffset(clientImage);
+                        var top = offset.Y;
+                        var left = offset.X;
+                        TranslateTransform trans = new TranslateTransform();
+                        clientImage.RenderTransform = trans;
+                        DoubleAnimation anim1 = new DoubleAnimation(0, width - top, TimeSpan.FromSeconds(10));
+                        DoubleAnimation anim2 = new DoubleAnimation(0, height - left, TimeSpan.FromSeconds(10));
+                        trans.BeginAnimation(TranslateTransform.YProperty, anim1);
+                        trans.BeginAnimation(TranslateTransform.XProperty, anim2);
+
                         if ((currentRow = Grid.GetRow(clientImage)) > 0)
                             Grid.SetRow(clientImage, currentRow - 1);
                         break;
