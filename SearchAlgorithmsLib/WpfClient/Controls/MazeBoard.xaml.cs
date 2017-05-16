@@ -24,6 +24,8 @@ namespace WpfClient.Controls
         Image clientImage = new Image();
         double width, height;
         int colGoalPos, rowGoalPos, colStartPos, rowStartPos;
+        int rowPlayerPos, colPlayerPos;
+        int indexInMaze = 0;
 
 
         public int Rows
@@ -111,6 +113,9 @@ namespace WpfClient.Controls
             rowGoalPos = Int32.Parse(goalPos[0]);
             colGoalPos = Int32.Parse(goalPos[1]);
 
+            rowPlayerPos = Int32.Parse(startPos[0]);
+            colPlayerPos = Int32.Parse(startPos[1]);
+
             width = myCanvas.Width / Cols;
             height = myCanvas.Height / Rows;
             int counter = 0;
@@ -124,11 +129,12 @@ namespace WpfClient.Controls
                     }
                     if (i == rowStartPos && j == colStartPos)
                     {
-                        AddImage(j, i, ImageSource);
+                        AddImage(j, i, ImageSource, "Player");
+                        indexInMaze = counter;
                     }
                     if (i == rowGoalPos && j == colGoalPos)
                     {
-                        AddImage(j, i, ExitImageFile);
+                        AddImage(j, i, ExitImageFile, "Exit");
                     }
 
                     counter++;
@@ -173,58 +179,78 @@ namespace WpfClient.Controls
 
         }
 
-        private void AddImage(int x, int y, ImageSource imageSource)
+        private void AddImage(int x, int y, ImageSource imageSource, string name)
         {
             Image image = new Image();
             image.Source = imageSource;
-            //new Uri(@"Images/girl.jpg", UriKind.Relative);
             image.Width = width;
             image.Height = height;
             Canvas.SetLeft(image, x*image.Width);
             Canvas.SetTop(image, y*image.Height);
-            image.Name = "image";
+            image.Name = name;
             myCanvas.Children.Add(image);
 
         }
 
         public void gridMazeBoard_KeyDown(object sender, KeyEventArgs e)
         {
-            int currentRow, currentColumn;
-            clientImage.Source = ImageSource;
+            int pointer = rowPlayerPos*Rows + colPlayerPos + 1;
+            foreach (UIElement child in myCanvas.Children)
+            {
+                if(((System.Windows.FrameworkElement)child).Name == "Player")
+                {
+                    clientImage = (Image)child;
+                }
+            }
+
+            Vector offset = VisualTreeHelper.GetOffset(clientImage);
+            var top = offset.Y;
+            var left = offset.X;
+
             switch (e.Key)
             {
                 case Key.Up:
                     {
-                        Vector offset = VisualTreeHelper.GetOffset(clientImage);
-                        var top = offset.Y;
-                        var left = offset.X;
-                        TranslateTransform trans = new TranslateTransform();
-                        clientImage.RenderTransform = trans;
-                        DoubleAnimation anim1 = new DoubleAnimation(0, width - top, TimeSpan.FromSeconds(10));
-                        DoubleAnimation anim2 = new DoubleAnimation(0, height - left, TimeSpan.FromSeconds(10));
-                        trans.BeginAnimation(TranslateTransform.YProperty, anim1);
-                        trans.BeginAnimation(TranslateTransform.XProperty, anim2);
-
-                        if ((currentRow = Grid.GetRow(clientImage)) > 0)
-                            Grid.SetRow(clientImage, currentRow - 1);
+                        if (Maze[indexInMaze - Rows] == '0' && (rowPlayerPos - 1) >= 0)
+                        {
+                                DoubleAnimation anim1 = new DoubleAnimation(top, top - clientImage.Height, TimeSpan.FromMilliseconds(300));
+                                clientImage.BeginAnimation(Canvas.TopProperty, anim1);
+                                rowPlayerPos -= 1;
+                                indexInMaze -= Rows;
+                        }
                         break;
                     }
                 case Key.Down:
                     {
-                        if ((currentRow = Grid.GetRow(clientImage)) < Rows - 1)
-                            Grid.SetRow(clientImage, currentRow + 1);
+                        if (Maze[indexInMaze + Rows] == '0' && (rowPlayerPos + 1) <= Rows)
+                        {
+                                DoubleAnimation anim1 = new DoubleAnimation(top, top + clientImage.Height, TimeSpan.FromMilliseconds(300));
+                                clientImage.BeginAnimation(Canvas.TopProperty, anim1);
+                                rowPlayerPos += 1;
+                                indexInMaze += Rows;
+                        }
                         break;
                     }
                 case Key.Right:
                     {
-                        if ((currentColumn = Grid.GetColumn(clientImage)) < Cols - 1)
-                            Grid.SetColumn(clientImage, currentColumn + 1);
+                        if (Maze[indexInMaze + 1] == '0' && (colPlayerPos + 1) <= Cols)
+                        {
+                            DoubleAnimation anim1 = new DoubleAnimation(left, left + clientImage.Width, TimeSpan.FromMilliseconds(300));
+                            clientImage.BeginAnimation(Canvas.LeftProperty, anim1);
+                            colPlayerPos += 1;
+                            indexInMaze += 1;
+                        }
                         break;
                     }
                 case Key.Left:
                     {
-                        if ((currentColumn = Grid.GetColumn(clientImage)) > 0)
-                            Grid.SetColumn(clientImage, currentColumn - 1);
+                        if (Maze[indexInMaze - 1] == '0' && (colPlayerPos - 1) >= 0)
+                        {
+                            DoubleAnimation anim1 = new DoubleAnimation(left, left - clientImage.Width, TimeSpan.FromMilliseconds(300));
+                            clientImage.BeginAnimation(Canvas.LeftProperty, anim1);
+                            colPlayerPos -= 1;
+                            indexInMaze -= 1;
+                        }
                         break;
                     }
                 default: break;
