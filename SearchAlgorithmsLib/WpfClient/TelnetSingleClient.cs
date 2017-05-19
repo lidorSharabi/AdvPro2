@@ -97,7 +97,7 @@ namespace WpfClient
             string s = "";
             connect(ip, port);
             write(command);
-            s = read();
+            //s = read();
             return s;
         }
     }

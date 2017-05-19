@@ -14,7 +14,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -22,12 +21,16 @@
         </Grid.ColumnDefinitions>
         <Grid.Resources>
             <Style TargetType="TextBlock">
-                <Setter Property="Padding" Value="3"/>
-                <Setter Property="Margin" Value="3"/>
+                <Setter Property="Padding" Value="4"/>
+                <Setter Property="Margin" Value="4"/>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Padding" Value="4"/>
+                <Setter Property="Margin" Value="4"/>
             </Style>
             <Style TargetType="TextBox">
-                <Setter Property="Padding" Value="3"/>
-                <Setter Property="Margin" Value="3"/>
+                <Setter Property="Padding" Value="4"/>
+                <Setter Property="Margin" Value="4"/>
             </Style>
         </Grid.Resources>
         <TextBlock>Server IP:</TextBlock>
@@ -44,9 +47,10 @@ SelectedIndex="{Binding SearchAlgorithm}" IsEditable="False">
             <ComboBoxItem>BFS</ComboBoxItem>
             <ComboBoxItem>DFS</ComboBoxItem>
         </ComboBox>
-        <Button x:Name="btnOK" Grid.Row="6" Grid.ColumnSpan="1" HorizontalAlignment="Center"
-Padding="5" Click="btnOK_Click">OK</Button>
-        <Button x:Name="btnCancel" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" 
-Padding="5" Click="btnCancel_Click">Cancel</Button>
+        <Button x:Name="btnOK" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch"
+            Padding="5" Click="btnOK_Click" Margin="13" Width="Auto">OK</Button>
+        <Button x:Name="btnCancel" Grid.Column="1" HorizontalAlignment="Stretch" 
+            Padding="5" Click="btnCancel_Click" Grid.Row="5" Margin="13" Width="Auto">Cancel</Button>
     </Grid>
+
 </Window>
