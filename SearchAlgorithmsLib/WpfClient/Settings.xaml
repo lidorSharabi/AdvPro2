@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClient"
         mc:Ignorable="d"
-        Title="Settings" Height="270" Width="250">
+        Title="Settings" Height="280" Width="270" Background="Azure">
     <Grid TextBlock.FontSize="14">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -48,9 +48,9 @@ SelectedIndex="{Binding SearchAlgorithm}" IsEditable="False">
             <ComboBoxItem>DFS</ComboBoxItem>
         </ComboBox>
         <Button x:Name="btnOK" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch"
-            Padding="5" Click="btnOK_Click" Margin="13" Width="Auto">OK</Button>
+            Padding="5" Click="btnOK_Click" Margin="13" Width="Auto" Background="DeepSkyBlue">OK</Button>
         <Button x:Name="btnCancel" Grid.Column="1" HorizontalAlignment="Stretch" 
-            Padding="5" Click="btnCancel_Click" Grid.Row="5" Margin="13" Width="Auto">Cancel</Button>
+            Padding="5" Click="btnCancel_Click" Grid.Row="5" Margin="13" Width="Auto" Background="DeepSkyBlue">Cancel</Button>
     </Grid>
 
 </Window>

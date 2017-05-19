@@ -39,7 +39,7 @@ namespace WpfClient
         private void RestartGame_Click(object sender, RoutedEventArgs e)
         {
             MazeName.RestartGame(sender, e);
-            vm.RestartGame();
+            //vm.RestartGame();
         }
 
         private void SolveMaze_Click(object sender, RoutedEventArgs e)
