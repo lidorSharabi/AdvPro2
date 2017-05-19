@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace WpfClient
 {
-    public class TelnetClient : ITelnetClient
+    public class TelnetSingaleClient : ITelnetClient
     {
         /// <summary>
         /// running variables
@@ -36,6 +36,15 @@ namespace WpfClient
         /// </summary>
         TcpClient client;
 
+        public event EventHandler ServerMessageArrivedEvent;
+
+        public string ServerMessage;
+
+        protected virtual void OnServerMessageArrived(EventArgs args)
+        {
+            ServerMessageArrivedEvent?.Invoke(this, args);
+        }
+
         public void connect(string ip, int port)
         {
             ep = new IPEndPoint(IPAddress.Parse(ip), port);
@@ -46,27 +55,41 @@ namespace WpfClient
 
         public void disconnect()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("single player shouldn't call this function");
         }
 
-        public string read()
+        public void read()
         {
-            reader = new StreamReader(stream);
-            string s = "";
             new Task(() =>
             {
+                reader = new StreamReader(stream);
+                string serverResponse = "";
                 while (!reader.EndOfStream)
                 {
-                    s = s + (reader.ReadLine());
+                    serverResponse += reader.ReadLine();
+                    if (serverResponse.Contains("end of message"))
+                        break;
                 }
+                ServerMessage = serverResponse;
+                OnServerMessageArrived(new EventArgs());
             }).Start();
-            return s;
         }
 
         public void write(string command)
         {
-            writer = new StreamWriter(command);
+            client = new TcpClient();
+            client.Connect(ep);
+            stream = client.GetStream();
+            writer = new StreamWriter(stream);
             writer.AutoFlush = true;
+            //Send command to server
+            writer.WriteLine(command);
+            read();
+        }
+
+        private void decipheringServerResponse(string serverResponse)
+        {
+            throw new NotImplementedException();
         }
 
         public string Generate(string command, string ip, int port)

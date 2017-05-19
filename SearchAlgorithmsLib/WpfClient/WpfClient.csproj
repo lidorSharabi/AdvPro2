@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -75,10 +76,11 @@
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
     <Compile Include="IMenuModel.cs" />
+    <Compile Include="ISinglePlayerBoardGameModel.cs" />
     <Compile Include="ITelnetClient.cs" />
     <Compile Include="ISettingsModel.cs" />
     <Compile Include="MenuModel.cs" />
-    <Compile Include="MenuViewModel.cs.cs" />
+    <Compile Include="MenuViewModel.cs" />
     <Compile Include="MultiPlayer.xaml.cs">
       <DependentUpon>MultiPlayer.xaml</DependentUpon>
     </Compile>
@@ -100,7 +102,9 @@
     <Compile Include="SinglePlayerBoardGame.xaml.cs">
       <DependentUpon>SinglePlayerBoardGame.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TelnetClient.cs" />
+    <Compile Include="SinglePlayerBoardGameModel.cs" />
+    <Compile Include="SinglePlayerBoardGameViewModel.cs" />
+    <Compile Include="TelnetSingleClient.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="Controls\MazeBoard.xaml">
       <Generator>MSBuild:Compile</Generator>
