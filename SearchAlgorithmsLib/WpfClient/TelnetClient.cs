@@ -68,5 +68,14 @@ namespace WpfClient
             writer = new StreamWriter(command);
             writer.AutoFlush = true;
         }
+
+        public string Generate(string command, string ip, int port)
+        {
+            string s = "";
+            connect(ip, port);
+            write(command);
+            s = read();
+            return s;
+        }
     }
 }

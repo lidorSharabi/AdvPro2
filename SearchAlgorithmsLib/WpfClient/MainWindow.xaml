@@ -5,10 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <StackPanel Margin="100">
-        <Button Content="Single player" Margin="10" Click="SingleButtonClick"/>
-        <Button Content="Multi player" Margin="10" Click="MultiButtonClick"/>
-        <Button Content="Settings" Margin="10" Click="SettingsButtonClick"/>
+        Title="MainWindow" Height="350" Width="525" Foreground="DeepSkyBlue">
+    <Window.Background>
+    <ImageBrush Stretch="None" ImageSource="controls/Images/TheMaze.jpg" AlignmentY="Top" AlignmentX="Center"/>
+    </Window.Background>
+    <StackPanel Margin="50">
+        <Label HorizontalAlignment="Center" FontSize="45" FontStyle="Italic" Foreground="White" FontWeight="Bold"> The Maze </Label>
+        <Button Content="Single player" Margin="10" Click="SingleButtonClick" Background="Gold" FontSize="20"/>
+        <Button Content="Multi player" Margin="10" Click="MultiButtonClick" Background="Gold" FontSize="20"/>
+        <Button Content="Settings" Margin="10" Click="SettingsButtonClick" Background="Gold" FontSize="20"/>
     </StackPanel>
 </Window>

@@ -25,7 +25,7 @@ namespace WpfClient.Controls
         double width, height;
         int colGoalPos, rowGoalPos, colStartPos, rowStartPos;
         int rowPlayerPos, colPlayerPos;
-        int indexInMaze = 0;
+        int indexInMaze = 0, initialIndexInMaze = 0;
 
 
         public int Rows
@@ -130,6 +130,7 @@ namespace WpfClient.Controls
                     if (i == rowStartPos && j == colStartPos)
                     {
                         AddImage(j, i, ImageSource, "Player");
+                        initialIndexInMaze = counter;
                         indexInMaze = counter;
                     }
                     if (i == rowGoalPos && j == colGoalPos)
@@ -211,7 +212,7 @@ namespace WpfClient.Controls
             {
                 case Key.Up:
                     {
-                        if (Maze[indexInMaze - Rows] == '0' && (rowPlayerPos - 1) >= 0)
+                        if ((rowPlayerPos - 1) >= 0 && Maze[indexInMaze - Rows] == '0')
                         {
                                 DoubleAnimation anim1 = new DoubleAnimation(top, top - clientImage.Height, TimeSpan.FromMilliseconds(300));
                                 clientImage.BeginAnimation(Canvas.TopProperty, anim1);
@@ -222,7 +223,7 @@ namespace WpfClient.Controls
                     }
                 case Key.Down:
                     {
-                        if (Maze[indexInMaze + Rows] == '0' && (rowPlayerPos + 1) <= Rows)
+                        if ((rowPlayerPos + 1) < Rows && Maze[indexInMaze + Rows] == '0')
                         {
                                 DoubleAnimation anim1 = new DoubleAnimation(top, top + clientImage.Height, TimeSpan.FromMilliseconds(300));
                                 clientImage.BeginAnimation(Canvas.TopProperty, anim1);
@@ -233,7 +234,7 @@ namespace WpfClient.Controls
                     }
                 case Key.Right:
                     {
-                        if (Maze[indexInMaze + 1] == '0' && (colPlayerPos + 1) <= Cols)
+                        if ((colPlayerPos + 1) < Cols && Maze[indexInMaze + 1] == '0')
                         {
                             DoubleAnimation anim1 = new DoubleAnimation(left, left + clientImage.Width, TimeSpan.FromMilliseconds(300));
                             clientImage.BeginAnimation(Canvas.LeftProperty, anim1);
@@ -244,7 +245,7 @@ namespace WpfClient.Controls
                     }
                 case Key.Left:
                     {
-                        if (Maze[indexInMaze - 1] == '0' && (colPlayerPos - 1) >= 0)
+                        if ((colPlayerPos - 1) >= 0 && Maze[indexInMaze - 1] == '0')
                         {
                             DoubleAnimation anim1 = new DoubleAnimation(left, left - clientImage.Width, TimeSpan.FromMilliseconds(300));
                             clientImage.BeginAnimation(Canvas.LeftProperty, anim1);
@@ -255,6 +256,24 @@ namespace WpfClient.Controls
                     }
                 default: break;
             }
+        }
+
+        public void RestartGame(object sender, RoutedEventArgs e)
+        {
+            foreach (UIElement child in myCanvas.Children)
+            {
+                if (((System.Windows.FrameworkElement)child).Name == "Player")
+                {
+                    myCanvas.Children.Remove(child);
+                    break;
+                    //clientImage = (Image)child;
+                }
+            }
+
+            indexInMaze = initialIndexInMaze;
+            colPlayerPos = colStartPos;
+            rowPlayerPos = rowStartPos;
+            AddImage(colStartPos, rowStartPos, ImageSource, "Player");
         }
 
         //var uriSource = new Uri(@"images/girl.jpg", UriKind.Relative);
