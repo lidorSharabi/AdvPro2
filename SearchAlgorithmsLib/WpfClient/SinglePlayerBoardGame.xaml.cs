@@ -20,8 +20,14 @@ namespace WpfClient
     /// </summary>
     public partial class SinglePlayerGameBoard : Window
     {
-        public SinglePlayerGameBoard()
+        private string serverMessage;
+        SinglePlayerBoardGameViewModel vm;
+
+        public SinglePlayerGameBoard(string serverMessage, string name , string rows, string columns)
         {
+            this.serverMessage = serverMessage;
+            vm = new SinglePlayerBoardGameViewModel(serverMessage, name, rows, columns);
+            this.DataContext = vm;
             InitializeComponent();
         }
 
@@ -32,12 +38,22 @@ namespace WpfClient
 
         private void RestartGame_Click(object sender, RoutedEventArgs e)
         {
-
+            vm.RestartGame();
         }
 
         private void SolveMaze_Click(object sender, RoutedEventArgs e)
         {
-
+            vm.SolveMaze();
+            string maze = MazeName.Maze;
+            foreach (char c in maze)
+            {
+                //switch (c)
+                //{
+                //    case '1':
+                //        this.MazeName.gridMazeBoard_KeyDown(sender, );
+                //        break;
+                //}
+            }
         }
 
         private void MainMenu_Click(object sender, RoutedEventArgs e)

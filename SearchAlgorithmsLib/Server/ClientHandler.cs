@@ -40,6 +40,7 @@ namespace Server
                             string result = control.ExecuteCommand(commandLine, client);
                             writer.AutoFlush = true;
                             writer.WriteLine(result);
+                            writer.WriteLine("end of message");
                         }
                         catch (Exception)
                         {

@@ -85,13 +85,6 @@ namespace WpfClient
             //Send command to server
             writer.WriteLine(command);
             read();
-
-             new Task(() =>
-            {
-
-               //string serverResponse = 
-               //decipheringServerResponse(serverResponse);
-            }).Start();
         }
 
         private void decipheringServerResponse(string serverResponse)
