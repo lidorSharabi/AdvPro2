@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfClient"
         xmlns:controls="clr-namespace:WpfClient.Controls"
         mc:Ignorable="d"
-        Title="MultiPlayer" Height="300" Width="300">
+        Title="MultiPlayer" Height="300" Width="300" Background="Azure">
     <Grid TextBlock.FontSize="14">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -31,7 +31,7 @@
         <TextBlock Margin="8" >List of games:</TextBlock>
         <ComboBox x:Name="JoinMazesNames" Grid.Column="2" Margin="8"></ComboBox>
         <Button x:Name="JoinMazeButton" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5"
-Padding="5">Join game</Button>
+            Padding="5" Background="DeepSkyBlue">Join game</Button>
         <controls:Menu x:Name="SingleMenu" Grid.Row="3" Grid.ColumnSpan="2"></controls:Menu>
     </Grid>
 </Window>

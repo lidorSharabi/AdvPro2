@@ -37,6 +37,11 @@ namespace WpfClient
             MazeName.gridMazeBoard_KeyDown(sender, e);
         }
 
+        private void RestartGame_Click(object sender, RoutedEventArgs e)
+        {
+            MazeName.RestartGame(sender, e);
+        }
+
         private void SolveMaze_Click(object sender, RoutedEventArgs e)
         {
             vm.SolveMaze();

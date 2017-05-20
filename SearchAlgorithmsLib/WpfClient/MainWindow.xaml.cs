@@ -23,12 +23,15 @@ namespace WpfClient
         public MainWindow()
         {
             InitializeComponent();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         private void SingleButtonClick(object sender, RoutedEventArgs e)
         {
             SinglePlayer singlePlayer = new SinglePlayer();
             this.Visibility = Visibility.Hidden;
+            singlePlayer.Owner = this;
+            singlePlayer.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             singlePlayer.ShowDialog();
             
         }
@@ -37,6 +40,8 @@ namespace WpfClient
         {
             MultiPlayer multiPlayer = new MultiPlayer();
             this.Visibility = Visibility.Hidden;
+            multiPlayer.Owner = this;
+            multiPlayer.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             multiPlayer.ShowDialog();
             
         }
