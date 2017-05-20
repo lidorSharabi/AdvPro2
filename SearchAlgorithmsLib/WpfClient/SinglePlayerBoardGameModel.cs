@@ -15,8 +15,8 @@ namespace WpfClient
         public int MazeCols { get; set; }
         public int MazeRows { get; set; }
         public string MazeString { get; set; }
-        public string EndPoint { get; set; }
-        public string StartPoint { get; set; }
+        public string GoalPoint { get; set; }
+        public string InitialPoint { get; set; }
         
 
 
@@ -28,8 +28,8 @@ namespace WpfClient
             this.MazeName = maze.Name;
             this.MazeCols = maze.Cols;
             this.MazeRows = maze.Rows;
-            this.EndPoint = maze.GoalPos.Row + "," + maze.GoalPos.Col;
-            this.StartPoint = maze.InitialPos.Row + "," + maze.InitialPos.Col;
+            this.GoalPoint = maze.GoalPos.Row + "," + maze.GoalPos.Col;
+            this.InitialPoint = maze.InitialPos.Row + "," + maze.InitialPos.Col;
             //calculate maze string path
             int pFrom = serverMessage.IndexOf("Maze\":") + "Maze".Length + 1;
             int pTo = serverMessage.LastIndexOf("Rows") - 5;

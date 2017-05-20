@@ -19,7 +19,7 @@
         </StackPanel>
         <controls:MazeBoard Grid.Row="1"  x:Name="MazeName" Height="300" Width="300" 
          Rows="{Binding MazeRows}" Cols="{Binding MazeCols}"  Maze="{Binding MazeString}"
-                            InitialPos="{Binding StartPoint}" GoalPos="{Binding EndPoint}"
+                            InitialPos="{Binding InitialPoint}" GoalPos="{Binding GoalPoint}"
                             ImageSource="controls/Images/girl.jpg" ExitImageFile="controls/Images/exit.png" Margin="10">
         </controls:MazeBoard>
     </Grid>

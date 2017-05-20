@@ -59,22 +59,22 @@ namespace WpfClient
             }
         }
 
-        public string StartPoint
+        public string InitialPoint
         {
-            get { return model.StartPoint; }
+            get { return model.InitialPoint; }
             set
             {
-                model.StartPoint = value;
+                model.InitialPoint = value;
                 NotifyPropertyChanged("StartPoint");
             }
         }
 
-        public string EndPoint
+        public string GoalPoint
         {
-            get { return model.EndPoint; }
+            get { return model.GoalPoint; }
             set
             {
-                model.EndPoint = value;
+                model.GoalPoint = value;
                 NotifyPropertyChanged("EndPoint");
             }
         }
