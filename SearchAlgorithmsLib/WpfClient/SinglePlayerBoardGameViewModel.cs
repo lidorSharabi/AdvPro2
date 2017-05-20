@@ -16,10 +16,10 @@ namespace WpfClient
 
         public SinglePlayerBoardGameViewModel(string serverMessage, string name, string rows, string columns)
         {
-            model = new SinglePlayerBoardGameModel(serverMessage, name, rows, columns);
+            this.model = new SinglePlayerBoardGameModel(serverMessage, name, rows, columns);
         }
 
-        public int MazeName
+        public string MazeName
         {
             get { return model.MazeName; }
             set
@@ -59,12 +59,28 @@ namespace WpfClient
             }
         }
 
-        internal void SolveMaze()
+        public string StartPoint
         {
-            throw new NotImplementedException();
+            get { return model.StartPoint; }
+            set
+            {
+                model.StartPoint = value;
+                NotifyPropertyChanged("StartPoint");
+            }
         }
 
-        internal void RestartGame()
+        public string EndPoint
+        {
+            get { return model.EndPoint; }
+            set
+            {
+                model.EndPoint = value;
+                NotifyPropertyChanged("EndPoint");
+            }
+        }
+        
+
+        internal void SolveMaze()
         {
             throw new NotImplementedException();
         }

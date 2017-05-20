@@ -48,9 +48,9 @@ namespace WpfClient
         public void connect(string ip, int port)
         {
             ep = new IPEndPoint(IPAddress.Parse(ip), port);
-            client = new TcpClient();
-            client.Connect(ep);
-            stream = client.GetStream();
+            //client = new TcpClient();
+            //client.Connect(ep);
+            //stream = client.GetStream();
         }
 
         public void disconnect()

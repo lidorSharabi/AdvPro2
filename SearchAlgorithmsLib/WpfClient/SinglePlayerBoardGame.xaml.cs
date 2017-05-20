@@ -29,16 +29,12 @@ namespace WpfClient
             vm = new SinglePlayerBoardGameViewModel(serverMessage, name, rows, columns);
             this.DataContext = vm;
             InitializeComponent();
-        }
+            this.MazeName.setMazeBoardDatacontext(vm);
+           }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             MazeName.gridMazeBoard_KeyDown(sender, e);
-        }
-
-        private void RestartGame_Click(object sender, RoutedEventArgs e)
-        {
-            vm.RestartGame();
         }
 
         private void SolveMaze_Click(object sender, RoutedEventArgs e)

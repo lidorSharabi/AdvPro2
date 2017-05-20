@@ -100,8 +100,13 @@ namespace WpfClient.Controls
 
         public MazeBoard()
         {
-            InitializeComponent();
+            InitializeComponent();        
             this.Loaded += MazeBoard_Loaded;
+        }
+
+        public void setMazeBoardDatacontext(Object vm)
+        {
+            this.DataContext = vm;
         }
 
         private void MazeBoard_Loaded(object sender, RoutedEventArgs e)
@@ -160,8 +165,6 @@ namespace WpfClient.Controls
             }
             Grid.SetRow(clientImage, 0);
             Grid.SetColumn(clientImage, 0);
-            //TODO : clientImage.Stretch = Stretch;
-            //gridMazeBoard.Children.Add(clientImage);
         }
 
         private void AddWall(int x, int y)
