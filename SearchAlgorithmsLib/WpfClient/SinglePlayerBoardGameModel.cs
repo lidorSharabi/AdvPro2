@@ -20,9 +20,8 @@ namespace WpfClient
         
 
 
-        public SinglePlayerBoardGameModel(string serverMessage, string name, string rows, string columns)
+        public SinglePlayerBoardGameModel(string serverMessage)
         {
-            serverMessage = serverMessage.Replace("end of message", "");
             Maze maze = Maze.FromJSON(serverMessage);
             this.serverMessage = serverMessage;
             this.MazeName = maze.Name;
