@@ -34,6 +34,7 @@ namespace WpfClient
             int pFrom = serverMessage.IndexOf("Maze\":") + "Maze".Length + 1;
             int pTo = serverMessage.LastIndexOf("Rows") - 5;
             this.MazeString  = serverMessage.Substring(pFrom, pTo - pFrom);
+            //comment
     }
 
 
