@@ -28,7 +28,7 @@ namespace WpfClient
             throw new NotImplementedException();
         }
 
-        void Start(string name, string rows, string cols)
+        public void Start(string name, string rows, string cols)
         {
             write(string.Format("Start {0} {1} {2}", name, rows, cols));
         }
