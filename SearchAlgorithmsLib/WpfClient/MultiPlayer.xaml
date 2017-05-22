@@ -32,6 +32,6 @@
         <ComboBox x:Name="JoinMazesNames" Grid.Column="2" Margin="8"></ComboBox>
         <Button x:Name="JoinMazeButton" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5"
             Padding="5" Background="DeepSkyBlue">Join game</Button>
-        <controls:Menu x:Name="SingleMenu" Grid.Row="3" Grid.ColumnSpan="2"></controls:Menu>
+        <controls:Menu x:Name="MultiMenu" Grid.Row="3" Grid.ColumnSpan="2"></controls:Menu>
     </Grid>
 </Window>

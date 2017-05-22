@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Configuration;
 
 namespace WpfClient
 {
@@ -19,14 +20,19 @@ namespace WpfClient
     /// </summary>
     public partial class MultiPlayer : Window
     {
+
+        TelnetMultiClient client = new TelnetMultiClient();
+
         public MultiPlayer()
         {
             InitializeComponent();
-            SingleMenu.btnStart.Click += BtnStart_Click;
+            MultiMenu.btnStart.Click += BtnStart_Click;
         }
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
+            client.connect(Properties.Settings.Default.ServerIP, Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]));
+            client.Start(MultiMenu.txtMazeName.Text, MultiMenu.txtRows.Text, MultiMenu.txtCols.Text);
             MultiPlayerGameBoard multiPlayerGameBoard = new MultiPlayerGameBoard();
             multiPlayerGameBoard.Owner = this.Owner;
             multiPlayerGameBoard.WindowStartupLocation = WindowStartupLocation.CenterOwner;
