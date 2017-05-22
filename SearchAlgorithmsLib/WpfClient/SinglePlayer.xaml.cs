@@ -34,7 +34,7 @@ namespace WpfClient
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            client.connect("127.0.0.1", Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]));
+            client.connect(Properties.Settings.Default.ServerIP, Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]));
             client.Generate(SingleMenu.txtMazeName.Text, SingleMenu.txtRows.Text, SingleMenu.txtCols.Text);
             Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
             t.ContinueWith(Generate_Raed_OnComplited);

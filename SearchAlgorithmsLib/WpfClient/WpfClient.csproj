@@ -97,6 +97,8 @@
     <Compile Include="MultiPlayerGameBoard.xaml.cs">
       <DependentUpon>MultiPlayerGameBoard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MultiPlayerGameBoardModel.cs" />
+    <Compile Include="MultiPlayerGameBoardViewModel.cs" />
     <Compile Include="Properties\Settings1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -114,6 +116,7 @@
     </Compile>
     <Compile Include="SinglePlayerBoardGameModel.cs" />
     <Compile Include="SinglePlayerBoardGameViewModel.cs" />
+    <Compile Include="TelnetMultiClient.cs" />
     <Compile Include="TelnetSingleClient.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="Controls\MazeBoard.xaml">
