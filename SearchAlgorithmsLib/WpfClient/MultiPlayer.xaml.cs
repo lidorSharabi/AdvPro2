@@ -31,13 +31,13 @@ namespace WpfClient
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            client.connect(Properties.Settings.Default.ServerIP, Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]));
+            client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
             client.Start(MultiMenu.txtMazeName.Text, MultiMenu.txtRows.Text, MultiMenu.txtCols.Text);
-            MultiPlayerGameBoard multiPlayerGameBoard = new MultiPlayerGameBoard();
-            multiPlayerGameBoard.Owner = this.Owner;
-            multiPlayerGameBoard.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            //MultiPlayerGameBoard multiPlayerGameBoard = new MultiPlayerGameBoard();
+            //multiPlayerGameBoard.Owner = this.Owner;
+            //multiPlayerGameBoard.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             //TODO add validation
-            multiPlayerGameBoard.Show();
+            //multiPlayerGameBoard.Show();
             this.Close();
         }
     }
