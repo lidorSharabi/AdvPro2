@@ -25,13 +25,17 @@ namespace WpfClient
 
         public MultiPlayer()
         {
+            client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
             InitializeComponent();
             MultiMenu.btnStart.Click += BtnStart_Click;
+            MenuViewModel vm = new MenuViewModel(new MenuModel(client));
+            this.DataContext = vm;
+            vm.ListMaze();
         }
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
+            //client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
             client.Start(MultiMenu.txtMazeName.Text, MultiMenu.txtRows.Text, MultiMenu.txtCols.Text);
             //MultiPlayerGameBoard multiPlayerGameBoard = new MultiPlayerGameBoard();
             //multiPlayerGameBoard.Owner = this.Owner;
@@ -40,5 +44,6 @@ namespace WpfClient
             //multiPlayerGameBoard.Show();
             this.Close();
         }
+
     }
 }

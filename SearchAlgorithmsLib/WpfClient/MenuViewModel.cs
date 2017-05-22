@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,30 +9,35 @@ namespace WpfClient
 {
     class MenuViewModel : ViewModel
     {
-        private IMenuModel model;
-        public MenuViewModel(IMenuModel model)
+        private MenuModel model;
+        public ObservableCollection<string> listOfGames;
+
+        public MenuViewModel(MenuModel model)
         {
             this.model = model;
         }
 
-        public int MazeRows
+        public ObservableCollection<string> ListOfGames
         {
-            get { return model.MazeRows; }
+            get { return this.listOfGames; }
             set
             {
-                model.MazeRows = value;
-                NotifyPropertyChanged("MazeRows");
+                this.listOfGames = value;
+                NotifyPropertyChanged("ListOfGames");
             }
         }
 
-        public int MazeCols
+        internal void ListMaze()
         {
-            get { return model.MazeCols; }
-            set
-            {
-                model.MazeCols = value;
-                NotifyPropertyChanged("MazeCols");
-            }
+            model.List();
+            Task<string> t = Task.Factory.StartNew(() => { return model.client.read(); });
+            t.ContinueWith(ListMaze_Raed_OnComplited);
+        }
+
+        private void ListMaze_Raed_OnComplited(Task<string> obj)
+        {
+            string response = obj.Result;
+            ListOfGames = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<string>>(response);
         }
     }
 }

@@ -85,7 +85,6 @@
     <Compile Include="Controls\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IMenuModel.cs" />
     <Compile Include="ISinglePlayerBoardGameModel.cs" />
     <Compile Include="ITelnetClient.cs" />
     <Compile Include="ISettingsModel.cs" />
@@ -97,6 +96,8 @@
     <Compile Include="MultiPlayerGameBoard.xaml.cs">
       <DependentUpon>MultiPlayerGameBoard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MultiPlayerGameBoardModel.cs" />
+    <Compile Include="MultiPlayerGameBoardViewModel.cs" />
     <Compile Include="Properties\Settings1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

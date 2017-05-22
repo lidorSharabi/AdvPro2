@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace WpfClient
 {
-    class TelnetMultiClient : ITelnetClient
+    public class TelnetMultiClient : ITelnetClient
     {
         /// <summary>
         /// running variables
@@ -82,7 +82,16 @@ namespace WpfClient
 
         public void Start(string name, string rows, string cols)
         {
-            write(string.Format("Start {0} {1} {2}", name, rows, cols));
+            write(string.Format("start {0} {1} {2}", name, rows, cols));
+        }
+
+        public void Join(string name)
+        {
+            write(string.Format("join {0}", name));
+        }
+        public void List()
+        {
+            write(string.Format("list"));
         }
     }
 }
