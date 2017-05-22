@@ -100,7 +100,7 @@ namespace WpfClient.Controls
 
         public MazeBoard()
         {
-            InitializeComponent();
+            InitializeComponent();        
             this.Loaded += MazeBoard_Loaded;
         }
 
