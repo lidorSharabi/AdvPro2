@@ -9,10 +9,12 @@ namespace WpfClient
     class SinglePlayerBoardGameViewModel : ViewModel
     {
         SinglePlayerBoardGameModel model;
+        SinglePlayerGameBoard view;
 
-        public SinglePlayerBoardGameViewModel(string serverMessage)
+        public SinglePlayerBoardGameViewModel(string serverMessage, TelnetSingaleClient client, SinglePlayerGameBoard view)
         {
-            this.model = new SinglePlayerBoardGameModel(serverMessage);
+            this.model = new SinglePlayerBoardGameModel(serverMessage , client);
+            this.view = view;
         }
 
         public string MazeName
@@ -77,8 +79,18 @@ namespace WpfClient
 
         internal void SolveMaze()
         {
-            throw new NotImplementedException();
+            model.SolveMaze();
+            Task<string> t = Task.Factory.StartNew(() => { return model.client.read(); });
+            t.ContinueWith(SolveMaze_Raed_OnComplited);
         }
 
+        private void SolveMaze_Raed_OnComplited(Task<string> obj)
+        {
+            string response = obj.Result;
+            int pFrom = response.IndexOf("Solution\":") + "Solution\":".Length + 2;
+            int pTo = response.LastIndexOf(",") - 1;
+            response = response.Substring(pFrom, pTo - pFrom);
+            view.SolveMazeAnimation(response);
+        }
     }
 }

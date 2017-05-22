@@ -48,16 +48,16 @@ namespace WpfClient
         public void connect(string ip, int port)
         {
             ep = new IPEndPoint(IPAddress.Parse(ip), port);
-
-
-
-
         }
 
         public void Generate(string txtMazeName, string txtRows, string txtCols)
         {
-            string command = String.Format("generate {0} {1} {2}", txtMazeName, txtRows, txtCols);
-            write(command);
+            write(String.Format("generate {0} {1} {2}", txtMazeName, txtRows, txtCols));
+        }
+
+        public void Solve(string mazeName)
+        {
+            write(String.Format("solve {0} {1} ", mazeName, Properties.Settings.Default.SearchAlgorithm));
         }
 
         public void disconnect()

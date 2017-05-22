@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace WpfClient.Controls
 {
@@ -26,6 +27,7 @@ namespace WpfClient.Controls
         int colGoalPos, rowGoalPos, colStartPos, rowStartPos;
         int rowPlayerPos, colPlayerPos;
         int indexInMaze = 0, initialIndexInMaze = 0;
+        public enum Moves {Left, Right, Up, Down, Default};
 
         public int Rows
         {
@@ -99,7 +101,7 @@ namespace WpfClient.Controls
 
         public MazeBoard()
         {
-            InitializeComponent();        
+            InitializeComponent();
             this.Loaded += MazeBoard_Loaded;
         }
 
@@ -278,26 +280,65 @@ namespace WpfClient.Controls
             AddImage(colStartPos, rowStartPos, ImageSource, "Player");
         }
 
-        //var uriSource = new Uri(@"images/girl.jpg", UriKind.Relative);
-        //clientImage.Source = new BitmapImage(uriSource); 
+        public void MoveAnimation(Moves move)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
 
-        //Image a = new Image();
-        //clientImage.Height = 150 / Rows;
-        //clientImage.Width = 150 / Columns;
-        ////var uriSource = new Uri(@"images/girl.jpg", UriKind.Relative);
-        //a.Source = this.ImageSource; //new BitmapImage(uriSource);
-        //Grid.SetRow(a, 1);
-        //Grid.SetColumn(a, 0);
-        //gridMazeBoard.Children.Add(a);
+                foreach (UIElement child in myCanvas.Children)
+                {
+                    if (((System.Windows.FrameworkElement)child).Name == "Player")
+                    {
+                        clientImage = (Image)child;
+                    }
+                }
 
+                Vector offset = VisualTreeHelper.GetOffset(clientImage);
+                var top = offset.Y;
+                var left = offset.X;
 
-        //Button c = new Button();
-        //clientImage.Height = 150 / Rows;
-        //clientImage.Width = 150 / Columns;
-        //c.Content = "kkkkkkk";
-        //Grid.SetRow(c, 0);
-        //Grid.SetColumn(c, 1);
-        //gridMazeBoard.Children.Add(c);
+                switch (move)
+                {
+                    case Moves.Up:
+                        {
+                                DoubleAnimation anim1 = new DoubleAnimation(top, top - clientImage.Height, TimeSpan.FromMilliseconds(300));
+                                clientImage.BeginAnimation(Canvas.TopProperty, anim1);
+                                rowPlayerPos -= 1;
+                                indexInMaze -= Rows;
+                            break;
+                        }
+                    case Moves.Down:
+                        {
+                                DoubleAnimation anim1 = new DoubleAnimation(top, top + clientImage.Height, TimeSpan.FromMilliseconds(300));
+                                clientImage.BeginAnimation(Canvas.TopProperty, anim1);
+                                rowPlayerPos += 1;
+                                indexInMaze += Rows;
+                            break;
+                        }
+                    case Moves.Right:
+                        {
+                                DoubleAnimation anim1 = new DoubleAnimation(left, left + clientImage.Width, TimeSpan.FromMilliseconds(300));
+                                clientImage.BeginAnimation(Canvas.LeftProperty, anim1);
+                                colPlayerPos += 1;
+                                indexInMaze += 1;
+                            break;
+                        }
+                    case Moves.Left:
+                        {
+                                DoubleAnimation anim1 = new DoubleAnimation(left, left - clientImage.Width, TimeSpan.FromMilliseconds(300));
+                                clientImage.BeginAnimation(Canvas.LeftProperty, anim1);
+                                colPlayerPos -= 1;
+                                indexInMaze -= 1;
+                            
+                            break;
+                        }
+                    default: break;
+                }
 
+                Thread.Sleep(1000);
+
+            });
+
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace WpfClient
     class SinglePlayerBoardGameModel: ISinglePlayerBoardGameModel
     {
         private string serverMessage;
+        public TelnetSingaleClient client;
         public string MazeName; 
         public int MazeCols { get; set; }
         public int MazeRows { get; set; }
@@ -20,10 +21,11 @@ namespace WpfClient
         
 
 
-        public SinglePlayerBoardGameModel(string serverMessage)
+        public SinglePlayerBoardGameModel(string serverMessage, TelnetSingaleClient client)
         {
-            Maze maze = Maze.FromJSON(serverMessage);
             this.serverMessage = serverMessage;
+            this.client = client;
+            Maze maze = Maze.FromJSON(serverMessage);
             this.MazeName = maze.Name;
             this.MazeCols = maze.Cols;
             this.MazeRows = maze.Rows;
@@ -33,9 +35,11 @@ namespace WpfClient
             int pFrom = serverMessage.IndexOf("Maze\":") + "Maze".Length + 1;
             int pTo = serverMessage.LastIndexOf("Rows") - 5;
             this.MazeString  = serverMessage.Substring(pFrom, pTo - pFrom);
-            //comment
     }
 
-
+        internal void SolveMaze()
+        {
+            client.Solve(this.MazeName);
+        }
     }
 }
