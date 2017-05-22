@@ -38,11 +38,16 @@ namespace WpfClient
 
         private void RestartGame_Click(object sender, RoutedEventArgs e)
         {
-            MazeName.RestartGame(sender, e);
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to restart?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                MazeName.RestartGame(sender, e);
+            }
         }
 
         private void SolveMaze_Click(object sender, RoutedEventArgs e)
         {
+
             //set the client image to start point (the point of the solve path)
             MazeName.RestartGame(sender, e);
             vm.SolveMaze();
@@ -50,9 +55,14 @@ namespace WpfClient
 
         private void MainMenu_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow win = (MainWindow)Application.Current.MainWindow;
-            win.Show();
-            this.Close();
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to go back to main menu?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                MainWindow win = (MainWindow)Application.Current.MainWindow;
+                win.Show();
+                this.Close();
+            }
+
         }
 
         internal void SolveMazeAnimation(string mazeSolvePath)
