@@ -28,11 +28,11 @@
             </Style>
         </Grid.Resources>
         <TextBlock>Maze name:</TextBlock>
-        <TextBox x:Name="txtMazeName" Grid.Column="2" Text="{Binding MazeName}"></TextBox>
+        <TextBox x:Name="txtMazeName" Grid.Column="2" ></TextBox>
         <TextBlock Grid.Row="1">Maze rows:</TextBlock>
-        <TextBox x:Name="txtRows" Grid.Row="1" Grid.Column="2" Text="{Binding MazeRows}"></TextBox>
+        <TextBox x:Name="txtRows" Grid.Row="1" Grid.Column="2" ></TextBox>
         <TextBlock Grid.Row="2">Maze columns:</TextBlock>
-        <TextBox x:Name="txtCols" Grid.Row="2" Grid.Column="2" Text="{Binding MazeCols}"></TextBox>
+        <TextBox x:Name="txtCols" Grid.Row="2" Grid.Column="2"></TextBox>
         <Button x:Name="btnStart" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10"
             Padding="5" Background="DeepSkyBlue">Start Game</Button>
     </Grid>

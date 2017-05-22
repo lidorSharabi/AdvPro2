@@ -97,8 +97,6 @@
     <Compile Include="MultiPlayerGameBoard.xaml.cs">
       <DependentUpon>MultiPlayerGameBoard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MultiPlayerGameBoardModel.cs" />
-    <Compile Include="MultiPlayerGameBoardViewModel.cs" />
     <Compile Include="Properties\Settings1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
