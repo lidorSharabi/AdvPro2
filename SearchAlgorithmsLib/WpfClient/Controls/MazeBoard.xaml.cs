@@ -129,6 +129,7 @@ namespace WpfClient.Controls
             {
                 for (int j = 0; j < Cols; j++)
                 {
+                    Maze.Count();
                     if (Maze[counter] == '1')
                     {
                         AddWall(j, i);
@@ -209,30 +210,30 @@ namespace WpfClient.Controls
             }
 
             Vector offset = VisualTreeHelper.GetOffset(clientImage);
-            var top = offset.Y;
-            var left = offset.X;
+            var top = (rowPlayerPos)* clientImage.Height;
+            var left = (colPlayerPos)*clientImage.Width;
 
             switch (e.Key)
             {
                 case Key.Up:
                     {
-                        if ((rowPlayerPos - 1) >= 0 && Maze[indexInMaze - Rows] == '0')
+                        if ((rowPlayerPos - 1) >= 0 && Maze[indexInMaze - Cols] == '0')
                         {
                             DoubleAnimation anim1 = new DoubleAnimation(top, top - clientImage.Height, TimeSpan.FromMilliseconds(300));
                             clientImage.BeginAnimation(Canvas.TopProperty, anim1);
                             rowPlayerPos -= 1;
-                            indexInMaze -= Rows;
+                            indexInMaze -= Cols;
                         }
                         break;
                     }
                 case Key.Down:
                     {
-                        if ((rowPlayerPos + 1) < Rows && Maze[indexInMaze + Rows] == '0')
+                        if ((rowPlayerPos + 1) < Rows && Maze[indexInMaze + Cols] == '0')
                         {
                             DoubleAnimation anim1 = new DoubleAnimation(top, top + clientImage.Height, TimeSpan.FromMilliseconds(300));
                             clientImage.BeginAnimation(Canvas.TopProperty, anim1);
                             rowPlayerPos += 1;
-                            indexInMaze += Rows;
+                            indexInMaze += Cols;
                         }
                         break;
                     }

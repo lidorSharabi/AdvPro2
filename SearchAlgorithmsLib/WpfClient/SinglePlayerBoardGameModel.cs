@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MazeLib;
 using MazeGeneratorLib;
+using Newtonsoft.Json.Linq;
 
 namespace WpfClient
 {
@@ -25,6 +26,7 @@ namespace WpfClient
         {
             this.serverMessage = serverMessage;
             this.client = client;
+            /*
             Maze maze = Maze.FromJSON(serverMessage);
             this.MazeName = maze.Name;
             this.MazeCols = maze.Cols;
@@ -35,7 +37,18 @@ namespace WpfClient
             int pFrom = serverMessage.IndexOf("Maze\":") + "Maze".Length + 1;
             int pTo = serverMessage.LastIndexOf("Rows") - 5;
             this.MazeString  = serverMessage.Substring(pFrom, pTo - pFrom);
-    }
+            */
+            JObject json = new JObject();
+            json = JObject.Parse(serverMessage);
+            this.MazeName = (string)json.GetValue("Name");
+            this.MazeString = (string)json.GetValue("Maze");
+            this.MazeRows = (int)json.GetValue("Rows");
+            this.MazeCols = (int)json.GetValue("Cols");
+            JObject PosJ = (JObject)json.GetValue("Start");
+            this.InitialPoint = (string)PosJ.GetValue("Row") + "," + (string)PosJ.GetValue("Col");
+            PosJ = (JObject)json.GetValue("End");
+            this.GoalPoint = (string)PosJ.GetValue("Row") + "," + (string)PosJ.GetValue("Col");
+        }
 
         internal void SolveMaze()
         {

@@ -20,12 +20,13 @@ namespace WpfClient.Controls
     /// </summary>
     public partial class Menu : UserControl
     {
-        private MenuViewModel vm;
+        
         public Menu()
         {
             InitializeComponent();
-            vm = new MenuViewModel(new MenuModel());
-            this.DataContext = vm;
+            this.txtRows.Text = Convert.ToString(Properties.Settings.Default.MazeRows);
+            this.txtCols.Text = Convert.ToString(Properties.Settings.Default.MazeCols);
         }
+        
     }
 }
