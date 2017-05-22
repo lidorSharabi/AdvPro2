@@ -27,7 +27,6 @@ namespace WpfClient.Controls
         int rowPlayerPos, colPlayerPos;
         int indexInMaze = 0, initialIndexInMaze = 0;
 
-
         public int Rows
         {
             get { return (int)GetValue(RowsProperty); }
