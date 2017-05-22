@@ -29,7 +29,6 @@ namespace WpfClient.Controls
         int indexInMaze = 0, initialIndexInMaze = 0;
         public enum Moves {Left, Right, Up, Down, Default};
 
-
         public int Rows
         {
             get { return (int)GetValue(RowsProperty); }
