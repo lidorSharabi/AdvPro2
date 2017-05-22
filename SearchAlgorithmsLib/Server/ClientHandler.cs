@@ -38,9 +38,10 @@ namespace Server
                             string commandLine = reader.ReadLine();
                             Console.WriteLine("Got command: {0}", commandLine);
                             string result = control.ExecuteCommand(commandLine, client);
+                            string str = string.Concat(result, "\nend of message");
                             writer.AutoFlush = true;
-                            writer.WriteLine(result);
-                            writer.WriteLine("end of message");
+                            writer.WriteLine(str);
+                            //writer.WriteLine("end of message");
                         }
                         catch (Exception)
                         {

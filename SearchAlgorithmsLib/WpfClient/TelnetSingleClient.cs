@@ -48,9 +48,16 @@ namespace WpfClient
         public void connect(string ip, int port)
         {
             ep = new IPEndPoint(IPAddress.Parse(ip), port);
-            client = new TcpClient();
-            client.Connect(ep);
-            stream = client.GetStream();
+
+
+
+
+        }
+
+        public void Generate(string txtMazeName, string txtRows, string txtCols)
+        {
+            string command = String.Format("generate {0} {1} {2}", txtMazeName, txtRows, txtCols);
+            write(command);
         }
 
         public void disconnect()
@@ -58,22 +65,19 @@ namespace WpfClient
             throw new NotImplementedException("single player shouldn't call this function");
         }
 
-        public void read()
+        public string read()
         {
-            new Task(() =>
+            reader = new StreamReader(stream);
+            string serverResponse = "";
+            while (!reader.EndOfStream)
             {
-                reader = new StreamReader(stream);
-                string serverResponse = "";
-                while (!reader.EndOfStream)
-                {
-                    serverResponse += reader.ReadLine();
-                    if (serverResponse.Contains("end of message"))
-                        break;
-                }
-                ServerMessage = serverResponse;
-                OnServerMessageArrived(new EventArgs());
-            }).Start();
+                serverResponse += reader.ReadLine();
+                if (serverResponse.Contains("end of message"))
+                    break;
+            }
+            return serverResponse.Replace("end of message", "");
         }
+
 
         public void write(string command)
         {
@@ -84,21 +88,6 @@ namespace WpfClient
             writer.AutoFlush = true;
             //Send command to server
             writer.WriteLine(command);
-            read();
-        }
-
-        private void decipheringServerResponse(string serverResponse)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Generate(string command, string ip, int port)
-        {
-            string s = "";
-            connect(ip, port);
-            write(command);
-            //s = read();
-            return s;
         }
     }
 }

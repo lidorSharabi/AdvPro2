@@ -35,26 +35,25 @@ namespace WpfClient
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
             client.connect("127.0.0.1", Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]));
-            client.ServerMessageArrivedEvent += SinglePlayer_ServerMessageArrived;
-            client.write(String.Format("generate {0} {1} {2}",SingleMenu.txtMazeName.Text, SingleMenu.txtRows.Text, SingleMenu.txtCols.Text));
-            //client.ServerMessageArrivedEvent(3, new EventArgs());
+            client.Generate(SingleMenu.txtMazeName.Text, SingleMenu.txtRows.Text, SingleMenu.txtCols.Text);
+            Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
+            t.ContinueWith(SinglePlayer_ServerMessageArrivedd);
         }
 
-        private void SinglePlayer_ServerMessageArrived(object sender, EventArgs e)
+        private void SinglePlayer_ServerMessageArrivedd(Task<string> obj)
         {
             this.Dispatcher.Invoke(() =>
             {
-                SinglePlayerGameBoard singlePlayerGameBoard = new SinglePlayerGameBoard(client.ServerMessage, SingleMenu.txtMazeName.Text, SingleMenu.txtRows.Text, SingleMenu.txtCols.Text)
+                SinglePlayerGameBoard singlePlayerGameBoard = new SinglePlayerGameBoard(obj.Result, client)
                 {
                     Owner = this.Owner,
                     WindowStartupLocation = WindowStartupLocation.CenterOwner
                 };
-
                 //TODO add validation
                 singlePlayerGameBoard.Show();
                 this.Close();
             });
         }
-        
+                
     }
 }

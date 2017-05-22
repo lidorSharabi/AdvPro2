@@ -104,6 +104,11 @@ namespace WpfClient.Controls
             this.Loaded += MazeBoard_Loaded;
         }
 
+        public void setMazeBoardDatacontext(Object vm)
+        {
+            this.DataContext = vm;
+        }
+
         private void MazeBoard_Loaded(object sender, RoutedEventArgs e)
         {
             string[] startPos = InitialPos.Split(',');
@@ -161,8 +166,6 @@ namespace WpfClient.Controls
             }
             Grid.SetRow(clientImage, 0);
             Grid.SetColumn(clientImage, 0);
-            //TODO : clientImage.Stretch = Stretch;
-            //gridMazeBoard.Children.Add(clientImage);
         }
 
         private void AddWall(int x, int y)
@@ -173,8 +176,8 @@ namespace WpfClient.Controls
             rect.Stroke = Brushes.Black;
             rect.StrokeThickness = 3;
             rect.Fill = new SolidColorBrush(Colors.Black);
-            Canvas.SetLeft(rect, x*rect.Width);
-            Canvas.SetTop(rect, y*rect.Height);
+            Canvas.SetLeft(rect, x * rect.Width);
+            Canvas.SetTop(rect, y * rect.Height);
             rect.Name = "Wall";
             myCanvas.Children.Add(rect);
 
@@ -186,8 +189,8 @@ namespace WpfClient.Controls
             image.Source = imageSource;
             image.Width = width;
             image.Height = height;
-            Canvas.SetLeft(image, x*image.Width);
-            Canvas.SetTop(image, y*image.Height);
+            Canvas.SetLeft(image, x * image.Width);
+            Canvas.SetTop(image, y * image.Height);
             image.Name = name;
             myCanvas.Children.Add(image);
 
@@ -195,10 +198,10 @@ namespace WpfClient.Controls
 
         public void gridMazeBoard_KeyDown(object sender, KeyEventArgs e)
         {
-            int pointer = rowPlayerPos*Rows + colPlayerPos + 1;
+            int pointer = rowPlayerPos * Rows + colPlayerPos + 1;
             foreach (UIElement child in myCanvas.Children)
             {
-                if(((System.Windows.FrameworkElement)child).Name == "Player")
+                if (((System.Windows.FrameworkElement)child).Name == "Player")
                 {
                     clientImage = (Image)child;
                 }
@@ -214,10 +217,10 @@ namespace WpfClient.Controls
                     {
                         if ((rowPlayerPos - 1) >= 0 && Maze[indexInMaze - Rows] == '0')
                         {
-                                DoubleAnimation anim1 = new DoubleAnimation(top, top - clientImage.Height, TimeSpan.FromMilliseconds(300));
-                                clientImage.BeginAnimation(Canvas.TopProperty, anim1);
-                                rowPlayerPos -= 1;
-                                indexInMaze -= Rows;
+                            DoubleAnimation anim1 = new DoubleAnimation(top, top - clientImage.Height, TimeSpan.FromMilliseconds(300));
+                            clientImage.BeginAnimation(Canvas.TopProperty, anim1);
+                            rowPlayerPos -= 1;
+                            indexInMaze -= Rows;
                         }
                         break;
                     }
@@ -225,10 +228,10 @@ namespace WpfClient.Controls
                     {
                         if ((rowPlayerPos + 1) < Rows && Maze[indexInMaze + Rows] == '0')
                         {
-                                DoubleAnimation anim1 = new DoubleAnimation(top, top + clientImage.Height, TimeSpan.FromMilliseconds(300));
-                                clientImage.BeginAnimation(Canvas.TopProperty, anim1);
-                                rowPlayerPos += 1;
-                                indexInMaze += Rows;
+                            DoubleAnimation anim1 = new DoubleAnimation(top, top + clientImage.Height, TimeSpan.FromMilliseconds(300));
+                            clientImage.BeginAnimation(Canvas.TopProperty, anim1);
+                            rowPlayerPos += 1;
+                            indexInMaze += Rows;
                         }
                         break;
                     }
@@ -278,7 +281,7 @@ namespace WpfClient.Controls
 
         //var uriSource = new Uri(@"images/girl.jpg", UriKind.Relative);
         //clientImage.Source = new BitmapImage(uriSource); 
-        
+
         //Image a = new Image();
         //clientImage.Height = 150 / Rows;
         //clientImage.Width = 150 / Columns;

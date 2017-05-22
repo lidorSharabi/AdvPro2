@@ -10,7 +10,7 @@ namespace WpfClient
     {
         void connect(string ip, int port);
         void write(string command);
-        void read(); // blocking call
+        string read(); // blocking call
         void disconnect();
     }
 }

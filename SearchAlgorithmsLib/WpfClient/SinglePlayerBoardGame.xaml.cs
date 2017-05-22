@@ -20,16 +20,17 @@ namespace WpfClient
     /// </summary>
     public partial class SinglePlayerGameBoard : Window
     {
-        private string serverMessage;
         SinglePlayerBoardGameViewModel vm;
+        TelnetSingaleClient telnetSinglelient;
 
-        public SinglePlayerGameBoard(string serverMessage, string name , string rows, string columns)
+        public SinglePlayerGameBoard(string serverMessage, TelnetSingaleClient client)
         {
-            this.serverMessage = serverMessage;
-            vm = new SinglePlayerBoardGameViewModel(serverMessage, name, rows, columns);
+            vm = new SinglePlayerBoardGameViewModel(serverMessage);
             this.DataContext = vm;
+            this.telnetSinglelient = client;
             InitializeComponent();
-        }
+            this.MazeName.setMazeBoardDatacontext(vm);
+           }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -39,7 +40,6 @@ namespace WpfClient
         private void RestartGame_Click(object sender, RoutedEventArgs e)
         {
             MazeName.RestartGame(sender, e);
-            //vm.RestartGame();
         }
 
         private void SolveMaze_Click(object sender, RoutedEventArgs e)
