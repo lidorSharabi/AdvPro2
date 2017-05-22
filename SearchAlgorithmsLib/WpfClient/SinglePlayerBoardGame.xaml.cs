@@ -59,6 +59,7 @@ namespace WpfClient
         {
             foreach (char ch in mazeSolvePath)
             {
+                Thread.Sleep(300);
                 MazeBoard.Moves move = MazeBoard.Moves.Default;
                 switch (ch)
                 {

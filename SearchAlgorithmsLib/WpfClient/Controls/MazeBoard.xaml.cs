@@ -297,7 +297,7 @@ namespace WpfClient.Controls
         {
             this.Dispatcher.Invoke(() =>
             {
-
+                int pointer = rowPlayerPos * Rows + colPlayerPos + 1;
                 foreach (UIElement child in myCanvas.Children)
                 {
                     if (((System.Windows.FrameworkElement)child).Name == "Player")
@@ -307,49 +307,57 @@ namespace WpfClient.Controls
                 }
 
                 Vector offset = VisualTreeHelper.GetOffset(clientImage);
-                var top = offset.Y;
-                var left = offset.X;
+                var top = (rowPlayerPos) * clientImage.Height;
+                var left = (colPlayerPos) * clientImage.Width;
 
                 switch (move)
                 {
                     case Moves.Up:
                         {
-                            DoubleAnimation anim1 = new DoubleAnimation(top, top - clientImage.Height, TimeSpan.FromMilliseconds(300));
-                            clientImage.BeginAnimation(Canvas.TopProperty, anim1);
-                            rowPlayerPos -= 1;
-                            indexInMaze -= Rows;
+                            if ((rowPlayerPos - 1) >= 0 && Maze[indexInMaze - Cols] == '0')
+                            {
+                                DoubleAnimation anim1 = new DoubleAnimation(top, top - clientImage.Height, TimeSpan.FromMilliseconds(300));
+                                clientImage.BeginAnimation(Canvas.TopProperty, anim1);
+                                rowPlayerPos -= 1;
+                                indexInMaze -= Cols;
+                            }
                             break;
                         }
                     case Moves.Down:
                         {
+                            if ((rowPlayerPos + 1) < Rows && Maze[indexInMaze + Cols] == '0')
+                            {
                                 DoubleAnimation anim1 = new DoubleAnimation(top, top + clientImage.Height, TimeSpan.FromMilliseconds(300));
                                 clientImage.BeginAnimation(Canvas.TopProperty, anim1);
                                 rowPlayerPos += 1;
-                                indexInMaze += Rows;
+                                indexInMaze += Cols;
+                            }
                             break;
                         }
                     case Moves.Right:
                         {
+                            if ((colPlayerPos + 1) < Cols && Maze[indexInMaze + 1] == '0')
+                            {
                                 DoubleAnimation anim1 = new DoubleAnimation(left, left + clientImage.Width, TimeSpan.FromMilliseconds(300));
                                 clientImage.BeginAnimation(Canvas.LeftProperty, anim1);
                                 colPlayerPos += 1;
                                 indexInMaze += 1;
+                            }
                             break;
                         }
                     case Moves.Left:
                         {
+                            if ((colPlayerPos - 1) >= 0 && Maze[indexInMaze - 1] == '0')
+                            {
                                 DoubleAnimation anim1 = new DoubleAnimation(left, left - clientImage.Width, TimeSpan.FromMilliseconds(300));
                                 clientImage.BeginAnimation(Canvas.LeftProperty, anim1);
                                 colPlayerPos -= 1;
                                 indexInMaze -= 1;
-                            
+                            }
                             break;
                         }
                     default: break;
                 }
-
-                Thread.Sleep(1000);
-
             });
         }
     }
