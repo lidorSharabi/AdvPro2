@@ -22,6 +22,14 @@ namespace WpfClient
         public YouWon()
         {
             InitializeComponent();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+        }
+
+        private void OnClick(object sender, RoutedEventArgs e)
+        {
+            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            win.Show();
+            this.Close();
         }
     }
 }

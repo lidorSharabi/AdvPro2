@@ -268,11 +268,20 @@ namespace WpfClient.Controls
             }
         }
 
+
         public void EndOfGame()
         {
-            //this.myCanvas;
-            MessageBoxResult msg = MessageBox.Show("You Won!");
 
+            //MessageBoxResult msg = MessageBox.Show("You Won!");
+            
+            //if(msg == MessageBoxResult.OK)
+            //{
+            var targetWindow = Window.GetWindow(this);
+            targetWindow.Close();
+            YouWon youWon = new YouWon();
+            youWon.Show();
+            
+            //}
         }
 
         public void RestartGame(object sender, RoutedEventArgs e)
@@ -316,7 +325,7 @@ namespace WpfClient.Controls
                         {
                             if ((rowPlayerPos - 1) >= 0 && Maze[indexInMaze - Cols] == '0')
                             {
-                                DoubleAnimation anim1 = new DoubleAnimation(top, top - clientImage.Height, TimeSpan.FromMilliseconds(300));
+                                DoubleAnimation anim1 = new DoubleAnimation(top, top - clientImage.Height, TimeSpan.FromMilliseconds(200));
                                 clientImage.BeginAnimation(Canvas.TopProperty, anim1);
                                 rowPlayerPos -= 1;
                                 indexInMaze -= Cols;
@@ -327,7 +336,7 @@ namespace WpfClient.Controls
                         {
                             if ((rowPlayerPos + 1) < Rows && Maze[indexInMaze + Cols] == '0')
                             {
-                                DoubleAnimation anim1 = new DoubleAnimation(top, top + clientImage.Height, TimeSpan.FromMilliseconds(300));
+                                DoubleAnimation anim1 = new DoubleAnimation(top, top + clientImage.Height, TimeSpan.FromMilliseconds(200));
                                 clientImage.BeginAnimation(Canvas.TopProperty, anim1);
                                 rowPlayerPos += 1;
                                 indexInMaze += Cols;
@@ -338,7 +347,7 @@ namespace WpfClient.Controls
                         {
                             if ((colPlayerPos + 1) < Cols && Maze[indexInMaze + 1] == '0')
                             {
-                                DoubleAnimation anim1 = new DoubleAnimation(left, left + clientImage.Width, TimeSpan.FromMilliseconds(300));
+                                DoubleAnimation anim1 = new DoubleAnimation(left, left + clientImage.Width, TimeSpan.FromMilliseconds(200));
                                 clientImage.BeginAnimation(Canvas.LeftProperty, anim1);
                                 colPlayerPos += 1;
                                 indexInMaze += 1;
@@ -349,7 +358,7 @@ namespace WpfClient.Controls
                         {
                             if ((colPlayerPos - 1) >= 0 && Maze[indexInMaze - 1] == '0')
                             {
-                                DoubleAnimation anim1 = new DoubleAnimation(left, left - clientImage.Width, TimeSpan.FromMilliseconds(300));
+                                DoubleAnimation anim1 = new DoubleAnimation(left, left - clientImage.Width, TimeSpan.FromMilliseconds(200));
                                 clientImage.BeginAnimation(Canvas.LeftProperty, anim1);
                                 colPlayerPos -= 1;
                                 indexInMaze -= 1;
