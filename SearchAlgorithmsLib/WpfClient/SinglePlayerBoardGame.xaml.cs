@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,16 +22,14 @@ namespace WpfClient
     public partial class SinglePlayerGameBoard : Window
     {
         SinglePlayerBoardGameViewModel vm;
-        TelnetSingaleClient telnetSinglelient;
 
         public SinglePlayerGameBoard(string serverMessage, TelnetSingaleClient client)
         {
-            vm = new SinglePlayerBoardGameViewModel(serverMessage);
+            vm = new SinglePlayerBoardGameViewModel(serverMessage, client, this);
             this.DataContext = vm;
-            this.telnetSinglelient = client;
             InitializeComponent();
             this.MazeName.setMazeBoardDatacontext(vm);
-           }
+        }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -44,17 +43,9 @@ namespace WpfClient
 
         private void SolveMaze_Click(object sender, RoutedEventArgs e)
         {
+            //set the client image to start point (the point of the solve path)
+            MazeName.RestartGame(sender, e);
             vm.SolveMaze();
-            string maze = MazeName.Maze;
-            foreach (char c in maze)
-            {
-                //switch (c)
-                //{
-                //    case '1':
-                //        this.MazeName.gridMazeBoard_KeyDown(sender, );
-                //        break;
-                //}
-            }
         }
 
         private void MainMenu_Click(object sender, RoutedEventArgs e)
@@ -62,6 +53,29 @@ namespace WpfClient
             MainWindow win = (MainWindow)Application.Current.MainWindow;
             win.Show();
             this.Close();
+        }
+
+        internal void SolveMazeAnimation(string mazeSolvePath)
+        {
+            foreach (char ch in mazeSolvePath)
+            {
+                MazeBoard.Moves move = MazeBoard.Moves.Default;
+                switch (ch)
+                {
+                    case '0': move = MazeBoard.Moves.Left;
+                        break;
+                    case '1':
+                        move = MazeBoard.Moves.Right;
+                        break;
+                    case '2':
+                        move = MazeBoard.Moves.Up;
+                        break;
+                    case '3':
+                        move = MazeBoard.Moves.Down;
+                        break;
+                }
+                MazeName.MoveAnimation(move);
+            }
         }
     }
 }

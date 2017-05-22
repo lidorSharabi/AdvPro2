@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace WpfClient.Controls
 {
@@ -26,6 +27,7 @@ namespace WpfClient.Controls
         int colGoalPos, rowGoalPos, colStartPos, rowStartPos;
         int rowPlayerPos, colPlayerPos;
         int indexInMaze = 0, initialIndexInMaze = 0;
+        public enum Moves {Left, Right, Up, Down, Default};
 
 
         public int Rows
@@ -100,7 +102,7 @@ namespace WpfClient.Controls
 
         public MazeBoard()
         {
-            InitializeComponent();        
+            InitializeComponent();
             this.Loaded += MazeBoard_Loaded;
         }
 
@@ -176,8 +178,8 @@ namespace WpfClient.Controls
             rect.Stroke = Brushes.Black;
             rect.StrokeThickness = 3;
             rect.Fill = new SolidColorBrush(Colors.Black);
-            Canvas.SetLeft(rect, x*rect.Width);
-            Canvas.SetTop(rect, y*rect.Height);
+            Canvas.SetLeft(rect, x * rect.Width);
+            Canvas.SetTop(rect, y * rect.Height);
             rect.Name = "Wall";
             myCanvas.Children.Add(rect);
 
@@ -189,8 +191,8 @@ namespace WpfClient.Controls
             image.Source = imageSource;
             image.Width = width;
             image.Height = height;
-            Canvas.SetLeft(image, x*image.Width);
-            Canvas.SetTop(image, y*image.Height);
+            Canvas.SetLeft(image, x * image.Width);
+            Canvas.SetTop(image, y * image.Height);
             image.Name = name;
             myCanvas.Children.Add(image);
 
@@ -198,10 +200,10 @@ namespace WpfClient.Controls
 
         public void gridMazeBoard_KeyDown(object sender, KeyEventArgs e)
         {
-            int pointer = rowPlayerPos*Rows + colPlayerPos + 1;
+            int pointer = rowPlayerPos * Rows + colPlayerPos + 1;
             foreach (UIElement child in myCanvas.Children)
             {
-                if(((System.Windows.FrameworkElement)child).Name == "Player")
+                if (((System.Windows.FrameworkElement)child).Name == "Player")
                 {
                     clientImage = (Image)child;
                 }
@@ -217,10 +219,10 @@ namespace WpfClient.Controls
                     {
                         if ((rowPlayerPos - 1) >= 0 && Maze[indexInMaze - Rows] == '0')
                         {
-                                DoubleAnimation anim1 = new DoubleAnimation(top, top - clientImage.Height, TimeSpan.FromMilliseconds(300));
-                                clientImage.BeginAnimation(Canvas.TopProperty, anim1);
-                                rowPlayerPos -= 1;
-                                indexInMaze -= Rows;
+                            DoubleAnimation anim1 = new DoubleAnimation(top, top - clientImage.Height, TimeSpan.FromMilliseconds(300));
+                            clientImage.BeginAnimation(Canvas.TopProperty, anim1);
+                            rowPlayerPos -= 1;
+                            indexInMaze -= Rows;
                         }
                         break;
                     }
@@ -228,10 +230,10 @@ namespace WpfClient.Controls
                     {
                         if ((rowPlayerPos + 1) < Rows && Maze[indexInMaze + Rows] == '0')
                         {
-                                DoubleAnimation anim1 = new DoubleAnimation(top, top + clientImage.Height, TimeSpan.FromMilliseconds(300));
-                                clientImage.BeginAnimation(Canvas.TopProperty, anim1);
-                                rowPlayerPos += 1;
-                                indexInMaze += Rows;
+                            DoubleAnimation anim1 = new DoubleAnimation(top, top + clientImage.Height, TimeSpan.FromMilliseconds(300));
+                            clientImage.BeginAnimation(Canvas.TopProperty, anim1);
+                            rowPlayerPos += 1;
+                            indexInMaze += Rows;
                         }
                         break;
                     }
@@ -279,26 +281,65 @@ namespace WpfClient.Controls
             AddImage(colStartPos, rowStartPos, ImageSource, "Player");
         }
 
-        //var uriSource = new Uri(@"images/girl.jpg", UriKind.Relative);
-        //clientImage.Source = new BitmapImage(uriSource); 
-        
-        //Image a = new Image();
-        //clientImage.Height = 150 / Rows;
-        //clientImage.Width = 150 / Columns;
-        ////var uriSource = new Uri(@"images/girl.jpg", UriKind.Relative);
-        //a.Source = this.ImageSource; //new BitmapImage(uriSource);
-        //Grid.SetRow(a, 1);
-        //Grid.SetColumn(a, 0);
-        //gridMazeBoard.Children.Add(a);
+        public void MoveAnimation(Moves move)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
 
+                foreach (UIElement child in myCanvas.Children)
+                {
+                    if (((System.Windows.FrameworkElement)child).Name == "Player")
+                    {
+                        clientImage = (Image)child;
+                    }
+                }
 
-        //Button c = new Button();
-        //clientImage.Height = 150 / Rows;
-        //clientImage.Width = 150 / Columns;
-        //c.Content = "kkkkkkk";
-        //Grid.SetRow(c, 0);
-        //Grid.SetColumn(c, 1);
-        //gridMazeBoard.Children.Add(c);
+                Vector offset = VisualTreeHelper.GetOffset(clientImage);
+                var top = offset.Y;
+                var left = offset.X;
 
+                switch (move)
+                {
+                    case Moves.Up:
+                        {
+                                DoubleAnimation anim1 = new DoubleAnimation(top, top - clientImage.Height, TimeSpan.FromMilliseconds(300));
+                                clientImage.BeginAnimation(Canvas.TopProperty, anim1);
+                                rowPlayerPos -= 1;
+                                indexInMaze -= Rows;
+                            break;
+                        }
+                    case Moves.Down:
+                        {
+                                DoubleAnimation anim1 = new DoubleAnimation(top, top + clientImage.Height, TimeSpan.FromMilliseconds(300));
+                                clientImage.BeginAnimation(Canvas.TopProperty, anim1);
+                                rowPlayerPos += 1;
+                                indexInMaze += Rows;
+                            break;
+                        }
+                    case Moves.Right:
+                        {
+                                DoubleAnimation anim1 = new DoubleAnimation(left, left + clientImage.Width, TimeSpan.FromMilliseconds(300));
+                                clientImage.BeginAnimation(Canvas.LeftProperty, anim1);
+                                colPlayerPos += 1;
+                                indexInMaze += 1;
+                            break;
+                        }
+                    case Moves.Left:
+                        {
+                                DoubleAnimation anim1 = new DoubleAnimation(left, left - clientImage.Width, TimeSpan.FromMilliseconds(300));
+                                clientImage.BeginAnimation(Canvas.LeftProperty, anim1);
+                                colPlayerPos -= 1;
+                                indexInMaze -= 1;
+                            
+                            break;
+                        }
+                    default: break;
+                }
+
+                Thread.Sleep(1000);
+
+            });
+
+        }
     }
 }

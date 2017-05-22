@@ -37,10 +37,10 @@ namespace WpfClient
             client.connect("127.0.0.1", Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]));
             client.Generate(SingleMenu.txtMazeName.Text, SingleMenu.txtRows.Text, SingleMenu.txtCols.Text);
             Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
-            t.ContinueWith(SinglePlayer_ServerMessageArrivedd);
+            t.ContinueWith(Generate_Raed_OnComplited);
         }
 
-        private void SinglePlayer_ServerMessageArrivedd(Task<string> obj)
+        private void Generate_Raed_OnComplited(Task<string> obj)
         {
             this.Dispatcher.Invoke(() =>
             {
