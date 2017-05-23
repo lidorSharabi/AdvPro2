@@ -6,7 +6,8 @@
         xmlns:controls="clr-namespace:WpfClient.Controls"
         xmlns:local="clr-namespace:WpfClient"
         mc:Ignorable="d"
-        Title="{Binding gameTitle}" Height="400" Width="610" Background="Azure">
+        Title="{Binding MazeName}" Height="500" Width="830" Background="Azure"
+        KeyDown="Window_KeyDown">
     <Grid KeyDown="Window_KeyDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,19 +18,26 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="300"/>
+                    <RowDefinition Height="400"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="400"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="400"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="server name.." Margin="5"/>
-                <TextBlock Grid.Row="0" Grid.Column="2" Text="client name.." Margin="5"/>
-                <controls:MazeBoard Grid.Row="1" Grid.Column="0" Width="Auto" x:Name="ClientMazeBoard" Rows="4" Cols="5" ImageSource="controls/Images/girl.jpg" Margin="0"/>
-                <controls:MazeBoard Grid.Row="1" Grid.Column="2" Width="Auto" x:Name="ServerMazeBoard" Rows="4" Cols="5" ImageSource="controls/Images/girl.jpg"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Opponents Board" Margin="5"/>
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="My Board" Margin="5"/>
 
+                <controls:MazeBoard Grid.Row="1" Grid.Column="0"  x:Name="OpponentMazeBoard" Height="400" Width="400" 
+                            Rows="{Binding MazeRows}" Cols="{Binding MazeCols}"  Maze="{Binding MazeString}"
+                            InitialPos="{Binding InitialPoint}" GoalPos="{Binding GoalPoint}"
+                            ImageSource="controls/Images/Opponent_Cat.jpg" ExitImageFile="controls/Images/exit.png"/>
+
+                <controls:MazeBoard Grid.Row="1" Grid.Column="2"  x:Name="MyMazeBoard" Height="400" Width="400" 
+                            Rows="{Binding MazeRows}" Cols="{Binding MazeCols}"  Maze="{Binding MazeString}"
+                            InitialPos="{Binding InitialPoint}" GoalPos="{Binding GoalPoint}"
+                            ImageSource="controls/Images/girl.jpg" ExitImageFile="controls/Images/exit.png"/>
             </Grid>
         </StackPanel>
     </Grid>

@@ -79,6 +79,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationSettingsModel.cs" />
+    <Compile Include="Controls\LoadingSpinner.xaml.cs">
+      <DependentUpon>LoadingSpinner.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MazeBoard.xaml.cs">
       <DependentUpon>MazeBoard.xaml</DependentUpon>
     </Compile>
@@ -118,9 +121,16 @@
     <Compile Include="TelnetMultiClient.cs" />
     <Compile Include="TelnetSingleClient.cs" />
     <Compile Include="ViewModel.cs" />
+    <Compile Include="WaitingWindow.xaml.cs">
+      <DependentUpon>WaitingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="YouWon.xaml.cs">
       <DependentUpon>YouWon.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\LoadingSpinner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\MazeBoard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -161,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="WaitingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="YouWon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,9 +204,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Controls\Images\girl.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Controls\Images\exit.png" />
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +211,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Controls\Images\Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Controls\Images\girl.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Controls\Images\Opponent_Cat.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

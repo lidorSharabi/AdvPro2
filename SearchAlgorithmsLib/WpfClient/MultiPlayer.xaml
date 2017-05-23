@@ -31,7 +31,7 @@
         <TextBlock Margin="8" >List of games:</TextBlock>
         <ComboBox x:Name="JoinMazesNames" ItemsSource="{Binding Path=ListOfGames}"  SelectedItem="{Binding TheSelectedItem, Mode=TwoWay}" AllowDrop="True" Grid.Column="2" Margin="8"></ComboBox>
         <Button x:Name="JoinMazeButton" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5"
-            Padding="5" Background="DeepSkyBlue">Join game</Button>
+            Padding="5" Background="DeepSkyBlue" Content="Join game" Click="JoinMazeButton_Click"/>
         <controls:Menu x:Name="MultiMenu" Grid.Row="3" Grid.ColumnSpan="2"></controls:Menu>
     </Grid>
 </Window>

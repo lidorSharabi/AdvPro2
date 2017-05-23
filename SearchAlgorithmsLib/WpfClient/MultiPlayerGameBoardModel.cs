@@ -23,7 +23,6 @@ namespace WpfClient
         {
             this.serverMessage = serverMessage;
             this.client = client;
-            /*
             JObject json = new JObject();
             json = JObject.Parse(serverMessage);
             this.MazeName = (string)json.GetValue("Name");
@@ -34,13 +33,23 @@ namespace WpfClient
             this.InitialPoint = (string)PosJ.GetValue("Row") + "," + (string)PosJ.GetValue("Col");
             PosJ = (JObject)json.GetValue("End");
             this.GoalPoint = (string)PosJ.GetValue("Row") + "," + (string)PosJ.GetValue("Col");
-            */
+            
         }
 
         internal void JoinMaze()
         {
             client.Join(this.MazeName);
         }
+
+        internal void Move(string move)
+        {
+            client.Move(move);
+        }
+
+        //internal void StartMaze()
+        //{
+        //    client.Start(this.MazeName);
+        //}
 
     }
 }
