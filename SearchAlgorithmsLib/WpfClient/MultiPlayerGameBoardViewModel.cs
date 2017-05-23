@@ -57,7 +57,7 @@ namespace WpfClient
                 NotifyPropertyChanged("MazeString");
             }
         }
-
+        
         public string InitialPoint
         {
             get { return model.InitialPoint; }
@@ -81,12 +81,13 @@ namespace WpfClient
         internal void JoinMaze()
         {
             model.JoinMaze();
-            Task<string> t = Task.Factory.StartNew(() => { return model.client.read(); });
-            t.ContinueWith(JoinMaze_Raed_OnComplited);
         }
+        
 
-        private void JoinMaze_Raed_OnComplited(Task<string> obj)
+
+        internal void Move(string move)
         {
+            model.Move(move);
         }
     }
 }

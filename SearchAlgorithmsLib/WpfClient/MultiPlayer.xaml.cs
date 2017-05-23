@@ -26,6 +26,7 @@ namespace WpfClient
         TelnetMultiClient client = new TelnetMultiClient();
         bool gameStarted;
 
+        WaitingWindow waitingWindow;
         public MultiPlayer()
         {
             client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
@@ -46,28 +47,59 @@ namespace WpfClient
         private void JoinMazeButton_Click(object sender, RoutedEventArgs e)
         {
             //client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
-            client.Join(JoinMazesNames.SelectedValue.ToString());
+            string selectedMazeName = JoinMazesNames.SelectedValue.ToString();
+            client.Join(selectedMazeName);
             Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
-            t.ContinueWith(StartOrJoin_Read_OnComplited);
+            t.ContinueWith(Join_Read_OnComplited);
         }
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-           // client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
+            // client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
             client.Start(MultiMenu.txtMazeName.Text, MultiMenu.txtRows.Text, MultiMenu.txtCols.Text);
             Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
-            t.ContinueWith(StartOrJoin_Read_OnComplited);
+            t.ContinueWith(Start_Read_OnComplited);
+        }
+        private void Start_Read_OnComplited(Task<string> obj)
+        {
+            Task<string> t2 = Task.Factory.StartNew(() => { return client.read1(); });
+            t2.ContinueWith(ClientJoined_OnComplited);
+
+            this.Dispatcher.Invoke(() =>
+            {
+                if (obj.Result == "Waiting for other player to join...")
+                {
+                    this.Hide();
+                    waitingWindow = new WaitingWindow()
+                    {
+                        Owner = this.Owner,
+                        WindowStartupLocation = WindowStartupLocation.CenterOwner
+                    };
+                    waitingWindow.Show();
+                }
+            });
+
         }
 
-        private void StartOrJoin_Read_OnComplited(Task<string> obj)
+        private void ClientJoined_OnComplited(Task<string> obj)
+        {
+            Join_Or_ClientJoined_OnComplited(obj.Result);
+            this.Dispatcher.Invoke(() =>
+            {
+                waitingWindow.Close();
+            });
+        }
+
+        private void Join_Read_OnComplited(Task<string> obj)
+        {
+            Join_Or_ClientJoined_OnComplited(obj.Result);
+        }
+
+        void Join_Or_ClientJoined_OnComplited(string serverResponse)
         {
             this.Dispatcher.Invoke(() =>
             {
-                if(obj.Result == "Waiting for other player to join...")
-                {
-
-                }
-                MultiPlayerGameBoard multiPlayerGameBoard = new MultiPlayerGameBoard(obj.Result, client)
+                MultiPlayerGameBoard multiPlayerGameBoard = new MultiPlayerGameBoard(serverResponse, client)
                 {
                     Owner = this.Owner,
                     WindowStartupLocation = WindowStartupLocation.CenterOwner

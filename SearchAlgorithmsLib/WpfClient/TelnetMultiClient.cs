@@ -36,13 +36,19 @@ namespace WpfClient
         /// </summary>
         TcpClient client;
 
-        public event EventHandler ServerMessageArrivedEvent;
+        public event EventHandler ServerWaitingEvent;
+        public event EventHandler ServerJoinEvent;
 
         public string ServerMessage;
 
-        protected virtual void OnServerMessageArrived(EventArgs args)
+        protected virtual void OnServerWaitingEvent(EventArgs args)
         {
-            ServerMessageArrivedEvent?.Invoke(this, args);
+            ServerWaitingEvent?.Invoke(this, args);
+        }
+
+        protected virtual void OnServerJoinEvent(EventArgs args)
+        {
+            ServerJoinEvent?.Invoke(this, args);
         }
 
         public void connect(string ip, int port)
@@ -63,6 +69,25 @@ namespace WpfClient
             {
                 serverResponse += reader.ReadLine();
                 if (serverResponse.Contains("end of message"))
+                    break;
+            }
+            return serverResponse.Replace("end of message", "");
+        }
+
+        internal void Move(string move)
+        {
+            write(move);
+        }
+
+        public string read1()
+        {
+            //reader = new StreamReader(stream);
+            string serverResponse = "";
+            while (!reader.EndOfStream)
+            {
+                serverResponse += reader.ReadLine();
+                Console.WriteLine(serverResponse);
+                if (serverResponse.Contains("}}"))
                     break;
             }
             return serverResponse.Replace("end of message", "");
