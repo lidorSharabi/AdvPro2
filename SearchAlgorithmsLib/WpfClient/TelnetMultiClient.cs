@@ -93,10 +93,5 @@ namespace WpfClient
         {
             write(string.Format("list"));
         }
-
-        internal void Join(string name)
-        {
-           write("join " + name);
-        }
     }
 }

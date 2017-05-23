@@ -80,7 +80,7 @@ namespace WpfClient
 
         internal void JoinMaze()
         {
-            model.SolveMaze();
+            model.JoinMaze();
             Task<string> t = Task.Factory.StartNew(() => { return model.client.read(); });
             t.ContinueWith(JoinMaze_Raed_OnComplited);
         }

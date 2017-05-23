@@ -37,7 +37,7 @@ namespace WpfClient
             */
         }
 
-        internal void SolveMaze()
+        internal void JoinMaze()
         {
             client.Join(this.MazeName);
         }

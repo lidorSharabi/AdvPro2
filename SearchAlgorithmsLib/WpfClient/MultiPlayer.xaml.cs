@@ -37,7 +37,7 @@ namespace WpfClient
 
         private void JoinMazeButton_Click(object sender, RoutedEventArgs e)
         {
-            client.connect(Properties.Settings.Default.ServerIP, Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]));
+            //client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
             client.Join(JoinMazesNames.SelectedValue.ToString());
             Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
             t.ContinueWith(StartOrJoin_Read_OnComplited);
@@ -45,7 +45,7 @@ namespace WpfClient
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            //client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
+           // client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
             client.Start(MultiMenu.txtMazeName.Text, MultiMenu.txtRows.Text, MultiMenu.txtCols.Text);
             Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
             t.ContinueWith(StartOrJoin_Read_OnComplited);
@@ -55,6 +55,10 @@ namespace WpfClient
         {
             this.Dispatcher.Invoke(() =>
             {
+                if(obj.Result == "Waiting for other player to join...")
+                {
+
+                }
                 MultiPlayerGameBoard multiPlayerGameBoard = new MultiPlayerGameBoard(obj.Result, client)
                 {
                     Owner = this.Owner,
