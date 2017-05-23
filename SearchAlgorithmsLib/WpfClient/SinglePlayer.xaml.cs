@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Configuration;
+using System.ComponentModel;
 
 namespace WpfClient
 {
@@ -29,7 +30,7 @@ namespace WpfClient
         public SinglePlayer()
         {
             InitializeComponent();
-            SingleMenu.btnStart.Click += BtnStart_Click;
+            SingleMenu.btnStart.Click += BtnStart_Click; 
         }
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
@@ -54,6 +55,5 @@ namespace WpfClient
                 this.Close();
             });
         }
-                
     }
 }
