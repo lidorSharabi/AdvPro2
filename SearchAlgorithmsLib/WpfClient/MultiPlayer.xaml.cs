@@ -18,6 +18,7 @@ namespace WpfClient
     /// <summary>
     /// Interaction logic for MultiPlayer.xaml
     /// </summary>
+    /// 
     public partial class MultiPlayer : Window
     {
 
@@ -27,18 +28,38 @@ namespace WpfClient
         {
             InitializeComponent();
             MultiMenu.btnStart.Click += BtnStart_Click;
+            JoinMazeButton.Click += JoinMazeButton_Click;
+        }
+
+        private void JoinMazeButton_Click(object sender, RoutedEventArgs e)
+        {
+            client.connect(Properties.Settings.Default.ServerIP, Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]));
+            client.Join(JoinMazesNames.SelectedValue.ToString());
+            Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
+            t.ContinueWith(StartOrJoin_Read_OnComplited);
         }
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
             client.connect(Properties.Settings.Default.ServerIP, Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]));
             client.Start(MultiMenu.txtMazeName.Text, MultiMenu.txtRows.Text, MultiMenu.txtCols.Text);
-            MultiPlayerGameBoard multiPlayerGameBoard = new MultiPlayerGameBoard();
-            multiPlayerGameBoard.Owner = this.Owner;
-            multiPlayerGameBoard.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            //TODO add validation
-            multiPlayerGameBoard.Show();
-            this.Close();
+            Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
+            t.ContinueWith(StartOrJoin_Read_OnComplited);
+        }
+
+        private void StartOrJoin_Read_OnComplited(Task<string> obj)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                MultiPlayerGameBoard multiPlayerGameBoard = new MultiPlayerGameBoard(obj.Result, client)
+                {
+                    Owner = this.Owner,
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner
+                };
+                //TODO add validation
+                multiPlayerGameBoard.Show();
+                this.Close();
+            });
         }
     }
 }

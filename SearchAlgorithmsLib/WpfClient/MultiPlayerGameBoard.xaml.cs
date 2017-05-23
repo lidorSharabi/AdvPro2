@@ -19,8 +19,13 @@ namespace WpfClient
     /// </summary>
     public partial class MultiPlayerGameBoard : Window
     {
-        public MultiPlayerGameBoard()
+        private string result;
+        private TelnetMultiClient client;
+        
+        public MultiPlayerGameBoard(string result, TelnetMultiClient client)
         {
+            this.result = result;
+            this.client = client;
             InitializeComponent();
         }
 
