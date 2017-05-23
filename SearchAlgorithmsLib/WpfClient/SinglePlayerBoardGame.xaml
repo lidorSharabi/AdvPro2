@@ -6,21 +6,21 @@
         xmlns:controls="clr-namespace:WpfClient.Controls"
         xmlns:local="clr-namespace:WpfClient"
         mc:Ignorable="d"
-        Title="{Binding MazeName}" Height="500" Width="500" KeyDown="Window_KeyDown">
+        Title="{Binding MazeName}" Height="500" Width="500" KeyDown="Window_KeyDown" Background="Azure">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="RestartGame" Content="Restart Game" Margin="5" Click="RestartGame_Click"/>
-            <Button x:Name="SolveMaze" Content="Solve Maze" Margin="5" Click="SolveMaze_Click"/>
-            <Button x:Name="MainMenu" Content="Main Menu" Margin="5" Click="MainMenu_Click"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="15">
+            <Button x:Name="RestartGame" Content="Restart Game" Margin="5" Click="RestartGame_Click" Background="DeepSkyBlue"/>
+            <Button x:Name="SolveMaze" Content="Solve Maze" Margin="5" Click="SolveMaze_Click" Background="DeepSkyBlue"/>
+            <Button x:Name="MainMenu" Content="Main Menu" Margin="5" Click="MainMenu_Click" Background="DeepSkyBlue"/>
         </StackPanel>
         <controls:MazeBoard Grid.Row="1"  x:Name="MazeName" Height="400" Width="400" 
          Rows="{Binding MazeRows}" Cols="{Binding MazeCols}"  Maze="{Binding MazeString}"
                             InitialPos="{Binding InitialPoint}" GoalPos="{Binding GoalPoint}"
-                            ImageSource="controls/Images/girl.jpg" ExitImageFile="controls/Images/exit.png" Margin="10">
+                            ImageSource="controls/Images/girl.jpg" ExitImageFile="controls/Images/exit.png">
         </controls:MazeBoard>
     </Grid>
 </Window>

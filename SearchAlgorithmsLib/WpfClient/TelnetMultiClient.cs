@@ -11,7 +11,6 @@ namespace WpfClient
 {
     public class TelnetMultiClient : ITelnetClient
     {
-
         /// <summary>
         /// running variables
         /// </summary>
@@ -37,6 +36,15 @@ namespace WpfClient
         /// </summary>
         TcpClient client;
 
+        public event EventHandler ServerMessageArrivedEvent;
+
+        public string ServerMessage;
+
+        protected virtual void OnServerMessageArrived(EventArgs args)
+        {
+            ServerMessageArrivedEvent?.Invoke(this, args);
+        }
+
         public void connect(string ip, int port)
         {
             ep = new IPEndPoint(IPAddress.Parse(ip), port);
@@ -44,7 +52,7 @@ namespace WpfClient
 
         public void disconnect()
         {
-            throw new NotImplementedException();
+            this.client.Close();
         }
 
         public string read()
@@ -60,6 +68,7 @@ namespace WpfClient
             return serverResponse.Replace("end of message", "");
         }
 
+
         public void write(string command)
         {
             client = new TcpClient();
@@ -73,7 +82,16 @@ namespace WpfClient
 
         public void Start(string name, string rows, string cols)
         {
-            write(string.Format("Start {0} {1} {2}", name, rows, cols));
+            write(string.Format("start {0} {1} {2}", name, rows, cols));
+        }
+
+        public void Join(string name)
+        {
+            write(string.Format("join {0}", name));
+        }
+        public void List()
+        {
+            write(string.Format("list"));
         }
 
         internal void Join(string name)

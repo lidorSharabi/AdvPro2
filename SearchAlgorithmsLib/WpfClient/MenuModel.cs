@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace WpfClient
 {
-    public class MenuModel : IMenuModel
+    public class MenuModel
     {
-        public int MazeRows
+        public TelnetMultiClient client;
+        public MenuModel(TelnetMultiClient client)
         {
-            get { return Properties.Settings.Default.MazeRows; }
-            set {; }
+            this.client = client;
         }
 
-        public int MazeCols
+        internal void List()
         {
-            get { return Properties.Settings.Default.MazeCols; }
-            set {; }
+            client.List();
         }
     }
 }

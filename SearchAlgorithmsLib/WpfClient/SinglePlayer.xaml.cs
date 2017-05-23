@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Configuration;
+using System.ComponentModel;
 
 namespace WpfClient
 {
@@ -29,12 +30,12 @@ namespace WpfClient
         public SinglePlayer()
         {
             InitializeComponent();
-            SingleMenu.btnStart.Click += BtnStart_Click;
+            SingleMenu.btnStart.Click += BtnStart_Click; 
         }
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            client.connect(Properties.Settings.Default.ServerIP, Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]));
+            client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
             client.Generate(SingleMenu.txtMazeName.Text, SingleMenu.txtRows.Text, SingleMenu.txtCols.Text);
             Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
             t.ContinueWith(Generate_Raed_OnComplited);
@@ -54,6 +55,5 @@ namespace WpfClient
                 this.Close();
             });
         }
-                
     }
 }

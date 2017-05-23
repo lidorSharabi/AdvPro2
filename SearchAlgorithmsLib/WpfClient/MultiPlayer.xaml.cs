@@ -26,9 +26,13 @@ namespace WpfClient
 
         public MultiPlayer()
         {
+            client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
             InitializeComponent();
             MultiMenu.btnStart.Click += BtnStart_Click;
             JoinMazeButton.Click += JoinMazeButton_Click;
+            MenuViewModel vm = new MenuViewModel(new MenuModel(client));
+            this.DataContext = vm;
+            vm.ListMaze();
         }
 
         private void JoinMazeButton_Click(object sender, RoutedEventArgs e)
@@ -41,7 +45,7 @@ namespace WpfClient
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            client.connect(Properties.Settings.Default.ServerIP, Int32.Parse(ConfigurationManager.AppSettings["PortNumber"]));
+            //client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
             client.Start(MultiMenu.txtMazeName.Text, MultiMenu.txtRows.Text, MultiMenu.txtCols.Text);
             Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
             t.ContinueWith(StartOrJoin_Read_OnComplited);
@@ -61,5 +65,6 @@ namespace WpfClient
                 this.Close();
             });
         }
+
     }
 }
