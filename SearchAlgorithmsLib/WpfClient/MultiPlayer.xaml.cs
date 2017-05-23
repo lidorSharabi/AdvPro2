@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Configuration;
+using System.ComponentModel;
 
 namespace WpfClient
 {
@@ -21,8 +22,9 @@ namespace WpfClient
     /// 
     public partial class MultiPlayer : Window
     {
-
+        MenuViewModel vm;
         TelnetMultiClient client = new TelnetMultiClient();
+        bool gameStarted;
 
         public MultiPlayer()
         {
@@ -30,8 +32,14 @@ namespace WpfClient
             InitializeComponent();
             MultiMenu.btnStart.Click += BtnStart_Click;
             JoinMazeButton.Click += JoinMazeButton_Click;
-            MenuViewModel vm = new MenuViewModel(new MenuModel(client));
+            this.Closing += ExitWindow;
+            vm = new MenuViewModel(new MenuModel(client));
             this.DataContext = vm;
+            gameStarted = false;
+        }
+
+        private void OnComboboxOpen(object sender, EventArgs e)
+        {
             vm.ListMaze();
         }
 
@@ -66,8 +74,18 @@ namespace WpfClient
                 };
                 //TODO add validation
                 multiPlayerGameBoard.Show();
+                gameStarted = true;
                 this.Close();
             });
+        }
+
+        private void ExitWindow(object sender, CancelEventArgs e)
+        {
+            if (!gameStarted)
+            {
+                MainWindow win = (MainWindow)Application.Current.MainWindow;
+                win.Show();
+            }
         }
 
     }

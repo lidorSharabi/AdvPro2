@@ -46,10 +46,12 @@ namespace WpfClient
             }
         }
 
+
         private void SolveMaze_Click(object sender, RoutedEventArgs e)
         {
 
             //set the client image to start point (the point of the solve path)
+            this.Stack.IsEnabled = false;
             MazeName.RestartGame(sender, e);
             vm.SolveMaze();
         }
@@ -87,6 +89,10 @@ namespace WpfClient
                 }
                 MazeName.MoveAnimation(move);
             }
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                this.Stack.IsEnabled = true;
+            }));
         }
     }
 }

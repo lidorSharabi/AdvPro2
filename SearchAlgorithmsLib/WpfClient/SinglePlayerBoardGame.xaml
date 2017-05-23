@@ -12,7 +12,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="15">
+        <StackPanel x:Name="Stack" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="15">
             <Button x:Name="RestartGame" Content="Restart Game" Margin="5" Click="RestartGame_Click" Background="DeepSkyBlue"/>
             <Button x:Name="SolveMaze" Content="Solve Maze" Margin="5" Click="SolveMaze_Click" Background="DeepSkyBlue"/>
             <Button x:Name="MainMenu" Content="Main Menu" Margin="5" Click="MainMenu_Click" Background="DeepSkyBlue"/>

@@ -24,13 +24,15 @@ namespace WpfClient
     {
 
         ManualResetEvent d = new ManualResetEvent(false);
-
         TelnetSingaleClient client = new TelnetSingaleClient();
+        bool gameStarted;
 
         public SinglePlayer()
         {
             InitializeComponent();
-            SingleMenu.btnStart.Click += BtnStart_Click; 
+            SingleMenu.btnStart.Click += BtnStart_Click;
+            this.Closing += ExitWindow;
+            gameStarted = false;
         }
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
@@ -52,8 +54,18 @@ namespace WpfClient
                 };
                 //TODO add validation
                 singlePlayerGameBoard.Show();
+                gameStarted = true;
                 this.Close();
             });
+        }
+
+        private void ExitWindow(object sender, CancelEventArgs e)
+        {
+            if (!gameStarted)
+            {
+                MainWindow win = (MainWindow)Application.Current.MainWindow;
+                win.Show();
+            }
         }
     }
 }

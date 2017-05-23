@@ -59,7 +59,7 @@ namespace Server
         {
             List<State<MazeLib.Position>> possibleStates = new List<State<MazeLib.Position>>();
 
-            if (s.Getstate().Col + 1 <= maze.Cols && maze[s.Getstate().Row, s.Getstate().Col + 1] == CellType.Free)
+            if (s.Getstate().Col + 1 < maze.Cols && maze[s.Getstate().Row, s.Getstate().Col + 1] == CellType.Free)
             {
                 MazeLib.Position position = new MazeLib.Position(s.Getstate().Row, s.Getstate().Col + 1);
                 State<MazeLib.Position> state = State<MazeLib.Position>.StatePool.GetState(position);

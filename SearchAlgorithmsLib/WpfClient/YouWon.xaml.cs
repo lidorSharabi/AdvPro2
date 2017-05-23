@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,13 +24,19 @@ namespace WpfClient
         {
             InitializeComponent();
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            this.Closing += ExitWindow;
         }
 
         private void OnClick(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
+
+        private void ExitWindow(object sender, CancelEventArgs e)
+        {
             MainWindow win = (MainWindow)Application.Current.MainWindow;
             win.Show();
-            this.Close();
+
         }
     }
 }

@@ -90,7 +90,7 @@ namespace WpfClient
             int pFrom = response.IndexOf("Solution\":") + "Solution\":".Length + 2;
             int pTo = response.LastIndexOf(",") - 1;
             response = response.Substring(pFrom, pTo - pFrom);
-            view.SolveMazeAnimation(response);
+            view.SolveMazeAnimation(response);  
         }
     }
 }

@@ -77,14 +77,14 @@ namespace Server
             {
                 if (algorithm == 0)
                 {
-                    searcher = new DFS<Position>();
-                    sol = searcher.Search(maze);
-                }
-                else
-                {
                     searcher = new BFS<Position>();
                     CostComparator<Position> compare = new CostComparator<Position>();
                     sol = searcher.Search(maze, compare);
+                }
+                else
+                {
+                    searcher = new DFS<Position>();
+                    sol = searcher.Search(maze);
                 }
 
                 privateSolDict.Add(name, sol);

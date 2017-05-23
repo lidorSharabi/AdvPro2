@@ -271,17 +271,10 @@ namespace WpfClient.Controls
 
         public void EndOfGame()
         {
-
-            //MessageBoxResult msg = MessageBox.Show("You Won!");
-            
-            //if(msg == MessageBoxResult.OK)
-            //{
             var targetWindow = Window.GetWindow(this);
             targetWindow.Close();
             YouWon youWon = new YouWon();
             youWon.Show();
-            
-            //}
         }
 
         public void RestartGame(object sender, RoutedEventArgs e)
