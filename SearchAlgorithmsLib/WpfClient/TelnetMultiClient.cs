@@ -103,7 +103,7 @@ namespace WpfClient
             write(string.Format("play {0}", move));
         }
 
-        public string ContinuousReading()
+        public string WatingForJoin()
         {
             //reader = new StreamReader(stream);
             string serverResponse = "";
@@ -111,7 +111,7 @@ namespace WpfClient
             {
                 serverResponse += reader.ReadLine();
                 Console.WriteLine(serverResponse);
-                if (serverResponse.Contains("}}") || serverResponse.Contains("Direction"))
+                if (serverResponse.Contains("}}"))
                     break;
             }
             return serverResponse.Replace("end of message", "");

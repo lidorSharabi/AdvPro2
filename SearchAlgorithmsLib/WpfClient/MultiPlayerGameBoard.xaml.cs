@@ -27,8 +27,8 @@ namespace WpfClient
         public MultiPlayerGameBoard(string result, TelnetMultiClient client)
         {
             this.result = result;
-            this.DataContext = vm;
             vm = new MultiPlayerGameBoardViewModel(result, client, this);
+            this.DataContext = vm;
             InitializeComponent();
             this.MyMazeBoard.setMazeBoardDatacontext(vm);
             this.OpponentMazeBoard.setMazeBoardDatacontext(vm);
@@ -69,8 +69,12 @@ namespace WpfClient
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            MyMazeBoard.gridMazeBoard_KeyDown(sender, e);
-            vm.Move(e.Key.ToString().ToLower());
+            string move = e.Key.ToString().ToLower();
+            if (move.Equals("up") || move.Equals("down") || move.Equals("left") || move.Equals("right"))
+            {
+                MyMazeBoard.gridMazeBoard_KeyDown(sender, e);
+                vm.Move(move);
+            }
         }
 
         internal void OpponentMoveAnimation(string move)
