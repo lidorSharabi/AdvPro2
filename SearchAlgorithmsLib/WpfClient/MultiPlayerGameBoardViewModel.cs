@@ -90,7 +90,7 @@ namespace WpfClient
 
         internal string Read()
         {
-            return model.Read();
+            return model.ReadMoveDirection();
         }
 
         internal void Move(string move)

@@ -78,14 +78,17 @@ namespace WpfClient
             return serverResponse.Replace("end of message", "");
         }
 
-        public string readMove()
+        public string readMoveDirection()
         {
             string serverResponse = "";
             while (!reader.EndOfStream)
             {
                 serverResponse += reader.ReadLine();
-                if (serverResponse.Contains("move"))
+                if (serverResponse.Contains("Direction"))
+                {
+                    serverResponse += reader.ReadLine();
                     break;
+                }
             }
             return serverResponse;
         }

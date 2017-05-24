@@ -50,21 +50,14 @@ namespace WpfClient
         {
             return client.Continue();
         }
+        
 
-        internal string ContinuousReading()
+        internal string ReadMoveDirection()
         {
-            string serverResponse = client.ContinuousReading();
+            string serverResponse = client.readMoveDirection();
             JObject json = new JObject();
             json = JObject.Parse(serverMessage);
-            return (string)json.GetValue("Direction");
-        }
-
-        internal string Read()
-        {
-            string serverResponse = client.readMove();
-            JObject json = new JObject();
-            json = JObject.Parse(serverMessage);
-            string s = (string)json.GetValue("move");
+            string s = (string)json.GetValue("Direction");
             return s;
         }
     }
