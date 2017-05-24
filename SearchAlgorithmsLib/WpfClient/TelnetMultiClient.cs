@@ -78,6 +78,18 @@ namespace WpfClient
             return serverResponse.Replace("end of message", "");
         }
 
+        public string readMove()
+        {
+            string serverResponse = "";
+            while (!reader.EndOfStream)
+            {
+                serverResponse += reader.ReadLine();
+                if (serverResponse.Contains("move"))
+                    break;
+            }
+            return serverResponse;
+        }
+
         internal bool Continue()
         {
             return !keepConnectionOpen;
@@ -85,7 +97,7 @@ namespace WpfClient
 
         internal void Move(string move)
         {
-            write(move);
+            write(string.Format("play {0}", move));
         }
 
         public string ContinuousReading()

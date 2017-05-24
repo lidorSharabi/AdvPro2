@@ -61,10 +61,11 @@ namespace WpfClient
 
         internal string Read()
         {
-            string serverResponse = client.read();
+            string serverResponse = client.readMove();
             JObject json = new JObject();
             json = JObject.Parse(serverMessage);
-            return (string)json.GetValue("Direction");
+            string s = (string)json.GetValue("move");
+            return s;
         }
     }
 }
