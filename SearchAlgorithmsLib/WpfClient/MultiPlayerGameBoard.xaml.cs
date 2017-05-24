@@ -75,7 +75,6 @@ namespace WpfClient
 
         internal void OpponentMoveAnimation(string move)
         {
-            Thread.Sleep(200);
             MazeBoard.Moves keyMove = MazeBoard.Moves.Default;
             switch (move)
             {
