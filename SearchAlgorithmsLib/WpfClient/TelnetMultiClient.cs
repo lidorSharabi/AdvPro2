@@ -90,7 +90,7 @@ namespace WpfClient
                     break;
                 }
             }
-            return serverResponse;
+            return serverResponse.Replace("end of message", "");
         }
 
         internal bool Continue()
@@ -114,7 +114,7 @@ namespace WpfClient
                 if (serverResponse.Contains("}}") || serverResponse.Contains("Direction"))
                     break;
             }
-            return serverResponse;
+            return serverResponse.Replace("end of message", "");
         }
 
 
