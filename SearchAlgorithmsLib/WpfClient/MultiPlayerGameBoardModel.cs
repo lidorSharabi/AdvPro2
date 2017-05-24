@@ -54,11 +54,22 @@ namespace WpfClient
 
         internal string ReadMoveDirection()
         {
-            string serverResponse = client.readMoveDirection();
-            JObject json = new JObject();
-            json = JObject.Parse(serverResponse);
-            string s = (string)json.GetValue("Direction");
-            return s;
+            try
+            {
+                string serverResponse = client.readMoveDirectionAndClose();
+                JObject json = new JObject();
+                json = JObject.Parse(serverResponse);
+                return (string)json.GetValue("Direction");
+            }
+            catch
+            {
+                return String.Empty;
+            }
+        }
+
+        internal void Disconnect()
+        {
+            client.CloseGame(this.MazeName);
         }
     }
 }

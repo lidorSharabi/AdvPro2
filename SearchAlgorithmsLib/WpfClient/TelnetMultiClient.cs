@@ -14,7 +14,7 @@ namespace WpfClient
         /// <summary>
         /// running variables
         /// </summary>
-        bool keepConnectionOpen = false, run = true;
+        bool keepConnectionOpen = true;
         /// <summary>
         /// stream reader variable
         /// </summary>
@@ -78,24 +78,31 @@ namespace WpfClient
             return serverResponse.Replace("end of message", "");
         }
 
-        public string readMoveDirection()
+        public string readMoveDirectionAndClose()
         {
             string serverResponse = "";
-            while (!reader.EndOfStream)
+            try
             {
-                serverResponse += reader.ReadLine();
-                if (serverResponse.Contains("Direction"))
+                while (keepConnectionOpen && !reader.EndOfStream)
                 {
                     serverResponse += reader.ReadLine();
-                    break;
+                    if (serverResponse.Contains("Direction") || serverResponse.Contains("has closed the game"))
+                    {
+                        serverResponse += reader.ReadLine();
+                        break;
+                    }
                 }
+                return serverResponse.Replace("end of message", "");
             }
-            return serverResponse.Replace("end of message", "");
+            catch
+            {
+                return String.Empty;
+            }
         }
 
         internal bool Continue()
         {
-            return !keepConnectionOpen;
+            return keepConnectionOpen;
         }
 
         internal void Move(string move)
@@ -120,9 +127,16 @@ namespace WpfClient
 
         public void write(string command)
         {
-            writer.AutoFlush = true;
-            //Send command to server
-            writer.WriteLine(command);
+            try
+            {
+                writer.AutoFlush = true;
+                //Send command to server
+                writer.WriteLine(command);
+            }
+            catch
+            {
+
+            }
         }
 
         public void Start(string name, string rows, string cols)
@@ -138,5 +152,13 @@ namespace WpfClient
         {
             write(string.Format("list"));
         }
+
+        public void CloseGame(string name)
+        {
+            write(string.Format("close {0}", name));
+            this.keepConnectionOpen = false;
+            disconnect();
+        }
+
     }
 }

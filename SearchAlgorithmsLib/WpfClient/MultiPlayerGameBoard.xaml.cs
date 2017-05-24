@@ -21,18 +21,22 @@ namespace WpfClient
     /// </summary>
     public partial class MultiPlayerGameBoard : Window
     {
-        private string result;
         private MultiPlayerGameBoardViewModel vm;
 
         public MultiPlayerGameBoard(string result, TelnetMultiClient client)
         {
-            this.result = result;
+            this.Closing += MultiPlayerGameBoard_Closing;
             vm = new MultiPlayerGameBoardViewModel(result, client, this);
             this.DataContext = vm;
             InitializeComponent();
             this.MyMazeBoard.setMazeBoardDatacontext(vm);
             this.OpponentMazeBoard.setMazeBoardDatacontext(vm);
             KeepConnectionOpen();
+        }
+
+        private void MultiPlayerGameBoard_Closing(object sender, EventArgs e)
+        {
+            vm.Closed();
         }
 
         private void KeepConnectionOpen()
