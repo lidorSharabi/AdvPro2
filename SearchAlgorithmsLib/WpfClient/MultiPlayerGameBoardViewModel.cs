@@ -83,11 +83,6 @@ namespace WpfClient
             model.JoinMaze();
         }
 
-        internal string ContinuousReading()
-        {
-            return model.ContinuousReading();
-        }
-
         internal string Read()
         {
             return model.ReadMoveDirection();
