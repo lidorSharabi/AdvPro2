@@ -78,6 +78,18 @@ namespace WpfClient
             return serverResponse.Replace("end of message", "");
         }
 
+        public string readMove()
+        {
+            string serverResponse = "";
+            while (!reader.EndOfStream)
+            {
+                serverResponse += reader.ReadLine();
+                if (serverResponse.Contains("move"))
+                    break;
+            }
+            return serverResponse;
+        }
+
         internal bool Continue()
         {
             return !keepConnectionOpen;
