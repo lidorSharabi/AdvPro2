@@ -85,7 +85,7 @@ namespace WpfClient
 
         internal void Move(string move)
         {
-            write(move);
+            write(string.Format("play {0}", move));
         }
 
         public string ContinuousReading()
