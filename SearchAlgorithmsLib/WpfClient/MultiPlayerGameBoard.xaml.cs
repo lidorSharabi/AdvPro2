@@ -23,7 +23,7 @@ namespace WpfClient
     {
         private string result;
         private MultiPlayerGameBoardViewModel vm;
-        
+
         public MultiPlayerGameBoard(string result, TelnetMultiClient client)
         {
             this.result = result;
@@ -32,6 +32,23 @@ namespace WpfClient
             InitializeComponent();
             this.MyMazeBoard.setMazeBoardDatacontext(vm);
             this.OpponentMazeBoard.setMazeBoardDatacontext(vm);
+            KeepConnectionOpen();
+        }
+
+        private void KeepConnectionOpen()
+        {
+            new Task(() =>
+            {
+                while (vm.Continue())
+                {
+                    OpponentMoved_OnComplited(vm.Read());
+                }
+            }).Start();
+        }
+
+        private void OpponentMoved_OnComplited(string serverMessageMove)
+        {
+            OpponentMoveAnimation(serverMessageMove);
         }
 
         private void RestartGame_Click(object sender, RoutedEventArgs e)
@@ -58,22 +75,22 @@ namespace WpfClient
 
         internal void OpponentMoveAnimation(string move)
         {
-                Thread.Sleep(200);
-                MazeBoard.Moves keyMove = MazeBoard.Moves.Default;
-                switch (move)
-                {
-                    case "left":
+            Thread.Sleep(200);
+            MazeBoard.Moves keyMove = MazeBoard.Moves.Default;
+            switch (move)
+            {
+                case "left":
                     keyMove = MazeBoard.Moves.Left;
-                        break;
-                    case "right":
+                    break;
+                case "right":
                     keyMove = MazeBoard.Moves.Right;
-                        break;
-                    case "up":
+                    break;
+                case "up":
                     keyMove = MazeBoard.Moves.Up;
-                        break;
-                    case "down":
+                    break;
+                case "down":
                     keyMove = MazeBoard.Moves.Down;
-                        break;
+                    break;
             }
             OpponentMazeBoard.MoveAnimation(keyMove);
         }

@@ -82,12 +82,27 @@ namespace WpfClient
         {
             model.JoinMaze();
         }
-        
 
+        internal string ContinuousReading()
+        {
+            return model.ContinuousReading();
+        }
+
+        internal string Read()
+        {
+            return model.Read();
+        }
 
         internal void Move(string move)
         {
             model.Move(move);
         }
+
+
+        internal bool Continue()
+        {
+            return model.Continue();
+        }
+
     }
 }

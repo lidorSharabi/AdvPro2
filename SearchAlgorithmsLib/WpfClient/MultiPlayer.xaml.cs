@@ -32,23 +32,17 @@ namespace WpfClient
             client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
             InitializeComponent();
             MultiMenu.btnStart.Click += BtnStart_Click;
-            JoinMazeButton.Click += JoinMazeButton_Click;
             this.Closing += ExitWindow;
             vm = new MenuViewModel(new MenuModel(client));
             this.DataContext = vm;
+            vm.ListMaze();
             gameStarted = false;
         }
-
-        private void OnComboboxOpen(object sender, EventArgs e)
-        {
-            vm.ListMaze();
-        }
-
+       
         private void JoinMazeButton_Click(object sender, RoutedEventArgs e)
         {
-            //client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
-            string selectedMazeName = JoinMazesNames.SelectedValue.ToString();
-            client.Join(selectedMazeName);
+            //client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort); 
+            client.Join(JoinMazesNames.SelectedValue.ToString());
             Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
             t.ContinueWith(Join_Read_OnComplited);
         }
@@ -62,7 +56,7 @@ namespace WpfClient
         }
         private void Start_Read_OnComplited(Task<string> obj)
         {
-            Task<string> t2 = Task.Factory.StartNew(() => { return client.read1(); });
+            Task<string> t2 = Task.Factory.StartNew(() => { return client.ContinuousReading(); });
             t2.ContinueWith(ClientJoined_OnComplited);
 
             this.Dispatcher.Invoke(() =>

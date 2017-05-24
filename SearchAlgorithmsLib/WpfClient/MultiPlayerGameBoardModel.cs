@@ -46,10 +46,25 @@ namespace WpfClient
             client.Move(move);
         }
 
-        //internal void StartMaze()
-        //{
-        //    client.Start(this.MazeName);
-        //}
+        internal bool Continue()
+        {
+            return client.Continue();
+        }
 
+        internal string ContinuousReading()
+        {
+            string serverResponse = client.ContinuousReading();
+            JObject json = new JObject();
+            json = JObject.Parse(serverMessage);
+            return (string)json.GetValue("Direction");
+        }
+
+        internal string Read()
+        {
+            string serverResponse = client.read();
+            JObject json = new JObject();
+            json = JObject.Parse(serverMessage);
+            return (string)json.GetValue("Direction");
+        }
     }
 }

@@ -54,6 +54,11 @@ namespace WpfClient
         public void connect(string ip, int port)
         {
             ep = new IPEndPoint(IPAddress.Parse(ip), port);
+            client = new TcpClient();
+            client.Connect(ep);
+            stream = client.GetStream();
+            writer = new StreamWriter(stream);
+            reader = new StreamReader(stream);
         }
 
         public void disconnect()
@@ -63,7 +68,6 @@ namespace WpfClient
 
         public string read()
         {
-            reader = new StreamReader(stream);
             string serverResponse = "";
             while (!reader.EndOfStream)
             {
@@ -74,12 +78,17 @@ namespace WpfClient
             return serverResponse.Replace("end of message", "");
         }
 
+        internal bool Continue()
+        {
+            return !keepConnectionOpen;
+        }
+
         internal void Move(string move)
         {
             write(move);
         }
 
-        public string read1()
+        public string ContinuousReading()
         {
             //reader = new StreamReader(stream);
             string serverResponse = "";
@@ -87,19 +96,15 @@ namespace WpfClient
             {
                 serverResponse += reader.ReadLine();
                 Console.WriteLine(serverResponse);
-                if (serverResponse.Contains("}}"))
+                if (serverResponse.Contains("}}") || serverResponse.Contains("Direction"))
                     break;
             }
-            return serverResponse.Replace("end of message", "");
+            return serverResponse;
         }
 
 
         public void write(string command)
         {
-            client = new TcpClient();
-            client.Connect(ep);
-            stream = client.GetStream();
-            writer = new StreamWriter(stream);
             writer.AutoFlush = true;
             //Send command to server
             writer.WriteLine(command);
