@@ -22,11 +22,21 @@ namespace WpfClient
     /// </summary>
     public partial class SinglePlayer : Window
     {
-
+        /// <summary>
+        /// event restarter
+        /// </summary>
         ManualResetEvent d = new ManualResetEvent(false);
+        /// <summary>
+        /// the client
+        /// </summary>
         TelnetSingaleClient client = new TelnetSingaleClient();
+        /// <summary>
+        /// checking if the user started a game
+        /// </summary>
         bool gameStarted;
-
+        /// <summary>
+        /// Ctor
+        /// </summary>
         public SinglePlayer()
         {
             InitializeComponent();
@@ -34,7 +44,11 @@ namespace WpfClient
             this.Closing += ExitWindow;
             gameStarted = false;
         }
-
+        /// <summary>
+        /// event for clicking on the start game button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
             client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
@@ -42,7 +56,10 @@ namespace WpfClient
             Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
             t.ContinueWith(Generate_Raed_OnComplited);
         }
-
+        /// <summary>
+        /// after we press start we display a waiting screen
+        /// </summary>
+        /// <param name="obj"></param>
         private void Generate_Raed_OnComplited(Task<string> obj)
         {
             this.Dispatcher.Invoke(() =>
@@ -58,7 +75,10 @@ namespace WpfClient
                 this.Close();
             });
         }
-
+        /// if the user wants to exit it will go to the main menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitWindow(object sender, CancelEventArgs e)
         {
             if (!gameStarted)

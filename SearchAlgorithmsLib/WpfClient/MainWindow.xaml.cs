@@ -20,12 +20,19 @@ namespace WpfClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Ctor
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
-
+        /// <summary>
+        /// event for clicking on the single player game button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SingleButtonClick(object sender, RoutedEventArgs e)
         {
             SinglePlayer singlePlayer = new SinglePlayer();
@@ -35,7 +42,11 @@ namespace WpfClient
             singlePlayer.ShowDialog();
             
         }
-
+        /// <summary>
+        /// event for clicking on the multi player game button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MultiButtonClick(object sender, RoutedEventArgs e)
         {
             MultiPlayer multiPlayer = new MultiPlayer();
@@ -45,7 +56,11 @@ namespace WpfClient
             multiPlayer.ShowDialog();
             
         }
-
+        /// <summary>
+        /// event for clicking on the settings button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SettingsButtonClick(object sender, RoutedEventArgs e)
         {
             Settings settings = new Settings();

@@ -267,7 +267,7 @@ namespace WpfClient.Controls
                     clientImage = (Image)child;
                 }
             }
-
+            // getting the placement of the player on the board
             var top = (rowPlayerPos)* clientImage.Height;
             var left = (colPlayerPos)*clientImage.Width;
 
@@ -325,12 +325,19 @@ namespace WpfClient.Controls
             }
         }
 
-
+        /// <summary>
+        /// event of winning
+        /// </summary>
         public void EndOfGame()
         {
             OnYouWonEventEvent(new EventArgs());
         }
 
+        /// <summary>
+        /// restarting game by placing the plyer in the initial position
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void RestartGame(object sender, RoutedEventArgs e)
         {
             foreach (UIElement child in myCanvas.Children)
@@ -349,6 +356,10 @@ namespace WpfClient.Controls
             AddImage(colStartPos, rowStartPos, ImageSource, "Player");
         }
 
+        /// <summary>
+        /// animation for the solve command
+        /// </summary>
+        /// <param name="move"></param>
         public void MoveAnimation(Moves move)
         {
             this.Dispatcher.Invoke(() =>
@@ -362,7 +373,6 @@ namespace WpfClient.Controls
                     }
                 }
 
-                Vector offset = VisualTreeHelper.GetOffset(clientImage);
                 var top = (rowPlayerPos) * clientImage.Height;
                 var left = (colPlayerPos) * clientImage.Width;
 

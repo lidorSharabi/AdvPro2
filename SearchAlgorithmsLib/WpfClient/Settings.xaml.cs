@@ -19,13 +19,24 @@ namespace WpfClient
     /// </summary>
     public partial class Settings : Window
     {
+        /// <summary>
+        /// the settings viewmodel
+        /// </summary>
         private SettingsViewModel vm;
+        /// <summary>
+        /// Ctor
+        /// </summary>
         public Settings()
         {
             InitializeComponent();
             vm = new SettingsViewModel(new ApplicationSettingsModel());
             this.DataContext = vm;
         }
+        /// <summary>
+        /// event for clicking the ok button in the settings window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             vm.SaveSettings();
@@ -33,6 +44,11 @@ namespace WpfClient
             win.Show();
             this.Close();
         }
+        /// <summary>
+        /// event for clicking the cancel button in the settings window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             MainWindow win = (MainWindow)Application.Current.MainWindow;

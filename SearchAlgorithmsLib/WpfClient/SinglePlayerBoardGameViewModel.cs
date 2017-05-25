@@ -6,17 +6,33 @@ using System.Threading.Tasks;
 
 namespace WpfClient
 {
+    /// <summary>
+    /// the single player gmae viewmodel
+    /// </summary>
     class SinglePlayerBoardGameViewModel : ViewModel
     {
+        /// <summary>
+        /// the model of the single player game
+        /// </summary>
         SinglePlayerBoardGameModel model;
+        /// <summary>
+        /// the single player game board
+        /// </summary>
         SinglePlayerGameBoard view;
-
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="serverMessage"></param>
+        /// <param name="client"></param>
+        /// <param name="view"></param>
         public SinglePlayerBoardGameViewModel(string serverMessage, TelnetSingaleClient client, SinglePlayerGameBoard view)
         {
             this.model = new SinglePlayerBoardGameModel(serverMessage , client);
             this.view = view;
         }
-
+        /// <summary>
+        /// the maze name property
+        /// </summary>
         public string MazeName
         {
             get { return model.MazeName; }
@@ -26,7 +42,9 @@ namespace WpfClient
                 NotifyPropertyChanged("MazeName");
             }
         }
-
+        /// <summary>
+        /// the maze rows property
+        /// </summary>
         public int MazeRows
         {
             get { return model.MazeRows; }
@@ -36,7 +54,9 @@ namespace WpfClient
                 NotifyPropertyChanged("MazeRows");
             }
         }
-
+        /// <summary>
+        /// the maze columns property
+        /// </summary>
         public int MazeCols
         {
             get { return model.MazeCols; }
@@ -46,7 +66,9 @@ namespace WpfClient
                 NotifyPropertyChanged("MazeCols");
             }
         }
-
+        /// <summary>
+        /// the string maze property
+        /// </summary>
         public string MazeString
         {
             get { return model.MazeString; }
@@ -56,7 +78,9 @@ namespace WpfClient
                 NotifyPropertyChanged("MazeString");
             }
         }
-
+        /// <summary>
+        /// the initial position property
+        /// </summary>
         public string InitialPoint
         {
             get { return model.InitialPoint; }
@@ -66,7 +90,9 @@ namespace WpfClient
                 NotifyPropertyChanged("StartPoint");
             }
         }
-
+        /// <summary>
+        /// the goal position property
+        /// </summary>
         public string GoalPoint
         {
             get { return model.GoalPoint; }
@@ -76,14 +102,19 @@ namespace WpfClient
                 NotifyPropertyChanged("EndPoint");
             }
         }
-
+        /// <summary>
+        /// calling the solve function in the model
+        /// </summary>
         internal void SolveMaze()
         {
             model.SolveMaze();
             Task<string> t = Task.Factory.StartNew(() => { return model.client.read(); });
             t.ContinueWith(SolveMaze_Raed_OnComplited);
         }
-
+        /// <summary>
+        /// getting the solve string from the server response
+        /// </summary>
+        /// <param name="obj"></param>
         private void SolveMaze_Raed_OnComplited(Task<string> obj)
         {
             string response = obj.Result;

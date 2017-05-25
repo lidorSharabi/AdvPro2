@@ -6,13 +6,26 @@ using System.Threading.Tasks;
 
 namespace WpfClient
 {
+    /// <summary>
+    /// the view model of the settings window
+    /// </summary>
     public class SettingsViewModel : ViewModel
     {
+        /// <summary>
+        /// the model of the settings
+        /// </summary>
         private ISettingsModel model;
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="model"></param>
         public SettingsViewModel(ISettingsModel model)
         {
             this.model = model;
         }
+        /// <summary>
+        /// the ip of the server property
+        /// </summary>
         public string ServerIP
         {
             get { return model.ServerIP; }
@@ -22,6 +35,9 @@ namespace WpfClient
                 NotifyPropertyChanged("ServerIP");
             }
         }
+        /// <summary>
+        /// the port of the server property
+        /// </summary>
         public int ServerPort
         {
             get { return model.ServerPort; }
@@ -31,6 +47,9 @@ namespace WpfClient
                 NotifyPropertyChanged("ServerPort");
             }
         }
+        /// <summary>
+        /// the defaul maze rows property
+        /// </summary>
         public int MazeRows
         {
             get { return model.MazeRows; }
@@ -40,7 +59,9 @@ namespace WpfClient
                 NotifyPropertyChanged("MazeRows");
             }
         }
-
+        /// <summary>
+        /// the default maze cols property
+        /// </summary>
         public int MazeCols
         {
             get { return model.MazeCols; }
@@ -50,7 +71,9 @@ namespace WpfClient
                 NotifyPropertyChanged("MazeCols");
             }
         }
-
+        /// <summary>
+        /// the default search algorithm
+        /// </summary>
         public int SearchAlgorithm
         {
             get { return model.SearchAlgorithm; }
@@ -60,6 +83,9 @@ namespace WpfClient
                 NotifyPropertyChanged("SearchAlgorithm");
             }
         }
+        /// <summary>
+        /// saving the settings the user changed
+        /// </summary>
         public void SaveSettings()
         {
             model.SaveSettings();

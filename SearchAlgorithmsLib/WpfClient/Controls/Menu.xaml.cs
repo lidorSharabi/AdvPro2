@@ -20,7 +20,9 @@ namespace WpfClient.Controls
     /// </summary>
     public partial class Menu : UserControl
     {
-        
+        /// <summary>
+        /// Ctor
+        /// </summary>
         public Menu()
         {
             InitializeComponent();

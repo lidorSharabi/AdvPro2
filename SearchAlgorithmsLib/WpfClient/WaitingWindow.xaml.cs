@@ -19,6 +19,9 @@ namespace WpfClient
     /// </summary>
     public partial class WaitingWindow : Window
     {
+        /// <summary>
+        /// Ctor
+        /// </summary>
         public WaitingWindow()
         {
             InitializeComponent();

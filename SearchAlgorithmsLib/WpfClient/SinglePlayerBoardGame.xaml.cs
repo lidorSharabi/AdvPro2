@@ -22,8 +22,15 @@ namespace WpfClient
     /// </summary>
     public partial class SinglePlayerGameBoard : Window
     {
+        /// <summary>
+        /// the single player game viewmodel
+        /// </summary>
         SinglePlayerBoardGameViewModel vm;
-
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="serverMessage"></param>
+        /// <param name="client"></param>
         public SinglePlayerGameBoard(string serverMessage, TelnetSingaleClient client)
         {
             vm = new SinglePlayerBoardGameViewModel(serverMessage, client, this);
@@ -31,12 +38,20 @@ namespace WpfClient
             InitializeComponent();
             this.MazeName.setMazeBoardDatacontext(vm);
         }
-
+        /// <summary>
+        /// event for pressing the keys
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             MazeName.gridMazeBoard_KeyDown(sender, e);
         }
-
+        /// <summary>
+        /// event when clicking the restart game button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RestartGame_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to restart?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -46,7 +61,11 @@ namespace WpfClient
             }
         }
 
-
+        /// <summary>
+        /// event when clicking the solve maze button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SolveMaze_Click(object sender, RoutedEventArgs e)
         {
             //set the client image to start point (the point of the solve path)
@@ -54,7 +73,11 @@ namespace WpfClient
             MazeName.RestartGame(sender, e);
             vm.SolveMaze();
         }
-
+        /// <summary>
+        /// event when clicking the main menu button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainMenu_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to go back to main menu?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -65,7 +88,10 @@ namespace WpfClient
                 this.Close();
             }
         }
-
+        /// <summary>
+        /// the animation of the solve maze command
+        /// </summary>
+        /// <param name="mazeSolvePath"></param>
         internal void SolveMazeAnimation(string mazeSolvePath)
         {
             foreach (char ch in mazeSolvePath)

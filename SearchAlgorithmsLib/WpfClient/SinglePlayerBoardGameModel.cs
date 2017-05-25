@@ -9,19 +9,50 @@ using Newtonsoft.Json.Linq;
 
 namespace WpfClient
 {
+    /// <summary>
+    /// the single player game model
+    /// </summary>
     class SinglePlayerBoardGameModel: ISinglePlayerBoardGameModel
     {
+        /// <summary>
+        /// the message from the server
+        /// </summary>
         private string serverMessage;
+        /// <summary>
+        /// the client
+        /// </summary>
         public TelnetSingaleClient client;
-        public string MazeName; 
+        /// <summary>
+        /// the maze name
+        /// </summary>
+        public string MazeName;
+        /// <summary>
+        /// the maze columns
+        /// </summary>
         public int MazeCols { get; set; }
+        /// <summary>
+        /// the maze rows
+        /// </summary>
         public int MazeRows { get; set; }
+        /// <summary>
+        /// the string of the maze
+        /// </summary>
         public string MazeString { get; set; }
+        /// <summary>
+        /// the goal position
+        /// </summary>
         public string GoalPoint { get; set; }
+        /// <summary>
+        /// the initial position of the player
+        /// </summary>
         public string InitialPoint { get; set; }
         
 
-
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="serverMessage"></param>
+        /// <param name="client"></param>
         public SinglePlayerBoardGameModel(string serverMessage, TelnetSingaleClient client)
         {
             this.serverMessage = serverMessage;
@@ -49,7 +80,9 @@ namespace WpfClient
             PosJ = (JObject)json.GetValue("End");
             this.GoalPoint = (string)PosJ.GetValue("Row") + "," + (string)PosJ.GetValue("Col");
         }
-
+        /// <summary>
+        /// calling the solve command in the client
+        /// </summary>
         internal void SolveMaze()
         {
             client.Solve(this.MazeName);

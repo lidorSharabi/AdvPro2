@@ -22,11 +22,25 @@ namespace WpfClient
     /// 
     public partial class MultiPlayer : Window
     {
+        /// <summary>
+        /// the multiplayer view model
+        /// </summary>
         MenuViewModel vm;
+        /// <summary>
+        /// the client
+        /// </summary>
         TelnetMultiClient client = new TelnetMultiClient();
+        /// <summary>
+        /// checking if the user started a game
+        /// </summary>
         bool gameStarted;
-
+        /// <summary>
+        /// the waiting window after the start was pressed
+        /// </summary>
         WaitingWindow waitingWindow;
+        /// <summary>
+        /// Ctor
+        /// </summary>
         public MultiPlayer()
         {
             client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
@@ -38,7 +52,11 @@ namespace WpfClient
             vm.ListMaze();
             gameStarted = false;
         }
-       
+       /// <summary>
+       /// event for clicking on the join game button
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void JoinMazeButton_Click(object sender, RoutedEventArgs e)
         {
             //client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort); 
@@ -46,7 +64,11 @@ namespace WpfClient
             Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
             t.ContinueWith(Join_Read_OnComplited);
         }
-
+        /// <summary>
+        /// event for clicking on the start game button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
             // client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
@@ -54,6 +76,10 @@ namespace WpfClient
             Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
             t.ContinueWith(Start_Read_OnComplited);
         }
+        /// <summary>
+        /// after we press start we display a waiting screen
+        /// </summary>
+        /// <param name="obj"></param>
         private void Start_Read_OnComplited(Task<string> obj)
         {
             Task<string> t2 = Task.Factory.StartNew(() => { return client.WatingForJoin(); });
@@ -74,7 +100,10 @@ namespace WpfClient
             });
 
         }
-
+        /// <summary>
+        /// after we get the maze we continue to display the multiplayer screen
+        /// </summary>
+        /// <param name="obj"></param>
         private void ClientJoined_OnComplited(Task<string> obj)
         {
             Join_Or_ClientJoined_OnComplited(obj.Result);
@@ -83,12 +112,18 @@ namespace WpfClient
                 waitingWindow.Close();
             });
         }
-
+        /// <summary>
+        /// after we get the maze we continue to display the multiplayer screen
+        /// </summary>
+        /// <param name="obj"></param>
         private void Join_Read_OnComplited(Task<string> obj)
         {
             Join_Or_ClientJoined_OnComplited(obj.Result);
         }
-
+        /// <summary>
+        /// after we get the maze we continue to display the multiplayer screen
+        /// </summary>
+        /// <param name="obj"></param>
         void Join_Or_ClientJoined_OnComplited(string serverResponse)
         {
             this.Dispatcher.Invoke(() =>
@@ -104,7 +139,11 @@ namespace WpfClient
                 this.Close();
             });
         }
-
+        /// <summary>
+        /// if the user wants to exit it will go to the main menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitWindow(object sender, CancelEventArgs e)
         {
             if (!gameStarted)
