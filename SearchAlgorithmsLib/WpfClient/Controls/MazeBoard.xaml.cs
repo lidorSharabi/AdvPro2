@@ -25,6 +25,13 @@ namespace WpfClient.Controls
         /// <summary>
         /// The player image
         /// </summary>
+        public event EventHandler YouWonEvent;
+
+        protected virtual void OnYouWonEventEvent(EventArgs args)
+        {
+            YouWonEvent?.Invoke(this, args);
+        }
+
         Image clientImage = new Image();
         /// <summary>
         /// Width and height of blocks in board
@@ -321,10 +328,7 @@ namespace WpfClient.Controls
 
         public void EndOfGame()
         {
-            var targetWindow = Window.GetWindow(this);
-            targetWindow.Close();
-            YouWon youWon = new YouWon();
-            youWon.Show();
+            OnYouWonEventEvent(new EventArgs());
         }
 
         public void RestartGame(object sender, RoutedEventArgs e)
@@ -409,6 +413,11 @@ namespace WpfClient.Controls
                             break;
                         }
                     default: break;
+                }
+
+                if (indexInMaze == endOfGame)
+                {
+                    EndOfGame();
                 }
             });
         }

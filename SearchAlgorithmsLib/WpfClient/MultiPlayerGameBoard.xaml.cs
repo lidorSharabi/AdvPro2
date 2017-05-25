@@ -21,18 +21,40 @@ namespace WpfClient
     /// </summary>
     public partial class MultiPlayerGameBoard : Window
     {
-        private string result;
         private MultiPlayerGameBoardViewModel vm;
 
         public MultiPlayerGameBoard(string result, TelnetMultiClient client)
         {
-            this.result = result;
-            this.DataContext = vm;
+            this.Closing += MultiPlayerGameBoard_Closing;
             vm = new MultiPlayerGameBoardViewModel(result, client, this);
+            this.DataContext = vm;
             InitializeComponent();
+            MyMazeBoard.YouWonEvent += MyMazeBoard_YouWonEvent;
+            OpponentMazeBoard.YouWonEvent += OpponentMazeBoard_YouWonEvent;
+                
             this.MyMazeBoard.setMazeBoardDatacontext(vm);
             this.OpponentMazeBoard.setMazeBoardDatacontext(vm);
             KeepConnectionOpen();
+        }
+
+        private void OpponentMazeBoard_YouWonEvent(object sender, EventArgs e)
+        {
+            this.Close();
+            //TODO - replace to "you lose" window
+            YouWon youWon = new YouWon();
+            youWon.Show();
+        }
+
+        private void MyMazeBoard_YouWonEvent(object sender, EventArgs e)
+        {
+            this.Close();
+            YouWon youWon = new YouWon();
+            youWon.Show();
+        }
+
+        private void MultiPlayerGameBoard_Closing(object sender, EventArgs e)
+        {
+            vm.CloseGame();
         }
 
         private void KeepConnectionOpen()
@@ -48,12 +70,16 @@ namespace WpfClient
 
         private void OpponentMoved_OnComplited(string serverMessageMove)
         {
-            OpponentMoveAnimation(serverMessageMove);
-        }
-
-        private void RestartGame_Click(object sender, RoutedEventArgs e)
-        {
-
+            if (serverMessageMove.Equals("closed"))
+            {
+                vm.CloseGame();
+                MainWindow win = (MainWindow)Application.Current.MainWindow;
+                win.Show();
+            }
+            else
+            {
+                OpponentMoveAnimation(serverMessageMove);
+            }
         }
 
         private void BackToMainMenu_Click(object sender, RoutedEventArgs e)
@@ -69,13 +95,16 @@ namespace WpfClient
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            MyMazeBoard.gridMazeBoard_KeyDown(sender, e);
-            vm.Move(e.Key.ToString().ToLower());
+            string move = e.Key.ToString().ToLower();
+            if (move.Equals("up") || move.Equals("down") || move.Equals("left") || move.Equals("right"))
+            {
+                vm.Move(move);
+                MyMazeBoard.gridMazeBoard_KeyDown(sender, e);
+            }
         }
 
         internal void OpponentMoveAnimation(string move)
         {
-            Thread.Sleep(200);
             MazeBoard.Moves keyMove = MazeBoard.Moves.Default;
             switch (move)
             {

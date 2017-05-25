@@ -56,7 +56,7 @@ namespace WpfClient
         }
         private void Start_Read_OnComplited(Task<string> obj)
         {
-            Task<string> t2 = Task.Factory.StartNew(() => { return client.ContinuousReading(); });
+            Task<string> t2 = Task.Factory.StartNew(() => { return client.WatingForJoin(); });
             t2.ContinueWith(ClientJoined_OnComplited);
 
             this.Dispatcher.Invoke(() =>

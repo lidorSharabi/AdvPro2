@@ -10,7 +10,6 @@ namespace WpfClient
 {
     class MultiPlayerGameBoardModel
     {
-        private string serverMessage;
         public TelnetMultiClient client;
         public string MazeName;
         public int MazeCols { get; set; }
@@ -21,7 +20,6 @@ namespace WpfClient
 
         public MultiPlayerGameBoardModel(string serverMessage, TelnetMultiClient client)
         {
-            this.serverMessage = serverMessage;
             this.client = client;
             JObject json = new JObject();
             json = JObject.Parse(serverMessage);
@@ -54,11 +52,27 @@ namespace WpfClient
 
         internal string ReadMoveDirection()
         {
-            string serverResponse = client.readMoveDirection();
-            JObject json = new JObject();
-            json = JObject.Parse(serverResponse);
-            string s = (string)json.GetValue("Direction");
-            return s;
+            string serverResponse = "";
+            try
+            {
+                serverResponse = client.readMoveDirectionAndClose();
+                JObject json = new JObject();
+                json = JObject.Parse(serverResponse);
+                return (string)json.GetValue("Direction");
+            }
+            catch
+            {
+                if (serverResponse.Contains("closed"))
+                {
+                    return "close";
+                }
+                return String.Empty;
+            }
+        }
+
+        internal void Disconnect()
+        {
+            client.CloseGame(this.MazeName);
         }
     }
 }

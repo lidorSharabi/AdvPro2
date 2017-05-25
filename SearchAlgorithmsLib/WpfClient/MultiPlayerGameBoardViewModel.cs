@@ -47,7 +47,7 @@ namespace WpfClient
                 NotifyPropertyChanged("MazeCols");
             }
         }
-
+        
         public string MazeString
         {
             get { return model.MazeString; }
@@ -97,6 +97,11 @@ namespace WpfClient
         internal bool Continue()
         {
             return model.Continue();
+        }
+
+        internal void CloseGame()
+        {
+            model.Disconnect();
         }
 
     }
