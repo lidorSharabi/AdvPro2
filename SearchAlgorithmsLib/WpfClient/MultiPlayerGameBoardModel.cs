@@ -95,7 +95,7 @@ namespace WpfClient
             string serverResponse = "";
             try
             {
-                serverResponse = client.readMoveDirectionAndClose();
+                serverResponse = client.ReadMoveDirectionAndClose();
                 JObject json = new JObject();
                 json = JObject.Parse(serverResponse);
                 return (string)json.GetValue("Direction");

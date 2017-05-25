@@ -12,10 +12,6 @@ namespace WpfClient
     public class TelnetSingaleClient : ITelnetClient
     {
         /// <summary>
-        /// running variables
-        /// </summary>
-        bool keepConnectionOpen = false, run = true;
-        /// <summary>
         /// stream reader variable
         /// </summary>
         StreamReader reader;
@@ -56,7 +52,7 @@ namespace WpfClient
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
-        public void connect(string ip, int port)
+        public void Connect(string ip, int port)
         {
             ep = new IPEndPoint(IPAddress.Parse(ip), port);
         }
@@ -68,7 +64,7 @@ namespace WpfClient
         /// <param name="txtCols"></param>
         public void Generate(string txtMazeName, string txtRows, string txtCols)
         {
-            write(String.Format("generate {0} {1} {2}", txtMazeName, txtRows, txtCols));
+            Write(String.Format("generate {0} {1} {2}", txtMazeName, txtRows, txtCols));
         }
         /// <summary>
         /// sending the solve command to the server
@@ -76,12 +72,12 @@ namespace WpfClient
         /// <param name="mazeName"></param>
         public void Solve(string mazeName)
         {
-            write(String.Format("solve {0} {1} ", mazeName, Properties.Settings.Default.SearchAlgorithm));
+            Write(String.Format("solve {0} {1} ", mazeName, Properties.Settings.Default.SearchAlgorithm));
         }
         /// <summary>
         /// discnnecting from the server
         /// </summary>
-        public void disconnect()
+        public void Disconnect()
         {
             throw new NotImplementedException("single player shouldn't call this function");
         }
@@ -89,7 +85,7 @@ namespace WpfClient
         /// reading from the server
         /// </summary>
         /// <returns></returns>
-        public string read()
+        public string Read()
         {
             reader = new StreamReader(stream);
             string serverResponse = "";
@@ -106,7 +102,7 @@ namespace WpfClient
         /// writing to the server
         /// </summary>
         /// <param name="command"></param>
-        public void write(string command)
+        public void Write(string command)
         {
             client = new TcpClient();
             client.Connect(ep);

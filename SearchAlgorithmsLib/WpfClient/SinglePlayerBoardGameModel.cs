@@ -57,18 +57,6 @@ namespace WpfClient
         {
             this.serverMessage = serverMessage;
             this.client = client;
-            /*
-            Maze maze = Maze.FromJSON(serverMessage);
-            this.MazeName = maze.Name;
-            this.MazeCols = maze.Cols;
-            this.MazeRows = maze.Rows;
-            this.GoalPoint = maze.GoalPos.Row + "," + maze.GoalPos.Col;
-            this.InitialPoint = maze.InitialPos.Row + "," + maze.InitialPos.Col;
-            //calculate maze string path
-            int pFrom = serverMessage.IndexOf("Maze\":") + "Maze".Length + 1;
-            int pTo = serverMessage.LastIndexOf("Rows") - 5;
-            this.MazeString  = serverMessage.Substring(pFrom, pTo - pFrom);
-            */
             JObject json = new JObject();
             json = JObject.Parse(serverMessage);
             this.MazeName = (string)json.GetValue("Name");

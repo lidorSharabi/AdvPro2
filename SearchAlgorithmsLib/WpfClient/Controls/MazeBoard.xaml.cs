@@ -23,15 +23,20 @@ namespace WpfClient.Controls
     public partial class MazeBoard : UserControl
     {
         /// <summary>
-        /// The player image
+        /// event handler for the winning
         /// </summary>
         public event EventHandler YouWonEvent;
-
+        /// <summary>
+        /// event for the winning of the player
+        /// </summary>
+        /// <param name="args"></param>
         protected virtual void OnYouWonEventEvent(EventArgs args)
         {
             YouWonEvent?.Invoke(this, args);
         }
-
+        /// <summary>
+        /// The player image
+        /// </summary>
         Image clientImage = new Image();
         /// <summary>
         /// Width and height of blocks in board
@@ -49,6 +54,10 @@ namespace WpfClient.Controls
         /// variables for the game moves
         /// </summary>
         int indexInMaze = 0, initialIndexInMaze = 0, endOfGame = 0;
+        /// <summary>
+        /// checking if the animation is for the solution
+        /// </summary>
+        public bool Solve;
         /// <summary>
         /// enum of moves
         /// </summary>
@@ -151,13 +160,14 @@ namespace WpfClient.Controls
         {
             InitializeComponent();
             this.Loaded += MazeBoard_Loaded;
+            Solve = false;
         }
 
         /// <summary>
         /// Setting the data context of the maze board
         /// </summary>
         /// <param name="vm"></param>
-        public void setMazeBoardDatacontext(Object vm)
+        public void SetMazeBoardDatacontext(Object vm)
         {
             this.DataContext = vm;
         }
@@ -209,7 +219,6 @@ namespace WpfClient.Controls
                 }
             }
 
-            //setStartUpPoint();
         }
 
         /// <summary>
@@ -257,7 +266,7 @@ namespace WpfClient.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void gridMazeBoard_KeyDown(object sender, KeyEventArgs e)
+        public void GridMazeBoard_KeyDown(object sender, KeyEventArgs e)
         {
             int pointer = rowPlayerPos * Rows + colPlayerPos + 1;
             foreach (UIElement child in myCanvas.Children)
@@ -424,12 +433,12 @@ namespace WpfClient.Controls
                         }
                     default: break;
                 }
-
-                if (indexInMaze == endOfGame)
-                {
-                    EndOfGame();
-                }
             });
+
+            if (indexInMaze == endOfGame && !Solve)
+            {
+                EndOfGame();
+            }
         }
     }
 }

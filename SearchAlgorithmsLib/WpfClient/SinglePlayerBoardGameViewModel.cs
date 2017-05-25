@@ -108,7 +108,7 @@ namespace WpfClient
         internal void SolveMaze()
         {
             model.SolveMaze();
-            Task<string> t = Task.Factory.StartNew(() => { return model.client.read(); });
+            Task<string> t = Task.Factory.StartNew(() => { return model.client.Read(); });
             t.ContinueWith(SolveMaze_Raed_OnComplited);
         }
         /// <summary>

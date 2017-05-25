@@ -27,6 +27,10 @@ namespace WpfClient
         /// </summary>
         SinglePlayerBoardGameViewModel vm;
         /// <summary>
+        /// checking if the player won when closing
+        /// </summary>
+        bool winning;
+        /// <summary>
         /// Ctor
         /// </summary>
         /// <param name="serverMessage"></param>
@@ -36,7 +40,22 @@ namespace WpfClient
             vm = new SinglePlayerBoardGameViewModel(serverMessage, client, this);
             this.DataContext = vm;
             InitializeComponent();
-            this.MazeName.setMazeBoardDatacontext(vm);
+            this.MazeName.SetMazeBoardDatacontext(vm);
+            this.Closing += ExitWindow;
+            MazeName.YouWonEvent += MyMazeBoard_YouWonEvent;
+            winning = false;
+        }
+        /// <summary>
+        /// event for the winning of myself
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MyMazeBoard_YouWonEvent(object sender, EventArgs e)
+        {
+            winning = true;
+            this.Close();
+            YouWon youWon = new YouWon();
+            youWon.Show();
         }
         /// <summary>
         /// event for pressing the keys
@@ -45,7 +64,7 @@ namespace WpfClient
         /// <param name="e"></param>
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            MazeName.gridMazeBoard_KeyDown(sender, e);
+            MazeName.GridMazeBoard_KeyDown(sender, e);
         }
         /// <summary>
         /// event when clicking the restart game button
@@ -68,8 +87,9 @@ namespace WpfClient
         /// <param name="e"></param>
         private void SolveMaze_Click(object sender, RoutedEventArgs e)
         {
-            //set the client image to start point (the point of the solve path)
+            MazeName.Solve = true;
             this.Stack.IsEnabled = false;
+            //set the client image to start point (the point of the solve path)
             MazeName.RestartGame(sender, e);
             vm.SolveMaze();
         }
@@ -80,13 +100,7 @@ namespace WpfClient
         /// <param name="e"></param>
         private void MainMenu_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to go back to main menu?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {
-                MainWindow win = (MainWindow)Application.Current.MainWindow;
-                win.Show();
-                this.Close();
-            }
+            this.Close();
         }
         /// <summary>
         /// the animation of the solve maze command
@@ -118,6 +132,27 @@ namespace WpfClient
             {
                 this.Stack.IsEnabled = true;
             }));
+        }
+
+        /// if the user wants to exit it will go to the main menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExitWindow(object sender, CancelEventArgs e)
+        {
+            if (!winning)
+            {
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to go back to main menu?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    MainWindow win = (MainWindow)Application.Current.MainWindow;
+                    win.Show();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

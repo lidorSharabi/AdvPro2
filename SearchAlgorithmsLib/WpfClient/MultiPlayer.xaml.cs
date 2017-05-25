@@ -43,7 +43,7 @@ namespace WpfClient
         /// </summary>
         public MultiPlayer()
         {
-            client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
+            client.Connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
             InitializeComponent();
             MultiMenu.btnStart.Click += BtnStart_Click;
             this.Closing += ExitWindow;
@@ -59,10 +59,16 @@ namespace WpfClient
        /// <param name="e"></param>
         private void JoinMazeButton_Click(object sender, RoutedEventArgs e)
         {
-            //client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort); 
-            client.Join(JoinMazesNames.SelectedValue.ToString());
-            Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
-            t.ContinueWith(Join_Read_OnComplited);
+            if (this.JoinMazesNames.Text.Equals(""))
+            {
+                MessageBoxResult result = MessageBox.Show("Please choose game from the list", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                client.Join(JoinMazesNames.SelectedValue.ToString());
+                Task<string> t = Task.Factory.StartNew(() => { return client.Read(); });
+                t.ContinueWith(Join_Read_OnComplited);
+            }
         }
         /// <summary>
         /// event for clicking on the start game button
@@ -71,10 +77,16 @@ namespace WpfClient
         /// <param name="e"></param>
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            // client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
-            client.Start(MultiMenu.txtMazeName.Text, MultiMenu.txtRows.Text, MultiMenu.txtCols.Text);
-            Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
-            t.ContinueWith(Start_Read_OnComplited);
+            if (this.MultiMenu.txtCols.Text.Equals("") || this.MultiMenu.txtRows.Text.Equals(""))
+            {
+                MessageBoxResult result = MessageBox.Show("Please enter columns and rows", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                client.Start(MultiMenu.txtMazeName.Text, MultiMenu.txtRows.Text, MultiMenu.txtCols.Text);
+                Task<string> t = Task.Factory.StartNew(() => { return client.Read(); });
+                t.ContinueWith(Start_Read_OnComplited);
+            }
         }
         /// <summary>
         /// after we press start we display a waiting screen

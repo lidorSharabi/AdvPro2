@@ -16,20 +16,20 @@ namespace WpfClient
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
-        void connect(string ip, int port);
+        void Connect(string ip, int port);
         /// <summary>
         /// manage the writing to the server
         /// </summary>
         /// <param name="command"></param>
-        void write(string command);
+        void Write(string command);
         /// <summary>
         /// manage the reading from the server
         /// </summary>
         /// <returns></returns>
-        string read();
+        string Read();
         /// <summary>
         /// manage the disconnecting from the server
         /// </summary>
-        void disconnect();
+        void Disconnect();
     }
 }

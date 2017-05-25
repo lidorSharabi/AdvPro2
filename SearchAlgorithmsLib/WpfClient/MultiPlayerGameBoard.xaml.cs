@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -26,34 +27,51 @@ namespace WpfClient
         /// </summary>
         private MultiPlayerGameBoardViewModel vm;
         /// <summary>
+        /// checking if the game was closed in the middle
+        /// </summary>
+        bool gameClosed;
+        /// <summary>
+        /// checking if the game was closed by winning
+        /// </summary>
+        bool gameFinished;
+        /// <summary>
         /// Ctor
         /// </summary>
         /// <param name="result"></param>
         /// <param name="client"></param>
         public MultiPlayerGameBoard(string result, TelnetMultiClient client)
         {
-            this.Closing += MultiPlayerGameBoard_Closing;
+            //this.Closing += MultiPlayerGameBoard_Closing;
             vm = new MultiPlayerGameBoardViewModel(result, client, this);
             this.DataContext = vm;
             InitializeComponent();
             MyMazeBoard.YouWonEvent += MyMazeBoard_YouWonEvent;
-            OpponentMazeBoard.YouWonEvent += OpponentMazeBoard_YouWonEvent;
-                
-            this.MyMazeBoard.setMazeBoardDatacontext(vm);
-            this.OpponentMazeBoard.setMazeBoardDatacontext(vm);
+            OpponentMazeBoard.YouWonEvent += OpponentMazeBoard_YoulostEvent;
+
+            this.Closing += ExitWindow;
+            this.MyMazeBoard.SetMazeBoardDatacontext(vm);
+            this.OpponentMazeBoard.SetMazeBoardDatacontext(vm);
             KeepConnectionOpen();
+            gameClosed = false;
+            gameFinished = false;
         }
         /// <summary>
-        /// event for the winnig of the opponent
+        /// event for the losing of the opponent
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OpponentMazeBoard_YouWonEvent(object sender, EventArgs e)
+        private void OpponentMazeBoard_YoulostEvent(object sender, EventArgs e)
         {
-            this.Close();
-            //TODO - replace to "you lose" window
-            YouWon youWon = new YouWon();
-            youWon.Show();
+            gameClosed = true;
+            gameFinished = true;
+            vm.CloseGame();
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                this.Close();
+                YouLost youLost = new YouLost();
+                youLost.Show();
+            }));
+            
         }
         /// <summary>
         /// event for the winning of myself
@@ -62,17 +80,11 @@ namespace WpfClient
         /// <param name="e"></param>
         private void MyMazeBoard_YouWonEvent(object sender, EventArgs e)
         {
-            this.Close();
+            gameClosed = true;
+            gameFinished = true;
             YouWon youWon = new YouWon();
             youWon.Show();
-        }
-        /// <summary>
-        /// closing the game
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MultiPlayerGameBoard_Closing(object sender, EventArgs e)
-        {
+            this.Close();
             vm.CloseGame();
         }
         /// <summary>
@@ -94,14 +106,30 @@ namespace WpfClient
         /// <param name="serverMessageMove"></param>
         private void OpponentMoved_OnComplited(string serverMessageMove)
         {
-            if (serverMessageMove.Equals("closed"))
+            if (serverMessageMove.Equals("close"))
             {
-                vm.CloseGame();
-                MainWindow win = (MainWindow)Application.Current.MainWindow;
-                win.Show();
+                if (!gameFinished)
+                {
+                    vm.CloseGame();
+                    
+                    this.Dispatcher.Invoke((Action)(() =>
+                    {
+                        this.IsEnabled = false;
+                        gameClosed = true;
+                        MessageBoxResult result = MessageBox.Show("The opponent has closed the game", "Closed Game", MessageBoxButton.OK, MessageBoxImage.Information);
+                        if (result == MessageBoxResult.OK)
+                        {
+                            vm.CloseGame();
+                            MainWindow win = (MainWindow)Application.Current.MainWindow;
+                            win.Show();
+                            this.Close();
+                        }
+                    }));
+                }
             }
             else
             {
+
                 OpponentMoveAnimation(serverMessageMove);
             }
         }
@@ -112,13 +140,7 @@ namespace WpfClient
         /// <param name="e"></param>
         private void BackToMainMenu_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to go back to main menu?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {
-                MainWindow win = (MainWindow)Application.Current.MainWindow;
-                win.Show();
-                this.Close();
-            }
+            this.Close();
         }
         /// <summary>
         /// event for pressing the keys
@@ -131,7 +153,7 @@ namespace WpfClient
             if (move.Equals("up") || move.Equals("down") || move.Equals("left") || move.Equals("right"))
             {
                 vm.Move(move);
-                MyMazeBoard.gridMazeBoard_KeyDown(sender, e);
+                MyMazeBoard.GridMazeBoard_KeyDown(sender, e);
             }
         }
         /// <summary>
@@ -159,5 +181,28 @@ namespace WpfClient
             OpponentMazeBoard.MoveAnimation(keyMove);
         }
 
+        /// <summary>
+        /// if the user wants to exit it will go to the main menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExitWindow(object sender, CancelEventArgs e)
+        {
+            
+            if (!gameClosed)
+            {
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to go back to main menu?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    vm.CloseGame();
+                    MainWindow win = (MainWindow)Application.Current.MainWindow;
+                    win.Show();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
     }
 }

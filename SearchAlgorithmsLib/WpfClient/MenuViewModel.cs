@@ -48,7 +48,7 @@ namespace WpfClient
         internal void ListMaze()
         {
             model.List();
-            Task<string> t = Task.Factory.StartNew(() => { return model.client.read(); });
+            Task<string> t = Task.Factory.StartNew(() => { return model.client.Read(); });
             t.ContinueWith(ListMaze_Raed_OnComplited);
         }
         /// <summary>

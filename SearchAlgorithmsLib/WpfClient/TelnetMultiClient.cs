@@ -40,7 +40,7 @@ namespace WpfClient
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
-        public void connect(string ip, int port)
+        public void Connect(string ip, int port)
         {
             ep = new IPEndPoint(IPAddress.Parse(ip), port);
             client = new TcpClient();
@@ -52,7 +52,7 @@ namespace WpfClient
         /// <summary>
         /// disconnecting from the server
         /// </summary>
-        public void disconnect()
+        public void Disconnect()
         {
             this.client.Close();
         }
@@ -60,7 +60,7 @@ namespace WpfClient
         /// reading from the server
         /// </summary>
         /// <returns></returns>
-        public string read()
+        public string Read()
         {
             string serverResponse = "";
             while (!reader.EndOfStream)
@@ -75,7 +75,7 @@ namespace WpfClient
         /// reading the movements of the player in the multiplayer game
         /// </summary>
         /// <returns></returns>
-        public string readMoveDirectionAndClose()
+        public string ReadMoveDirectionAndClose()
         {
             string serverResponse = "";
             try
@@ -83,9 +83,13 @@ namespace WpfClient
                 while (keepConnectionOpen && !reader.EndOfStream)
                 {
                     serverResponse += reader.ReadLine();
-                    if (serverResponse.Contains("Direction") || serverResponse.Contains("has closed the game"))
+                    if (serverResponse.Contains("Direction"))
                     {
                         serverResponse += reader.ReadLine();
+                        break;
+                    }
+                    if(serverResponse.Contains("has closed the game"))
+                    {
                         break;
                     }
                 }
@@ -110,7 +114,7 @@ namespace WpfClient
         /// <param name="move"></param>
         internal void Move(string move)
         {
-            write(string.Format("play {0}", move));
+            Write(string.Format("play {0}", move));
         }
         /// <summary>
         /// waiting for the maze of the multiplayer game
@@ -134,7 +138,7 @@ namespace WpfClient
         /// writing to the server
         /// </summary>
         /// <param name="command"></param>
-        public void write(string command)
+        public void Write(string command)
         {
             try
             {
@@ -155,7 +159,7 @@ namespace WpfClient
         /// <param name="cols"></param>
         public void Start(string name, string rows, string cols)
         {
-            write(string.Format("start {0} {1} {2}", name, rows, cols));
+            Write(string.Format("start {0} {1} {2}", name, rows, cols));
         }
         /// <summary>
         /// sending the join command to the server
@@ -163,14 +167,14 @@ namespace WpfClient
         /// <param name="name"></param>
         public void Join(string name)
         {
-            write(string.Format("join {0}", name));
+            Write(string.Format("join {0}", name));
         }
         /// <summary>
         /// sending the list command to the server
         /// </summary>
         public void List()
         {
-            write(string.Format("list"));
+            Write(string.Format("list"));
         }
         /// <summary>
         /// sending the close command to the server
@@ -178,9 +182,9 @@ namespace WpfClient
         /// <param name="name"></param>
         public void CloseGame(string name)
         {
-            write(string.Format("close {0}", name));
+            Write(string.Format("close {0}", name));
             this.keepConnectionOpen = false;
-            disconnect();
+            Disconnect();
         }
 
     }

@@ -182,7 +182,7 @@ namespace Server
         /// <returns></returns>
         public string CloseMultiPlayerGame(string name, TcpClient client)
         {
-            if (multiplayerMazeDict.Keys.Contains(name) && multiplayerGames.Keys.Contains(client)) 
+            if (multiplayerGames.Keys.Contains(client)) 
             {
                 HandleMultiplayers handle = handleMultiplayersDict[name];
                 TcpClient guest = handle.Guest;

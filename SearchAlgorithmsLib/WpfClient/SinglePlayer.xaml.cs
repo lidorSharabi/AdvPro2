@@ -51,10 +51,17 @@ namespace WpfClient
         /// <param name="e"></param>
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            client.connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
-            client.Generate(SingleMenu.txtMazeName.Text, SingleMenu.txtRows.Text, SingleMenu.txtCols.Text);
-            Task<string> t = Task.Factory.StartNew(() => { return client.read(); });
-            t.ContinueWith(Generate_Raed_OnComplited);
+            if (this.SingleMenu.txtCols.Text.Equals("") || this.SingleMenu.txtRows.Text.Equals(""))
+            {
+                MessageBoxResult result = MessageBox.Show("Please enter columns and rows", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                client.Connect(Properties.Settings.Default.ServerIP, Properties.Settings.Default.ServerPort);
+                client.Generate(SingleMenu.txtMazeName.Text, SingleMenu.txtRows.Text, SingleMenu.txtCols.Text);
+                Task<string> t = Task.Factory.StartNew(() => { return client.Read(); });
+                t.ContinueWith(Generate_Raed_OnComplited);
+            }
         }
         /// <summary>
         /// after we press start we display a waiting screen

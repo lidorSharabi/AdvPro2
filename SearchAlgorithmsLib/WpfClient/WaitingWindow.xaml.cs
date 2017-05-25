@@ -25,6 +25,7 @@ namespace WpfClient
         public WaitingWindow()
         {
             InitializeComponent();
+            this.WindowStyle = WindowStyle.None;
         }
     }
 }
