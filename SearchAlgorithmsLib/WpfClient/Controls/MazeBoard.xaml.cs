@@ -22,13 +22,34 @@ namespace WpfClient.Controls
     /// </summary>
     public partial class MazeBoard : UserControl
     {
+        /// <summary>
+        /// The player image
+        /// </summary>
         Image clientImage = new Image();
+        /// <summary>
+        /// Width and height of blocks in board
+        /// </summary>
         double width, height;
+        /// <summary>
+        /// variables for cols an rows
+        /// </summary>
         int colGoalPos, rowGoalPos, colStartPos, rowStartPos;
+        /// <summary>
+        /// variables for cols and rows of player
+        /// </summary>
         int rowPlayerPos, colPlayerPos;
+        /// <summary>
+        /// variables for the game moves
+        /// </summary>
         int indexInMaze = 0, initialIndexInMaze = 0, endOfGame = 0;
+        /// <summary>
+        /// enum of moves
+        /// </summary>
         public enum Moves {Left, Right, Up, Down, Default};
 
+        /// <summary>
+        /// maze rows property
+        /// </summary>
         public int Rows
         {
             get { return (int)GetValue(RowsProperty); }
@@ -40,6 +61,9 @@ namespace WpfClient.Controls
          DependencyProperty.Register("Rows", typeof(int), typeof(MazeBoard), new
         PropertyMetadata(1));
 
+        /// <summary>
+        /// maze cols property
+        /// </summary>
         public int Cols
         {
             get { return (int)GetValue(ColumnsProperty); }
@@ -50,6 +74,9 @@ namespace WpfClient.Controls
          DependencyProperty.Register("Cols", typeof(int), typeof(MazeBoard), new
         PropertyMetadata(1));
 
+        /// <summary>
+        /// maze string property
+        /// </summary>
         public string Maze
         {
             get { return (string)GetValue(MazeProperty); }
@@ -60,6 +87,9 @@ namespace WpfClient.Controls
         DependencyProperty.Register("Maze", typeof(string), typeof(MazeBoard), new
         PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// maze initial position property
+        /// </summary>
         public string InitialPos
         {
             get { return (string)GetValue(InitialPosProperty); }
@@ -70,6 +100,9 @@ namespace WpfClient.Controls
         DependencyProperty.Register("InitialPos", typeof(string), typeof(MazeBoard), new
         PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// maze goal position property
+        /// </summary>
         public string GoalPos
         {
             get { return (string)GetValue(GoalPosProperty); }
@@ -80,6 +113,9 @@ namespace WpfClient.Controls
         DependencyProperty.Register("GoalPos", typeof(string), typeof(MazeBoard), new
         PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// player picture property
+        /// </summary>
         public ImageSource ImageSource
         {
             get { return (ImageSource)GetValue(ImageSourceProperty); }
@@ -88,8 +124,10 @@ namespace WpfClient.Controls
 
         public static readonly DependencyProperty ImageSourceProperty =
          DependencyProperty.Register("ImageSource", typeof(ImageSource), typeof(MazeBoard));
-        //, new PropertyMetadata(new BitmapImage(new Uri(@"Images/girl.jpg", UriKind.Relative)))
 
+        /// <summary>
+        /// exit picture property
+        /// </summary>
         public ImageSource ExitImageFile
         {
             get { return (ImageSource)GetValue(ExitImageFileProperty); }
@@ -99,17 +137,29 @@ namespace WpfClient.Controls
         public static readonly DependencyProperty ExitImageFileProperty =
          DependencyProperty.Register("ExitImageFile", typeof(ImageSource), typeof(MazeBoard));
 
+        /// <summary>
+        /// Ctor
+        /// </summary>
         public MazeBoard()
         {
             InitializeComponent();
             this.Loaded += MazeBoard_Loaded;
         }
 
+        /// <summary>
+        /// Setting the data context of the maze board
+        /// </summary>
+        /// <param name="vm"></param>
         public void setMazeBoardDatacontext(Object vm)
         {
             this.DataContext = vm;
         }
 
+        /// <summary>
+        /// event of the maze board loading
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MazeBoard_Loaded(object sender, RoutedEventArgs e)
         {
             string[] startPos = InitialPos.Split(',');
@@ -125,6 +175,7 @@ namespace WpfClient.Controls
             width = myCanvas.Width / Cols;
             height = myCanvas.Height / Rows;
             int counter = 0;
+            // drawing the board
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < Cols; j++)
@@ -154,23 +205,11 @@ namespace WpfClient.Controls
             //setStartUpPoint();
         }
 
-        private void setStartUpPoint()
-        {
-            clientImage.Height = 150 / Rows;
-            clientImage.Width = 150 / Cols;
-            if (this.ImageSource == null)
-            {
-                var uriSource = new Uri(@"Images/girl.jpg", UriKind.Relative);
-                clientImage.Source = new BitmapImage(uriSource);
-            }
-            else
-            {
-                clientImage.Source = this.ImageSource;
-            }
-            Grid.SetRow(clientImage, 0);
-            Grid.SetColumn(clientImage, 0);
-        }
-
+        /// <summary>
+        /// adding wall of the maze to the board
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         private void AddWall(int x, int y)
         {
             Rectangle rect = new Rectangle();
@@ -186,6 +225,13 @@ namespace WpfClient.Controls
 
         }
 
+        /// <summary>
+        /// adding a picture to the board
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="imageSource"></param>
+        /// <param name="name"></param>
         private void AddImage(int x, int y, ImageSource imageSource, string name)
         {
             Image image = new Image();
@@ -199,6 +245,11 @@ namespace WpfClient.Controls
 
         }
 
+        /// <summary>
+        /// event of pressing the arrows keys
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void gridMazeBoard_KeyDown(object sender, KeyEventArgs e)
         {
             int pointer = rowPlayerPos * Rows + colPlayerPos + 1;
@@ -210,7 +261,6 @@ namespace WpfClient.Controls
                 }
             }
 
-            Vector offset = VisualTreeHelper.GetOffset(clientImage);
             var top = (rowPlayerPos)* clientImage.Height;
             var left = (colPlayerPos)*clientImage.Width;
 

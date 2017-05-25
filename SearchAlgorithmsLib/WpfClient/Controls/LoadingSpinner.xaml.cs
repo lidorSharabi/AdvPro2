@@ -20,6 +20,9 @@ namespace WpfClient.Controls
     /// </summary>
     public partial class LoadingSpinner : UserControl
     {
+        /// <summary>
+        /// Ctor
+        /// </summary>
         public LoadingSpinner()
         {
             InitializeComponent();
