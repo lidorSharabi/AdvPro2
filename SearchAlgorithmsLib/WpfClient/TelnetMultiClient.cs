@@ -36,21 +36,6 @@ namespace WpfClient
         /// </summary>
         TcpClient client;
 
-        public event EventHandler ServerWaitingEvent;
-        public event EventHandler ServerJoinEvent;
-
-        public string ServerMessage;
-
-        protected virtual void OnServerWaitingEvent(EventArgs args)
-        {
-            ServerWaitingEvent?.Invoke(this, args);
-        }
-
-        protected virtual void OnServerJoinEvent(EventArgs args)
-        {
-            ServerJoinEvent?.Invoke(this, args);
-        }
-
         public void connect(string ip, int port)
         {
             ep = new IPEndPoint(IPAddress.Parse(ip), port);

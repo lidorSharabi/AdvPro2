@@ -29,14 +29,32 @@ namespace WpfClient
             vm = new MultiPlayerGameBoardViewModel(result, client, this);
             this.DataContext = vm;
             InitializeComponent();
+            MyMazeBoard.YouWonEvent += MyMazeBoard_YouWonEvent;
+            OpponentMazeBoard.YouWonEvent += OpponentMazeBoard_YouWonEvent;
+                
             this.MyMazeBoard.setMazeBoardDatacontext(vm);
             this.OpponentMazeBoard.setMazeBoardDatacontext(vm);
             KeepConnectionOpen();
         }
 
+        private void OpponentMazeBoard_YouWonEvent(object sender, EventArgs e)
+        {
+            this.Close();
+            //TODO - replace to "you lose" window
+            YouWon youWon = new YouWon();
+            youWon.Show();
+        }
+
+        private void MyMazeBoard_YouWonEvent(object sender, EventArgs e)
+        {
+            this.Close();
+            YouWon youWon = new YouWon();
+            youWon.Show();
+        }
+
         private void MultiPlayerGameBoard_Closing(object sender, EventArgs e)
         {
-            vm.Closed();
+            vm.CloseGame();
         }
 
         private void KeepConnectionOpen()
@@ -52,12 +70,16 @@ namespace WpfClient
 
         private void OpponentMoved_OnComplited(string serverMessageMove)
         {
-            OpponentMoveAnimation(serverMessageMove);
-        }
-
-        private void RestartGame_Click(object sender, RoutedEventArgs e)
-        {
-
+            if (serverMessageMove.Equals("closed"))
+            {
+                vm.CloseGame();
+                MainWindow win = (MainWindow)Application.Current.MainWindow;
+                win.Show();
+            }
+            else
+            {
+                OpponentMoveAnimation(serverMessageMove);
+            }
         }
 
         private void BackToMainMenu_Click(object sender, RoutedEventArgs e)
@@ -76,8 +98,8 @@ namespace WpfClient
             string move = e.Key.ToString().ToLower();
             if (move.Equals("up") || move.Equals("down") || move.Equals("left") || move.Equals("right"))
             {
-                MyMazeBoard.gridMazeBoard_KeyDown(sender, e);
                 vm.Move(move);
+                MyMazeBoard.gridMazeBoard_KeyDown(sender, e);
             }
         }
 

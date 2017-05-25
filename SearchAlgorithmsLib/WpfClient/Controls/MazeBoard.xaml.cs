@@ -22,6 +22,13 @@ namespace WpfClient.Controls
     /// </summary>
     public partial class MazeBoard : UserControl
     {
+        public event EventHandler YouWonEvent;
+
+        protected virtual void OnYouWonEventEvent(EventArgs args)
+        {
+            YouWonEvent?.Invoke(this, args);
+        }
+
         Image clientImage = new Image();
         double width, height;
         int colGoalPos, rowGoalPos, colStartPos, rowStartPos;
@@ -271,10 +278,7 @@ namespace WpfClient.Controls
 
         public void EndOfGame()
         {
-            var targetWindow = Window.GetWindow(this);
-            targetWindow.Close();
-            YouWon youWon = new YouWon();
-            youWon.Show();
+            OnYouWonEventEvent(new EventArgs());
         }
 
         public void RestartGame(object sender, RoutedEventArgs e)
@@ -359,6 +363,11 @@ namespace WpfClient.Controls
                             break;
                         }
                     default: break;
+                }
+
+                if (indexInMaze == endOfGame)
+                {
+                    EndOfGame();
                 }
             });
         }

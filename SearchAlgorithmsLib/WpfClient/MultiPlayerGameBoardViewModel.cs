@@ -99,7 +99,7 @@ namespace WpfClient
             return model.Continue();
         }
 
-        internal void Closed()
+        internal void CloseGame()
         {
             model.Disconnect();
         }
