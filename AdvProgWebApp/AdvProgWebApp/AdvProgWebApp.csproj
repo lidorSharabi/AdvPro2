@@ -65,10 +65,20 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\exit.png" />
+    <Content Include="Images\dog.jpg" />
+    <Content Include="Images\Image.png" />
+    <Content Include="Images\Opponent_Cat.jpg" />
+    <Content Include="Images\sadDog.jpg" />
+    <Content Include="Images\TheMaze.jpg" />
     <Content Include="Menu.html" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\Maze.js" />
     <Content Include="SingleGame.html" />
+    <Content Include="Styles\bootstrap.css" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Styles\style.css" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

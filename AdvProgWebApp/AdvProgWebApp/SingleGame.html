@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <link href="Styles/bootstrap.css" rel="stylesheet" />
     <title>Single Game</title>
 </head>
 <body>
@@ -23,20 +24,30 @@
                 </tr>
                 <tr>
                     <th></th>
-                    <th style="float:left"><button id="StartGameBtn">Start New Game</button></th>
+                    <th style="float:left"><button id="StartGameBtn" class="navbar-btn">Start New Game</button></th>
                 </tr>
             
                 <tr>
-                    <th><label style="font-size:larger;font-family:Narkisim">Search <br /> Algorithm</label></th>
-                    <th><input id="SearchAlgo" type="text"></th>
+                    <th></th>
+                    <th><div class="dropdown">
+    <button class="btn dropdown-toggle" type="button"
+            id="dropdownMenu1" data-toggle="dropdown">
+        Search<br/>Algorithm
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a href="#">BFD</a></li>
+        <li><a href="#">DFS</a></li>
+    </ul>
+</div></th>
                 </tr>
                 <tr>
                     <th></th>
-                    <th style="float:left"><button id="SolveGameBtn">Solve Game</button></th>
+                    <th style="float:left"><button id="SolveGameBtn" class="navbar-btn">Solve Game</button></th>
                 </tr>
                 </table>
 </div>
-        <div style="position:relative">
+        <div style="position:relative" hidden="true">
             <canvas id="mazeCanvas" width="300" height="300" style="border:2px black
 solid"></canvas>
             <script>
@@ -65,5 +76,8 @@ cellWidth, cellHeight);
             </script>
         </div>
         </form>
+    <script src="Scripts/jquery-3.2.1.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+
 </body>
 </html>
