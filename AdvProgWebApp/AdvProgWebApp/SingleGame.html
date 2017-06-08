@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Single Game</title>
+</head>
+<body>
+           <h3><label style="font-size:xx-large;font-family:Broadway;color:aquamarine;margin-bottom:50px">Start Game</label></h3>
+    <form>
+        <div style="float:left;position:relative;margin-right:100px;margin-left:40px">
+            <table cellspacing="15">
+                <tr>
+                    <th><label style="font-size:larger;font-family:Narkisim">Name</label></th>
+                    <th><input id="MazeName" type="text"></th>  
+                </tr>
+                <tr>
+                    <th><label style="font-size:larger;font-family:Narkisim">Rows</label></th>
+                    <th><input id="MazeRows" type="number"></th>
+                </tr>
+                <tr>
+                    <th><label style="font-size:larger;font-family:Narkisim">Cols</label></th>
+                    <th><input id="MazeCols" type="number"></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th style="float:left"><button id="StartGameBtn">Start New Game</button></th>
+                </tr>
+            
+                <tr>
+                    <th><label style="font-size:larger;font-family:Narkisim">Search <br /> Algorithm</label></th>
+                    <th><input id="SearchAlgo" type="text"></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th style="float:left"><button id="SolveGameBtn">Solve Game</button></th>
+                </tr>
+                </table>
+</div>
+        <div style="position:relative">
+            <canvas id="mazeCanvas" width="300" height="300" style="border:2px black
+solid"></canvas>
+            <script>
+ function drawMaze(maze) {
+ var myCanvas = document.getElementById("mazeCanvas");
+ var context = mazeCanvas.getContext("2d");
+ var rows = maze.length;
+ var cols = maze[0].length;
+ var cellWidth = mazeCanvas.width / cols;
+ var cellHeight = mazeCanvas.height / rows;
+ for (var i = 0; i < rows; i++) {
+ for (var j = 0; j < cols; j++) {
+ if (maze[i][j] == 1) {
+ context.fillRect(cellWidth * j, cellHeight * i,
+cellWidth, cellHeight);
+ }
+ }
+ }
+ }
+ maze = [[0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+     [0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0],
+                [0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0],
+                [0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0],
+ [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]];
+ drawMaze(maze);
+            </script>
+        </div>
+        </form>
+</body>
+</html>
