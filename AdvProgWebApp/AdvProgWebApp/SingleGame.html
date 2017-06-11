@@ -7,58 +7,62 @@
 </head>
 <body  style="background-color:azure">
     <div id="menu"></div>
-           <h3><label style="font-size:xx-large;font-family:Broadway;color:aquamarine;margin-bottom:50px">Start Game</label></h3>
-    <form>
-        <div style="float:left;position:relative;margin-right:100px;margin-left:40px">
-            <table cellspacing="15">
-                <tr>
-                    <th><label style="font-size:larger;font-family:Narkisim">Name</label></th>
-                    <th><input id="MazeName" type="text"></th>
-                </tr>
-                <tr>
-                    <th><label style="font-size:larger;font-family:Narkisim">Rows</label></th>
-                    <th><input id="MazeRows" type="number"></th>
-                </tr>
-                <tr>
-                    <th><label style="font-size:larger;font-family:Narkisim">Cols</label></th>
-                    <th><input id="MazeCols" type="number"></th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <th style="float:left"><button id="StartGameBtn" class="navbar-btn">Start New Game</button></th>
-                </tr>
+    <div class="panel-title">
+        <h3><label style="font-size:xx-large;font-family:Broadway;color:darkturquoise;margin-bottom:30px;margin-left:20px;margin-top:20px">Start Game</label></h3>
+        </div>
+    <div style="float:left;max-width: 30%;margin-left:5%;">
+        <div class="container">
+            <form id="generate-maze">
+                <table cellspacing="15">
+                    <tr>
+                        <th><label style="font-size:larger;font-family:Narkisim">Name</label></th>
+                        <th><input id="MazeName" type="text"></th>
+                    </tr>
+                    <tr>
+                        <th><label style="font-size:larger;font-family:Narkisim">Rows</label></th>
+                        <th><input id="MazeRows" type="number"></th>
+                    </tr>
+                    <tr>
+                        <th><label style="font-size:larger;font-family:Narkisim">Cols</label></th>
+                        <th><input id="MazeCols" type="number"></th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th style="float:left"><button id="StartGameBtn" class="navbar-btn">Start New Game</button></th>
+                    </tr>
 
-                <tr>
-                    <th></th>
-                    <th>
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button"
-                                    id="dropdownMenu1" data-toggle="dropdown">
-                                Search<br />Algorithm
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">BFS</a></li>
-                                <li><a href="#">DFS</a></li>
-                            </ul>
-                        </div>
-                    </th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <th style="float:left"><button id="SolveGameBtn" class="navbar-btn">Solve Game</button></th>
-                </tr>
-            </table>
+                    <tr>
+                        <th></th>
+                        <th>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button"
+                                        id="dropdownMenu1" data-toggle="dropdown">
+                                    Search<br />Algorithm
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">BFS</a></li>
+                                    <li><a href="#">DFS</a></li>
+                                </ul>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th style="float:left"><button id="SolveGameBtn" class="navbar-btn">Solve Game</button></th>
+                    </tr>
+                </table>
+            </form>
         </div>
-        <div style="position:relative">
-            <canvas id="mazeCanvas" width="600" height="430" style="border:2px black solid"></canvas>
-        </div>
-    </form>
-        
-    <script src="Scripts/jquery-3.2.1.js"></script>
-    <script src="Scripts/bootstrap.js"></script>
-    <script src="Scripts/Menu.js"></script>
-    <script src="Scripts/jquery.mazeBoard.js"></script>
+    </div>
+    <div id="canvas-div" style="margin-left:40%;">
+        <canvas id="mazeCanvas" size="300" width="600" height="430" style="border:2px black solid"></canvas>
+    </div>
+
+        <script src="Scripts/jquery-3.2.1.js"></script>
+        <script src="Scripts/bootstrap.js"></script>
+        <script src="Scripts/Menu.js"></script>
+        <script src="Scripts/jquery.mazeBoard.js"></script>
 
 </body >
 </html >

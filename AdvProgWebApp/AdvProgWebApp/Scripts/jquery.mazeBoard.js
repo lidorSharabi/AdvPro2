@@ -124,7 +124,8 @@ var exitCol = 10;
 var playerImage = new Image();
 playerImage.src = "Images/dog.jpg"
 var exitImage = new Image;
-exitImage.src="Images/exit.png"
+exitImage.src = "Images/exit.png"
+$("#mazeCanvas").focus();
 $("#mazeCanvas").mazeBoard(mazeData,
     startRow, startCol,
     exitRow, exitCol,
