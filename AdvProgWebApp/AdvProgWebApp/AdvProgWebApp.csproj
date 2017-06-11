@@ -72,6 +72,7 @@
     <Content Include="Images\sadDog.jpg" />
     <Content Include="Images\TheMaze.jpg" />
     <Content Include="Menu.html" />
+    <Content Include="OpeningPage.html" />
     <Content Include="packages.config" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\index.js" />

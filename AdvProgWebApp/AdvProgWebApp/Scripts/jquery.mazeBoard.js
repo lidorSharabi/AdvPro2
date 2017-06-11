@@ -7,59 +7,88 @@
         exitImage) {
             var myCanvas = this[0];
             var context = myCanvas.getContext("2d");
-            var rows = mazeData.length;
-            var cols = mazeData[0].length;
+            var rows = 8;
+            var cols = 11;
             var cellWidth = myCanvas.width / cols;
             var cellHeight = myCanvas.height / rows;
-            var currentStateCol = startCol;
-            var currentStateRow = startRow;
+            var colPlayerPos = startCol;
+            var rowPlayerPos = startRow;
+            var counter = 0;
+            var initialIndexInMaze = 0;
             for (var i = 0; i < rows; i++) {
                 for (var j = 0; j < cols; j++) {
-                    if (mazeData[i][j] == 1) {
-                        context.fillRect(cellWidth * j, cellHeight * i,
-                            cellWidth, cellHeight);
+                    if (mazeData[counter] == '1') {
+                        context.fillRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight);
                     }
+                    if (i == startRow && j == startCol) {
+                        playerImage.onload = function () {
+                            context.drawImage(playerImage, cellWidth * startCol, cellHeight * startRow, cellWidth, cellHeight);
+                        };
+                        indexInMaze = counter;
+                    }
+                    if (i == exitRow && j == exitCol) {
+                        exitImage.onload = function () {
+                            context.drawImage(exitImage, cellWidth * exitCol, cellHeight * exitRow, cellWidth, cellHeight);
+                        };
+                    }
+                    counter++;
                 }
             }
-            playerImage.onload = function () {
-                context.drawImage(playerImage, cellHeight * startCol, cellWidth * startRow, cellWidth, cellHeight);
-            };
-            exitImage.onload = function () {
-                context.drawImage(exitImage, cellHeight * exitCol, cellWidth * exitRow, cellWidth, cellHeight);
-            };
+
+
 
             addKeyboardListener();
             function moveSelection(e) {
                 switch (e.keyCode) {
                     case 37:
-                        leftArrowPressed();
+                        if ((colPlayerPos - 1) >= 0 && mazeData[indexInMaze - 1] == '0') {
+                            clearPlayer();
+                            colPlayerPos -= 1;
+                            indexInMaze -= 1;
+                            drawPlayer();
+                        }
                         checkIfWinner();
                         break;
                     case 39:
-                        rightArrowPressed();
+                        if ((colPlayerPos + 1) < cols && mazeData[indexInMaze + 1] == '0') {
+                            clearPlayer();
+                            colPlayerPos += 1;
+                            indexInMaze += 1;
+                            drawPlayer();
+                        }
                         checkIfWinner();
                         break;
                     case 38:
-                        upArrowPressed();
+                        if ((rowPlayerPos - 1) >= 0 && mazeData[indexInMaze - cols] == '0') {
+                            clearPlayer();
+                            rowPlayerPos -= 1;
+                            indexInMaze -= cols;
+                            drawPlayer();
+                        }
                         checkIfWinner();
                         break;
                     case 40:
-                        downArrowPressed();
+                        if ((rowPlayerPos + 1) < rows && mazeData[indexInMaze + cols] == '0') {
+                            clearPlayer();
+                            rowPlayerPos += 1;
+                            indexInMaze += cols;
+                            drawPlayer();
+                        }
                         checkIfWinner();
                         break;
                 }
             };
 
             function clearPlayer() {
-                context.clearRect(currntStateCol * cellHeight, currntStateRow * cellWidth, cellWidth, cellHeight);
+                context.clearRect(colPlayerPos * cellWidth, rowPlayerPos * cellHeight, cellWidth, cellHeight);
             };
 
             function drawPlayer() {
-                context.drawImage(player_Image, currntStateCol * cellHeight, currntStateRow * cellWidth, cellWidth, cellHeight);
+                context.drawImage(playerImage, colPlayerPos * cellWidth, rowPlayerPos * cellHeight, cellWidth, cellHeight);
             };
 
             function checkIfWinner() {
-                if (currntStateCol == exitCol && currntStateRow == exitRow) {
+                if (colPlayerPos == exitCol && rowPlayerPos == exitRow) {
                     alert("winner");
                     removeKeyboardListener();
                 }
@@ -73,50 +102,13 @@
                 myCanvas.onkeydown = moveSelection.bind(this);
             };
 
-            function leftArrowPressed() {
-                if (currntStateCol - 1 >= 0 && mazeData[currntStateRow][(currntStateCol - 1)] == 0) {
-                    clearPlayer();
-                    currntStateCol -= 1;
-                    drawPlayer();
-                }
-            };
-
-            function rightArrowPressed() {
-                if (currntStateCol + 1 <= cols - 1 && mazeData[currntStateRow][(currntStateCol + 1)] == 0) {
-                    clearPlayer();
-                    currntStateCol += 1;
-                    drawPlayer();
-                }
-            };
-
-            function upArrowPressed() {
-                if (currntStateRow - 1 >= 0 && mazeData[currntStateRow-1][(currntStateCol)] == 0) {
-                    clearPlayer();
-                    currntStateRow -= 1;
-                    drawPlayer();
-                }
-            };
-
-            function downArrowPressed() {
-                if (currntStateRow + 1 <= rows - 1 && mazeData[currntStateRow + 1][(currntStateCol)] == 0) {
-                    clearPlayer();
-                    currntStateRow += 1;
-                    drawPlayer();
-                }
-            };
 
         return this;
     };
 })(jQuery);
 
-var mazeData = [[0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
-[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0],
-[0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0],
-[0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-[0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0],
-[0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0],
-[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]];
+document.getElementById("mazeCanvas").focus();
+var mazeData = "0001000100000001000000000010010100101010100001000000010000101010000001001101000000100000"
 var startRow = 0;
 var startCol = 1;
 var exitRow = 7;
@@ -125,7 +117,6 @@ var playerImage = new Image();
 playerImage.src = "Images/dog.jpg"
 var exitImage = new Image;
 exitImage.src = "Images/exit.png"
-$("#mazeCanvas").focus();
 $("#mazeCanvas").mazeBoard(mazeData,
     startRow, startCol,
     exitRow, exitCol,
