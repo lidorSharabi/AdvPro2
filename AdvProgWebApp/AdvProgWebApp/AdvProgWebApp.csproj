@@ -43,6 +43,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MazeGeneratorLib">
+      <HintPath>..\..\..\..\..\Downloads\MazeGeneratorLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MazeLib">
+      <HintPath>..\..\..\..\..\Downloads\MazeLib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -78,6 +84,7 @@
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\jquery.mazeBoard.js" />
     <Content Include="Scripts\Menu.js" />
+    <Content Include="Scripts\SingleGame.js" />
     <Content Include="SingleGame.html" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Scripts\jquery-3.2.1.js" />
@@ -93,8 +100,23 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Controller.cs" />
+    <Compile Include="Model\HandleMultiplaterGame.cs" />
+    <Compile Include="Model\HandleMultiplayers.cs" />
+    <Compile Include="Model\ICommand.cs" />
+    <Compile Include="Model\IModel.cs" />
+    <Compile Include="Model\MazeAdapter.cs" />
+    <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\Response.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SearchAlgorithmsLib\SearchAlgorithmsLib\SearchAlgorithmsLib.csproj">
+      <Project>{90768732-b8fe-4c39-9f39-588bf81cb411}</Project>
+      <Name>SearchAlgorithmsLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

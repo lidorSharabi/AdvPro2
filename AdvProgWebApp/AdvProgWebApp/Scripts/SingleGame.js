@@ -1,0 +1,3 @@
+﻿$("#StartGameBtn").click(function () {
+
+};
