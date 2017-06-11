@@ -5,14 +5,15 @@
     <link href="Styles/bootstrap.css" rel="stylesheet" />
     <title>Single Game</title>
 </head>
-<body>
+<body  style="background-color:azure">
+    <div id="menu"></div>
            <h3><label style="font-size:xx-large;font-family:Broadway;color:aquamarine;margin-bottom:50px">Start Game</label></h3>
     <form>
         <div style="float:left;position:relative;margin-right:100px;margin-left:40px">
             <table cellspacing="15">
                 <tr>
                     <th><label style="font-size:larger;font-family:Narkisim">Name</label></th>
-                    <th><input id="MazeName" type="text"></th>  
+                    <th><input id="MazeName" type="text"></th>
                 </tr>
                 <tr>
                     <th><label style="font-size:larger;font-family:Narkisim">Rows</label></th>
@@ -26,58 +27,38 @@
                     <th></th>
                     <th style="float:left"><button id="StartGameBtn" class="navbar-btn">Start New Game</button></th>
                 </tr>
-            
+
                 <tr>
                     <th></th>
-                    <th><div class="dropdown">
-    <button class="btn dropdown-toggle" type="button"
-            id="dropdownMenu1" data-toggle="dropdown">
-        Search<br/>Algorithm
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-        <li><a href="#">BFD</a></li>
-        <li><a href="#">DFS</a></li>
-    </ul>
-</div></th>
+                    <th>
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button"
+                                    id="dropdownMenu1" data-toggle="dropdown">
+                                Search<br />Algorithm
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">BFS</a></li>
+                                <li><a href="#">DFS</a></li>
+                            </ul>
+                        </div>
+                    </th>
                 </tr>
                 <tr>
                     <th></th>
                     <th style="float:left"><button id="SolveGameBtn" class="navbar-btn">Solve Game</button></th>
                 </tr>
-                </table>
-</div>
-        <div style="position:relative">
-            <canvas id="mazeCanvas" width="300" height="300" style="border:2px black
-solid"></canvas>
-            <script>
- function drawMaze(maze) {
- var myCanvas = document.getElementById("mazeCanvas");
- var context = mazeCanvas.getContext("2d");
- var rows = maze.length;
- var cols = maze[0].length;
- var cellWidth = mazeCanvas.width / cols;
- var cellHeight = mazeCanvas.height / rows;
- for (var i = 0; i < rows; i++) {
- for (var j = 0; j < cols; j++) {
- if (maze[i][j] == 1) {
- context.fillRect(cellWidth * j, cellHeight * i,
-cellWidth, cellHeight);
- }
- }
- }
- }
- maze = [[0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0],
-     [0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0],
-                [0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0],
-                [0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0],
- [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]];
- drawMaze(maze);
-            </script>
+            </table>
         </div>
-        </form>
+        <div style="position:relative">
+            <canvas id="mazeCanvas" width="600" height="430" style="border:2px black solid"></canvas>
+        </div>
+    </form>
+        
     <script src="Scripts/jquery-3.2.1.js"></script>
     <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/Menu.js"></script>
+    <script src="Scripts/jquery.mazeBoard.js"></script>
 
-</body>
-</html>
+</body >
+</html >

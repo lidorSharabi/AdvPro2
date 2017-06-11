@@ -75,7 +75,8 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\index.js" />
-    <Content Include="Scripts\Maze.js" />
+    <Content Include="Scripts\jquery.mazeBoard.js" />
+    <Content Include="Scripts\Menu.js" />
     <Content Include="SingleGame.html" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Scripts\jquery-3.2.1.js" />
