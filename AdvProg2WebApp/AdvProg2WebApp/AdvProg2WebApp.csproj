@@ -103,6 +103,7 @@
     <Content Include="Scripts\SingleGame.js" />
     <Content Include="SingleGame.html" />
     <Content Include="Styles\bootstrap.css" />
+    <Content Include="Styles\SingleGame.css" />
     <Content Include="Styles\style.css" />
     <Content Include="Web.config" />
   </ItemGroup>

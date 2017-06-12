@@ -95,9 +95,6 @@ namespace AdvProg2WebApp.Models
             }
 
             string stringSolution = maze.ToSolution(sol);
-            int numberOfNodesevaluated = sol.EvaluatedNodes;
-            stringSolution += " ";
-            stringSolution += numberOfNodesevaluated;
             return stringSolution;
         }
         /// <summary>

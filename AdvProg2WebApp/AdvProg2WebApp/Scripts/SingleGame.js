@@ -2,6 +2,7 @@
 
 (function ($) {
     $("#StartGameBtn").click(function () {
+        $("#loader").show();
         var apiUrl = "api/Single/GetMaze";
         var name = $("#MazeName").val();
         var rows = $("#MazeRows").val();
@@ -34,6 +35,7 @@
             exitRow, exitCol,
             playerImage,
             exitImage);
+        $("#loader").hide();
         $("#div2").show();
         document.getElementById("mazeCanvas").focus();
             });
