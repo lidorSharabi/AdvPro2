@@ -8,8 +8,8 @@
         document.title = $("#MazeName").val();
             var myCanvas = this[0];
             var context = myCanvas.getContext("2d");
-            var rows = $("#MazeRows").val();
-            var cols = $("#MazeCols").val();
+            var rows = parseInt($("#MazeRows").val());
+            var cols = parseInt($("#MazeCols").val());
             var cellWidth = myCanvas.width / cols;
             var cellHeight = myCanvas.height / rows;
             var colPlayerPos = startCol;
