@@ -19,7 +19,16 @@ namespace AdvProg2WebApp.Controllers
         {
             Maze maze = model.GenerateMaze(name, rows, cols);
             JObject jmaze = JObject.Parse(maze.ToJSON());
-            return Ok(jmaze);
+            MazeModel mazeModel = new MazeModel();
+            mazeModel.Name = name;
+            mazeModel.Cols = cols;
+            mazeModel.Rows = rows;
+            mazeModel.StartCol = maze.InitialPos.Col;
+            mazeModel.StartRow = maze.InitialPos.Row;
+            mazeModel.ExitCol = maze.GoalPos.Col;
+            mazeModel.ExitRow = maze.GoalPos.Row;
+            mazeModel.MazeString = jmaze.GetValue("Maze").ToString();
+            return Ok(mazeModel);
         }
 
     }
