@@ -92,7 +92,7 @@
 
             function checkIfWon() {
                 if (colPlayerPos == exitCol && rowPlayerPos == exitRow) {
-                    document.getElementById("div2").style.backgroundImage = "url('Images/Image.png')"
+                    alert("You Won!");
                     removeKeyboardListener();
                 }
             };
