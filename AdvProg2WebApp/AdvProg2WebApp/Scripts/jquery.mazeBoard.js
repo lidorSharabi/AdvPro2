@@ -16,7 +16,7 @@
             var rowPlayerPos = startRow;
             var counter = 0;
             var initialIndexInMaze = 0;
-
+            context.clearRect(0, 0, myCanvas.width, myCanvas.height);
             drawMaze();
             addKeyboardListener();
             function drawMaze() {
