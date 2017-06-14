@@ -13,6 +13,6 @@ namespace AdvProg2WebApp.Models
         [Required]
         public int Losses { get; set; }
         [Required]
-        public string Victories { get; set; }
+        public int Victories { get; set; }
     }
 }

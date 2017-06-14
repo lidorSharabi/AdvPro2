@@ -9,7 +9,7 @@ jQuery(document).ready(function ($) {
         $forgot_password_link = $form_login.find('.cd-form-bottom-message a'),
         $back_to_login_link = $form_forgot_password.find('.cd-form-bottom-message a'),
         $main_nav = $('.main-nav');
-
+     
     //open modal
     $main_nav.on('click', function (event) {
 
@@ -142,3 +142,26 @@ jQuery.fn.putCursorAtEnd = function () {
         }
     });
 };
+
+
+
+/*
+my code
+//##############//$form_signup_create_account = $form_modal.find('#create-account'),
+    //$form_modal.find('#create-account').on('click', function (event) {
+    //    alert("lililii");
+    //    console.log('ssss');
+    //    var usersUrl = "api/Users/";
+    //    var user = {
+    //        UserNameId: $("#signup-username").val(),
+    //        Losses: "0",
+    //        Victories: "0"
+    //    };
+    //    $.post(usersUrl, user).done(function (data) {
+    //        //self.books.push(data);
+    //        //console.log(JSON.stringify(data));
+    //    });
+    //    //Assert.isType<ConflictResults>(actionResult);
+    //});
+
+*/
