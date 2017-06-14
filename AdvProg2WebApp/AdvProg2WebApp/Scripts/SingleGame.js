@@ -62,6 +62,10 @@ var mazeCanvas = $("#mazeCanvas");
                 document.getElementById("mazeCanvas").focus();
             })
             .fail(function (jqXHR, textStatus, err) {
+                if (jqXHR.status == 500) {
+                    alert("error in connection to server");
+                    return;
+                }
                 mazeCanvas.text("Error: " + err);
             });
         
@@ -77,6 +81,10 @@ var mazeCanvas = $("#mazeCanvas");
                 mazeCanvas.solveMaze(msg);
             })
             .fail(function (jqXHR, textStatus, err) {
+                if (jqXHR.status == 500) {
+                    alert("error in connection to server");
+                    return;
+                }
                 mazeCanvas.text("Error: " + err);
             });
     });
