@@ -16,41 +16,34 @@
             <form id="generate-maze">
                 <table cellspacing="15">
                     <tr>
-                        <th><label style="font-size:larger;font-family:Narkisim">Name</label></th>
+                        <th><label style="font-size:larger;font-family:Narkisim; margin:10px;">Name</label></th>
                         <th><input id="MazeName" type="text"></th>
                     </tr>
                     <tr>
-                        <th><label style="font-size:larger;font-family:Narkisim">Rows</label></th>
+                        <th><label style="font-size:larger;font-family:Narkisim; margin:10px">Rows</label></th>
                         <th><input id="MazeRows" type="number"></th>
                     </tr>
                     <tr>
-                        <th><label style="font-size:larger;font-family:Narkisim">Cols</label></th>
+                        <th><label style="font-size:larger;font-family:Narkisim; margin:10px">Cols</label></th>
                         <th><input id="MazeCols" type="number"></th>
                     </tr>
                     <tr>
                         <th></th>
-                        <th style="float:left"><button type="button" id="StartGameBtn" class="btn-primary">Start New Game</button></th>
+                        <th style="float:left; margin:5px;"><button type="button" id="StartGameBtn" class="btn btn-primary">Start New Game</button></th>
                     </tr>
 
-                    <tr id="algorithm" hidden>
-                        <th></th>
-                        <th>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                        id="dropdownMenu1" data-toggle="dropdown">
-                                    Search<br />Algorithm
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">BFS</a></li>
-                                    <li><a href="#">DFS</a></li>
-                                </ul>
-                            </div>
+                    <tr>
+                        <th><label style="font-size:larger;font-family:Narkisim; margin:10px;">Search<br/>Algorithm</label></th>
+                        <th style="float:left; margin-left:5px; margin-top:15px;">
+                            <select value="dropDown" class="btn btn-primary">
+                                <option value="0">BFS</option>
+                                <option value="1">DFS</option>
+                            </select>
                         </th>
                     </tr>
                     <tr id="solve" hidden>
                         <th></th>
-                        <th style="float:left"><button type="button" id="SolveGameBtn" class="navbar-btn">Solve Game</button></th>
+                        <th style="float:left; margin:5px;"><button type="button" id="SolveGameBtn" class="btn btn-primary">Solve Game</button></th>
                     </tr>
                 </table>
             </form>
