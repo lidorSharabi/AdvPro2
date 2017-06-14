@@ -3,6 +3,7 @@
 $("#MazeRows").val(localStorage.getItem("rows"));
 $("#MazeCols").val(localStorage.getItem("cols"));
 $("#algo").val(localStorage.getItem("algo"));
+var mazeCanvas = $("#mazeCanvas");
 
 (function ($) {
     $("#StartGameBtn").click(function () {
@@ -27,7 +28,7 @@ $("#algo").val(localStorage.getItem("algo"));
                 playerImage.src = "Images/dog.jpg"
                 var exitImage = new Image;
                 exitImage.src = "Images/exit.png"
-                $("#mazeCanvas").mazeBoard(mazeData,
+                mazeCanvas.mazeBoard(mazeData,
                     startRow, startCol,
                     exitRow, exitCol,
                     playerImage,
@@ -47,7 +48,7 @@ $("#algo").val(localStorage.getItem("algo"));
         var algo = $("#algo").val();
         $.get(apiUrl, { name: name, algo: algo })
             .done(function (msg) {
-                $("#mazeCanvas").solveMaze(msg);
+                mazeCanvas.solveMaze(msg);
             });
     });
 })(jQuery);

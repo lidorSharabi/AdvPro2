@@ -15,7 +15,7 @@
             var colPlayerPos = startCol;
             var rowPlayerPos = startRow;
             var counter = 0;
-            var initialIndexInMaze = 0;
+            var indexInMaze = 0;
 
             clearCanvas();
             drawMaze();
@@ -99,7 +99,14 @@
 
             function checkIfWon() {
                 if (colPlayerPos == exitCol && rowPlayerPos == exitRow) {
-                    alert("You Won!");
+                    context.clearRect(0, 0, myCanvas.width, myCanvas.height);
+                    var endAnimation_image = new Image();
+                    endAnimation_image.src = "Images/Image.png";
+                    endAnimation_image.onload = function () {
+                        context.drawImage(endAnimation_image, 100, 150, myCanvas.width - 200, myCanvas.height - 200);
+                    }
+                        context.font = "32px Arial"
+                        context.fillText("You Won!", 75, 100);
                     removeKeyboardListener();
                 }
             };
@@ -113,47 +120,45 @@
             };
 
             $.fn.solveMaze = function (solution) {
+                removeKeyboardListener();
+                colPlayerPos = startCol;
+                rowPlayerPos = startRow;
+                counter = 0;
+                clearCanvas();
+                drawMaze();
+
                 var i = 0;
                 for (i = 0; i < solution.length; i++) {
-                    moveSelection(solution(i));
+                    setTimeForAnim(solution[i],i);
                 }
-                function moveSelection(move) {
+
+                setTimeout(function () {}, solution.length * 150);
+
+                function setTimeForAnim(index, i) {
+                    setTimeout(function () { moveAnimSol(index); }, i * 150);
+                };
+
+                function moveAnimSol(move) {
                     switch (move) {
                         case '0':
-                            if ((colPlayerPos - 1) >= 0 && mazeData[indexInMaze - 1] == '0') {
                                 clearPlayer();
                                 colPlayerPos -= 1;
-                                indexInMaze -= 1;
                                 drawPlayer();
-                            }
-                            checkIfWon();
                             break;
                         case '1':
-                            if ((colPlayerPos + 1) < cols && mazeData[indexInMaze + 1] == '0') {
                                 clearPlayer();
                                 colPlayerPos += 1;
-                                indexInMaze += 1;
                                 drawPlayer();
-                            }
-                            checkIfWon();
                             break;
                         case '2':
-                            if ((rowPlayerPos - 1) >= 0 && mazeData[indexInMaze - cols] == '0') {
                                 clearPlayer();
                                 rowPlayerPos -= 1;
-                                indexInMaze -= cols;
                                 drawPlayer();
-                            }
-                            checkIfWon();
                             break;
                         case '3':
-                            if ((rowPlayerPos + 1) < rows && mazeData[indexInMaze + cols] == '0') {
                                 clearPlayer();
                                 rowPlayerPos += 1;
-                                indexInMaze += cols;
                                 drawPlayer();
-                            }
-                            checkIfWon();
                             break;
                     }
                 };
