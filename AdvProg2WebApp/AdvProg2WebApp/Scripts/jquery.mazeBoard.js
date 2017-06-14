@@ -17,8 +17,15 @@
             var counter = 0;
             var initialIndexInMaze = 0;
 
+            clearCanvas();
             drawMaze();
             addKeyboardListener();
+
+            function clearCanvas()
+            {
+                context.clearRect(0, 0, myCanvas.width, myCanvas.height);
+            };
+
             function drawMaze() {
                 for (var i = 0; i < rows; i++) {
                     for (var j = 0; j < cols; j++) {
@@ -104,7 +111,6 @@
             function addKeyboardListener() {
                 myCanvas.onkeydown = moveSelection.bind(this);
             };
-
 
         return this;
     };
