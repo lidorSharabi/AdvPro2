@@ -100,7 +100,9 @@
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery.mazeBoard.js" />
     <Content Include="Scripts\Menu.js" />
+    <Content Include="Scripts\Settings.js" />
     <Content Include="Scripts\SingleGame.js" />
+    <Content Include="Settings.html" />
     <Content Include="SingleGame.html" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\SingleGame.css" />

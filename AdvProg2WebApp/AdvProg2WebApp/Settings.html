@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="Styles/bootstrap.css" rel="stylesheet" />
+    <title>Settings</title>
+</head>
+<body style="background-color:azure">
+    <div id="menu"></div>
+    <div class="panel-title">
+        <h5><label style="font-size:60px;font-family:Broadway;color:darkturquoise;margin-bottom:30px;margin-left:20px;margin-top:20px">Settings</label></h5>
+    </div>
+    <div style="float:left;max-width: 30%;margin-left:5%;">
+        <div class="container">
+            <form id="generate-maze">
+                <table cellspacing="15">
+
+                    <tr>
+                        <th><label style="font-size:larger;font-family:Narkisim; margin:10px">Maze Rows</label></th>
+                        <th><input id="MazeRows" type="number"></th>
+                    </tr>
+                    <tr>
+                        <th><label style="font-size:larger;font-family:Narkisim; margin:10px">Maze Cols</label></th>
+                        <th><input id="MazeCols" type="number"></th>
+                    </tr>
+
+                    <tr id="algorithm">
+                        <th><label style="font-size:larger;font-family:Narkisim; margin:10px;">Search<br />Algorithm</label></th>
+                        <th style="float:left; margin-left:5px; margin-top:15px;">
+                            <select id="algo" value="dropDown" class="btn btn-primary">
+                                <option value="0">BFS</option>
+                                <option value="1">DFS</option>
+                            </select>
+                        </th>
+                        </tr>
+                    <tr>
+                        <th style="float:right; margin-top:25px;"><button type="button" id="SaveSettingsBtn" class="btn btn-primary">Save</button></th>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <script src="Scripts/jquery-3.2.1.js"></script>
+    <script src="Scripts/Menu.js"></script>
+    <script src="Scripts/Settings.js"></script>
+</body>
+</html>

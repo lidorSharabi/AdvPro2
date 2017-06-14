@@ -1,5 +1,9 @@
 ﻿src = "Scripts/jquery.mazeBoard.js";
 
+$("#MazeRows").val(localStorage.getItem("rows"));
+$("#MazeCols").val(localStorage.getItem("cols"));
+$("#algo").val(localStorage.getItem("algo"));
+
 (function ($) {
     $("#StartGameBtn").click(function () {
         $("#loader").show();
@@ -24,15 +28,26 @@
                 var exitImage = new Image;
                 exitImage.src = "Images/exit.png"
                 $("#mazeCanvas").mazeBoard(mazeData,
-                startRow, startCol,
-                exitRow, exitCol,
-                playerImage,
-                exitImage);
+                    startRow, startCol,
+                    exitRow, exitCol,
+                    playerImage,
+                    exitImage);
                 $("#loader").hide();
                 $("#div2").show();
                 $("#solve").show();
                 $("#algorithm").show();
-               document.getElementById("mazeCanvas").focus();
+                document.getElementById("mazeCanvas").focus();
+            });
+    });
+
+
+    $("#SolveGameBtn").click(function () {
+        var apiUrl = "api/Single/SolveMaze";
+        var name = $("#MazeName").val();
+        var algo = $("#algo").val();
+        $.get(apiUrl, { name: name, algo: algo })
+            .done(function (msg) {
+                $("#mazeCanvas").solveMaze(msg);
             });
     });
 })(jQuery);

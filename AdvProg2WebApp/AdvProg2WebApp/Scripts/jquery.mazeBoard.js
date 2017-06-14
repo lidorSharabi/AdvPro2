@@ -112,6 +112,55 @@
                 myCanvas.onkeydown = moveSelection.bind(this);
             };
 
+            $.fn.solveMaze = function (solution) {
+                var i = 0;
+                for (i = 0; i < solution.length; i++) {
+                    moveSelection(solution(i));
+                }
+                function moveSelection(move) {
+                    switch (move) {
+                        case '0':
+                            if ((colPlayerPos - 1) >= 0 && mazeData[indexInMaze - 1] == '0') {
+                                clearPlayer();
+                                colPlayerPos -= 1;
+                                indexInMaze -= 1;
+                                drawPlayer();
+                            }
+                            checkIfWon();
+                            break;
+                        case '1':
+                            if ((colPlayerPos + 1) < cols && mazeData[indexInMaze + 1] == '0') {
+                                clearPlayer();
+                                colPlayerPos += 1;
+                                indexInMaze += 1;
+                                drawPlayer();
+                            }
+                            checkIfWon();
+                            break;
+                        case '2':
+                            if ((rowPlayerPos - 1) >= 0 && mazeData[indexInMaze - cols] == '0') {
+                                clearPlayer();
+                                rowPlayerPos -= 1;
+                                indexInMaze -= cols;
+                                drawPlayer();
+                            }
+                            checkIfWon();
+                            break;
+                        case '3':
+                            if ((rowPlayerPos + 1) < rows && mazeData[indexInMaze + cols] == '0') {
+                                clearPlayer();
+                                rowPlayerPos += 1;
+                                indexInMaze += cols;
+                                drawPlayer();
+                            }
+                            checkIfWon();
+                            break;
+                    }
+                };
+                return this;
+            };
+
         return this;
     };
+
 })(jQuery);
