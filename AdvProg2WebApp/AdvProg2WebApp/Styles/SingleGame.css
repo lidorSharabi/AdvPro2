@@ -18,5 +18,13 @@
     }
 }
 
+.error {
+    border: 2px solid red;
+}
+
+.noError {
+    border: 1px;
+}
+
 
 

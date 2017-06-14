@@ -94,7 +94,7 @@
     <Content Include="Images\sadDog.jpg" />
     <Content Include="Images\TheMaze.jpg" />
     <Content Include="Menu.html" />
-    <Content Include="OpeningPage.html" />
+    <Content Include="index.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />

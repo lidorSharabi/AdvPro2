@@ -126,6 +126,7 @@
                 counter = 0;
                 clearCanvas();
                 drawMaze();
+                context.drawImage(exitImage, cellWidth * exitCol, cellHeight * exitRow, cellWidth, cellHeight);
 
                 var i = 0;
                 for (i = 0; i < solution.length; i++) {

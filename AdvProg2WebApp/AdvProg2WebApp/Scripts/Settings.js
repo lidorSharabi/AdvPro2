@@ -11,6 +11,6 @@ $("#algo").val(localStorage.getItem("algo"));
         localStorage.setItem("cols", cols);
         localStorage.setItem("algo", algo);
         alert("Settings saved");
-        window.open("OpeningPage.html", '_self');
+        window.open("index.html", '_self');
     });
 })(jQuery);

@@ -7,6 +7,28 @@ var mazeCanvas = $("#mazeCanvas");
 
 (function ($) {
     $("#StartGameBtn").click(function () {
+        document.getElementById("MazeName").className = "";
+        document.getElementById("MazeCols").className = "";
+        document.getElementById("MazeRows").className = "";
+        var check = true;
+            if (!$("#MazeName").val()) {
+                document.getElementById("MazeName").className = "error";
+                check= false;
+            }
+
+            if (!$("#MazeRows").val() || $("#MazeRows").val() < 1 || $("#MazeRows").val()>100) {
+                document.getElementById("MazeRows").className = "error";
+                check= false;
+            }
+
+            if (!$("#MazeCols").val() || $("#MazeCols").val() < 1 || $("#MazeCols").val() > 100) {
+                document.getElementById("MazeCols").className = "error";
+                check= false;
+            }
+            if (!check)
+            {
+                return check;
+            }
         $("#loader").show();
         var apiUrl = "api/Single/GetMaze";
         var name = $("#MazeName").val();
@@ -38,7 +60,11 @@ var mazeCanvas = $("#mazeCanvas");
                 $("#solve").show();
                 $("#algorithm").show();
                 document.getElementById("mazeCanvas").focus();
+            })
+            .fail(function (jqXHR, textStatus, err) {
+                mazeCanvas.text("Error: " + err);
             });
+        
     });
 
 
@@ -49,6 +75,9 @@ var mazeCanvas = $("#mazeCanvas");
         $.get(apiUrl, { name: name, algo: algo })
             .done(function (msg) {
                 mazeCanvas.solveMaze(msg);
+            })
+            .fail(function (jqXHR, textStatus, err) {
+                mazeCanvas.text("Error: " + err);
             });
     });
 })(jQuery);

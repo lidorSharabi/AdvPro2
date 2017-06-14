@@ -8,10 +8,11 @@
 </head>
 <body  style="background-color:azure">
     <div id="menu"></div>
-    <div class="panel-title">
-        <h5><label style="font-size:60px;font-family:Broadway;color:darkturquoise;margin-bottom:30px;margin-left:20px;margin-top:20px">Start Game</label></h5>
+
+    <div style="float:left;max-width: 40%;margin-left:5%;">
+        <div class="panel-title">
+            <h5><label style="font-size:60px;font-family:Broadway;color:darkturquoise;margin-bottom:30px;margin-left:20px;margin-top:20px">Start Game</label></h5>
         </div>
-    <div style="float:left;max-width: 30%;margin-left:5%;">
         <div class="container">
             <form id="generate-maze">
                 <table cellspacing="15">
@@ -49,10 +50,9 @@
             </form>
         </div>
     </div>
-    <div id="loader" class="loader" style="margin-left:40%;" hidden>
-    </div>
+    <center><div id="loader" class="loader" style="margin-left:20%;margin-top:15%" hidden></div></center>
     <div id="div2" style="margin-left:40%;" hidden>
-        <canvas id="mazeCanvas" size="300" width="600" height="430" style="border:2px black solid" tabindex="0"></canvas>
+        <canvas id="mazeCanvas"  width="500" height="500" style="border:2px black solid;margin-top:20px" tabindex="0"></canvas>
     </div>
 
         <script src="Scripts/jquery-3.2.1.js"></script>
