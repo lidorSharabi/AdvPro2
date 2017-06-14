@@ -104,13 +104,15 @@
     <Content Include="Images\sadDog.jpg" />
     <Content Include="Images\TheMaze.jpg" />
     <Content Include="Menu.html" />
-    <Content Include="OpeningPage.html" />
+    <Content Include="index.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery.mazeBoard.js" />
     <Content Include="Scripts\Menu.js" />
+    <Content Include="Scripts\Settings.js" />
     <Content Include="Scripts\SingleGame.js" />
+    <Content Include="Settings.html" />
     <Content Include="SingleGame.html" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\SingleGame.css" />

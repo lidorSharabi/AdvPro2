@@ -31,5 +31,11 @@ namespace AdvProg2WebApp.Controllers
             return Ok(mazeModel);
         }
 
+        public IHttpActionResult GetSolution(string name, int algo)
+        {
+            string solution = model.SolveMaze(name, algo);
+            return Ok(solution);
+        }
+
     }
 }

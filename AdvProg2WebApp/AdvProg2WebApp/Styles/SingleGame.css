@@ -1,7 +1,5 @@
 ﻿
-.loader
-
-{
+.loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
     border-radius: 50%;
@@ -19,5 +17,14 @@
         transform: rotate(360deg);
     }
 }
+
+.error {
+    border: 2px solid red;
+}
+
+.noError {
+    border: 1px;
+}
+
 
 

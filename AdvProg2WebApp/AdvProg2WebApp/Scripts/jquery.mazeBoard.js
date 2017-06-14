@@ -15,10 +15,17 @@
             var colPlayerPos = startCol;
             var rowPlayerPos = startRow;
             var counter = 0;
-            var initialIndexInMaze = 0;
-            context.clearRect(0, 0, myCanvas.width, myCanvas.height);
+            var indexInMaze = 0;
+
+            clearCanvas();
             drawMaze();
             addKeyboardListener();
+
+            function clearCanvas()
+            {
+                context.clearRect(0, 0, myCanvas.width, myCanvas.height);
+            };
+
             function drawMaze() {
                 for (var i = 0; i < rows; i++) {
                     for (var j = 0; j < cols; j++) {
@@ -92,7 +99,14 @@
 
             function checkIfWon() {
                 if (colPlayerPos == exitCol && rowPlayerPos == exitRow) {
-                    alert("You Won!");
+                    context.clearRect(0, 0, myCanvas.width, myCanvas.height);
+                    var endAnimation_image = new Image();
+                    endAnimation_image.src = "Images/Image.png";
+                    endAnimation_image.onload = function () {
+                        context.drawImage(endAnimation_image, 100, 150, myCanvas.width - 200, myCanvas.height - 200);
+                    }
+                        context.font = "32px Arial"
+                        context.fillText("You Won!", 75, 100);
                     removeKeyboardListener();
                 }
             };
@@ -105,7 +119,54 @@
                 myCanvas.onkeydown = moveSelection.bind(this);
             };
 
+            $.fn.solveMaze = function (solution) {
+                removeKeyboardListener();
+                colPlayerPos = startCol;
+                rowPlayerPos = startRow;
+                counter = 0;
+                clearCanvas();
+                drawMaze();
+                context.drawImage(exitImage, cellWidth * exitCol, cellHeight * exitRow, cellWidth, cellHeight);
+
+                var i = 0;
+                for (i = 0; i < solution.length; i++) {
+                    setTimeForAnim(solution[i],i);
+                }
+
+                setTimeout(function () {}, solution.length * 150);
+
+                function setTimeForAnim(index, i) {
+                    setTimeout(function () { moveAnimSol(index); }, i * 150);
+                };
+
+                function moveAnimSol(move) {
+                    switch (move) {
+                        case '0':
+                                clearPlayer();
+                                colPlayerPos -= 1;
+                                drawPlayer();
+                            break;
+                        case '1':
+                                clearPlayer();
+                                colPlayerPos += 1;
+                                drawPlayer();
+                            break;
+                        case '2':
+                                clearPlayer();
+                                rowPlayerPos -= 1;
+                                drawPlayer();
+                            break;
+                        case '3':
+                                clearPlayer();
+                                rowPlayerPos += 1;
+                                drawPlayer();
+                            break;
+                    }
+                };
+                return this;
+            };
 
         return this;
     };
+
 })(jQuery);
