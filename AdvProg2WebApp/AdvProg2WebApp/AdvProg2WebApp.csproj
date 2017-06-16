@@ -135,6 +135,10 @@
     <Compile Include="Migrations\201706141327343_Initial.Designer.cs">
       <DependentUpon>201706141327343_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706161137059_Initial1.cs" />
+    <Compile Include="Migrations\201706161137059_Initial1.Designer.cs">
+      <DependentUpon>201706161137059_Initial1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdvProg2WebAppContext.cs" />
     <Compile Include="Models\HandleMultiplaterGame.cs" />
@@ -169,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706141327343_Initial.resx">
       <DependentUpon>201706141327343_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706161137059_Initial1.resx">
+      <DependentUpon>201706161137059_Initial1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -78,28 +78,28 @@
                     <form class="cd-form">
                         <p class="fieldset">
                             <label class="image-replace cd-username" for="signup-username">Username</label>
-                            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+                            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username" onchange="usernameChange()">
                             <span class="cd-error-message" id="signup-userName-required">Required field</span>
                         </p>
 
                         <p class="fieldset">
                             <label class="image-replace cd-email" for="signup-email">E-mail</label>
-                            <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
-                            <span class="cd-error-message">Error message here!</span>
+                            <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail" onchange="emailChange()">
+                            <span class="cd-error-message" id="signup-email-required">Required field</span>
                         </p>
 
                         <p class="fieldset">
                             <label class="image-replace cd-password" for="signup-password">Password</label>
-                            <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="Password">
+                            <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="Password" onchange="passWordChange()">
                             <a href="#0" class="hide-password">Hide</a>
-                            <span class="cd-error-message">Error message here!</span>
+                            <span class="cd-error-message" id="signup-password-required">Required field</span>
                         </p>
 
                         <p class="fieldset">
                             <label class="image-replace cd-password" for="signup-password">Password</label>
-                            <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="Password">
+                            <input class="full-width has-padding has-border" id="signup-confrim-password" type="text" placeholder="Password" onchange="confrimPassWordChange()">
                             <a href="#0" class="hide-password">Hide</a>
-                            <span class="cd-error-message">Error message here!</span>
+                            <span class="cd-error-message" id="signup-confrim-password-required">Required field</span>
                         </p>
 
                         <p class="fieldset">
