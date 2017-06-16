@@ -20,15 +20,15 @@
     <body>
         <header role="banner">
             <div id="cd-logo">
-            <a style="font-size:xx-large;color:aquamarine" href="index.html">Maze</a>
-            <label>    |   </label>
-            <a href="SingleGame.html">Single Game</a>
-            <label>    |   </label>
-            <a href="#multi">MultiPlayer Game</a>
-            <label>    |   </label>
-            <a href="Settings.html">Settings</a>
-            <label>    |   </label>
-            <a href="#ranking">User Ranking</a>
+                <a style="font-size:xx-large;color:aquamarine" href="index.html">Maze</a>
+                <label>    |   </label>
+                <a href="SingleGame.html">Single Game</a>
+                <label>    |   </label>
+                <a href="#multi">MultiPlayer Game</a>
+                <label>    |   </label>
+                <a href="Settings.html">Settings</a>
+                <label>    |   </label>
+                <a href="#ranking">User Ranking</a>
             </div>
 
             <nav class="main-nav">
@@ -40,7 +40,7 @@
             </nav>
         </header>
 
-        <div class="cd-user-modal">
+        <div class="cd-user-modal" id="cd-user-modal">
             <!-- this is the entire modal form, including the background -->
             <div class="cd-user-modal-container">
                 <!-- this is the container wrapper -->
@@ -54,8 +54,8 @@
                     <form class="cd-form">
                         <p class="fieldset">
                             <label class="image-replace cd-username" for="signup-username">Username</label>
-                            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
-                            <span class="cd-error-message">Error message here!</span>
+                            <input class="full-width has-padding has-border" id="login-username" type="text" placeholder="Username">
+                            <span class="cd-error-message" id="login-userName-required">Required field</span>
                         </p>
 
                         <p class="fieldset">
@@ -79,7 +79,7 @@
                         <p class="fieldset">
                             <label class="image-replace cd-username" for="signup-username">Username</label>
                             <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
-                            <span class="cd-error-message">Error message here!</span>
+                            <span class="cd-error-message" id="signup-userName-required">Required field</span>
                         </p>
 
                         <p class="fieldset">
@@ -103,7 +103,19 @@
                         </p>
 
                         <p class="fieldset">
-                            <input class="full-width has-padding" type="button" value="Create account">
+                            <input class="full-width has-padding" type="button" value="Create account" onclick="addUser()"
+                                   style="
+                                    padding: 16px 0;
+                                    cursor: pointer;
+                                    background: #2f889a;
+                                    color: #FFF;
+                                    font-weight: bold;
+                                    border: none;
+                                    -webkit-appearance: none;
+                                    -moz-appearance: none;
+                                    -ms-appearance: none;
+                                    -o-appearance: none;
+                                    appearance: none;">
                         </p>
                     </form>
 
