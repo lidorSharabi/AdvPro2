@@ -40,7 +40,7 @@
             </nav>
         </header>
 
-        <div class="cd-user-modal">
+        <div class="cd-user-modal" id="cd-user-modal">
             <!-- this is the entire modal form, including the background -->
             <div class="cd-user-modal-container">
                 <!-- this is the container wrapper -->
@@ -54,8 +54,8 @@
                     <form class="cd-form">
                         <p class="fieldset">
                             <label class="image-replace cd-username" for="signup-username">Username</label>
-                            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
-                            <span class="cd-error-message">Error message here!</span>
+                            <input class="full-width has-padding has-border" id="login-username" type="text" placeholder="Username">
+                            <span class="cd-error-message" id="login-userName-required">Required field</span>
                         </p>
 
                         <p class="fieldset">
@@ -78,32 +78,44 @@
                     <form class="cd-form">
                         <p class="fieldset">
                             <label class="image-replace cd-username" for="signup-username">Username</label>
-                            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
-                            <span class="cd-error-message">Error message here!</span>
+                            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username" onchange="usernameChange()">
+                            <span class="cd-error-message" id="signup-userName-required">Required field</span>
                         </p>
 
                         <p class="fieldset">
                             <label class="image-replace cd-email" for="signup-email">E-mail</label>
-                            <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
-                            <span class="cd-error-message">Error message here!</span>
+                            <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail" onchange="emailChange()">
+                            <span class="cd-error-message" id="signup-email-required">Required field</span>
                         </p>
 
                         <p class="fieldset">
                             <label class="image-replace cd-password" for="signup-password">Password</label>
-                            <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="Password">
+                            <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="Password" onchange="passWordChange()">
                             <a href="#0" class="hide-password">Hide</a>
-                            <span class="cd-error-message">Error message here!</span>
+                            <span class="cd-error-message" id="signup-password-required">Required field</span>
                         </p>
 
                         <p class="fieldset">
                             <label class="image-replace cd-password" for="signup-password">Password</label>
-                            <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="Password">
+                            <input class="full-width has-padding has-border" id="signup-confrim-password" type="text" placeholder="Password" onchange="confrimPassWordChange()">
                             <a href="#0" class="hide-password">Hide</a>
-                            <span class="cd-error-message">Error message here!</span>
+                            <span class="cd-error-message" id="signup-confrim-password-required">Required field</span>
                         </p>
 
                         <p class="fieldset">
-                            <input class="full-width has-padding" type="button" value="Create account">
+                            <input class="full-width has-padding" type="button" value="Create account" onclick="addUser()"
+                                   style="
+                                    padding: 16px 0;
+                                    cursor: pointer;
+                                    background: #2f889a;
+                                    color: #FFF;
+                                    font-weight: bold;
+                                    border: none;
+                                    -webkit-appearance: none;
+                                    -moz-appearance: none;
+                                    -ms-appearance: none;
+                                    -o-appearance: none;
+                                    appearance: none;">
                         </p>
                     </form>
 

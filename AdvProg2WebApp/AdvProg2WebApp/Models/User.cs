@@ -14,5 +14,9 @@ namespace AdvProg2WebApp.Models
         public int Losses { get; set; }
         [Required]
         public int Victories { get; set; }
+        [Required]
+        public string MailAddress { get; set; }
+        [Required]
+        public string Password { get; set; }
     }
 }
