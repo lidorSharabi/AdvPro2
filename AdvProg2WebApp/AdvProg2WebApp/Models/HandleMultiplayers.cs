@@ -18,11 +18,11 @@ namespace AdvProg2WebApp.Models
         /// <summary>
         /// the host client, the client that did the start operation
         /// </summary>
-        public TcpClient Host { get; set; }
+        public string Host { get; set; }
         /// <summary>
         /// the guest client, the client that did the join operation
         /// </summary>
-        public TcpClient Guest { get; set; }
+        public string Guest { get; set; }
         /// <summary>
         /// the Json object of the game
         /// </summary>
@@ -39,7 +39,7 @@ namespace AdvProg2WebApp.Models
         /// Ctor
         /// </summary>
         /// <param name="host"></param>
-        public HandleMultiplayers(TcpClient host)
+        public HandleMultiplayers(string host)
         {
             this.Host = host;
         }
@@ -49,32 +49,20 @@ namespace AdvProg2WebApp.Models
         /// </summary>
         public void SendMazeToJsonToHost()
         {
-            NetworkStream stream = Host.GetStream();
-            StreamWriter writer = new StreamWriter(stream);
-            writer.AutoFlush = true;
-            writer.WriteLine(GameToJason);
         }
 
         /// <summary>
         /// sends a message to the one client that the other client has closed the game
         /// </summary>
         /// <param name="client"></param>
-        public void Close(TcpClient client)
+        public void Close(string client)
         {
             run = false;
             if (client == Host)
             {
-                NetworkStream stream = Guest.GetStream();
-                StreamWriter writer = new StreamWriter(stream);
-                writer.AutoFlush = true;
-                writer.WriteLine("The host has closed the game");
             }
             else if (client == Guest)
             {
-                NetworkStream stream = Host.GetStream();
-                StreamWriter writer = new StreamWriter(stream);
-                writer.AutoFlush = true;
-                writer.WriteLine("The guest has closed the game");
             }
         }
         
@@ -83,24 +71,16 @@ namespace AdvProg2WebApp.Models
         /// </summary>
         /// <param name="client"></param>
         /// <param name="move"></param>
-        public void SendMessageToClient(TcpClient client, string move)
+        public void SendMessageToClient(string client, string move)
         {
             JObject playMoveFormat = new JObject();
             playMoveFormat["name"] = Name;
             playMoveFormat["Direction"] = move.ToLower();
             if (client == Host)
             {
-                NetworkStream stream = Guest.GetStream();
-                StreamWriter writer = new StreamWriter(stream);
-                writer.AutoFlush = true;
-                writer.WriteLine(playMoveFormat.ToString());
             }
             else if (client == Guest)
             {
-                NetworkStream stream = Host.GetStream();
-                StreamWriter writer = new StreamWriter(stream);
-                writer.AutoFlush = true;
-                writer.WriteLine(playMoveFormat.ToString());
             }
         }
     }

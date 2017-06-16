@@ -48,20 +48,21 @@
     </div>
     <div id="middle" style="float:left; width: 35%;">
         <center><div id="loader" class="loader" style="margin-left:20%;margin-top:15%" hidden></div></center>
-        <label style="margin-left:32%">My Board</label>
-        <canvas id="mazeCanvas" width="370" height="370" style="border:2px black solid;margin-top:20px" tabindex="0"></canvas>
+        <label style="margin-left:32%" id="label" hidden>My Board</label>
+        <canvas id="mazeCanvas" width="370" height="370" style="border:2px black solid;margin-top:20px" tabindex="0" hidden></canvas>
     </div>
-    <div id="right" style="float:left; width: 30%;">
+    <div id="right" style="float:left; width: 30%;" hidden>
         <center><label>Other Player's Board</label></center>
-        <canvas id="mazeCanvas" width="370" height="370" style="border:2px black solid;margin-top:20px" tabindex="0"></canvas>
+        <canvas id="OpponentMazeCanvas" width="370" height="370" style="border:2px black solid;margin-top:20px" tabindex="0"></canvas>
     </div>
 
     <script src="Scripts/jquery-3.2.1.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.2.js"></script>
+    <script src="/signalr/hubs"></script>
     <script src="Scripts/bootstrap.js"></script>
     <script src="Scripts/Menu.js"></script>
-    <script src="Scripts/SingleGame.js"></script>
-    <script src="Scripts/jquery.mazeBoard.js"></script>
-
+    <script src="Scripts/MultiGames.js"></script>
+    <script src="Scripts/jquery.multiMaze.js"></script>
 
 </body>
 </html>

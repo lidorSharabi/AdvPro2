@@ -41,27 +41,27 @@ namespace AdvProg2WebApp.Models
         /// <param name="cols"></param>
         /// <param name="client"></param>
         /// <returns></returns>
-        Maze MazeStart(string name, int rows, int cols, TcpClient client);
+        Maze MazeStart(string name, int rows, int cols, string client);
         /// <summary>
         /// joining a multiplayer maze that was started by another client
         /// </summary>
         /// <param name="name"></param>
         /// <param name="client"></param>
         /// <returns></returns>
-        Maze JoinMaze(string name, TcpClient client);
+        Maze JoinMaze(string name, string client);
         /// <summary>
         /// playing a move in the multiplayer maze (up, down, right, left)
         /// </summary>
         /// <param name="move"></param>
         /// <param name="client"></param>
         /// <returns></returns>
-        string PlayMove(string move, TcpClient client);
+        string PlayMove(string move, string client);
         /// <summary>
         /// closing a multiplayer maze
         /// </summary>
         /// <param name="name"></param>
         /// <param name="client"></param>
         /// <returns></returns>
-        string CloseMultiPlayerGame(string name, TcpClient client);
+        string CloseMultiPlayerGame(string name, string client);
     }
 }
