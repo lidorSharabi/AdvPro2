@@ -2,7 +2,9 @@
     $("#menu").load("../Menu.html");
 });
 
-function addUser() {
+//*******************************new user section*******************************
+
+function createAccount() {
     var usersUrl = "api/Users/";
     var userName = $("#signup-username").val();
     var email = $("#signup-email").val();
@@ -47,19 +49,18 @@ function addUser() {
     if (validation) {
         return;
     }
-
     $.post(usersUrl, user).done(function (data) {
         document.getElementById("cd-user-modal").classList.remove('is-visible');
-
+        sessionStorage.setItem('userName', userName);
     }).fail(function (response) {
         if (response.statusText == "Conflict") {
-            alert("ERROR: this user already exist \r\n please try again with different name");
+            document.getElementById("signup-userName-required").textContent = "this User  Name already exist";
         }
         document.getElementById("signup-username").value = "";
     });
 }
 
-function usernameChange() {
+function registerUsernameChange() {
     document.getElementById("signup-userName-required").classList.remove('is-visible');
 }
 
@@ -67,13 +68,57 @@ function emailChange() {
     document.getElementById("signup-email-required").classList.remove('is-visible');
 }
 
-function passWordChange() {
+function registerPassWordChange() {
     document.getElementById("signup-password-required").classList.remove('is-visible');
 }
 
 function confrimPassWordChange() {
     document.getElementById("signup-confrim-password-required").classList.remove('is-visible');
 }
+
+
+//*******************************login section*******************************
+function login() {
+    var usersUrl = "api/Users/";
+    var userName = $("#login-username").val();
+    var password = $("#login-password").val();
+
+    var validation = false;
+    if (userName == "") {
+        document.getElementById("login-userName-required").classList.add('is-visible');
+        validation = true;
+    }
+    if (password == "") {
+        document.getElementById("login-password-required").classList.add('is-visible');
+        validation = true;
+    }
+    if (validation) {
+        return;
+    }
+
+    $.get(usersUrl, { id: userName, password: password}).done(function (data) {
+        document.getElementById("cd-user-modal").classList.remove('is-visible');
+        sessionStorage.setItem('userName', userName);
+    }).fail(function (response) {
+        document.getElementById("login-error-required").classList.add('is-visible');
+        document.getElementById("login-error-required").textContent = "username or password is incorrect";
+        });
+}
+
+function loginUsernameChange() {
+    document.getElementById("login-userName-required").classList.remove('is-visible');
+    loginErrorChange();
+}
+
+function loginPassWordChange() {
+    document.getElementById("login-password-required").classList.remove('is-visible');
+    loginErrorChange();
+}
+
+function loginErrorChange() {
+    document.getElementById("login-error-required").classList.remove('is-visible');
+}
+//*******************************general section*******************************
 
 function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

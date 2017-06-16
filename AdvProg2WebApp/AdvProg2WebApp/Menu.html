@@ -34,6 +34,8 @@
             <nav class="main-nav">
                 <ul>
                     <!-- inser more links here -->
+                    <li><a style="visibility:hidden" class="cd-loggedin" href="#0">Log Out</a></li>
+                    <li><span style="visibility:hidden" class="cd-loggedin"></span></li>
                     <li><a class="cd-signin" href="#0">Sign in</a></li>
                     <li><a class="cd-signup" href="#0">Register</a></li>
                 </ul>
@@ -54,19 +56,37 @@
                     <form class="cd-form">
                         <p class="fieldset">
                             <label class="image-replace cd-username" for="signup-username">Username</label>
-                            <input class="full-width has-padding has-border" id="login-username" type="text" placeholder="Username">
+                            <input class="full-width has-padding has-border" id="login-username" type="text" placeholder="Username" onchange="loginUsernameChange()">
                             <span class="cd-error-message" id="login-userName-required">Required field</span>
                         </p>
 
                         <p class="fieldset">
                             <label class="image-replace cd-password" for="signin-password">Password</label>
-                            <input class="full-width has-padding has-border" id="signin-password" type="text" placeholder="Password">
+                            <input class="full-width has-padding has-border" id="login-password" type="text" placeholder="Password" onchange="loginPassWordChange()">
                             <a href="#0" class="hide-password">Hide</a>
-                            <span class="cd-error-message">Error message here!</span>
+                            <span class="cd-error-message" id="login-password-required">Required field</span>
+
+                            <span class="cd-error-message" id="login-error-required">Error</span>
                         </p>
 
                         <p class="fieldset">
-                            <input class="full-width" type="submit" value="Login">
+                        </p>
+
+                        <p class="fieldset">
+                            <input class="full-width has-padding" type="button" value="Login" onclick="login()"
+                                   style="
+                                    padding: 16px 0;
+                                    cursor: pointer;
+                                    background: #2f889a;
+                                    color: #FFF;
+                                    font-weight: bold;
+                                    border: none;
+                                    -webkit-appearance: none;
+                                    -moz-appearance: none;
+                                    -ms-appearance: none;
+                                    -o-appearance: none;
+                                    appearance: none;">
+                        </p>
                         </p>
                     </form>
 
@@ -78,7 +98,7 @@
                     <form class="cd-form">
                         <p class="fieldset">
                             <label class="image-replace cd-username" for="signup-username">Username</label>
-                            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username" onchange="usernameChange()">
+                            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username" onchange="registerUsernameChange()">
                             <span class="cd-error-message" id="signup-userName-required">Required field</span>
                         </p>
 
@@ -90,7 +110,7 @@
 
                         <p class="fieldset">
                             <label class="image-replace cd-password" for="signup-password">Password</label>
-                            <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="Password" onchange="passWordChange()">
+                            <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="Password" onchange="registerPassWordChange()">
                             <a href="#0" class="hide-password">Hide</a>
                             <span class="cd-error-message" id="signup-password-required">Required field</span>
                         </p>
@@ -103,7 +123,7 @@
                         </p>
 
                         <p class="fieldset">
-                            <input class="full-width has-padding" type="button" value="Create account" onclick="addUser()"
+                            <input class="full-width has-padding" type="button" value="Create account" onclick="createAccount()"
                                    style="
                                     padding: 16px 0;
                                     cursor: pointer;

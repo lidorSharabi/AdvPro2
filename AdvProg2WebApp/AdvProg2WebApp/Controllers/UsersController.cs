@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using AdvProg2WebApp.Models;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace AdvProg2WebApp.Controllers
 {
@@ -28,6 +30,19 @@ namespace AdvProg2WebApp.Controllers
         {
             User user = db.Users.Find(id);
             if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+        // GET: api/Users/5&123
+        //[ResponseType(typeof(User))]
+        public IHttpActionResult GetConfrimUser(string id, string password)
+        {
+            User user = db.Users.Find(id);
+            if (user == null || user.Password != password)
             {
                 return NotFound();
             }
@@ -129,5 +144,15 @@ namespace AdvProg2WebApp.Controllers
         {
             return db.Users.Count(e => e.UserNameId == id) > 0;
         }
+
+        string ComputeHash(string input)
+        {
+            SHA1 sha = SHA1.Create();
+            byte[] buffer = Encoding.ASCII.GetBytes(input);
+            byte[] hash = sha.ComputeHash(buffer);
+            string hash64 = Convert.ToBase64String(hash);
+            return hash64;
+        }
+
     }
 }
