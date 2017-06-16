@@ -14,15 +14,10 @@ namespace AdvProg2WebApp.Controllers
         IModel model = new Model();
 
         // GET api/<controller>
-        public IEnumerable<string> GetList()
+        public string[] GetList()
         {
             string[] games = model.MazeList();
             return games;
-        }
-
-        public void PostToList(string name, int rows, int cols)
-        {
-            model.MazeStart(name, rows, cols);
         }
 
     }

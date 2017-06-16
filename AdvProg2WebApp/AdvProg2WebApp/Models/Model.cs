@@ -33,15 +33,10 @@ namespace AdvProg2WebApp.Models
         /// </summary>
         static Dictionary<string, Solution<Position>> multiplayerSolDict = new Dictionary<string, Solution<Position>>();
         /// <summary>
-        /// dictionary of the multiplayers games that are played and the object that
-        /// holds the two players of the game, the name is the key
-        /// </summary>
-        static Dictionary<string, HandleMultiplayers> handleMultiplayersDict = new Dictionary<string, HandleMultiplayers>();
-        /// <summary>
         /// dictionary of the clients that plays in a multyplayer game and the object that
         /// holds the two players of the game, the client is the key
         /// </summary>
-        static Dictionary<TcpClient, HandleMultiplayers> multiplayerGames = new Dictionary<TcpClient, HandleMultiplayers>();
+        public static Dictionary<string, string> multiplayerGames = new Dictionary<string, string>();
         /// <summary>
         /// generating a new private maze
         /// if the maze already exists it returns it
@@ -120,17 +115,13 @@ namespace AdvProg2WebApp.Models
         /// <param name="cols"></param>
         /// <param name="client"></param>
         /// <returns></returns>
-        public Maze MazeStart(string name, int rows, int cols, TcpClient client)
+        public Maze MazeStart(string name, int rows, int cols, string client)
         {
             if (!multiplayerMazeDict.Keys.Contains(name))
             {
                 Maze maze = Generate(name, rows, cols);
                 multiplayerMazeDict.Add(name, maze);
-                HandleMultiplayers handle = new HandleMultiplayers(client);
-                handle.GameToJason = maze.ToJSON();
-                handle.Name = name;
-                handleMultiplayersDict.Add(name, handle);
-                multiplayerGames.Add(client, handle);
+                multiplayerGames.Add(client, name);
                 return maze;
             }
             return null;
@@ -142,15 +133,12 @@ namespace AdvProg2WebApp.Models
         /// <param name="name"></param>
         /// <param name="client"></param>
         /// <returns></returns>
-        public Maze JoinMaze(string name, TcpClient client)
+        public Maze JoinMaze(string name, string client)
         {
             if (multiplayerMazeDict.Keys.Contains(name))
             {
-                HandleMultiplayers handle = handleMultiplayersDict[name];
                 Maze m = multiplayerMazeDict[name];
-                handle.Guest = client;
-                handle.SendMazeToJsonToHost();
-                multiplayerGames.Add(client, handle);
+                multiplayerGames.Add(client, name);
                 multiplayerMazeDict.Remove(name);
                 return m;
             }
@@ -162,13 +150,8 @@ namespace AdvProg2WebApp.Models
         /// <param name="move"></param>
         /// <param name="client"></param>
         /// <returns></returns>
-        public string PlayMove(string move, TcpClient client)
+        public string PlayMove(string move, string client)
         {
-            if (multiplayerGames.Keys.Contains(client))
-            {
-                HandleMultiplayers handle = multiplayerGames[client];
-                handle.SendMessageToClient(client, move);
-            }
                 return String.Empty;
         }
         /// <summary>
@@ -177,24 +160,10 @@ namespace AdvProg2WebApp.Models
         /// <param name="name"></param>
         /// <param name="client"></param>
         /// <returns></returns>
-        public string CloseMultiPlayerGame(string name, TcpClient client)
+        public string CloseMultiPlayerGame(string name, string client)
         {
             if (multiplayerGames.Keys.Contains(client)) 
             {
-                HandleMultiplayers handle = handleMultiplayersDict[name];
-                TcpClient guest = handle.Guest;
-                TcpClient host = handle.Host;
-                if(guest == null || host == null)
-                {
-                    multiplayerMazeDict.Remove(name);
-                    handleMultiplayersDict.Remove(name);
-                    multiplayerGames.Remove(client);
-                    return String.Empty;
-                }
-                multiplayerGames.Remove(guest);
-                multiplayerGames.Remove(host);
-                handleMultiplayersDict.Remove(name);
-                handle.Close(client);
                 return String.Empty;
             }
             return "Error Game not found";
