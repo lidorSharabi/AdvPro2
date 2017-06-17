@@ -7,10 +7,10 @@
         var i = 0;
         if (xList.length) {
             for (i = 0; i < xList.length; i++) {
-                xList[i]=null;
+                xList[i] = null;
             }
         }
-        
+
         for (i = 0; i < games.length; i++) {
             var option = document.createElement("option");
             option.text = games[i];
@@ -127,6 +127,32 @@
                 }
                 context.font = "32px Arial"
                 context.fillText("You Won!", 75, 100);
+                //call http request to add current user one victory
+                var usersUrl = "api/Users/";
+                var userName = sessionStorage.getItem('userName');
+                var user = {
+                    UserNameId: 0,
+                    Losses: 0,
+                    Victories: 0,
+                    MailAddress: 0,
+                    Password: 0
+                };
+
+                $.get(usersUrl, { id: userName }).done(function (data) {
+                    user.UserNameId = data.UserNameId;
+                    user.Losses = data.Losses;
+                    user.Victories = data.Victories + 1;
+                    user.MailAddress = data.MailAddress;
+                    user.Password = data.Password;
+                    $.post(usersUrl + "Update", user).done(function (data) {
+                        document.getElementById("cd-user-modal").classList.remove('is-visible');
+                    }).fail(function (response) {
+                        alert('Something went worng with server...');
+                    });
+
+                }).fail(function (response) {
+                    alert('Something went worng with server...');
+                });
                 removeKeyboardListener();
                 hubCon.server.endOfGame(name);
             }
@@ -184,7 +210,7 @@
         oexitImage.onload = function () {
             context.drawImage(oexitImage, cellWidth * exitCol, cellHeight * exitRow, cellWidth, cellHeight);
         };
-        $.fn.moveLeft = function() {
+        $.fn.moveLeft = function () {
             clearPlayer();
             colPlayerPos -= 1;
             indexInMaze -= 1;
