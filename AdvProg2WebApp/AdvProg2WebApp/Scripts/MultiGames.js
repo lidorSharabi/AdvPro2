@@ -8,6 +8,39 @@ var opponentMazeCanvas = $("#OpponentMazeCanvas");
 
 var multiplayer = $.connection.multiPlayerHandler;
 multiplayer.client.broadcastMessage = function (msg) {
+    if (msg == "Game Ended") {
+        var canvas = document.getElementById("mazeCanvas");
+        var context = canvas.getContext("2d");
+        var endOfGame_image = new Image();
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        endOfGame_image.src = "Images/sadDog.jpg";
+        endOfGame_image.onload = function () {
+            context.drawImage(endOfGame_image, 100, 150, canvas.width - 200, canvas.height - 200);
+        }
+        context.font = "32px Arial"
+        context.fillText("You Lost!", 75, 100);
+        canvas.onkeydown = null;
+        return;
+    }
+
+    if (msg == "left" || msg == "right" || msg == "up" || msg == "down") {
+        switch (msg) {
+            case 'left':
+                opponentMazeCanvas.moveLeft();
+                break;
+            case 'right':
+                opponentMazeCanvas.moveRight();
+                break;
+            case 'up':
+                opponentMazeCanvas.moveUp();
+                break;
+            case 'down':
+                opponentMazeCanvas.moveDown();
+                break;
+        }
+        return;
+    }
+
     var name = msg.Name;
     var rows = msg.Rows;
     var cols = msg.Cols;
@@ -20,13 +53,13 @@ multiplayer.client.broadcastMessage = function (msg) {
     playerImage.src = "Images/dog.jpg"
     var exitImage = new Image;
     exitImage.src = "Images/exit.png"
-    mazeCanvas.mazeBoard(name, rows, cols, mazeData,
+    mazeCanvas.mazeBoard(multiplayer, name, rows, cols, mazeData,
         startRow, startCol,
         exitRow, exitCol,
         playerImage,
         exitImage);
     var oPlayerImage = new Image();
-    oPlayerImage.src = "Images/dog - Copy.jpg"
+    oPlayerImage.src = "Images/Opponent_Cat.jpg"
     var oExitImage = new Image;
     oExitImage.src = "Images/exit - Copy.png"
     opponentMazeCanvas.opponentMazeBoard(name, rows, cols, mazeData,

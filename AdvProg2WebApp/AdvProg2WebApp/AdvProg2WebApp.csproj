@@ -118,7 +118,6 @@
       <DependentUpon>AdvProg2WebAppContext-20170614100458.mdf</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
-    <Content Include="Images\dog - Copy.jpg" />
     <Content Include="Images\dog.jpg" />
     <Content Include="Images\exit - Copy.png" />
     <Content Include="Images\exit.png" />

@@ -1,4 +1,5 @@
 ﻿
+
 (function ($) {
     $.fn.mazeList = function (games) {
         var x = document.getElementById("games");
@@ -18,7 +19,7 @@
         return this;
     };
 
-    $.fn.mazeBoard = function (name, rows, cols, mazeData,
+    $.fn.mazeBoard = function (hubCon, name, rows, cols, mazeData,
         startRow, startCol,
         exitRow, exitCol,
         playerImage,
@@ -71,6 +72,7 @@
                         colPlayerPos -= 1;
                         indexInMaze -= 1;
                         drawPlayer();
+                        hubCon.server.playMove(name, "left");
                     }
                     checkIfWon();
                     break;
@@ -80,6 +82,7 @@
                         colPlayerPos += 1;
                         indexInMaze += 1;
                         drawPlayer();
+                        hubCon.server.playMove(name, "right");
                     }
                     checkIfWon();
                     break;
@@ -89,6 +92,7 @@
                         rowPlayerPos -= 1;
                         indexInMaze -= cols;
                         drawPlayer();
+                        hubCon.server.playMove(name, "up");
                     }
                     checkIfWon();
                     break;
@@ -98,6 +102,7 @@
                         rowPlayerPos += 1;
                         indexInMaze += cols;
                         drawPlayer();
+                        hubCon.server.playMove(name, "down");
                     }
                     checkIfWon();
                     break;
@@ -115,14 +120,15 @@
         function checkIfWon() {
             if (colPlayerPos == exitCol && rowPlayerPos == exitRow) {
                 context.clearRect(0, 0, myCanvas.width, myCanvas.height);
-                var endAnimation_image = new Image();
-                endAnimation_image.src = "Images/Image.png";
-                endAnimation_image.onload = function () {
-                    context.drawImage(endAnimation_image, 100, 150, myCanvas.width - 200, myCanvas.height - 200);
+                var winning_image = new Image();
+                winning_image.src = "Images/Image.png";
+                winning_image.onload = function () {
+                    context.drawImage(winning_image, 100, 150, myCanvas.width - 200, myCanvas.height - 200);
                 }
                 context.font = "32px Arial"
                 context.fillText("You Won!", 75, 100);
                 removeKeyboardListener();
+                hubCon.server.endOfGame(name);
             }
         };
 
@@ -149,6 +155,7 @@
         var colPlayerPos = startCol;
         var rowPlayerPos = startRow;
         var counter = 0;
+        var indexInMaze = 0;
 
         clearCanvas();
         drawMaze();
@@ -167,9 +174,6 @@
 
                         indexInMaze = counter;
                     }
-                    if (i == exitRow && j == exitCol) {
-
-                    }
                     counter++;
                 }
             }
@@ -180,6 +184,46 @@
         oexitImage.onload = function () {
             context.drawImage(oexitImage, cellWidth * exitCol, cellHeight * exitRow, cellWidth, cellHeight);
         };
+        $.fn.moveLeft = function() {
+            clearPlayer();
+            colPlayerPos -= 1;
+            indexInMaze -= 1;
+            drawPlayer();
+            return this;
+        };
+
+        $.fn.moveRight = function () {
+            clearPlayer();
+            colPlayerPos += 1;
+            indexInMaze += 1;
+            drawPlayer();
+            return this;
+        };
+
+        $.fn.moveUp = function () {
+            clearPlayer();
+            rowPlayerPos -= 1;
+            indexInMaze -= cols;
+            drawPlayer();
+            return this;
+        };
+
+        $.fn.moveDown = function () {
+            clearPlayer();
+            rowPlayerPos += 1;
+            indexInMaze += cols;
+            drawPlayer();
+            return this;
+        };
+
+        function clearPlayer() {
+            context.clearRect(colPlayerPos * cellWidth, rowPlayerPos * cellHeight, cellWidth, cellHeight);
+        };
+
+        function drawPlayer() {
+            context.drawImage(oplayerImage, colPlayerPos * cellWidth, rowPlayerPos * cellHeight, cellWidth, cellHeight);
+        };
+
         return this;
     };
 

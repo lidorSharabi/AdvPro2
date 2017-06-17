@@ -60,6 +60,38 @@ namespace AdvProg2WebApp.Models
             Clients.Client(Context.ConnectionId).broadcastMessage(mazeModel);
         }
 
+        public void EndOfGame(string name)
+        {
+            foreach (string s in MyUsers)
+            {
+                if (Model.multiplayerGames.Keys.Contains(s))
+                {
+                    if (Model.multiplayerGames[s] == name && Context.ConnectionId != s)
+                    {
+                        Clients.Client(s).broadcastMessage("Game Ended");
+                    }
+                }
+
+            }
+
+        }
+
+        public void PlayMove(string name, string move)
+        {
+            foreach (string s in MyUsers)
+            {
+                if (Model.multiplayerGames.Keys.Contains(s))
+                {
+                    if (Model.multiplayerGames[s] == name && Context.ConnectionId != s)
+                    {
+                        Clients.Client(s).broadcastMessage(move);
+                    }
+                }
+
+            }
+
+        }
+
     }
 
 }
