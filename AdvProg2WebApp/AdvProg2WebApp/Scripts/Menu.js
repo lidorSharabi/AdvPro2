@@ -58,6 +58,7 @@ function createAccount() {
         document.getElementById("cd-signin-nav").style.visibility = "hidden";
         document.getElementById("cd-loggedin-a").style.visibility = "visible";
         document.getElementById("cd-loggedin-span").style.visibility = "visible";
+        window.location.href = "index.html";
     }).fail(function (response) {
         if (response.statusText == "Conflict") {
             document.getElementById("signup-userName-required").textContent = "this User  Name already exist";
@@ -111,10 +112,45 @@ function login() {
         document.getElementById("cd-signin-nav").style.visibility = "hidden";
         document.getElementById("cd-loggedin-a").style.visibility = "visible";
         document.getElementById("cd-loggedin-span").style.visibility = "visible";
+        window.location.href = "index.html";
     }).fail(function (response) {
         document.getElementById("login-error-required").textContent = "username or password is incorrect";
         document.getElementById("login-error-required").classList.add('is-visible');
         });
+
+
+
+
+    ///////////////////////////
+    //var user = {
+    //    UserNameId: 0,
+    //    Losses: 0,
+    //    Victories: 0,
+    //    MailAddress: 0,
+    //    Password: 0
+    //};
+    //$.get(usersUrl, { id: "lidorr" }).done(function (data) {
+    //    user.UserNameId = data.UserNameId;
+    //    user.Losses = data.Losses;
+    //    user.Victories = data.Victories;
+    //    user.MailAddress = data.MailAddress;
+    //    user.Password = data.Password;
+    //    var name = "lidorr";
+    //    $.post(usersUrl, { id: name, user: user }).done(function (data) {
+    //        document.getElementById("cd-user-modal").classList.remove('is-visible');
+    //    }).fail(function (response) {
+    //        document.getElementById("login-error-required").classList.add('is-visible');
+    //        document.getElementById("login-error-required").textContent = "username or password is incorrect";
+    //    });
+
+    //}).fail(function (response) {
+    //    alert("failed");
+    //});
+
+
+
+
+    //////////////////////
 }
 
 function loginUsernameChange() {
