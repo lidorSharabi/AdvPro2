@@ -52,6 +52,12 @@ function createAccount() {
     $.post(usersUrl, user).done(function (data) {
         document.getElementById("cd-user-modal").classList.remove('is-visible');
         sessionStorage.setItem('userName', userName);
+        //$("#cd-signup-nav").css('visibility', 'hidden');
+        document.getElementById("cd-loggedin-span").innerText = sessionStorage.getItem('userName');
+        document.getElementById("cd-signup-nav").style.visibility = "hidden";
+        document.getElementById("cd-signin-nav").style.visibility = "hidden";
+        document.getElementById("cd-loggedin-a").style.visibility = "visible";
+        document.getElementById("cd-loggedin-span").style.visibility = "visible";
     }).fail(function (response) {
         if (response.statusText == "Conflict") {
             document.getElementById("signup-userName-required").textContent = "this User  Name already exist";
@@ -99,9 +105,15 @@ function login() {
     $.get(usersUrl, { id: userName, password: password}).done(function (data) {
         document.getElementById("cd-user-modal").classList.remove('is-visible');
         sessionStorage.setItem('userName', userName);
+        //$("#cd-signup-nav").css('visibility', 'hidden');
+        document.getElementById("cd-loggedin-span").innerText = sessionStorage.getItem('userName');
+        document.getElementById("cd-signup-nav").style.visibility = "hidden";
+        document.getElementById("cd-signin-nav").style.visibility = "hidden";
+        document.getElementById("cd-loggedin-a").style.visibility = "visible";
+        document.getElementById("cd-loggedin-span").style.visibility = "visible";
     }).fail(function (response) {
-        document.getElementById("login-error-required").classList.add('is-visible');
         document.getElementById("login-error-required").textContent = "username or password is incorrect";
+        document.getElementById("login-error-required").classList.add('is-visible');
         });
 }
 
