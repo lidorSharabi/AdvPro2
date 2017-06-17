@@ -41,6 +41,12 @@ multiplayer.client.broadcastMessage = function (msg) {
         return;
     }
 
+    if (msg == "Game Closed") {
+        alert("Game was closed");
+        window.open("index.html", '_self');
+        return;
+    }
+
     var name = msg.Name;
     var rows = msg.Rows;
     var cols = msg.Cols;
@@ -114,7 +120,7 @@ $.connection.hub.start().done(function () {
 });
 
 (function ($) {
-    $("#games").slideDown(function () {
+    $("#games").focus(function () {
         var apiUrl = "api/Multi/GetList";
         $.get(apiUrl)
             .done(function (msg) {
@@ -130,3 +136,18 @@ $.connection.hub.start().done(function () {
     });
 
 })(jQuery);
+
+function focusFunction() {
+    var apiUrl = "api/Multi/GetList";
+    $.get(apiUrl)
+        .done(function (msg) {
+            gamesList.mazeList(msg);
+        })
+        .fail(function (jqXHR, textStatus, err) {
+            if (jqXHR.status == 500) {
+                alert("error in connection to server");
+                return;
+            }
+            mazeCanvas.text("Error: " + err);
+        });
+};
