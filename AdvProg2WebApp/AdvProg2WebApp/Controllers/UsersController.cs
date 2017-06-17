@@ -42,7 +42,7 @@ namespace AdvProg2WebApp.Controllers
         public IHttpActionResult GetConfrimUser(string id, string password)
         {
             User user = db.Users.Find(id);
-            if (user == null || user.Password != password)
+            if (user == null || user.Password != ComputeHash(password))
             {
                 return NotFound();
             }
@@ -51,19 +51,14 @@ namespace AdvProg2WebApp.Controllers
         }
 
         // PUT: api/Users/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutUser(string id, User user)
+        [ResponseType(typeof(User))]
+        [Route("api/Users/Update")]
+        public IHttpActionResult UpdateUser(User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (id != user.UserNameId)
-            {
-                return BadRequest();
-            }
-
             db.Entry(user).State = EntityState.Modified;
 
             try
@@ -72,7 +67,7 @@ namespace AdvProg2WebApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!UserExists(user.UserNameId))
                 {
                     return NotFound();
                 }
@@ -93,7 +88,7 @@ namespace AdvProg2WebApp.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            user.Password = ComputeHash(user.Password);
             db.Users.Add(user);
 
             try

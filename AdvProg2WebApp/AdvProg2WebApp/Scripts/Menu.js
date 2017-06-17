@@ -103,7 +103,7 @@ function login() {
         return;
     }
 
-    $.get(usersUrl, { id: userName, password: password}).done(function (data) {
+    $.get(usersUrl, { id: userName, password: password }).done(function (data) {
         document.getElementById("cd-user-modal").classList.remove('is-visible');
         sessionStorage.setItem('userName', userName);
         //$("#cd-signup-nav").css('visibility', 'hidden');
@@ -114,9 +114,10 @@ function login() {
         document.getElementById("cd-loggedin-span").style.visibility = "visible";
         window.location.href = "index.html";
     }).fail(function (response) {
+        //TODO - lidor add the reasne for the response
         document.getElementById("login-error-required").textContent = "username or password is incorrect";
         document.getElementById("login-error-required").classList.add('is-visible');
-        });
+    });
 
 
 
@@ -129,27 +130,23 @@ function login() {
     //    MailAddress: 0,
     //    Password: 0
     //};
-    //$.get(usersUrl, { id: "lidorr" }).done(function (data) {
+    //$.get(usersUrl, { id: userName}).done(function (data) {
     //    user.UserNameId = data.UserNameId;
     //    user.Losses = data.Losses;
     //    user.Victories = data.Victories;
     //    user.MailAddress = data.MailAddress;
     //    user.Password = data.Password;
-    //    var name = "lidorr";
-    //    $.post(usersUrl, { id: name, user: user }).done(function (data) {
+    //    $.post(usersUrl + "Update", user ).done(function (data) {
     //        document.getElementById("cd-user-modal").classList.remove('is-visible');
     //    }).fail(function (response) {
+    //        //TODO - lidor add the reasne for the response
     //        document.getElementById("login-error-required").classList.add('is-visible');
     //        document.getElementById("login-error-required").textContent = "username or password is incorrect";
     //    });
 
     //}).fail(function (response) {
-    //    alert("failed");
+    //    alert('Something went worng...');
     //});
-
-
-
-
     //////////////////////
 }
 
