@@ -62,12 +62,24 @@ namespace AdvProg2WebApp.Models
 
         public void EndOfGame(string name)
         {
+            if (Model.multiplayerGames.Keys.Contains(Context.ConnectionId))
+            {
+                if (Model.multiplayerGames[Context.ConnectionId] == name)
+                {
+                    Model.multiplayerGames.Remove(Context.ConnectionId);
+                }
+            }
+            else
+            {
+                return;
+            }
             foreach (string s in MyUsers)
             {
                 if (Model.multiplayerGames.Keys.Contains(s))
                 {
                     if (Model.multiplayerGames[s] == name && Context.ConnectionId != s)
                     {
+                        Model.multiplayerGames.Remove(s);
                         Clients.Client(s).broadcastMessage("Game Ended");
                     }
                 }
@@ -85,6 +97,35 @@ namespace AdvProg2WebApp.Models
                     if (Model.multiplayerGames[s] == name && Context.ConnectionId != s)
                     {
                         Clients.Client(s).broadcastMessage(move);
+                    }
+                }
+
+            }
+
+        }
+
+        public void CloseGame(string name)
+        {
+            if (Model.multiplayerGames.Keys.Contains(Context.ConnectionId))
+            {
+                if (Model.multiplayerGames[Context.ConnectionId] == name)
+                {
+                    Model.multiplayerGames.Remove(Context.ConnectionId);
+                }
+            }
+            else
+            {
+                return;
+            }
+
+            foreach (string s in MyUsers)
+            {
+                if (Model.multiplayerGames.Keys.Contains(s))
+                {
+                    if (Model.multiplayerGames[s] == name && Context.ConnectionId != s)
+                    {
+                        Model.multiplayerGames.Remove(s);
+                        Clients.Client(s).broadcastMessage("Game Closed");
                     }
                 }
 

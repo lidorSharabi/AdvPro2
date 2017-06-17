@@ -164,6 +164,7 @@ namespace AdvProg2WebApp.Models
         {
             if (multiplayerGames.Keys.Contains(client)) 
             {
+                multiplayerGames.Remove(client);
                 return String.Empty;
             }
             return "Error Game not found";
