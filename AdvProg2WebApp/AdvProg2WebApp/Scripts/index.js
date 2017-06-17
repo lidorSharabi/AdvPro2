@@ -9,14 +9,14 @@ jQuery(document).ready(function ($) {
         $forgot_password_link = $form_login.find('.cd-form-bottom-message a'),
         $back_to_login_link = $form_forgot_password.find('.cd-form-bottom-message a'),
         $main_nav = $('.main-nav');
-     
+
     //open modal
     $main_nav.on('click', function (event) {
 
         if ($(event.target).is($main_nav)) {
             // on mobile open the submenu
             $(this).children('ul').toggleClass('is-visible');
-        } else {
+        } else if ($(event.target).is('.cd-signup') || $(event.target).is('.cd-signin')) {
             // on mobile close submenu
             $main_nav.children('ul').removeClass('is-visible');
             //show modal layer
