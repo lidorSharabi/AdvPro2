@@ -173,14 +173,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdvProg2WebAppContext.cs" />
-    <Compile Include="Models\HandleMultiplaterGame.cs" />
-    <Compile Include="Models\HandleMultiplayers.cs" />
     <Compile Include="Models\IModel.cs" />
     <Compile Include="Models\MazeAdapter.cs" />
     <Compile Include="Models\MazeModel.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Controllers\MultiPlayerHandler.cs" />
-    <Compile Include="Models\Response.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

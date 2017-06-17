@@ -3,14 +3,7 @@
 (function ($) {
     $.fn.mazeList = function (games) {
         var x = document.getElementById("games");
-        var xList = x.options;
-        var i = 0;
-        if (xList.length) {
-            for (i = 0; i < xList.length; i++) {
-                xList[i]=null;
-            }
-        }
-        
+        x.options.length = 0;
         for (i = 0; i < games.length; i++) {
             var option = document.createElement("option");
             option.text = games[i];

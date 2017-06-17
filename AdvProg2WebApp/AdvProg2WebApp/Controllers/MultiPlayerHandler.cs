@@ -9,17 +9,35 @@ using Newtonsoft.Json.Linq;
 
 namespace AdvProg2WebApp.Models
 {
+    /// <summary>
+    /// the hub of the multiplayer game connection
+    /// </summary>
     public class MultiPlayerHandler : Hub
     {
+        /// <summary>
+        /// list of all the users connected in the hub
+        /// </summary>
         public static List<string> MyUsers = new List<string>();
+        /// <summary>
+        /// the model of the maze
+        /// </summary>
         Model model = new Model();
 
+        /// <summary>
+        /// adding the user when connected
+        /// </summary>
+        /// <returns></returns>
         public override Task OnConnected()
         {
             MyUsers.Add(Context.ConnectionId);
             return base.OnConnected();
         }
 
+        /// <summary>
+        /// removing the user when disconnected
+        /// </summary>
+        /// <param name="stopCalled"></param>
+        /// <returns></returns>
         public override Task OnDisconnected(bool stopCalled)
         {
 
@@ -28,11 +46,21 @@ namespace AdvProg2WebApp.Models
             return base.OnDisconnected(stopCalled);
         }
 
+        /// <summary>
+        /// starting the maze game
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="rows"></param>
+        /// <param name="cols"></param>
         public void StartGame(string name, int rows, int cols)
         {
             model.MazeStart(name, rows, cols, Context.ConnectionId);
         }
 
+        /// <summary>
+        /// joining a maze game that was started
+        /// </summary>
+        /// <param name="name"></param>
         public void JoinGame(string name)
         {
             Maze maze = model.JoinMaze(name,Context.ConnectionId);
@@ -60,6 +88,10 @@ namespace AdvProg2WebApp.Models
             Clients.Client(Context.ConnectionId).broadcastMessage(mazeModel);
         }
 
+        /// <summary>
+        /// game over by one of the players winning
+        /// </summary>
+        /// <param name="name"></param>
         public void EndOfGame(string name)
         {
             if (Model.multiplayerGames.Keys.Contains(Context.ConnectionId))
@@ -88,6 +120,11 @@ namespace AdvProg2WebApp.Models
 
         }
 
+        /// <summary>
+        /// playing a move in the game
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="move"></param>
         public void PlayMove(string name, string move)
         {
             foreach (string s in MyUsers)
@@ -104,6 +141,10 @@ namespace AdvProg2WebApp.Models
 
         }
 
+        /// <summary>
+        /// game ended abruptly
+        /// </summary>
+        /// <param name="name"></param>
         public void CloseGame(string name)
         {
             if (Model.multiplayerGames.Keys.Contains(Context.ConnectionId))

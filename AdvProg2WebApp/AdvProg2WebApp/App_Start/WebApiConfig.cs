@@ -5,6 +5,9 @@ using System.Web.Http;
 
 namespace AdvProg2WebApp
 {
+    /// <summary>
+    /// web configuration
+    /// </summary>
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
