@@ -1,4 +1,5 @@
-﻿$(function () {
+﻿
+$(function () {
     $("#menu").load("../Menu.html");
 });
 
@@ -175,7 +176,7 @@ function MultiPlayerOnClick() {
         window.location.href = "MultiGame.html";
     }
     else {
-        alert("Please Sign in or Register")
+        alert("Please Sign in or Register");
     }
 }
 
