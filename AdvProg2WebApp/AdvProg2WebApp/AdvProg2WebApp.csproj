@@ -128,9 +128,12 @@
     <Content Include="Menu.html" />
     <Content Include="index.html" />
     <Content Include="MultiGame.html" />
+    <Content Include="Rankings.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\index.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\JavaScript1.js" />
+    <Content Include="Scripts\JavaScript2.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
@@ -141,11 +144,13 @@
     <Content Include="Scripts\Menu.js" />
     <Content Include="Scripts\menu.loaded.js" />
     <Content Include="Scripts\MultiGames.js" />
+    <Content Include="Scripts\Ranking.js" />
     <Content Include="Scripts\Settings.js" />
     <Content Include="Scripts\SingleGame.js" />
     <Content Include="Settings.html" />
     <Content Include="SingleGame.html" />
     <Content Include="Styles\bootstrap.css" />
+    <Content Include="Styles\Ranking.css" />
     <Content Include="Styles\SingleGame.css" />
     <Content Include="Styles\style.css" />
     <Content Include="Web.config" />

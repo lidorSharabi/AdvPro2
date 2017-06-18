@@ -169,3 +169,38 @@ function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }
+
+function MultiPlayerOnClick() {
+    if (sessionStorage.getItem('userName')) {
+        window.location.href = "MultiGame.html";
+    }
+    else {
+        alert("Please Sign in or Register")
+    }
+}
+
+//function rankingOnClick() {
+//    var usersUrl = "api/Users/";
+//    $.get(usersUrl, {}).done(function (data) {
+//        length = data.length;
+//        var users = [[]];
+//        var str;
+//        for (index = 0; index < length; ++index) {
+//            //str = $('<tr/>');
+//            //str.append("<td>" + (data[index].Victories - data[index].Losses) + "</td>");
+//            //str.append("<td>" + data[index].UserNameId + "</td>");
+//            //str.append("<td>" + data[index].Victories + "</td>");
+//            //str.append("<td>" + data[index].Losses + "</td>");
+//            $('table').append(str);
+//            var name = data[index].UserNameId;
+//            var wins = data[index].Victories;
+//            var losses = data[index].Losses;
+//            var rank = data[index].Victories - data[index].Losses;
+//            users[index] = [rank, name, wins, losses];
+//        }
+//        localStorage.setItem('usersArray', users);
+//        window.location.href = "Rankings.html";
+//    }).fail(function (response) {
+//        alert('Something went worng with server...');
+//    });
+//}
