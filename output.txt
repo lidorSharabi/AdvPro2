@@ -1,0 +1,1260 @@
+commit e07f7d0244728f0acc0792b3b8107a3c7697e805
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun Jun 18 18:04:47 2017 +0300
+
+    log out - out of sessionStorage
+
+commit f38cc86df1bd382f1493643dbeb2c2b4d30ae70c
+Merge: 882b895 fdc69cb
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun Jun 18 17:50:52 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/Advpro2
+
+commit 882b8957c5e67ef677bdf704f6effdd32fd693d4
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun Jun 18 17:50:41 2017 +0300
+
+    update db when user win or lose, and add Ranking table
+
+commit fdc69cb56fbc5f2eb344c0ce8574669328791d65
+Merge: 64e52ef f6501b7
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun Jun 18 02:22:20 2017 +0300
+
+    stage
+
+commit 64e52ef79cfe5c77c38d0f19de84c6fddd8e5068
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun Jun 18 02:20:58 2017 +0300
+
+    comments
+
+commit f6501b71114bf4de4761eee606e49a473bea2d98
+Merge: 21fcaea 794552d
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun Jun 18 01:18:05 2017 +0300
+
+    staged
+
+commit 21fcaeab97a8db6b440338e62a158c0fff63cdaf
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun Jun 18 01:17:11 2017 +0300
+
+    add victory
+
+commit 794552da7933d69f4297976f4e4b23260185105d
+Merge: 4486297 cbe121e
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun Jun 18 01:12:02 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/AdvPro2
+
+commit 44862971b3ce9bab1b05e518a6b9253553497278
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun Jun 18 01:11:35 2017 +0300
+
+    commit
+
+commit cbe121eede6011307ee4242e80228a83d50b26d7
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun Jun 18 00:42:07 2017 +0300
+
+    encoding password
+
+commit 5a65b191f3e58ffc76dfb4988347cac076bc57ce
+Merge: 56afcde 40330d2
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sat Jun 17 23:12:36 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/AdvPro2
+
+commit 56afcdef7832308b00f4e9fb89ca8e71eeaae46d
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sat Jun 17 23:12:25 2017 +0300
+
+    multi
+
+commit 20d7f75acc1f1f1cd6e14eae24aecbd12aa7967f
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sat Jun 17 23:12:03 2017 +0300
+
+    staged
+
+commit 40330d20201ed23a1524086413ead6a3ec3245be
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sat Jun 17 22:40:59 2017 +0300
+
+    after register/loggin open index.html
+
+commit 0716ec7f625e06f221d7d46bf00e2a7b71a8fe53
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sat Jun 17 22:34:48 2017 +0300
+
+    nav-bar present log out and user name
+
+commit 61e1f4e54f751e76216833ec6f2717114728be42
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri Jun 16 18:56:25 2017 +0300
+
+    /
+
+commit ab26e2d913ad3fc173068a0fa838c74bc02d53da
+Merge: 153134f adf491b
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri Jun 16 18:55:51 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/Advpro2
+
+commit 153134f8029fa8385eadf8d03fecf2cc3261c788
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri Jun 16 18:55:41 2017 +0300
+
+    login validations
+
+commit adf491bdf49d4d4b11f6b0b5bae1b55753bd51fc
+Merge: 6d22754 d48c758
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Jun 16 18:23:02 2017 +0300
+
+    merge
+
+commit 6d2275463182c90ef75e342dd4fef4dc25fa90cd
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Jun 16 18:21:55 2017 +0300
+
+    multi
+
+commit eac456d718f4b87f1b0a0cb8584654a034698b30
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Jun 16 18:21:24 2017 +0300
+
+    multi
+
+commit d48c758f9977e8da6299246c187f161d5330dfe2
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri Jun 16 15:45:52 2017 +0300
+
+    add account validations
+
+commit ccc6c384b8343dee96f5b6bb5069c5b3edf109b4
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri Jun 16 15:41:39 2017 +0300
+
+    staged
+
+commit 4a5f40fcc99129990359b8b4837a8481a4033aeb
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri Jun 16 14:05:54 2017 +0300
+
+    create new user validation (user name empty ot exist)
+
+commit 25cafdabb9425489aef34c4af83a932c78030964
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Jun 15 23:01:56 2017 +0300
+
+    migration
+
+commit 88538e79e470a0ae0f33808208ae5ec9a75a852d
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Jun 15 23:01:15 2017 +0300
+
+    commit
+
+commit 5fba0e01ab423cfe75108c6a685ae468a42f0c03
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Jun 15 23:00:51 2017 +0300
+
+    coomit
+
+commit 8309cac660ac89aca2f9ab810df98654010f1618
+Merge: 428d24f 9e7086a
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Jun 15 00:49:27 2017 +0300
+
+    merge
+
+commit 428d24f8f064a4d9105bf995e77497826a370e37
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Jun 15 00:47:57 2017 +0300
+
+    multi window
+
+commit 9e7086a43f61d9a00a71bb4b93f9582dbdaa61a5
+Merge: 09c7ad5 048865e
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Wed Jun 14 23:13:55 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/Advpro2
+
+commit 09c7ad52e7ff0f2bb316d4bc81a4290c210b5116
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Wed Jun 14 23:13:47 2017 +0300
+
+    user DB entity framework and "create account" btn add new user to DB
+
+commit 048865e1ceaf0a1b74e0c95958534951a80dccf5
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Wed Jun 14 22:28:28 2017 +0300
+
+    validations
+
+commit bb7211664ca31be69bb9d057b56222bfefdf61e9
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Wed Jun 14 20:58:05 2017 +0300
+
+    staged
+
+commit 7a7843d6432c733beabc3cb07d5e1a58d0fd1304
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Wed Jun 14 17:12:03 2017 +0300
+
+    solve
+
+commit 6d33f6be76f55b80d30642104f5787e5aea3817a
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Wed Jun 14 16:05:25 2017 +0300
+
+    fixes
+
+commit 544c4065c37f3289ab6f420f1f8e0a3138cee440
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Wed Jun 14 15:24:45 2017 +0300
+
+    Settings
+
+commit 195eb7e0e026166b95e3cb2d76a48c34aa4b25d2
+Merge: e15df6d f1a06e0
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Wed Jun 14 14:08:43 2017 +0300
+
+    c
+
+commit e15df6d35fc3f9bf57dac4900fa5368a4b4ec252
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Wed Jun 14 14:05:39 2017 +0300
+
+    commit
+
+commit f1a06e0a79462b8018adba41cf1a00e8b531e4d7
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue Jun 13 16:05:37 2017 +0300
+
+    canvas - context.clearRect and singleGame.html design
+
+commit 9a7c83657fd75a3b9e15fc1093876ea64a174c77
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue Jun 13 02:15:05 2017 +0300
+
+    loader
+
+commit 29a8882aca868aaa1663d84618dd0db30ca37b06
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue Jun 13 01:58:48 2017 +0300
+
+    winning
+
+commit 4066a443455c5f8b2ccee3f27b1e069aa6ad288e
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue Jun 13 01:34:14 2017 +0300
+
+    maze
+
+commit 929dfb4865b0a17f30ef8c1f7ea36e584a65649e
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue Jun 13 00:53:26 2017 +0300
+
+    project
+
+commit b6af89191df51fa316e522654d62aa6647d5fde3
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue Jun 13 00:53:06 2017 +0300
+
+    project
+
+commit 57cbca93eb91784c0011ce276fc657dfc2fae0d0
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon Jun 12 23:54:38 2017 +0300
+
+    bla
+
+commit b855cd50dd195f97b3aa2dc318a5be6d86d0d89f
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon Jun 12 23:54:21 2017 +0300
+
+    bla
+
+commit 086d423874d687197c7e139fc8f4e46f332d7421
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Mon Jun 12 23:50:44 2017 +0300
+
+    add ignore files
+
+commit bae9c2170f5c6d3c7510960c2fcccb7c501da2e4
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Mon Jun 12 23:48:29 2017 +0300
+
+    new sln AdvProg2WebApp
+
+commit 1c1f0871dc31fbf63d9cd48f2b76e7eeaf647040
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun Jun 11 22:03:32 2017 +0300
+
+    starting server
+
+commit 75dc03fd34f0e6d3e79fd96eff145f61a65e0948
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun Jun 11 22:03:10 2017 +0300
+
+    changes
+
+commit 3eafae8d836a4f360d28b34464cee7500e7ca711
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun Jun 11 20:46:55 2017 +0300
+
+    single
+
+commit c789190490bc811a0b29662010dba9afb71ff3e4
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun Jun 11 14:52:25 2017 +0300
+
+    Single game
+
+commit 403f4ea8424ecc724176fbc34257296cbee198a7
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun Jun 11 14:19:39 2017 +0300
+
+    single player
+
+commit 73221622474f8f4ee0081e0a0dd871b99fb336b7
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Jun 9 17:45:35 2017 +0300
+
+    commit
+
+commit 7b2dc0ed2768619605f9c9760c8712170837bca9
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Jun 8 16:43:24 2017 +0300
+
+    single
+
+commit a6691aeb5547c723a93079d9ed9e54014de9410c
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Jun 8 15:53:43 2017 +0300
+
+    single game
+
+commit f9d5e03bce85067d5dce772757ae0803365986eb
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Jun 8 14:53:53 2017 +0300
+
+    menu
+
+commit e7d7f852254b07dc55f039cbe618744b8b8c9fe7
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue Jun 6 17:07:36 2017 +0300
+
+    delete web project from wpf sln
+
+commit a84342a62ca88ad68909b3bad927ac8349fd21bf
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue Jun 6 16:58:24 2017 +0300
+
+    Revert "change sln folder name"
+    
+    This reverts commit 05aaee9823eecf7fa62113603b7adee474877d96.
+
+commit 05aaee9823eecf7fa62113603b7adee474877d96
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue Jun 6 16:55:58 2017 +0300
+
+    change sln folder name
+
+commit 4672f8020fc6b505ce06eaa30bc1531215bb7174
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue Jun 6 16:51:57 2017 +0300
+
+    add ignore files
+
+commit ec115b3319cffce0653622cea1b0fd60d4913f79
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue Jun 6 16:50:52 2017 +0300
+
+    new web sln
+
+commit 5db27eba54a6fbb81d60483df712280c1a96b653
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Mon Jun 5 00:10:30 2017 +0300
+
+    open web proj
+
+commit cff6bcb8c996da2fb1340f0cf10b9acd742d5453
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri May 26 00:22:02 2017 +0300
+
+    changes
+
+commit 63df4536cabeeceb80750afc4fd83265858b0afe
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri May 26 00:21:39 2017 +0300
+
+    changes
+
+commit 20c6546c07260bf4ca58b87468ba6226b6ddb8bc
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu May 25 14:07:14 2017 +0300
+
+    comments
+
+commit 55bf648ff969195978895c67a16f6223c20bbf80
+Merge: e14df9f 140a9c3
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu May 25 12:46:43 2017 +0300
+
+    merge
+
+commit e14df9fed63b967ef98708c1032ebfa7463af5f0
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu May 25 12:44:27 2017 +0300
+
+    comments
+
+commit 140a9c35f5bc322686db4bb77fbe87dbe9bf8464
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Thu May 25 10:03:07 2017 +0300
+
+    add close func - not completed(need to add "YouLose" window)
+
+commit 57c213e82268ca866862249980bb611bfaaa229c
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Thu May 25 01:09:37 2017 +0300
+
+    try and catch for read and write func of multi player
+
+commit 5b761e1722dae11f24ccfb3276903a9cc7b57d9e
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Thu May 25 00:31:03 2017 +0300
+
+    fix name of multi game and "No such move" servers error
+
+commit de6fe5da2b59db758fc23498cfb5a29673a40e3d
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Wed May 24 23:33:25 2017 +0300
+
+    delete sleep from OpponentMoveAnimation
+
+commit 082d24fd54049df85df92893549a82278cdc9127
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Wed May 24 23:28:32 2017 +0300
+
+    finally
+
+commit b6fa34c438de56079921895e1d2c750377b4aec6
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Wed May 24 23:05:33 2017 +0300
+
+    delete ContinuousReading func from multiBoardVM
+
+commit 2a4f35e85cff00fa324f13ee5a4295b31307d8db
+Merge: 1fabba7 b712ce9
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Wed May 24 23:03:01 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/Advpro2
+
+commit 1fabba7c849cfcfeb5b22cee3102e518311bce69
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Wed May 24 23:02:55 2017 +0300
+
+    change "move" to "Direction" and rename move/direction functions
+
+commit b712ce92ce6df3147b14e2aa61c18cc59f653f5b
+Merge: 354ed27 fa36536
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Wed May 24 22:43:47 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/AdvPro2
+
+commit 354ed275a05435d765c8e60119d1931476563e3d
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Wed May 24 22:43:37 2017 +0300
+
+    commit
+
+commit fa365368b8cbea67a4717cb2704aacf2b3195fa5
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Wed May 24 22:23:24 2017 +0300
+
+    multiclient add readMove func
+
+commit 33b1a70f8826e49ca430114ab513f5c19e446583
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Wed May 24 22:09:09 2017 +0300
+
+    fix multiClient.move
+
+commit 12955eb371d6aba379a06cff9406440ef6a4d7c8
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Wed May 24 21:40:48 2017 +0300
+
+    fix calling twice to client.join and improve client-server connection
+
+commit b1006ba36d68b95bd99e7430db095bcff0a05179
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue May 23 23:37:04 2017 +0300
+
+    multi back to menu button
+
+commit 123ecbcb0fcde8b107aba95d89b6f438dd752e34
+Merge: a260e7d d018c95
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue May 23 23:24:17 2017 +0300
+
+    merge
+
+commit a260e7d8b3dc98f51eb4594e332e3523199cb5b8
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue May 23 23:21:53 2017 +0300
+
+    fix
+
+commit d018c95af5f5f38504a2efdee799f0b4462cdd85
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue May 23 23:04:58 2017 +0300
+
+    multi join() and start()
+
+commit d0799d4c215bfea8f154c7bbc48d6f22355771fc
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue May 23 23:02:35 2017 +0300
+
+    spinner and waiting window
+
+commit 6b9919e331e8bee76dd20c79d25f2f37eca169e8
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue May 23 17:30:16 2017 +0300
+
+    commit
+
+commit 39eecd00f991f0be85619b240172e8dd11124b5d
+Merge: 1cdbc07 e0831fa
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue May 23 15:33:48 2017 +0300
+
+    merge
+
+commit 1cdbc07f40b9c3c3ddae0c6d8efdb35e9911126d
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue May 23 15:29:48 2017 +0300
+
+    telnet multiplayer
+
+commit e0831faf399b2690b25b3b48f6697cde13a48892
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue May 23 03:15:15 2017 +0300
+
+    ...
+
+commit d9d3ab9aeefbc3d8a7ffd6dd31256dca96e08d71
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue May 23 02:44:27 2017 +0300
+
+    changes
+
+commit 7e813eb8eaacc7f3d4c1c83a72238d2039b719b3
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 22 23:52:07 2017 +0300
+
+    changes
+
+commit 1a07005c2308718c1fffe18da3779f6ddc91c04f
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 22 23:23:57 2017 +0300
+
+    are you sure windows
+
+commit 6fd577d654171bc3b159387a85c8bdacb1dd8f81
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 22 23:10:29 2017 +0300
+
+    you win
+
+commit 91effe5ede40aaf9a267f7cde0a4aa9d3c3477ae
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 22 23:10:08 2017 +0300
+
+    you win
+
+commit 621fa704db466f330afcdd584f6c1ddf08b5a5b6
+Merge: 3f2bf8b 7e33989
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 22 18:10:23 2017 +0300
+
+    merge
+
+commit 3f2bf8b3bbc09c8e6cf9249279362fd6ef3acfc8
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 22 18:04:10 2017 +0300
+
+    winning
+
+commit 7e339892b8e0c94658378a3de68c1ed4b708f8a2
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Mon May 22 18:01:05 2017 +0300
+
+    x
+
+commit 11d710d4606bdea81a62e0ca6646045b5a508fcd
+Merge: d8194fd 3b39c2d
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Mon May 22 17:52:32 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/Advpro2
+
+commit d8194fd6d15cdb191546fd2c2ddbacbaeb488cf1
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Mon May 22 17:52:24 2017 +0300
+
+    ד
+
+commit 411269e1cbf5a75e5f3ace88420c77a8d2fbad01
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Mon May 22 17:52:18 2017 +0300
+
+    ס
+
+commit 3b39c2dd041d446a11842de54f84845bf51e7f0e
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 22 17:43:44 2017 +0300
+
+    fixes
+
+commit efddb432b44922e7d9e42333e352d91139007618
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 22 16:26:50 2017 +0300
+
+    settings
+
+commit 7ccdb80206b8b0e073b0115d2e020cdcece5d9e1
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Mon May 22 16:07:48 2017 +0300
+
+    dsfs
+
+commit 61b68c63813bc979673c9deffcbfda6d24a9b202
+Merge: c45e849 40c28e5
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Mon May 22 16:05:26 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/Advpro2
+
+commit c45e849df6a57625b88deeff2aebf74cb2f76fcc
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Mon May 22 16:05:16 2017 +0300
+
+    take ip from settings
+
+commit 40c28e5f137b4f22ee256b7bdb2819b48e22e1ad
+Merge: 4ad8391 6a94608
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 22 15:52:06 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/AdvPro2
+
+commit 4ad83919b933c6bce2db05d59341efc91a42e39a
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 22 15:51:54 2017 +0300
+
+    commit
+
+commit 6a94608094086fc90f3f6a4a3f5373629761bca1
+Merge: 647ab5e 59f6fec
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Mon May 22 15:25:01 2017 +0300
+
+    merge
+
+commit 647ab5e0ebad62506028c548ac40a587dc409df7
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Mon May 22 15:14:50 2017 +0300
+
+    singlePlayer - solve()
+
+commit 59f6fec7543b155e32f811e534e0e411f99d2572
+Merge: 0246f18 cf8f17f
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 22 12:09:57 2017 +0300
+
+    commit
+
+commit 0246f180bd41c2c2037733f261e4d603789b7099
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 22 12:06:55 2017 +0300
+
+    commit
+
+commit cf8f17ff823283e4f3941069e813257f4fd17fec
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun May 21 22:20:06 2017 +0300
+
+    singlePlayerVM with Task<type>
+
+commit 8bafbf4a63d6554a9139461527959cb3684d0ee4
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun May 21 20:23:02 2017 +0300
+
+    try
+
+commit 2a56bc0447a3c76df83f1e3368c92548feedac64
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun May 21 00:58:40 2017 +0300
+
+    a
+
+commit 906d35a77aa8bad058ea89a690670cf95d236c9f
+Merge: 7f96e49 749bc3a
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun May 21 00:53:40 2017 +0300
+
+    stage
+
+commit 7f96e49f64925886edadd7139eb582794b3ac1f8
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun May 21 00:51:17 2017 +0300
+
+    function generate of singleTelnet
+
+commit 749bc3ab892a391ba88c6c375ad5b9a7cc864355
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri May 19 19:00:54 2017 +0300
+
+    styling
+
+commit 6a20907172755c71a96ef200ca6c02abaffcd2b7
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri May 19 18:16:47 2017 +0300
+
+    styling
+
+commit 69c7a94ddc38fe6f045776f5e07974ec775ee64b
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri May 19 16:47:48 2017 +0300
+
+    gui
+
+commit fb1276df2805f2278e813af24e9c9f6b99b2a396
+Merge: d02831b 6514b1a
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri May 19 15:30:40 2017 +0300
+
+    commit merge
+
+commit d02831bd7755e1ebb8ad68109d7f25242b602871
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri May 19 15:25:57 2017 +0300
+
+    design
+
+commit 6514b1ac3c4172d643e810d1806eed825df9dacf
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri May 19 15:22:08 2017 +0300
+
+    telent single
+
+commit 86c45dfdbe5a5e706bb066336b96fe1eaacf1d98
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri May 19 15:21:48 2017 +0300
+
+    single telnet
+
+commit 32e4daeeee37dccdbf1a954a560864f3abab39a8
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue May 16 22:56:21 2017 +0300
+
+    maze board
+
+commit 16620d187720166fe915bb255e94ddb8da30ba5d
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 15 18:05:22 2017 +0300
+
+    ignored again
+
+commit 073c1446ae804113db9f63a816905de4c54ee857
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 15 18:05:02 2017 +0300
+
+    ignored files
+
+commit 020c3ea7c1f66e913a1907b6b8b5325bc7f55dd6
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 15 17:27:40 2017 +0300
+
+    maze user control
+
+commit a702dc728a7a38d4e26755bf0dfff7ee3db44536
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun May 14 17:16:49 2017 +0300
+
+    a lot changes
+
+commit e00514cb2b6c4acc067eaea47882275bb48765a1
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun May 14 17:16:21 2017 +0300
+
+    changes
+
+commit dcb7163f849b7ec9c0f677a8497e831a3f765741
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri May 5 18:35:45 2017 +0300
+
+    MAzeBoard.xaml.cs
+
+commit 41f23db7e51b5edd8d72bb87a319928721472ff3
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri May 5 18:23:55 2017 +0300
+
+    include to my files
+
+commit f873368a3974a72041f12e4dd3b4dc75234711d2
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri May 5 18:21:15 2017 +0300
+
+    open settings window in the center
+
+commit d9ce237847d36b9d270ceb82bc4dbb946ed7f157
+Merge: e421b5d 0c9fb1c
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri May 5 18:19:41 2017 +0300
+
+    staged changes
+
+commit e421b5ddc3975a15cc5b31a0babc92d6c3a7462f
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri May 5 18:12:39 2017 +0300
+
+    MazeBoard Controller
+
+commit 0c9fb1cd4a5aa676647db061cc258e4938fe4033
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Wed May 3 15:43:23 2017 +0300
+
+    commit all
+
+commit 60e89e02e737bdbe8c84dc1a10786af32c50a1cc
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Wed May 3 15:43:04 2017 +0300
+
+    starting MVVM
+
+commit 61ee849c3934b285f553ccbf7d5e2b17f5ce7308
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Wed May 3 14:44:50 2017 +0300
+
+    changes
+
+commit aad7910053c0f7ff19104110b3583cae14f00fc2
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Wed May 3 12:48:13 2017 +0300
+
+    changes in gui
+
+commit edf71dc9540709fe612255dba1ba0a2179460dbd
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Mon May 1 19:30:35 2017 +0300
+
+    commit
+
+commit a19a008f5715f3941dfed22567c1b275cb5889cb
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun Apr 30 17:41:06 2017 +0300
+
+    gui
+
+commit 9a8ca38117861d65bce987ccca3ddc2bfd62ab6e
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun Apr 30 17:40:53 2017 +0300
+
+    some of the gui
+
+commit 62d7e10dff28ffca3949f2fd200b458e0a9736d2
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue Apr 25 12:24:36 2017 +0300
+
+    fix appConfing param on server constructor
+
+commit 2a839615e8b2ba4a8431e4f391da58df8d6856e1
+Merge: ea20145 43e223f
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri Apr 21 16:54:34 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/Advpro2
+
+commit ea20145d9e9d479dc3e40429e943e9db69910cfb
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri Apr 21 16:54:26 2017 +0300
+
+    //
+
+commit 43e223fc9e718e1eed682ba588551ca152748675
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Apr 21 16:53:50 2017 +0300
+
+    validation
+
+commit d18fecad04c3d4083f172f0dc8a96dd76b74fb4c
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Apr 21 16:43:18 2017 +0300
+
+    changes
+
+commit 35c5f254d49a88f881ed3820b00481b949e02be6
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Apr 21 16:38:18 2017 +0300
+
+    changes
+
+commit 54abc79bd81a12ac61a355764c57a5a4a7fedecd
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Apr 21 16:34:40 2017 +0300
+
+    changes
+
+commit dd3d787d26627574dd24ad113ed8ac35f3bef88c
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Apr 21 13:38:11 2017 +0300
+
+    othe fixes
+
+commit b1584ec7464b6b9d9cbaa8d8ab0920e588afae61
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Apr 21 13:29:46 2017 +0300
+
+    fix
+
+commit c499f68cc7077063ca17b17ab7ebf058d2cfc492
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Apr 21 13:28:24 2017 +0300
+
+    comments and naming
+
+commit 709fd6f3873a01a571a75bb6b8720a9bf4f08347
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Apr 21 13:27:58 2017 +0300
+
+    comments
+
+commit 50befd1aa2aa0e304095934db56d591a3fa39814
+Merge: a40a62e a4e8864
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri Apr 21 01:25:05 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/Advpro2
+
+commit a40a62e9df3e948cb3c757faf78a0175483af2b6
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri Apr 21 01:24:53 2017 +0300
+
+    add comments on SearchAlgorithmLib
+
+commit a4e88648359cd09b08263f8ffbce16025dde81ad
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Apr 21 00:34:35 2017 +0300
+
+    comments
+
+commit cf97af86571f62cfcaa3dad43a6fabc53d32b376
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Apr 21 00:33:39 2017 +0300
+
+    changes in client
+
+commit deaf5435ac2d2fff54f5368c560b2241eb15c7b1
+Merge: ffdc42c c400fe3
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Apr 21 00:10:56 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/AdvPro2
+
+commit ffdc42c5a0deb7aa1b295f9767d8c3f22805ed70
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Fri Apr 21 00:10:41 2017 +0300
+
+    hopefully last comments
+
+commit c400fe3ecb93f7b7372985c2f30d81b323853f49
+Merge: f636c55 23f2fa1
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Thu Apr 20 23:59:23 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/Advpro2
+
+commit f636c557253e09308ec373503196fe55488db27d
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Thu Apr 20 23:59:01 2017 +0300
+
+    fix client
+
+commit 23f2fa1379508e130234f00121f342e2031fc7ed
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Apr 20 23:55:17 2017 +0300
+
+    comments
+
+commit 704c19de6a477a8e9995015029cd4513ab4eb94b
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Apr 20 23:29:20 2017 +0300
+
+    more comments
+
+commit 63600f7235870ab2f9116082b3a0b59e544fbe23
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Apr 20 23:18:46 2017 +0300
+
+    change in name of file
+
+commit 20460d77b3829f6a8f8782e33f2b9077eb31cb39
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Apr 20 23:16:22 2017 +0300
+
+    some changes
+
+commit c1fc974cc771978df5d70ddaa7cb944d9d588741
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Apr 20 23:06:18 2017 +0300
+
+    more comments
+
+commit 3b9e9bd17f2c401daef29cce5b61a8210e348bed
+Merge: 9c4de6b 5bfa5c1
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Thu Apr 20 22:37:01 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/Advpro2
+
+commit 9c4de6b812e3df7b0e7eca2246c2c4760f7497c5
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Thu Apr 20 22:36:42 2017 +0300
+
+    port number from app.config and erase param control
+
+commit 5bfa5c1b9f4e5e81fbda8f6d2104017a0374f9d3
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Apr 20 21:21:17 2017 +0300
+
+    comments
+
+commit 6059feb6b3a05cf922d6e18ae870d949c00b2a1c
+Merge: 82ac598 fe2dbe0
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Thu Apr 20 20:16:55 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/Advpro2
+
+commit fe2dbe0a558951e6b3529988ee0465c797b3dd9b
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Apr 20 19:46:15 2017 +0300
+
+    changes in the functions name
+
+commit 82ac5989a28f5c143c145c8970490e39673e6cf3
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Thu Apr 20 19:45:06 2017 +0300
+
+    גם לקובץ הזה מחייב לבצע commit
+
+commit edcd0e978d450d91167c248ffcb83fc6969dc3ad
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Thu Apr 20 19:44:43 2017 +0300
+
+    מחייב אותי לעשות commit לקבצים האלו
+
+commit 4a47e4a37592372b73f5d120c93991d22caa64ee
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Thu Apr 20 19:05:55 2017 +0300
+
+    all working!!
+
+commit cdb242f1ded2e4838ba7db56dbcd1287b93ef49f
+Merge: 24bff8f 487e522
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue Apr 18 13:31:56 2017 +0300
+
+    stage
+
+commit 487e522eb3c40182e15a5b62204a1f9a8bdbebf9
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue Apr 18 13:30:02 2017 +0300
+
+    check
+
+commit 24bff8f94faedb8656e5ab747d8690badf9f76cd
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue Apr 18 13:29:50 2017 +0300
+
+    check
+
+commit 356cf2aa57d3f5a30ab7926a98994cd17b63ac9f
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue Apr 18 13:28:29 2017 +0300
+
+    commit
+
+commit beec790ae74abcf4dc5d0b3bf67020421402c808
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue Apr 18 13:25:50 2017 +0300
+
+    merge to model
+
+commit bcdcde774c76c77c05e1774b6abac00fa5ec3d8c
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue Apr 18 13:13:40 2017 +0300
+
+    merge
+
+commit 866253ce349c3fddb719296fce0580aeb63cf6f2
+Merge: c4a058b bb8bd98
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue Apr 18 13:13:26 2017 +0300
+
+    merge
+
+commit c4a058b94a22c2a7a744b976ff18904b852d2256
+Merge: e6c09db f709847
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue Apr 18 12:46:38 2017 +0300
+
+    Merge branch 'master' of https://github.com/lidorSharabi/Advpro2
+
+commit f709847b9e6acdb2f5195c3e9bdcdfdcccf65b1f
+Merge: 068e61b 004985e
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue Apr 18 12:46:00 2017 +0300
+
+    commit
+
+commit e6c09db81b9936e5c0ecb3923fb2d53edfa6c5a6
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Tue Apr 18 12:45:26 2017 +0300
+
+    multiplayer
+
+commit bb8bd984462ca9d46c0daa456bc1e49d1e878df0
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue Apr 18 12:16:52 2017 +0300
+
+    changes
+
+commit 929af11a3802cf0cb1dc9a25ac9c575d7334e969
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Tue Apr 18 12:12:58 2017 +0300
+
+    changes
+
+commit 004985e372a21594fbfbe5ca993c0820dfa78ff8
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun Apr 16 18:02:25 2017 +0300
+
+    client
+
+commit c84087552924f04f8626a9b0a8ffc31fb09b4907
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun Apr 16 14:48:47 2017 +0300
+
+    a
+
+commit 303915e25c6e5b2324001c03ea3adfda8bb6e2eb
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Fri Apr 14 11:33:23 2017 +0300
+
+    rina - part B, lidor - comarator and client
+
+commit 4de5638831abb4160d1db3158c3b2690afcaaf4d
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Wed Apr 12 02:41:35 2017 +0300
+
+    bfs inheritance from PriorityQueSearcher
+
+commit 83a206c46e2d9614baa55664d41fa458fbda7b66
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Wed Apr 12 01:33:12 2017 +0300
+
+    testSearchable class
+
+commit 105efc8c46c4a5e2bf4393c7ea405080307c6936
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Wed Apr 12 01:22:37 2017 +0300
+
+    with rina changes - part A
+
+commit 8d0f066cd44ce39889155c5b39ce728ff57575af
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Wed Apr 12 00:48:36 2017 +0300
+
+    before
+
+commit 068e61b7ad40ae936dd9b164e606a88f25a2f028
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun Apr 9 23:21:16 2017 +0300
+
+    all changes
+
+commit 069db59d30495ceffebc5a574f55ab665d4917fc
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun Apr 9 23:06:37 2017 +0300
+
+    all changes
+
+commit 5726cb4927044ac7f4287b2073d4ca1fc4dd6c92
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun Apr 9 22:56:23 2017 +0300
+
+    /
+
+commit 8b35175747c908a8091d110f21d020a105b8acd4
+Merge: 8c3b08c 21b1d16
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun Apr 9 22:26:53 2017 +0300
+
+    commit merge
+
+commit 8c3b08c51a259279ada316c1267d6f2ddff1a478
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun Apr 9 22:22:14 2017 +0300
+
+    just commit
+
+commit 21b1d161491977249f17ae373b749e469eb8ed11
+Author: Rina <Rina@WINDOWS-O4DFLS1>
+Date:   Sun Apr 9 22:06:19 2017 +0300
+
+    changes in state
+
+commit b0e1fc0064b6166491dc89f63e83f2e749ae6156
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun Apr 9 01:14:21 2017 +0300
+
+    MazeAdapter : ISearchable
+
+commit 58b8141380cf08a50e15b079410bc739aa1c223e
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun Apr 9 01:04:42 2017 +0300
+
+    add consoleApplication project
+
+commit 50962fc72e5cd716c2a03fc8832eb74998feb970
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sun Apr 9 00:14:06 2017 +0300
+
+    classes & interfaces part A
+
+commit 4e52a4c9105a0a584e1fed4c5d0fcd37c5e57b46
+Author: LIDOR-PC <lidor206@gmail.com>
+Date:   Sat Apr 8 22:07:42 2017 +0300
+
+    new repository
+
+commit 8407eda1ac3c5f4feae769297de2951362bd0a30
+Author: lidorSharabi <lidor206@gmail.com>
+Date:   Sat Apr 8 22:06:05 2017 +0300
+
+    Initial commit
