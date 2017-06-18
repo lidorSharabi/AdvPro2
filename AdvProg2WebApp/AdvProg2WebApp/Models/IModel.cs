@@ -49,19 +49,5 @@ namespace AdvProg2WebApp.Models
         /// <param name="client"></param>
         /// <returns></returns>
         Maze JoinMaze(string name, string client);
-        /// <summary>
-        /// playing a move in the multiplayer maze (up, down, right, left)
-        /// </summary>
-        /// <param name="move"></param>
-        /// <param name="client"></param>
-        /// <returns></returns>
-        string PlayMove(string move, string client);
-        /// <summary>
-        /// closing a multiplayer maze
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="client"></param>
-        /// <returns></returns>
-        string CloseMultiPlayerGame(string name, string client);
     }
 }

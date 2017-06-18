@@ -14,17 +14,30 @@ using System.Text;
 
 namespace AdvProg2WebApp.Controllers
 {
+    /// <summary>
+    /// controller for the users
+    /// </summary>
     public class UsersController : ApiController
     {
+        /// <summary>
+        /// the database of the users
+        /// </summary>
         private AdvProg2WebAppContext db = new AdvProg2WebAppContext();
 
-        // GET: api/Users
+        /// <summary>
+        /// getting the uses
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<User> GetUsers()
         {
             return db.Users;
         }
 
-        // GET: api/Users/5
+        /// <summary>
+        /// finding a user with the specific id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(string id)
         {
@@ -37,7 +50,13 @@ namespace AdvProg2WebApp.Controllers
             return Ok(user);
         }
 
-        // GET: api/Users/5&123
+        /// <summary>
+        /// getting the confirmation the user has signed the appropriate password
+        /// and username
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         //[ResponseType(typeof(User))]
         public IHttpActionResult GetConfrimUser(string id, string password)
         {
@@ -50,7 +69,11 @@ namespace AdvProg2WebApp.Controllers
             return Ok(user);
         }
 
-        // PUT: api/Users/5
+        /// <summary>
+        /// update user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [ResponseType(typeof(User))]
         [Route("api/Users/Update")]
         public IHttpActionResult UpdateUser(User user)
@@ -80,7 +103,11 @@ namespace AdvProg2WebApp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Users
+        /// <summary>
+        /// signing a user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [ResponseType(typeof(User))]
         public IHttpActionResult PostUser(User user)
         {
@@ -110,7 +137,11 @@ namespace AdvProg2WebApp.Controllers
             return CreatedAtRoute("DefaultApi", new { id = user.UserNameId }, user);
         }
 
-        // DELETE: api/Users/5
+        /// <summary>
+        /// deleting a user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(string id)
         {
@@ -126,6 +157,10 @@ namespace AdvProg2WebApp.Controllers
             return Ok(user);
         }
 
+        /// <summary>
+        /// disposing
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

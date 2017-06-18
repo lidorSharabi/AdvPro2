@@ -10,11 +10,20 @@ using Newtonsoft.Json.Linq;
 
 namespace AdvProg2WebApp.Controllers
 {
+    /// <summary>
+    /// single game controller
+    /// </summary>
     public class SingleController : ApiController
     {
         IModel model = new Model();
 
-        // GET api/<controller>
+        /// <summary>
+        /// generating maze
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="cols"></param>
+        /// <param name="rows"></param>
+        /// <returns></returns>
         public IHttpActionResult GetMaze(string name, int cols, int rows)
         {
             try
@@ -37,6 +46,12 @@ namespace AdvProg2WebApp.Controllers
             }
         }
 
+        /// <summary>
+        /// getting the solution of the maze
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="algo"></param>
+        /// <returns></returns>
         public IHttpActionResult GetSolution(string name, int algo)
         {
             try

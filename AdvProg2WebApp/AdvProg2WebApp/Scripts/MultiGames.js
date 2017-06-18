@@ -134,12 +134,14 @@ $.connection.hub.start().done(function () {
         var rows = $("#MazeRows").val();
         var cols = $("#MazeCols").val();
         multiplayer.server.startGame(name, rows, cols);
+        $("#left").hide();
     });
 
     $("#JoinGameBtn").click(function () {
         var name = $("#games").val();
         if (name) {
             multiplayer.server.joinGame(name);
+            $("#left").hide();
         }
     });
 

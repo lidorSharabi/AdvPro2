@@ -145,31 +145,6 @@ namespace AdvProg2WebApp.Models
             return null;
         }
         /// <summary>
-        ///  playing a move in the multiplayer maze (up, down, right, left)
-        /// </summary>
-        /// <param name="move"></param>
-        /// <param name="client"></param>
-        /// <returns></returns>
-        public string PlayMove(string move, string client)
-        {
-                return String.Empty;
-        }
-        /// <summary>
-        /// closing a multiplayer maze
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="client"></param>
-        /// <returns></returns>
-        public string CloseMultiPlayerGame(string name, string client)
-        {
-            if (multiplayerGames.Keys.Contains(client)) 
-            {
-                multiplayerGames.Remove(client);
-                return String.Empty;
-            }
-            return "Error Game not found";
-        }
-        /// <summary>
         /// generates a maze with the maze adapter
         /// </summary>
         /// <param name="name"></param>

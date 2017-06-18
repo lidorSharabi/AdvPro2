@@ -6,6 +6,9 @@ using System.Web;
 
 namespace AdvProg2WebApp.Models
 {
+    /// <summary>
+    /// db context class
+    /// </summary>
     public class AdvProg2WebAppContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
