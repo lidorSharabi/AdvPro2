@@ -179,6 +179,9 @@ function MultiPlayerOnClick() {
     }
 }
 
+function logOutOnClick() {
+    sessionStorage.removeItem('userName');
+}
 //function rankingOnClick() {
 //    var usersUrl = "api/Users/";
 //    $.get(usersUrl, {}).done(function (data) {
