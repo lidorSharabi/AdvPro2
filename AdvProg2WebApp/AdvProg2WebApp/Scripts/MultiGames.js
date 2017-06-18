@@ -8,7 +8,7 @@ var opponentMazeCanvas = $("#OpponentMazeCanvas");
 
 var multiplayer = $.connection.multiPlayerHandler;
 multiplayer.client.broadcastMessage = function (msg) {
-    if (msg == "Game Ended") {
+    if (msg === "Game Ended") {
         var canvas = document.getElementById("mazeCanvas");
         var context = canvas.getContext("2d");
         var endOfGame_image = new Image();
@@ -16,14 +16,14 @@ multiplayer.client.broadcastMessage = function (msg) {
         endOfGame_image.src = "Images/sadDog.jpg";
         endOfGame_image.onload = function () {
             context.drawImage(endOfGame_image, 100, 150, canvas.width - 200, canvas.height - 200);
-        }
-        context.font = "32px Arial"
+        };
+        context.font = "32px Arial";
         context.fillText("You Lost!", 75, 100);
         canvas.onkeydown = null;
         return;
     }
 
-    if (msg == "left" || msg == "right" || msg == "up" || msg == "down") {
+    if (msg === "left" || msg === "right" || msg === "up" || msg === "down") {
         switch (msg) {
             case 'left':
                 opponentMazeCanvas.moveLeft();
@@ -41,7 +41,7 @@ multiplayer.client.broadcastMessage = function (msg) {
         return;
     }
 
-    if (msg == "Game Closed") {
+    if (msg === "Game Closed") {
         alert("Game was closed");
         window.open("index.html", '_self');
         return;
@@ -56,18 +56,18 @@ multiplayer.client.broadcastMessage = function (msg) {
     exitRow = msg.ExitRow;
     exitCol = msg.ExitCol;
     var playerImage = new Image();
-    playerImage.src = "Images/dog.jpg"
+    playerImage.src = "Images/dog.jpg";
     var exitImage = new Image;
-    exitImage.src = "Images/exit.png"
+    exitImage.src = "Images/exit.png";
     mazeCanvas.mazeBoard(multiplayer, name, rows, cols, mazeData,
         startRow, startCol,
         exitRow, exitCol,
         playerImage,
         exitImage);
     var oPlayerImage = new Image();
-    oPlayerImage.src = "Images/Opponent_Cat.jpg"
+    oPlayerImage.src = "Images/Opponent_Cat.jpg";
     var oExitImage = new Image;
-    oExitImage.src = "Images/exit - Copy.png"
+    oExitImage.src = "Images/exit - Copy.png";
     opponentMazeCanvas.opponentMazeBoard(name, rows, cols, mazeData,
         startRow, startCol,
         exitRow, exitCol,
@@ -129,7 +129,7 @@ $.connection.hub.start().done(function () {
                 gamesList.mazeList(msg);
             })
             .fail(function (jqXHR, textStatus, err) {
-                if (jqXHR.status == 500) {
+                if (jqXHR.status === 500) {
                     alert("error in connection to server");
                     return;
                 }
@@ -146,10 +146,10 @@ function focusFunction() {
             gamesList.mazeList(msg);
         })
         .fail(function (jqXHR, textStatus, err) {
-            if (jqXHR.status == 500) {
+            if (jqXHR.status === 500) {
                 alert("error in connection to server");
                 return;
             }
             mazeCanvas.text("Error: " + err);
         });
-};
+}
