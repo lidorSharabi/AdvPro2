@@ -19,6 +19,32 @@ multiplayer.client.broadcastMessage = function (msg) {
         };
         context.font = "32px Arial";
         context.fillText("You Lost!", 75, 100);
+        //call http request to add current user one loss
+        var usersUrl = "api/Users/";
+        var userName = sessionStorage.getItem('userName');
+        var user = {
+            UserNameId: 0,
+            Losses: 0,
+            Victories: 0,
+            MailAddress: 0,
+            Password: 0
+        };
+
+        $.get(usersUrl, { id: userName }).done(function (data) {
+            user.UserNameId = data.UserNameId;
+            user.Losses = data.Losses + 1;
+            user.Victories = data.Victories;
+            user.MailAddress = data.MailAddress;
+            user.Password = data.Password;
+            $.post(usersUrl + "Update", user).done(function (data) {
+                document.getElementById("cd-user-modal").classList.remove('is-visible');
+            }).fail(function (response) {
+                alert('Something went worng with server...');
+            });
+
+        }).fail(function (response) {
+            alert('Something went worng with server...');
+        });
         canvas.onkeydown = null;
         return;
     }

@@ -17,6 +17,7 @@ jQuery(document).ready(function ($) {
             // on mobile open the submenu
             $(this).children('ul').toggleClass('is-visible');
         } else if ($(event.target).is('.cd-signup') || $(event.target).is('.cd-signin')) {
+            alert('here');
             // on mobile close submenu
             $main_nav.children('ul').removeClass('is-visible');
             //show modal layer
