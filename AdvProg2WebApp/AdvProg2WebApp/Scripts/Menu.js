@@ -1,9 +1,15 @@
-﻿$(function () {
+﻿/*
+    @description load menu.html
+*/
+$(function () {
     $("#menu").load("../Menu.html");
 });
 
 //*******************************new user section*******************************
 
+/*
+    @description create new account - add him to DB, and log in new user
+ */
 function createAccount() {
     var usersUrl = "api/Users/";
     var userName = $("#signup-username").val();
@@ -11,6 +17,7 @@ function createAccount() {
     var password = $("#signup-password").val();
     var confrimPassword = $("#signup-confrim-password").val();
 
+    //create default user
     var user = {
         UserNameId: userName,
         Losses: 0,
@@ -19,6 +26,10 @@ function createAccount() {
         Password: password
     };
 
+    /*
+    *check that all the necessary fields aren't empty
+    *show validation for each empty field
+    */
     var validation = false;
     if (userName == "") {
         document.getElementById("signup-userName-required").classList.add('is-visible');
@@ -49,10 +60,12 @@ function createAccount() {
     if (validation) {
         return;
     }
+    /*
+    *add user to DB
+    */
     $.post(usersUrl, user).done(function (data) {
         document.getElementById("cd-user-modal").classList.remove('is-visible');
         sessionStorage.setItem('userName', userName);
-        //$("#cd-signup-nav").css('visibility', 'hidden');
         document.getElementById("cd-loggedin-span").innerText = sessionStorage.getItem('userName');
         document.getElementById("cd-signup-nav").style.visibility = "hidden";
         document.getElementById("cd-signin-nav").style.visibility = "hidden";
@@ -60,36 +73,58 @@ function createAccount() {
         document.getElementById("cd-loggedin-span").style.visibility = "visible";
         window.location.href = "index.html";
     }).fail(function (response) {
+        //if the request failed check the reason and show error according the reason
         if (response.statusText == "Conflict") {
-            document.getElementById("signup-userName-required").textContent = "this User  Name already exist";
+            document.getElementById("signup-userName-required").textContent = "this User Name already exist";
         }
         document.getElementById("signup-username").value = "";
     });
 }
 
+/*
+    *@description: remove validation if the field value has change
+ */
 function registerUsernameChange() {
     document.getElementById("signup-userName-required").classList.remove('is-visible');
 }
 
+/*
+    *@description: remove validation if the field value has change
+ */
 function emailChange() {
     document.getElementById("signup-email-required").classList.remove('is-visible');
 }
 
+/*
+    *@description: remove validation if the field value has change
+ */
 function registerPassWordChange() {
     document.getElementById("signup-password-required").classList.remove('is-visible');
 }
 
+/*
+    *@description: remove validation if the field value has change
+ */
 function confrimPassWordChange() {
     document.getElementById("signup-confrim-password-required").classList.remove('is-visible');
 }
 
 
 //*******************************login section*******************************
+
+/*
+    *@description: confrim user name and password by calling server to check in the DB
+    *if the user exist - log in, otherwise shoe validation error
+ */
 function login() {
     var usersUrl = "api/Users/";
     var userName = $("#login-username").val();
     var password = $("#login-password").val();
 
+    /*
+    *check that all the necessary fields aren't empty
+    *show validation for each empty field
+    */
     var validation = false;
     if (userName == "") {
         document.getElementById("login-userName-required").classList.add('is-visible');
@@ -106,7 +141,6 @@ function login() {
     $.get(usersUrl, { id: userName, password: password }).done(function (data) {
         document.getElementById("cd-user-modal").classList.remove('is-visible');
         sessionStorage.setItem('userName', userName);
-        //$("#cd-signup-nav").css('visibility', 'hidden');
         document.getElementById("cd-loggedin-span").innerText = sessionStorage.getItem('userName');
         document.getElementById("cd-signup-nav").style.visibility = "hidden";
         document.getElementById("cd-signin-nav").style.visibility = "hidden";
@@ -114,62 +148,51 @@ function login() {
         document.getElementById("cd-loggedin-span").style.visibility = "visible";
         window.location.href = "index.html";
     }).fail(function (response) {
-        //TODO - lidor add the reasne for the response
+        //if the request failed check the reason and show error according the reason
         document.getElementById("login-error-required").textContent = "username or password is incorrect";
         document.getElementById("login-error-required").classList.add('is-visible');
     });
-
-
-
-
-    ///////////////////////////
-    //var user = {
-    //    UserNameId: 0,
-    //    Losses: 0,
-    //    Victories: 0,
-    //    MailAddress: 0,
-    //    Password: 0
-    //};
-    //$.get(usersUrl, { id: userName}).done(function (data) {
-    //    user.UserNameId = data.UserNameId;
-    //    user.Losses = data.Losses;
-    //    user.Victories = data.Victories;
-    //    user.MailAddress = data.MailAddress;
-    //    user.Password = data.Password;
-    //    $.post(usersUrl + "Update", user ).done(function (data) {
-    //        document.getElementById("cd-user-modal").classList.remove('is-visible');
-    //    }).fail(function (response) {
-    //        //TODO - lidor add the reasne for the response
-    //        document.getElementById("login-error-required").classList.add('is-visible');
-    //        document.getElementById("login-error-required").textContent = "username or password is incorrect";
-    //    });
-
-    //}).fail(function (response) {
-    //    alert('Something went worng...');
-    //});
-    //////////////////////
 }
 
+/*
+    *@description: remove validation if the field value has change
+ */
 function loginUsernameChange() {
     document.getElementById("login-userName-required").classList.remove('is-visible');
     loginErrorChange();
 }
 
+/*
+    *@description: remove validation if the field value has change
+ */
 function loginPassWordChange() {
     document.getElementById("login-password-required").classList.remove('is-visible');
     loginErrorChange();
 }
 
+/*
+    *@description: remove validation if the field value has change
+ */
 function loginErrorChange() {
     document.getElementById("login-error-required").classList.remove('is-visible');
 }
+
+
 //*******************************general section*******************************
 
+/*
+    *@description: check if the email is in mail address format
+    *@param email string
+ */
 function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }
 
+/*
+    *@description: MultiPlayerOnClick check if ther's any user log in
+    *if the user ism't log in show error alert
+*/
 function MultiPlayerOnClick() {
     if (sessionStorage.getItem('userName')) {
         window.location.href = "MultiGame.html";
@@ -179,31 +202,9 @@ function MultiPlayerOnClick() {
     }
 }
 
+/*
+    *@description: log out the user by deleting the user from the session Storage
+ */
 function logOutOnClick() {
     sessionStorage.removeItem('userName');
 }
-//function rankingOnClick() {
-//    var usersUrl = "api/Users/";
-//    $.get(usersUrl, {}).done(function (data) {
-//        length = data.length;
-//        var users = [[]];
-//        var str;
-//        for (index = 0; index < length; ++index) {
-//            //str = $('<tr/>');
-//            //str.append("<td>" + (data[index].Victories - data[index].Losses) + "</td>");
-//            //str.append("<td>" + data[index].UserNameId + "</td>");
-//            //str.append("<td>" + data[index].Victories + "</td>");
-//            //str.append("<td>" + data[index].Losses + "</td>");
-//            $('table').append(str);
-//            var name = data[index].UserNameId;
-//            var wins = data[index].Victories;
-//            var losses = data[index].Losses;
-//            var rank = data[index].Victories - data[index].Losses;
-//            users[index] = [rank, name, wins, losses];
-//        }
-//        localStorage.setItem('usersArray', users);
-//        window.location.href = "Rankings.html";
-//    }).fail(function (response) {
-//        alert('Something went worng with server...');
-//    });
-//}

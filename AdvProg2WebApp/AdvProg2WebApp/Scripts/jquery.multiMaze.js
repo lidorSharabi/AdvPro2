@@ -1,4 +1,6 @@
-﻿
+﻿/*
+    *@description: responsible tho draw and clean maze canvas
+ */
 
 (function ($) {
     $.fn.mazeList = function (games) {
@@ -31,10 +33,16 @@
         drawMaze();
         addKeyboardListener();
 
+        /*
+        *@description: clear all the canvas
+        */
         function clearCanvas() {
             context.clearRect(0, 0, myCanvas.width, myCanvas.height);
         };
 
+        /*
+        *@description: draw the maze on the canvas
+        */
         function drawMaze() {
             for (var i = 0; i < rows; i++) {
                 for (var j = 0; j < cols; j++) {
@@ -57,6 +65,9 @@
             }
         };
 
+        /*
+        *@description: move user right/left/up/down and check if he wons
+        */
         function moveSelection(e) {
             switch (e.keyCode) {
                 case 37:
@@ -102,14 +113,24 @@
             }
         };
 
+        /*
+        *@description: remove player image from canvas
+        */
         function clearPlayer() {
             context.clearRect(colPlayerPos * cellWidth, rowPlayerPos * cellHeight, cellWidth, cellHeight);
         };
 
+        /*
+        *@description: draw user image on vanvas
+        */
         function drawPlayer() {
             context.drawImage(playerImage, colPlayerPos * cellWidth, rowPlayerPos * cellHeight, cellWidth, cellHeight);
         };
 
+        /*
+        *@description: chaeck if the user won,
+        *in case he does show won image
+        */
         function checkIfWon() {
             if (colPlayerPos == exitCol && rowPlayerPos == exitRow) {
                 context.clearRect(0, 0, myCanvas.width, myCanvas.height);
@@ -130,13 +151,17 @@
                     MailAddress: 0,
                     Password: 0
                 };
-
+                //get the user detials and add to him one victory
                 $.get(usersUrl, { id: userName }).done(function (data) {
                     user.UserNameId = data.UserNameId;
                     user.Losses = data.Losses;
                     user.Victories = data.Victories + 1;
                     user.MailAddress = data.MailAddress;
                     user.Password = data.Password;
+                    /*
+                    *add user one victory
+                    *save the updated details of the user in DB
+                    */
                     $.post(usersUrl + "Update", user).done(function (data) {
                         document.getElementById("cd-user-modal").classList.remove('is-visible');
                     }).fail(function (response) {
@@ -151,10 +176,16 @@
             }
         };
 
+        /*
+        *@description: remove keyboard listener for maze movement
+        */
         function removeKeyboardListener() {
             myCanvas.onkeydown = null;
         };
 
+        /*
+        *@description: add keyboard listener for maze movement
+        */
         function addKeyboardListener() {
             myCanvas.onkeydown = moveSelection.bind(this);
         };
@@ -183,6 +214,9 @@
             context.clearRect(0, 0, myCanvas.width, myCanvas.height);
         };
 
+        /*
+        *@description: draw maze on canvas
+        */
         function drawMaze() {
             for (var i = 0; i < rows; i++) {
                 for (var j = 0; j < cols; j++) {
@@ -203,6 +237,10 @@
         oexitImage.onload = function () {
             context.drawImage(oexitImage, cellWidth * exitCol, cellHeight * exitRow, cellWidth, cellHeight);
         };
+
+        /*
+        *@description: move user left
+        */
         $.fn.moveLeft = function () {
             clearPlayer();
             colPlayerPos -= 1;
@@ -211,6 +249,9 @@
             return this;
         };
 
+        /*
+        *@description: move user right
+        */
         $.fn.moveRight = function () {
             clearPlayer();
             colPlayerPos += 1;
@@ -219,6 +260,9 @@
             return this;
         };
 
+        /*
+        *@description: move user up
+        */
         $.fn.moveUp = function () {
             clearPlayer();
             rowPlayerPos -= 1;
@@ -227,6 +271,9 @@
             return this;
         };
 
+        /*
+        *@description: move user down
+        */
         $.fn.moveDown = function () {
             clearPlayer();
             rowPlayerPos += 1;
@@ -235,10 +282,16 @@
             return this;
         };
 
+         /*
+        *@description: remove player image from canvas
+        */
         function clearPlayer() {
             context.clearRect(colPlayerPos * cellWidth, rowPlayerPos * cellHeight, cellWidth, cellHeight);
         };
 
+        /*
+        *@description: draw user image on vanvas
+        */
         function drawPlayer() {
             context.drawImage(oplayerImage, colPlayerPos * cellWidth, rowPlayerPos * cellHeight, cellWidth, cellHeight);
         };

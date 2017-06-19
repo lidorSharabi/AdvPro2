@@ -1,11 +1,13 @@
 ﻿src = "Scripts/jquery.multiMaze.js";
 
+//get the default settings from the local storage
 $("#MazeRows").val(localStorage.getItem("rows"));
 $("#MazeCols").val(localStorage.getItem("cols"));
 var gamesList = $("#games");
 var mazeCanvas = $("#mazeCanvas");
 var opponentMazeCanvas = $("#OpponentMazeCanvas");
 
+//try to get connection with 
 var multiplayer = $.connection.multiPlayerHandler;
 multiplayer.client.broadcastMessage = function (msg) {
     if (msg == "Game Ended") {
@@ -30,25 +32,30 @@ multiplayer.client.broadcastMessage = function (msg) {
             Password: 0
         };
 
+        //get the user detials and add to him one loss
         $.get(usersUrl, { id: userName }).done(function (data) {
             user.UserNameId = data.UserNameId;
             user.Losses = data.Losses + 1;
             user.Victories = data.Victories;
             user.MailAddress = data.MailAddress;
             user.Password = data.Password;
+            //save the updated details of the user in DB
             $.post(usersUrl + "Update", user).done(function (data) {
                 document.getElementById("cd-user-modal").classList.remove('is-visible');
             }).fail(function (response) {
+                //if the request failed show error alert
                 alert('Something went worng with server...');
             });
 
         }).fail(function (response) {
+            //if the request failed show error alert
             alert('Something went worng with server...');
         });
         canvas.onkeydown = null;
         return;
     }
 
+    //move the opponent according the msg value
     if (msg == "left" || msg == "right" || msg == "up" || msg == "down") {
         switch (msg) {
             case 'left':
@@ -67,12 +74,14 @@ multiplayer.client.broadcastMessage = function (msg) {
         return;
     }
 
+    //end the game in case this msg
     if (msg == "Game Closed") {
         alert("Game was closed");
         window.open("index.html", '_self');
         return;
     }
 
+    //draw user and opponent maze board
     var name = msg.Name;
     var rows = msg.Rows;
     var cols = msg.Cols;
@@ -85,6 +94,8 @@ multiplayer.client.broadcastMessage = function (msg) {
     playerImage.src = "Images/dog.jpg"
     var exitImage = new Image;
     exitImage.src = "Images/exit.png"
+
+    //draw user maze board
     mazeCanvas.mazeBoard(multiplayer, name, rows, cols, mazeData,
         startRow, startCol,
         exitRow, exitCol,
@@ -94,6 +105,7 @@ multiplayer.client.broadcastMessage = function (msg) {
     oPlayerImage.src = "Images/Opponent_Cat.jpg"
     var oExitImage = new Image;
     oExitImage.src = "Images/exit - Copy.png"
+    //draw opponent maze board
     opponentMazeCanvas.opponentMazeBoard(name, rows, cols, mazeData,
         startRow, startCol,
         exitRow, exitCol,
@@ -106,11 +118,20 @@ multiplayer.client.broadcastMessage = function (msg) {
     document.getElementById("mazeCanvas").focus();
 
 };
+
+/*
+    @description click on StartGameBtn ask for server to start a game with another user
+*/
 $.connection.hub.start().done(function () {
     $("#StartGameBtn").click(function () {
         document.getElementById("MazeName").className = "";
         document.getElementById("MazeCols").className = "";
         document.getElementById("MazeRows").className = "";
+
+        /*
+        *check that all the necessary fields aren't empty
+        *show validation for each empty field
+        */
         var check = true;
         if (!$("#MazeName").val()) {
             document.getElementById("MazeName").className = "error";
@@ -137,6 +158,9 @@ $.connection.hub.start().done(function () {
         $("#left").hide();
     });
 
+/*
+    @description click on StartGameBtn ask for server to join game with another user
+*/
     $("#JoinGameBtn").click(function () {
         var name = $("#games").val();
         if (name) {
@@ -147,6 +171,10 @@ $.connection.hub.start().done(function () {
 
 });
 
+/*
+    @description ask for all the available games
+    and present them in list
+*/
 (function ($) {
     $("#games").focus(function () {
         var apiUrl = "api/Multi/GetList";
@@ -155,6 +183,7 @@ $.connection.hub.start().done(function () {
                 gamesList.mazeList(msg);
             })
             .fail(function (jqXHR, textStatus, err) {
+                //if the request failed show error alert
                 if (jqXHR.status == 500) {
                     alert("error in connection to server");
                     return;
@@ -165,6 +194,10 @@ $.connection.hub.start().done(function () {
 
 })(jQuery);
 
+/*
+    @description ask for all the available games when user click on the list DOM
+    and present them in list
+*/
 function focusFunction() {
     var apiUrl = "api/Multi/GetList";
     $.get(apiUrl)
@@ -173,6 +206,7 @@ function focusFunction() {
         })
         .fail(function (jqXHR, textStatus, err) {
             if (jqXHR.status == 500) {
+                //if the request failed show error alert
                 alert("error in connection to server");
                 return;
             }

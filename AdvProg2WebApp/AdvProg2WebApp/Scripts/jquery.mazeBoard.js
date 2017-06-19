@@ -1,4 +1,6 @@
-﻿
+﻿/*
+    *@description: responsible tho draw and clean maze canvas
+ */
 (function ($) {
     $.fn.mazeBoard = function (mazeData,
         startRow, startCol,
@@ -21,11 +23,17 @@
             drawMaze();
             addKeyboardListener();
 
+            /*
+            *@description: clear all the canvas
+             */
             function clearCanvas()
             {
                 context.clearRect(0, 0, myCanvas.width, myCanvas.height);
             };
 
+            /*
+            *@description: draw the maze on the canvas
+            */
             function drawMaze() {
                 for (var i = 0; i < rows; i++) {
                     for (var j = 0; j < cols; j++) {
@@ -48,6 +56,9 @@
                 }
             };
 
+            /*
+            *@description: move user right/left/up/down and check if he wons
+             */
             function moveSelection(e) {
                 switch (e.keyCode) {
                     case 37:
@@ -89,14 +100,24 @@
                 }
             };
 
+            /*
+            *@description: remove player image from canvas
+            */
             function clearPlayer() {
                 context.clearRect(colPlayerPos * cellWidth, rowPlayerPos * cellHeight, cellWidth, cellHeight);
             };
 
+            /*
+            *@description: draw user image on vanvas
+            */
             function drawPlayer() {
                 context.drawImage(playerImage, colPlayerPos * cellWidth, rowPlayerPos * cellHeight, cellWidth, cellHeight);
             };
 
+            /*
+            *@description: chaeck if the user won,
+            *in case he does show won image
+            */
             function checkIfWon() {
                 if (colPlayerPos == exitCol && rowPlayerPos == exitRow) {
                     context.clearRect(0, 0, myCanvas.width, myCanvas.height);
@@ -111,10 +132,16 @@
                 }
             };
 
+            /*
+            *@description: remove keyboard listener for maze movement
+            */
             function removeKeyboardListener() {
                 myCanvas.onkeydown = null;
             };
 
+            /*
+            *@description: add keyboard listener for maze movement
+            */
             function addKeyboardListener() {
                 myCanvas.onkeydown = moveSelection.bind(this);
             };
@@ -135,10 +162,16 @@
 
                 setTimeout(function () {}, solution.length * 150);
 
+                /*
+                *@description:
+                */
                 function setTimeForAnim(index, i) {
                     setTimeout(function () { moveAnimSol(index); }, i * 150);
                 };
 
+                /*
+                *@description: move user animation
+                */
                 function moveAnimSol(move) {
                     switch (move) {
                         case '0':
