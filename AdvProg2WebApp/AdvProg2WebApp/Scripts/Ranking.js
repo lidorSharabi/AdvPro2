@@ -16,7 +16,7 @@ $.get(usersUrl, {}).done(function (data) {
         if (index % 2) {
             str = $('<tr style="background-color: #f5f5f5;"/>');
         }
-        str.append("<td>" + (data[index].Victories - data[index].Losses) + "</td>");
+        str.append("<td>" + (index + 1) + "</td>");
         str.append("<td>" + data[index].UserNameId + "</td>");
         str.append("<td>" + data[index].Victories + "</td>");
         str.append("<td>" + data[index].Losses + "</td>");
